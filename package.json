@@ -1,0 +1,23 @@
+{
+  "name": "blog",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "@zeit/next-sass": "^0.2.0",
+    "axios": "^0.18.0",
+    "babel-core": "^6.26.3",
+    "babel-plugin-transform-decorators": "^6.24.1",
+    "babel-plugin-transform-decorators-legacy": "^1.3.5",
+    "babel-preset-stage-0": "^6.24.1",
+    "mobx": "^5.0.3",
+    "mobx-react": "^5.2.5",
+    "next": "^6.1.1",
+    "node-sass": "^4.9.3",
+    "react": "^16.4.2",
+    "react-dom": "^16.4.2"
+  }
+}

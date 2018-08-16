@@ -1,0 +1,36 @@
+.blog-item{
+    padding: 25px 0px;
+    
+    p{
+        margin-bottom: 15px;
+    }
+    @media screen and (max-width:768px) {
+        border-bottom: 1px solid #ddd;
+        padding: 12px 0;
+        p{
+            margin-bottom: 10px;
+            margin-top: 5px;
+        }
+    }
+    &-title{
+        text-transform: capitalize;
+        font-size: 32px;
+        font-weight: 100;
+        margin: 12px 0px;
+        line-height: 1.2em;
+        @media screen and (max-width:768px) {
+            font-size: 20px;
+            margin: 10px 0px;
+            font-weight: normal;
+        }
+    }
+    a{
+        &:acitve{text-decoration: none}
+        &:focus{text-decoration: none}
+    }
+}
+
+.blog-detail{
+    max-width: 600px;
+    margin: 0px auto;
+}
