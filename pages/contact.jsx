@@ -11,12 +11,6 @@ class Contact extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        let data = this.state;
-        axios.post('/leave-words', data)
-            .then(res => {
-                // message.info('留言成功, 小寒会每天查看的噢');
-                this.init();
-            })
     }
 
     render() {
