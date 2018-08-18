@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withLayout from '../components/Layout'
-import { dateFilter, getLocationQuery } from '../util/tool'
+import { dateFilter } from '../util/tool'
 
 class BlogDetail extends Component {
     static async getInitialProps(cxt, store) {
