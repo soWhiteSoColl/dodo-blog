@@ -1,6 +1,5 @@
 import Document, { Head, Main, NextScript } from 'next/document'
 import '../styles/index.scss'
-import '../config/http-interceptor'
 
 export default class MyDocument extends Document {
     static async getInitialProps(ctx) {

@@ -118,9 +118,9 @@
 }
 .main-footer{
     height: $main-footer-height;
-    padding: 20px 15px;
     box-sizing: border-box;
     text-align: center;
+    @include clearfix;
     p{
         margin-bottom: 5px;
     }

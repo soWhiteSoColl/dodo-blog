@@ -1,47 +1,47 @@
 import React from 'react'
-import Link from 'next/link'
-const links = [
-    { name: '博客', href: 'blogs' },
-    { name: '留言', href: 'contacts' }
-]
-export default class App extends React.Component {
-    state = {
-        current: 'mail',
-        searchWidth: 150
-    }
-    handleClick = (e) => {
-        this.setState({
-            current: e.key,
-        });
-    }
-    render() {
-        const { children } = this.props
-        return <div>
-            <header className="main-header">
-                <div className="do-common-container">
-                    <div className="logo-brand">
-                        <Link href="/index">
-                            <a><img src="/static/dodo-logo.png" alt="" /></a>
-                        </Link>
-                    </div>
-                    <div className="do-pull-right">
-                        <div className="main-tabs">
-                            {
-                                links.map((link, index) => (
-                                    <Link key={index} href={link.href}><a>{link.name}</a></Link>
-                                ))
-                            }
+import Header from './Header'
+import Footer from './Footer'
+import { Provider, observer, inject } from 'mobx-react'
+import Router from 'next/router'
+import NProgress from 'nprogress'
+
+import '../config/http-interceptor'
+import store from '../store'
+
+function Layout(Component) {
+    const ObserverComponent = inject(store => store)(observer(Component))
+    return class Page extends React.Component {
+        static async getInitialProps(ctx) {
+            let initialProps
+            if (Component.getInitialProps) {
+                initialProps = await Component.getInitialProps(ctx, store)
+            }
+            return { initialProps }
+        }
+
+        componentDidMount(){
+            Router.onRouteChangeStart = () => NProgress.start()
+            Router.onRouteChangeComplete = () => NProgress.done()
+            Router.onRouteChangeError = () => NProgress.done()
+        }
+
+        render() {
+            const { initialProps } = this.props
+            return (
+                <Provider {...store}>
+                    <React.Fragment>
+                        <Header />
+                        <div className="main-content">
+                            <ObserverComponent {...initialProps}/>
                         </div>
-                    </div>
-                </div>
-            </header>
-            <div className="main-content">
-                {children}
-            </div>
-            <footer className="main-footer">
-                <p>&copy; 2018 dodo</p>
-                <p><a href="https://github.com/soWhiteSoColl/just-dodo-web#%E4%BB%8B%E7%BB%8D" target="new">Fork In Github</a></p>
-            </footer>
-        </div >
+                        <Footer />
+                    </React.Fragment>
+                </Provider>
+
+            )
+        }
     }
+
 }
+
+export default Layout

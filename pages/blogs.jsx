@@ -1,23 +1,58 @@
 import React, { Component } from 'react'
-import Layout from '../components/Layout'
-import axios from 'axios'
-import { observer } from 'mobx-react'
+import withLayout from '../components/Layout'
+import { computed } from 'mobx'
+import { dateFilter } from '../util/tool'
+import Link from 'next/link'
 
-@observer
-export default class Blogs extends Component {
-    fetchBlogs = () => {
-        axios.get('/blogs')
+class Blogs extends Component {
+    static async getInitialProps(_, store) {
+        const blogs = await store.blogStore.list()
+        return { blogs }
     }
 
-    componentDidMount() {
-        this.fetchBlogs()
+    @computed
+    get blogs() {
+        let blogs = this.props.blogs || []
+        blogs = blogs && blogs.list && blogs.list.length ? blogs.list : []
+        return blogs.reduce((pre, blog) => {
+            const date = dateFilter(blog.created_at)
+            if (pre[date]) {
+                pre[date].push(blog)
+            } else {
+                pre[date] = [blog];
+            }
+            return pre;
+        }, {})
     }
 
     render() {
         return (
-            <Layout>
-                test
-            </Layout>
+            <div className="do-content-container">
+                {
+                    (() => {
+                        let elArr = [];
+                        const blogs = this.blogs
+                        for (let date in blogs) {
+                            elArr.push(
+                                <div className="blog-item" key={date}>
+                                    <p>{date}</p>
+                                    {
+                                        blogs[date].map((blog, index) =>
+                                            <div className="blog-title" key={index}>
+                                                <Link href={"/blog-detail?id=" + blog._id}>
+                                                    <a>{blog.title}</a>
+                                                </Link>
+                                            </div>)
+                                    }
+                                </div>
+                            )
+                        }
+                        return elArr
+                    })()
+                }
+            </div>
         );
     }
 }
+
+export default withLayout(Blogs)

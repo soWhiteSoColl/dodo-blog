@@ -1,11 +1,6 @@
 {
     "presets": [
-        ["next/babel", {
-            "preset-env": {},
-            "transform-runtime": {},
-            "styled-jsx": {},
-            "class-properties": {}
-        }]
+        ["next/babel"]
     ],
-    "plugins": ["transform-decorators-legacy"]
+    "plugins": ["transform-decorators-legacy", "transform-class-properties"]
 }

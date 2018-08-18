@@ -14,16 +14,10 @@
     max-width: $content-container-width;
     margin: 0 auto;
 }
-
 // header里的那个logo
-
-
 .do-pull-right{
     float: right;
 }
-
-
-
 
 .do-input{
     text-indent: 15px;
@@ -32,6 +26,7 @@
     line-height: $input-height;
     height: $input-height;
     border-radius: $input-radius;
+    box-sizing: border-box;
     &:focus{
         outline: none;
     }

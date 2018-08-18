@@ -1,31 +1,30 @@
-body{
+body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-img{
+img {
     max-width: 100%;
 }
 
-a{
+a {
     color: $primary-color;
     transition: all ease 0.3s;
     text-decoration: none;
-    &:hover{
+    &:hover {
         color: $light-primary-color;
     }
 }
 
-.ant-input-search{
+.ant-input-search {
     transition: all ease 0.3s;
-    input{
+    input {
         border-radius: 16px;
     }
 }
 
-
-input{
+input {
     line-height: 32px;
     height: 32px;
     border-radius: 16px;
