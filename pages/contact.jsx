@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import withLayout from '../components/Layout'
-import { dateFilter } from '../util/date'
+import { dateFilter } from '../util/tool'
 
 class Contact extends Component {
     state = {
