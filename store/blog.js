@@ -31,6 +31,7 @@ export default class Store {
     read = id => {
         return axios.get('/articles/' + id)
             .then(blog => {
+                console.log(blog)
                 this.currentBlog = blog
                 return Promise.resolve(blog)
             })

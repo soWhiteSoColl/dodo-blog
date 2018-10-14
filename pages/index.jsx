@@ -1,6 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import withLayout from '../components/Layout'
+import '../styles/index.less'
 
 const links = [
     { to: '/blogs', text: '博客' },

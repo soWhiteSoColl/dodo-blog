@@ -8,7 +8,7 @@
         transform: translateY(-50%) translateX(-50%);
         text-align: center;
         a{
-            color: #ddd;
+            color: #fff;
             letter-spacing: 30px;
             padding: 10px 0 10px 24px;
             line-height: 42px;
@@ -31,7 +31,14 @@
             }
             &:hover{
                 color: #fff;
-                
+                &:before{
+                    opacity: 1;
+                    left: -40px;
+                }
+                &:after{
+                    opacity: 1;
+                    right: -64px;
+                }
             }
         }
         img{

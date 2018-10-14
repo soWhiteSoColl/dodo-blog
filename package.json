@@ -21,6 +21,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "express": "^4.16.4",
+    "minieditor": "^1.0.0",
     "mobx": "^5.5.0",
     "mobx-react": "^5.2.8",
     "next": "^7.0.2",

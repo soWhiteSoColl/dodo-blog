@@ -47,9 +47,9 @@ class Blogs extends Component {
       if (pre[date]) {
         pre[date].push(blog)
       } else {
-        pre[date] = [blog];
+        pre[date] = [blog]
       }
-      return pre;
+      return pre
     }, {})
   }
 
@@ -58,7 +58,7 @@ class Blogs extends Component {
       <div className="do-content-container">
         {
           (() => {
-            let elArr = [];
+            let elArr = []
             const blogs = this.blogs
             for (let date in blogs) {
               elArr.push(
@@ -67,7 +67,7 @@ class Blogs extends Component {
                   {
                     blogs[date].map((blog, index) =>
                       <div className="blog-title" key={index}>
-                        <Link href={"/blog-detail?id=" + blog._id}>
+                        <Link href={"/blog?id=" + blog._id}>
                           <a>{blog.title}</a>
                         </Link>
                       </div>)
@@ -79,7 +79,7 @@ class Blogs extends Component {
           })()
         }
       </div>
-    );
+    )
   }
 }
 

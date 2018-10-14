@@ -4,7 +4,7 @@ import Footer from './Footer'
 import { Provider, observer, inject } from 'mobx-react'
 import Router from 'next/router'
 import NProgress from 'nprogress'
-
+import '../styles/index.less'
 import '../config/http-interceptor'
 import store from '../store'
 

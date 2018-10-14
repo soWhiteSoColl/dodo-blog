@@ -9,7 +9,7 @@ module.exports = withLess({
         test: /\.(css)$/,
         use: ['style-loader', 'css-loader']
       }
-    );
-    return config;
+    )
+    return config
   }
 })

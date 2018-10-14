@@ -1,0 +1,161 @@
+.draft-editor-full {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  right: 0;
+  z-index: 99999;
+}
+
+.editor-header {
+  background: #eee;
+}
+
+.editor-content {
+  border-top: none;
+  height: calc(100vh - 340px);
+  overflow-y: auto;
+  padding: 10px 15px;
+  border: 1px solid #eee;
+  background: #fff;
+}
+
+.editor-content-full {
+  border-top: none;
+  height: calc(100vh - 50px);
+  padding: 0px 15px;
+  overflow-y: auto;
+  background: #fff;
+}
+
+.editor-btn-group {
+  display: inline-block;
+  border-left: 1px solid #ccc;
+}
+
+.editor-btn-group:first-child {
+  border-left: none;
+}
+
+.editor-btn.active {
+  background: #ccc;
+  color: #fff;
+}
+
+.editor-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 14px;
+  line-height: 30px;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+  transition: all ease 0.3s;
+}
+
+.editor-append-link .ant-popover-message-title {
+  padding-left: 0;
+}
+
+.editor-btn:hover {
+  background: #ddd;
+}
+
+.editor-footer {
+  padding: 10px 0;
+}
+
+.editor-blockquote {
+  color: #666;
+  padding: 5px 20px;
+  font-size: 20px;
+  box-sizing: border-box;
+}
+
+.editor-code-block {
+  line-height: 2em;
+  padding: 0 15px;
+  background: #f3f3f3;
+  margin: 0;
+}
+
+.editor-code-block .editor:first-child {
+  margin-top: 10px;
+  padding-top: 10px;
+}
+
+.editor-code-block .editor:last-child {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.editor-header-one {
+  font-size: 2.2em;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.editor-header-two {
+  font-size: 1.8em;
+  border-bottom: 1px solid #ccc;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.editor-header-three {
+  font-size: 1.5em;
+  font-weight: bold;
+  margin: 20px 0;
+}
+
+.editor-header-four {
+  font-size: 1.3em;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.editor-header-five {
+  font-size: 1.1em;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.editor-header-six {
+  font-size: 0.8em;
+  font-weight: bold;
+  margin: 0.5em 0;
+}
+
+.editor-text-left {
+  text-align: left;
+}
+
+.editor-text-right {
+  text-align: right;
+}
+
+.editor-text-center {
+  text-align: center;
+}
+
+.editor-color-selector {
+  width: 12px;
+  height: 12px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+
+.draft-editor .editor-color-picker {
+  position: absolute;
+  background-color: #fff;
+  z-index: 100;
+}
+
+
+.DraftEditor-root figure{
+  margin: 0;
+  line-height: 1.5em;
+}
