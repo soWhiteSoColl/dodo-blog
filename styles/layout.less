@@ -1,6 +1,6 @@
 .index-page{
     height: 100vh;
-    background: $primary-color;
+    background: @primary-color;
     .index-container{
         position: absolute;
         top: 50%;
@@ -43,9 +43,9 @@
 }
 
 .main-header{
-    height: $main-header-height;
-    line-height: $main-header-height;
-    @include clearfix;
+    height: @main-header-height;
+    line-height: @main-header-height;
+    .clearfix;
     .logo-brand{
         display: inline-block;
         img{
@@ -77,10 +77,10 @@
                 text-decoration: none;    
             }
             &.active{
-                color: $primary-color;
+                color: @primary-color;
             }
             &:hover{
-                color: $light-primary-color;
+                color: @light-primary-color;
             }
             &.active:after{
                 content: '';
@@ -89,7 +89,7 @@
                 top: 100%;
                 width: 100%;
                 height: 2px;
-                background: $primary-color;
+                background: @primary-color;
             }
             &:last-child{
                 margin-right: 0;
@@ -113,14 +113,14 @@
     }
 }
 .main-content{
-    min-height: calc(100vh - #{$main-header-height} - #{$main-footer-height});
-    @include clearfix;
+    min-height: calc(100vh - @main-header-height - @main-footer-height);
+    .clearfix;
 }
 .main-footer{
-    height: $main-footer-height;
+    height: @main-footer-height;
     box-sizing: border-box;
     text-align: center;
-    @include clearfix;
+    .clearfix;
     p{
         margin-bottom: 5px;
     }

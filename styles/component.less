@@ -1,17 +1,17 @@
 // container 一共有三种
-@mixin do-container{
+.do-container{
     padding: 0 15px;
 }
 
 .do-common-container{
-    @include do-container;
-    max-width: $common-container-width;
+    .do-container;
+    max-width: @common-container-width;
     margin: 0 auto;
 }
 
 .do-content-container{
-    @include do-container;
-    max-width: $content-container-width;
+    .do-container;
+    max-width: @content-container-width;
     margin: 0 auto;
 }
 // header里的那个logo
@@ -23,9 +23,9 @@
     text-indent: 15px;
     width: 100%;
     border: 1px solid #ccc;
-    line-height: $input-height;
-    height: $input-height;
-    border-radius: $input-radius;
+    line-height: @input-height;
+    height: @input-height;
+    border-radius: @input-radius;
     box-sizing: border-box;
     &:focus{
         outline: none;
@@ -40,7 +40,7 @@ textarea.do-input{
     padding: 5px 15px;
 }
 .do-group{
-    @include clearfix;
+    .clearfix;
     margin: 20px 0;
 }
 
@@ -74,14 +74,14 @@ textarea.do-input{
 }
 
 .primary-btn{
-    background: $primary-color;
-    border: 1px solid $primary-color;
+    background: @primary-color;
+    border: 1px solid @primary-color;
     color: #fff;
     a{
         color: #fff;
     }
     &:hover{
-        background: $light-primary-color;
+        background: @light-primary-color;
     }
 }
 

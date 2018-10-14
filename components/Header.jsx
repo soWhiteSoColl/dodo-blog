@@ -3,7 +3,8 @@ import Link from 'next/link'
 
 const links = [
     { name: '博客', href: '/blogs' },
-    { name: '留言', href: '/contact' }
+    { name: '留言', href: '/contact' },
+    { name: '登录', href: '/login' }
 ]
 
 class Header extends Component {

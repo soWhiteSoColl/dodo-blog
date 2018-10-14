@@ -1,36 +1,35 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://api.justdodo.cn'
+// axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
+axios.defaults.baseURL = 'http://60.205.219.234:8000/api/v1'
+axios.defaults.withCredentials = true
 axios.interceptors.request.use(
     request => {
         return request
     }
 )
+
 axios.interceptors.response.use(
     response => {
         if (!response) {
             return Promise.reject('Uncatch error')
         }
-        if (!response.status) {
-            return response
-        }
 
-        if (!response.data) {
+        if (response.status !== 200) {
             return Promise.reject(response)
         }
 
         const result = response.data
-        if (!result.data || !result.code) {
+        if (!result.success) {
             return Promise.reject(result)
-        }
-
-        if (result.code !== 1) {
-            return Promise.reject(result.msg)
         }
 
         return result.data
     },
     error => {
+        if (!error) {
+            return Promise.reject('unexpect error')
+        }
         if (error.response) {
             switch (error.response.status) {
                 case 401:

@@ -8,7 +8,7 @@ import NProgress from 'nprogress'
 import '../config/http-interceptor'
 import store from '../store'
 
-function Layout(Component) {
+function Layout(Component, option = { header: true, footer: true }) {
     const ObserverComponent = inject(store => store)(observer(Component))
     return class Page extends React.Component {
         static async getInitialProps(ctx) {
@@ -19,7 +19,7 @@ function Layout(Component) {
             return { initialProps }
         }
 
-        componentDidMount(){
+        componentDidMount() {
             Router.onRouteChangeStart = () => NProgress.start()
             Router.onRouteChangeComplete = () => NProgress.done()
             Router.onRouteChangeError = () => NProgress.done()
@@ -30,11 +30,11 @@ function Layout(Component) {
             return (
                 <Provider {...store}>
                     <React.Fragment>
-                        <Header />
+                        {option.header && <Header />}
                         <div className="main-content">
-                            <ObserverComponent {...initialProps}/>
+                            <ObserverComponent {...initialProps} />
                         </div>
-                        <Footer />
+                        {option.footer && <Footer />}
                     </React.Fragment>
                 </Provider>
 
