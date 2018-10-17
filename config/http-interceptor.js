@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
-axios.defaults.baseURL = 'http://60.205.219.234:8000/api/v1'
+axios.defaults.baseURL = 'https://zeus-ui.com/api/v1'
 axios.defaults.withCredentials = true
 axios.interceptors.request.use(
     request => {
