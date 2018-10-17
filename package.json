@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "node server",
     "build": "next build",
-    "start": "NODE_ENV=production node server"
+    "start": "NODE_ENV=production node server",
+    "delpoy": "pm2 restart ./server/prod.js"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.2",
