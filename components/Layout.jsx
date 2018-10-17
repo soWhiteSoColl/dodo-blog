@@ -8,7 +8,9 @@ import '../styles/index.less'
 import '../config/http-interceptor'
 import store from '../store'
 
-function Layout(Component, option = { header: true, footer: true }) {
+function Layout(Component, option) {
+    option = option || {}
+    const {header: hasHeader = true, footer: hasFooter = true, headerComponent} = option
     const ObserverComponent = inject(store => store)(observer(Component))
     return class Page extends React.Component {
         static async getInitialProps(ctx) {
@@ -30,11 +32,11 @@ function Layout(Component, option = { header: true, footer: true }) {
             return (
                 <Provider {...store}>
                     <React.Fragment>
-                        {option.header && <Header />}
+                        {hasHeader && (headerComponent || <Header />)}
                         <div className="main-content">
                             <ObserverComponent {...initialProps} />
                         </div>
-                        {option.footer && <Footer />}
+                        {hasFooter && <Footer />}
                     </React.Fragment>
                 </Provider>
 

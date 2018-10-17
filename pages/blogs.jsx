@@ -42,7 +42,7 @@ class Blogs extends Component {
   @computed
   get blogs() {
     let blogs = this.props.blogStore.blogs.list || []
-    return blogs.reduce((pre, blog) => {
+    return blogs.sort((a, b) => a.created < b.created).reduce((pre, blog) => {
       const date = dateFilter(blog.created)
       if (pre[date]) {
         pre[date].push(blog)

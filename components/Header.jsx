@@ -1,11 +1,6 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
 
-const links = [
-    { name: '博客', href: '/blogs' },
-    { name: '留言', href: '/contact' },
-    { name: '登录', href: '/login' }
-]
 
 class Header extends Component {
     render() {
@@ -18,13 +13,9 @@ class Header extends Component {
                         </Link>
                     </div>
                     <div className="do-pull-right">
-                        <div className="main-tabs">
-                            {
-                                links.map((link, index) => (
-                                    <Link key={index} href={link.href}><a>{link.name}</a></Link>
-                                ))
-                            }
-                        </div>
+                        <a href="https://github.com/soWhiteSoColl/blog-web" target="new">
+                            Fork In Github
+                        </a>
                     </div>
                 </div>
             </header>

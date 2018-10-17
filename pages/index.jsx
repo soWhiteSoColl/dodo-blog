@@ -7,7 +7,7 @@ const links = [
     { to: '/blogs', text: '博客' },
     { to: '/articles', text: '杂谈' },
     { to: '/pictures', text: '图库' },
-    { to: '/contact-us', text: '留言' }
+    { to: '/contact', text: '留言' }
 ]
 
 class App extends React.Component {
