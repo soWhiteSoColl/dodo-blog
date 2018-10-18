@@ -94,14 +94,14 @@ export default class Blogs extends Component {
 
   render() {
     const { blogs } = this.props.blogStore
-    const { noMore } = blogs
+    // const { noMore } = blogs
     const { loading } = this.state
 
     return (
       <div className="do-content-container">
         <BlogGroup elRef={this.$blogs} blogs={blogs.list} />
         {loading && <div className="do-text-loading">加载中...</div>}
-        {noMore && <div className="do-text-loading">全都加载完啦...</div>}
+        {/* {noMore && <div className="do-text-loading">全都加载完啦...</div>} */}
       </div>
     )
   }

@@ -2,6 +2,8 @@ import React from 'react'
 import Link from 'next/link'
 import withLayout from '../components/Layout'
 import '../styles/index.less'
+import mouseMoveAnimation from '../util/mouse-animation'
+
 
 const links = [
     { to: '/blogs', text: '博客' },
@@ -11,6 +13,11 @@ const links = [
 ]
 
 class App extends React.Component {
+    canvasBg = React.createRef()
+    componentDidMount() {
+        const canvasBg = this.canvasBg.current
+        mouseMoveAnimation(canvasBg)
+    }
     render() {
         return <div className="index-page">
             <div className="index-container">
@@ -22,8 +29,9 @@ class App extends React.Component {
                     {links.map((link, index) => <Link key={index} href={link.to}><a>{link.text}</a></Link>)}
                 </div>
             </div>
+            <div className="index-canvas-bg" ref={this.canvasBg}></div>
         </div>
     }
 }
 
-export default withLayout(App, {header: false, footer: false})
+export default withLayout(App, { header: false, footer: false })
