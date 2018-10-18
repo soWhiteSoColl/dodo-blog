@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import withLayout from '../components/Layout'
-import { dateFilter } from '../util/tool'
+import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 
 
@@ -23,23 +23,20 @@ const Header = () => {
   )
 }
 class BlogDetail extends Component {
-  static async getInitialProps(cxt) {
+  static async getInitialProps(cxt, store) {
     const { id } = cxt.query
-    return { id }
+    let blog = await store.blogStore.read(id)
+    return { id, blog }
   }
-
-  componentDidMount() {
-    this.props.blogStore.read(this.props.id)
-  }
-
+ 
   render() {
-    const blog = this.props.blogStore.currentBlog || {}
+    const blog = this.props.blog || {}
 
     return (
       <div className="do-content-container blog-detail">
-        <h1 className="blog-title">{blog.title}</h1>
+        <h1 className="blog-title"><a href="#">{blog.title}</a></h1>
         <div className="blog-author">{blog.author && blog.author.username}</div>
-        <div className="blog-author">{dateFilter(blog.created)}</div>
+        <div className="blog-date">{dateFormater(blog.created)}</div>
         <div className="blog-content">
           <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
         </div>
@@ -48,4 +45,4 @@ class BlogDetail extends Component {
   }
 }
 
-export default withLayout(BlogDetail, { headerComponent: <Header/> })
+export default withLayout(BlogDetail, { headerComponent: <Header /> })

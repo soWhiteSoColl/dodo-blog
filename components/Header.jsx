@@ -13,6 +13,12 @@ class Header extends Component {
                         </Link>
                     </div>
                     <div className="do-pull-right">
+                        <Link href="/blogs">
+                            <a>博客</a>
+                        </Link>
+                        <Link href="/contact">
+                            <a>留言</a>
+                        </Link>
                         <a href="https://github.com/soWhiteSoColl/blog-web" target="new">
                             Fork In Github
                         </a>

@@ -3,14 +3,11 @@ import axios from 'axios'
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/api/v1'
 axios.defaults.baseURL = 'https://zeus-ui.com/api/v1'
 axios.defaults.withCredentials = true
-axios.interceptors.request.use(
-    request => {
-        return request
-    }
-)
-
 axios.interceptors.response.use(
     response => {
+        if(response.hasAxiosPassport){
+            return Promise.resolve(response)
+        }
         if (!response) {
             return Promise.reject('Uncatch error')
         }
@@ -24,21 +21,9 @@ axios.interceptors.response.use(
             return Promise.reject(result)
         }
 
-        return result.data
-    },
-    error => {
-        if (!error) {
-            return Promise.reject('unexpect error')
-        }
-        if (error.response) {
-            switch (error.response.status) {
-                case 401:
-                    console.log('没权限')
-                default:
-                    console.log('出错了')
-            }
-        }
-        return Promise.reject(error.response)
+        result.data.hasAxiosPassport = true
+
+        return Promise.resolve(result.data)
     }
 );
 

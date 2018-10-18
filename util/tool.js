@@ -1,4 +1,4 @@
-export function dateFilter(date, isShowHour) {
+export function dateFormater(date, isShowHour) {
     date = new Date(date)
     let formatDate = date.getFullYear() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getDate()
     if (isShowHour) {

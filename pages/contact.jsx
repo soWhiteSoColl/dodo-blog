@@ -1,7 +1,8 @@
 import React from 'react';
-import NotFound from '../components/404'
+import withLayout from '../components/Layout'
 
-class Component extends React.Component {
+@withLayout
+export default class Contact extends React.Component {
     state = {
         name: '',
         content: '',
@@ -14,9 +15,19 @@ class Component extends React.Component {
 
     render() {
         return (
-            <NotFound/>
+            <div className="do-common-container">
+                <div className="contact-form">
+                    <div className="do-group">
+                        <input className="do-input" type="text" placeholder="留下大名" />
+                    </div>
+                    <div className="do-group">
+                        <textarea className="do-input" cols="30" rows="10" placeholder="有何贵干"></textarea>
+                    </div>
+                    <div className="do-group">
+                        <button className="do-btn do-btn-primary">留言</button>
+                    </div>
+                </div>
+            </div>
         );
     }
 }
-
-export default Component;

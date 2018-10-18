@@ -1,86 +1,108 @@
 import React, { Component } from 'react'
 import withLayout from '../components/Layout'
-import { computed } from 'mobx'
-import { dateFilter } from '../util/tool'
+import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 
-class Blogs extends Component {
+const Date = props => <div className="blogs-group-date">{dateFormater(props.date)}</div>
+
+const BlogItem = props => {
+  const blog = props.blog
+
+  return (
+    <section className="blog-title">
+      <Link href={"/blog?id=" + blog._id}>
+        <a>{blog.title}</a>
+      </Link>
+    </section>
+  )
+}
+
+const BlogGroup = props => {
+  const blogs = [...props.blogs]
+  const blogSort = blogs
+    .sort((a, b) => a.created < b.created)
+    .reduce((result, blog) => {
+      const date = dateFormater(blog.created)
+      if (result[date]) {
+        result[date].push(blog)
+      } else {
+        result[date] = [blog]
+      }
+      return result
+    }, {})
+
+  return (
+    <div className="blogs-list" ref={props.elRef}>
+      {
+        Object.entries(blogSort).map(([date, blogs]) => (
+          <div className="blogs-group" key={date}>
+            <Date date={date} />
+            {blogs.map(blog => <BlogItem key={blog._id} blog={blog} />)}
+          </div>
+        ))
+      }
+    </div>
+  )
+}
+
+@withLayout
+export default class Blogs extends Component {
+  $blogs = React.createRef()
+  fetching = false
+
   state = {
     loading: false
   }
-
-  fetching = false
-
-  componentDidMount() {
-    this.fetch()
-      .then(() => {
-        this.checkDataEnough()
-        window.addEventListener('scroll', this.checkDataEnough)
-      })
+  static async getInitialProps(cxt, store) {
+    const blogs = await store.blogStore.list()
+    return { blogs }
   }
 
-  checkDataEnough = () => {
-    const scrollTop = document.documentElement.scrollTop
-    const clientHeight = document.documentElement.clientHeight
-    const totalHeight = document.documentElement.scrollHeight
-    if (totalHeight - scrollTop - clientHeight < 200) {
-      !this.fetching && this.fetch()
+  componentDidMount() {
+    const blogs = this.props.blogs
+    this.props.blogStore.setValues({ blogs })
+    setTimeout(() => this.handleScroll())
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll = () => {
+    const elBottom = this.$blogs.current.getBoundingClientRect().bottom
+    const windowHeihgt = window.innerHeight
+    if (this.props.blogStore.blogs.noMore) {
+      window.removeEventListener('scroll', this.handleScroll)
+    }
+    if (elBottom < windowHeihgt) {
+      if (!this.fetching) {
+        this.handleFetchMore()
+      }
     }
   }
 
-  fetch = () => {
-    // 不可以再获取数据
+  handleFetchMore = () => {
     this.fetching = true
-    this.setState({ loading: true })  // loading 效果
-    return this.props.blogStore.list()
+    this.setState({ loading: true })
+    this.props.blogStore.list()
       .then(() => {
         this.fetching = false
         this.setState({ loading: false })
       })
   }
 
-  @computed
-  get blogs() {
-    let blogs = this.props.blogStore.blogs.list || []
-    return blogs.sort((a, b) => a.created < b.created).reduce((pre, blog) => {
-      const date = dateFilter(blog.created)
-      if (pre[date]) {
-        pre[date].push(blog)
-      } else {
-        pre[date] = [blog]
-      }
-      return pre
-    }, {})
-  }
-
   render() {
+    const { blogs } = this.props.blogStore
+    const { noMore } = blogs
+    const { loading } = this.state
+
     return (
       <div className="do-content-container">
-        {
-          (() => {
-            let elArr = []
-            const blogs = this.blogs
-            for (let date in blogs) {
-              elArr.push(
-                <div className="blog-item" key={date}>
-                  <p>{date}</p>
-                  {
-                    blogs[date].map((blog, index) =>
-                      <div className="blog-title" key={index}>
-                        <Link href={"/blog?id=" + blog._id}>
-                          <a>{blog.title}</a>
-                        </Link>
-                      </div>)
-                  }
-                </div>
-              )
-            }
-            return elArr
-          })()
-        }
+        <BlogGroup elRef={this.$blogs} blogs={blogs.list} />
+        {loading && <div className="do-text-loading">加载中...</div>}
+        {noMore && <div className="do-text-loading">全都加载完啦...</div>}
       </div>
     )
   }
 }
-
-export default withLayout(Blogs)
