@@ -12,9 +12,9 @@ export default class Store extends Base{
 
     @action
     list = () => {
+        this.blogs.page = this.blogs.page + 1
         const { perPage, page } = this.blogs
-        const currentPage = Number(page) + 1
-        return axios.get('/articles', { params: { perPage, page: currentPage } })
+        return axios.get('/articles', { params: { perPage, page } })
             .then(blogs => {
                 this.blogs.list = this.blogs.list.concat(blogs.list)
                 this.blogs.page = blogs.page
