@@ -363,22 +363,25 @@ function CanvasDraw(elem) {
   }
 }
 
-export default function mouseMoveAnimation(panelElem) {
-  var nowTime = 60;
-  var preTime = 0;
-  var timeInterval = 30;
-  panelElem.onmousemove = function (e, type) {
-    nowTime = new Date().getTime();
-    if (nowTime - preTime >= timeInterval) {
-      preTime = nowTime;
+export default function mouseMoveAnimation(panelElem){
+  var nowTime = 60 ;
+  var preTime = 0 ;
+  var timeInterval = 40;
+  panelElem.onmousemove = function(e,type){
       nowTime = new Date().getTime();
-      var canvas = createCanvasDraw(panelElem, 100, 100, e.clientX - 50, e.clientY - 50);
-      var cxt = new CanvasDraw(canvas);
-      animate(0, Math.random() * 30 + 10, 800, { math: 'Quint', type: 'easeOut' }, function (value, time) {
-        cxt.clear(100, 100).drawRing(50, 50, value, 1, '#000')
-      }, function () {
-        panelElem.removeChild(canvas);
-      })
-    }
+      if(nowTime-preTime>=timeInterval){
+          // 更新时间
+          preTime = nowTime;
+          nowTime = new Date().getTime();
+          // 创建画布
+          var canvas = createCanvasDraw(panelElem,100,100,e.clientX-50,e.clientY-50);
+          var cxt = new CanvasDraw(canvas);
+          var colorStr = 'rgba('+rn()+','+rn()+','+rn()+','
+          animate(0,Math.random()*30+10,2000,{math:'Quint',type:'easeOut'},function(value,time){
+              cxt.clear(100,100).drawRing(50,50,value,5,colorStr+(0.4-time/2000*0.4)+')')
+          },function(){
+              panelElem.removeChild(canvas);
+          })
+      }
   }
 }
