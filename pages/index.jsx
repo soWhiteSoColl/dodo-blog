@@ -3,7 +3,7 @@ import Link from 'next/link'
 import withLayout from '../components/Layout'
 import '../styles/index.less'
 import mouseMoveAnimation from '../util/mouse-animation'
-
+import Head from 'next/head'
 
 const links = [
     { to: '/blogs', text: '博客' },
@@ -19,18 +19,26 @@ class App extends React.Component {
         mouseMoveAnimation(canvasBg)
     }
     render() {
-        return <div className="index-page">
-            <div className="index-container">
-                <div className="index-logo">
-                    <img src="/static/dodo-logo.png" alt="" />
-                </div>
+        return (
+            <React.Fragment>
+                <Head>
+                    <title>dodo 主页</title>
+                </Head>
+                <div className="index-page">
+                    <div className="index-container">
+                        <div className="index-logo">
+                            <img src="/static/dodo-logo.png" alt="" />
+                        </div>
 
-                <div className="index-links">
-                    {links.map((link, index) => <Link key={index} href={link.to}><a>{link.text}</a></Link>)}
+                        <div className="index-links">
+                            {links.map((link, index) => <Link key={index} href={link.to}><a>{link.text}</a></Link>)}
+                        </div>
+                    </div>
+                    <div className="index-canvas-bg" ref={this.canvasBg}></div>
                 </div>
-            </div>
-            <div className="index-canvas-bg" ref={this.canvasBg}></div>
-        </div>
+            </React.Fragment>
+
+        )
     }
 }
 

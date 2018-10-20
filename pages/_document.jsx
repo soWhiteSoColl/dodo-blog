@@ -13,7 +13,9 @@ export default class MyDocument extends Document {
         return (
             <html>
                 <Head>
+                    <link rel="shortcut icon" href="/static/favicon.ico"/>
                     <link rel="stylesheet" href="/_next/static/css/styles.chunk.css" />
+                    <title>dodo</title>
                     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"></link>
                     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
                 </Head>

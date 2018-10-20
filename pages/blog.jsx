@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withLayout from '../components/Layout'
 import { dateFormater } from '../util/tool'
 import Link from 'next/link'
-
+import Head from 'next/head'
 
 const Header = () => {
   return (
@@ -23,24 +23,32 @@ const Header = () => {
   )
 }
 class BlogDetail extends Component {
-  static async getInitialProps(cxt, store) {
-    const { id } = cxt.query
+  static async getInitialProps(ctx, store) {
+    const id = ctx.req.params.blogId
     let blog = await store.blogStore.read(id)
     return { id, blog }
   }
- 
+
   render() {
     const blog = this.props.blog || {}
-
+    const blogDescription = blog.content.replace(/<.*?>/g, '').slice(0, 160)
     return (
-      <div className="do-content-container blog-detail">
-        <h1 className="blog-title"><a href="#">{blog.title}</a></h1>
-        <div className="blog-author">{blog.author && blog.author.username}</div>
-        <div className="blog-date">{dateFormater(blog.created)}</div>
-        <div className="blog-content">
-          <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
+      <React.Fragment>
+        <Head>
+          <title>{blog.title}</title>
+          <meta name="keywords" content={blog.tags ? blog.tags.join(',') : '博客 技术 前端'}/>
+          <meta name="description" content={blogDescription}/>
+        </Head>
+        <div className="do-content-container blog-detail">
+          <h1 className="blog-title"><a href="#">{blog.title}</a></h1>
+          <div className="blog-author">{blog.author && blog.author.username}</div>
+          <div className="blog-date">{dateFormater(blog.created)}</div>
+          <div className="blog-content">
+            <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
+          </div>
         </div>
-      </div>
+      </React.Fragment>
+
     )
   }
 }

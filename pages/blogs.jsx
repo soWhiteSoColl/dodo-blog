@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import withLayout from '../components/Layout'
 import { dateFormater } from '../util/tool'
 import Link from 'next/link'
-
+import Head from 'next/head'
 const Date = props => <div className="blogs-group-date">{dateFormater(props.date)}</div>
 
 const BlogItem = props => {
@@ -10,7 +10,7 @@ const BlogItem = props => {
 
   return (
     <section className="blog-title">
-      <Link href={"/blog?id=" + blog._id}>
+      <Link href={`/blogs/${blog._id}`}>
         <a>{blog.title}</a>
       </Link>
     </section>
@@ -98,11 +98,17 @@ export default class Blogs extends Component {
     const { loading } = this.state
 
     return (
-      <div className="do-content-container">
-        <BlogGroup elRef={this.$blogs} blogs={blogs.list} />
-        {loading && <div className="do-text-loading">加载中...</div>}
-        {/* {noMore && <div className="do-text-loading">全都加载完啦...</div>} */}
-      </div>
+      <React.Fragment>
+        <Head>
+          <title>dodo 博客</title>
+          <meta name="keywords" content={'博客 技术 前端'}/>
+          <meta name="description" content={'dodo的博客列表'}/>
+        </Head>
+        <div className="do-content-container">
+          <BlogGroup elRef={this.$blogs} blogs={blogs.list} />
+          {loading && <div className="do-text-loading">加载中...</div>}
+        </div>
+      </React.Fragment>
     )
   }
 }
