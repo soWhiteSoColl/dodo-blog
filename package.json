@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "node server",
     "build": "next build",
-    "start": "ENV=prod node server",
-    "deploy": "pm2 restart blog-web"
+    "start": "NODE_ENV=production node server",
+    "deploy": "pm2 startOrReload ecosystem.config.js"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.2",
