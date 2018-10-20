@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "node server",
     "build": "next build",
-    "start": "NODE_ENV=production node server",
+    "start": "ENV=prod node server",
     "deploy": "pm2 restart blog-web"
   },
   "devDependencies": {
