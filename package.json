@@ -7,7 +7,7 @@
     "dev": "node server",
     "build": "next build",
     "start": "NODE_ENV=production node server",
-    "delpoy": "pm2 restart blog-web"
+    "deploy": "pm2 restart blog-web"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.2",
