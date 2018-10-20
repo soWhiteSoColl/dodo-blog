@@ -1,3 +1,5 @@
+#！ /bin/bash
+
 cd /project/blog-web
 
 git pull
