@@ -4,6 +4,7 @@ import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 import Head from 'next/head'
 
+const Tag = (props) => <div className="do-tag">{props.children}</div>
 const Header = () => {
   return (
     <header className="main-header">
@@ -36,13 +37,16 @@ class BlogDetail extends Component {
       <React.Fragment>
         <Head>
           <title>{blog.title}</title>
-          <meta name="keywords" content={blog.tags ? blog.tags.join(',') : '博客 技术 前端'}/>
-          <meta name="description" content={blogDescription}/>
+          <meta name="keywords" content={blog.tags ? blog.tags.join(',') : '博客 技术 前端'} />
+          <meta name="description" content={blogDescription} />
         </Head>
         <div className="do-content-container blog-detail">
           <h1 className="blog-title"><a href="#">{blog.title}</a></h1>
+
           <div className="blog-author">{blog.author && blog.author.username}</div>
-          <div className="blog-date">{dateFormater(blog.created)}</div>
+          <div className="blog-meta">
+            <div className="blog-date">{dateFormater(blog.created)}</div>
+          </div>
           <div className="blog-content">
             <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
           </div>

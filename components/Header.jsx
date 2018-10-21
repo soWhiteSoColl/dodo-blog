@@ -17,7 +17,7 @@ class Header extends Component {
                             <a>博客</a>
                         </Link>
                         <Link href="/contact">
-                            <a>留言</a>
+                            <a>关于我</a>
                         </Link>
                         <a href="https://github.com/soWhiteSoColl/blog-web" target="new">
                             Fork In Github

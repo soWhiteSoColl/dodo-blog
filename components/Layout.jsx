@@ -36,7 +36,7 @@ function Layout(Component, option) {
                         <div className="main-content">
                             <ObserverComponent {...initialProps} />
                         </div>
-                        {/* {hasFooter && <Footer />} */}
+                        {hasFooter && <Footer />}
                     </React.Fragment>
                 </Provider>
 

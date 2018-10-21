@@ -1,55 +1,64 @@
 .blogs-group {
-    padding: 25px 0px;
-    .blogs-group-date {
-        margin-bottom: 15px;
+  padding: 25px 0px;
+  .blogs-group-date {
+    margin-bottom: 15px;
+  }
+  @media screen and (max-width:768px) {
+    border-bottom: 1px solid #ddd;
+    padding: 12px 0;
+    p {
+      margin-bottom: 10px;
+      margin-top: 5px;
     }
-    @media screen and (max-width:768px) {
-        border-bottom: 1px solid #ddd;
-        padding: 12px 0;
-        p {
-            margin-bottom: 10px;
-            margin-top: 5px;
-        }
+  }
+  a {
+    &:acitve {
+      text-decoration: none
     }
-    a {
-        &:acitve {
-            text-decoration: none
-        }
-        &:focus {
-            text-decoration: none
-        }
+    &:focus {
+      text-decoration: none
     }
+  }
 }
 
 .blog-title {
-    text-transform: capitalize;
-    font-size: 32px;
-    font-weight: 100;
-    
-    margin: 12px 0px;
-    line-height: 1.2em;
-    color: @primary-color;
-    @media screen and (max-width: 768px) {
-        font-size: 20px;
-        margin: 10px 0px;
-        font-weight: normal;
-    }
-}
-
-.blog-detail {
-    max-width: @common-container-width;
-    margin: 0px auto;
-}
-
-.blog-author {
-    color: #666;
+  text-transform: capitalize;
+  font-size: 34px;
+  font-weight: 100;
+  margin-bottom: 10px;
+  margin-top: 0;
+  line-height: 1.2em;
+  color: @primary-color;
+  @media screen and (max-width: 768px) {
+    font-size: 20px;
+    margin: 10px 0px;
+    font-weight: normal;
+  }
 }
 
 .blog-create-date {
-    color: #666;
+  color: #666;
+  display: inline-block;
 }
 
-.blog-content {
+.blog-detail {
+  max-width: @common-container-width;
+  margin: 0px auto;
+  .blog-author {
+    color: #666;
+  }
+  .blog-meta {
+    margin-top: 10px;
+    margin-bottom: 40px;
+  }
+  .blog-date {
+    margin-right: 10px;
+  }
+  .blog-tags {
+    display: flex;
+    align-items: center;
+  }
+  .blog-content {
     margin-top: 30px;
     h1,
     h2,
@@ -57,15 +66,16 @@
     h4,
     h5,
     h6 {
-        font-weight: normal;
+      font-weight: normal;
     }
-    h2, h3{
-        margin-top: 40px;
+    h2,
+    h3 {
+      margin-top: 30px;
     }
-
     pre {
-        overflow-x: auto;
-        background-color: #eee;
-        padding: 15px 20px;
+      overflow-x: auto;
+      background-color: #eee;
+      padding: 15px 20px;
     }
+  }
 }
