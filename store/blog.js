@@ -1,7 +1,7 @@
 import { observable, action } from 'mobx'
 import axios from '../config/axios'
 import Base from './base'
-export default class Store extends Base{
+export default class Store extends Base {
     @observable blogs = {
         list: [],
         page: 0,  // 现在一共有0页，不是目前在第几页
@@ -12,6 +12,9 @@ export default class Store extends Base{
 
     @action
     list = (currnetPage) => {
+        if (this.blogs.list.noMore) {
+            return false
+        }
         this.blogs.page = currnetPage || Number(this.blogs.page) + 1
         const { perPage, page } = this.blogs
         return axios.get('/articles', { params: { perPage, page } })
@@ -19,9 +22,8 @@ export default class Store extends Base{
                 this.blogs.list = currnetPage ? blogs.list : this.blogs.list.concat(blogs.list)
                 this.blogs.page = blogs.page
                 this.blogs.count = blogs.count
-                if(this.blogs.list.length >= this.blogs.count){
-                    this.blogs.noMore = true
-                }
+                this.blogs.noMore = this.blogs.list.length >= this.blogs.count
+                
                 return this.blogs
             })
     }

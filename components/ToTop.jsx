@@ -31,9 +31,11 @@ export default class ToTop extends React.Component{
 
   render(){
     return this.state.showToTop
-      ? <div className="widget-to-top" onClick={this.handleToTop}>
+      ? (
+      <div className="widget-to-top" onClick={this.handleToTop}>
         <span className="widget-to-top-text">回到顶部</span>
       </div>
+      )
       : null
   }
 }

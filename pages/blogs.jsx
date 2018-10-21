@@ -50,10 +50,10 @@ const BlogGroup = props => {
 export default class Blogs extends Component {
   $blogs = React.createRef()
   fetching = false
-
   state = {
     loading: false
   }
+  
   static async getInitialProps(cxt, store) {
     const blogs = await store.blogStore.list(1)
     return { blogs }
@@ -62,7 +62,7 @@ export default class Blogs extends Component {
   componentDidMount() {
     const blogs = this.props.blogs
     this.props.blogStore.setValues({ blogs })
-    setTimeout(() => this.handleScroll())
+    setTimeout(this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)
   }
 
@@ -73,17 +73,15 @@ export default class Blogs extends Component {
   handleScroll = () => {
     const elBottom = this.$blogs.current.getBoundingClientRect().bottom
     const windowHeihgt = window.innerHeight
-    if (this.props.blogStore.blogs.noMore) {
-      window.removeEventListener('scroll', this.handleScroll)
-    }
-    if (elBottom <= windowHeihgt) {
-      if (!this.fetching) {
-        this.handleFetchMore()
-      }
+    if (elBottom <= windowHeihgt + 100 && !this.fetching) {
+      this.handleFetchMore()
     }
   }
 
   handleFetchMore = () => {
+    if (this.props.blogStore.blogs.noMore) {
+      return false
+    }
     this.fetching = true
     this.setState({ loading: true })
     this.props.blogStore.list()
@@ -102,8 +100,8 @@ export default class Blogs extends Component {
       <React.Fragment>
         <Head>
           <title>dodo 博客</title>
-          <meta name="keywords" content={'博客 技术 前端'}/>
-          <meta name="description" content={'dodo的博客列表'}/>
+          <meta name="keywords" content={'博客 技术 前端'} />
+          <meta name="description" content={'dodo的博客列表'} />
         </Head>
         <div className="do-content-container">
           <BlogGroup elRef={this.$blogs} blogs={blogs.list} />
