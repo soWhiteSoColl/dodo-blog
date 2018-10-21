@@ -11,12 +11,12 @@ export default class Store extends Base{
     @observable currentBlog = null
 
     @action
-    list = () => {
-        this.blogs.page = this.blogs.page + 1
+    list = (currnetPage) => {
+        this.blogs.page = currnetPage || Number(this.blogs.page) + 1
         const { perPage, page } = this.blogs
         return axios.get('/articles', { params: { perPage, page } })
             .then(blogs => {
-                this.blogs.list = this.blogs.list.concat(blogs.list)
+                this.blogs.list = currnetPage ? blogs.list : this.blogs.list.concat(blogs.list)
                 this.blogs.page = blogs.page
                 this.blogs.count = blogs.count
                 if(this.blogs.list.length >= this.blogs.count){

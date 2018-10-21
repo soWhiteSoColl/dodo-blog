@@ -17,3 +17,34 @@ export function getLocationQuery(location) {
         return pre
     }, {})
 }
+
+
+export const pageScrollTo = (height) => {
+    const currentTop = window.pageYOffset
+    let goalTop
+    if (typeof height === 'number') {
+      goalTop = height
+    } else {
+      goalTop = getOffsetPos(height).top
+    }
+  
+    const interval = 600
+    const frameRate = 60
+    const frameInterval = 1000 / frameRate
+    const totalFrame = interval / frameInterval
+    const animateFn = (t, b, c, d) => c * ((t = t / d - 1) * t * t + 1) + b
+  
+    let currentFrame = 0
+    const scroll = () => {
+      currentFrame++
+      if (currentFrame > totalFrame) {
+        return false
+      }
+      const y = animateFn(currentFrame, currentTop, goalTop - currentTop, totalFrame)
+      window.scrollTo(0, y)
+      setTimeout(() => {
+        scroll()
+      }, frameInterval)
+    }
+    scroll()
+  }

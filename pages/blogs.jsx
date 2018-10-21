@@ -3,6 +3,7 @@ import withLayout from '../components/Layout'
 import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 import Head from 'next/head'
+import ToTop from '../components/ToTop'
 const Date = props => <div className="blogs-group-date">{dateFormater(props.date)}</div>
 
 const BlogItem = props => {
@@ -54,7 +55,7 @@ export default class Blogs extends Component {
     loading: false
   }
   static async getInitialProps(cxt, store) {
-    const blogs = await store.blogStore.list()
+    const blogs = await store.blogStore.list(1)
     return { blogs }
   }
 
@@ -75,7 +76,7 @@ export default class Blogs extends Component {
     if (this.props.blogStore.blogs.noMore) {
       window.removeEventListener('scroll', this.handleScroll)
     }
-    if (elBottom < windowHeihgt) {
+    if (elBottom <= windowHeihgt) {
       if (!this.fetching) {
         this.handleFetchMore()
       }
@@ -108,6 +109,7 @@ export default class Blogs extends Component {
           <BlogGroup elRef={this.$blogs} blogs={blogs.list} />
           {loading && <div className="do-text-loading">加载中...</div>}
         </div>
+        {/* <ToTop/> */}
       </React.Fragment>
     )
   }
