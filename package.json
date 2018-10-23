@@ -7,7 +7,7 @@
     "dev": "node server",
     "build": "next build",
     "start": "NODE_ENV=production node server",
-    "deploy": "pm2 startOrReload ecosystem.config.js"
+    "deploy": "sh deploy.sh"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.1.2",

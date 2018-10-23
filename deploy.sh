@@ -3,4 +3,4 @@ git pull
 
 npm run build
 
-npm run deploy
+pm2 startOrReload ecosystem.config.js
