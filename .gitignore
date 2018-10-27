@@ -1,3 +1,4 @@
 /node_modules
 /.next
-/.vscode
+package-lock.json
+yarn-error.log
