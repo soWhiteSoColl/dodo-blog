@@ -1,0 +1,80 @@
+.ze-input-container {
+  width: auto;
+  display: inline-block;
+  .ze-input-message {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #999;
+  }
+  .ze-input-wrapper {
+      display: inline-block;
+      position: relative;
+      width: auto;
+      border-bottom: 1px solid #ccc;
+      &.ze-focus {
+          &::after,
+          &::before {
+              width: 50%;
+          }
+      }
+      &.ze-error {
+          &::after,
+          &::before {
+              width: 50%;
+              background: @danger-color;
+          }
+          &+.ze-input-message {
+              color: @danger-color;
+          }
+      }
+      .ze-input-label {
+          margin-right: 8px;
+      }
+      &.ze-required {
+          .ze-input-label {
+              &::before {
+                  content: '*';
+                  color: @danger-color;
+                  margin-right: 4px;
+              }
+          }
+      }
+      &.ze-disabled {
+          opacity: 0.6;
+          .ze-input{
+              cursor: not-allowed;
+          }
+      }
+  }
+}
+
+.ze-input-wrapper::after,
+.ze-input-wrapper::before {
+  content: '';
+  display: block;
+  width: 0%;
+  position: absolute;
+  bottom: -1px;
+  height: 2px;
+  transition: all ease 0.3s;
+  background: #666;
+}
+
+.ze-input-wrapper::before {
+  left: 50%;
+}
+
+.ze-input-wrapper::after {
+  right: 50%;
+}
+
+.ze-input {
+  border-radius: 0px;
+  border: none;
+  padding: 8px 0;
+  display: inline-block;
+  font-size: 14px;
+  &:focus {
+      outline: none;
+  }
+}

@@ -1,15 +1,22 @@
 const withLess = require('@zeit/next-less') 
+const withCss = require('@zeit/next-css')
+const withPlugins = require('next-compose-plugins')
 
-
-module.exports = withLess({
-  pageExtensions: ['jsx', 'js', 'tsx'],
-  webpack(config) {
-    config.module.rules.push(
-      {
-        test: /\.(css)$/,
-        use: ['style-loader', 'css-loader']
+module.exports = withPlugins([
+  [
+    withLess,
+    {
+      pageExtensions: ['jsx', 'js', 'tsx'],
+      cssModules: false,
+      lessLoaderOptions: {
+        javascriptEnabled: true
       }
-    )
-    return config
-  }
-})
+    }
+  ],
+  [
+    withCss,
+    {
+      cssModules: false
+    }
+  ],
+])

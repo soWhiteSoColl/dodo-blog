@@ -23,22 +23,16 @@ export default class Store extends Base {
                 this.blogs.page = blogs.page
                 this.blogs.count = blogs.count
                 this.blogs.noMore = this.blogs.list.length >= this.blogs.count
-                
                 return this.blogs
             })
     }
 
     @action
     read = id => {
-        console.log(id)
-        console.log('/articles/' + id)
         return axios.get('/articles/' + id)
             .then(blog => {
                 this.currentBlog = blog
                 return Promise.resolve(blog)
-            })
-            .catch(err => {
-                console.log('lalal', err)
             })
     }
 }

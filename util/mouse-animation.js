@@ -385,4 +385,8 @@ export default function mouseMoveAnimation(panelElem) {
       })
     }
   }
+
+  setInterval(() => {
+    panelElem.style.background = `linear-gradient(to right, rgba(), rgba())`
+  }, 16)
 }

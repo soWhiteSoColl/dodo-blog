@@ -3,11 +3,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+
     .index-canvas-bg {
         position: absolute;
         z-index: 1;
         width: 100vw;
         height: 100vh;
+        transition: background ease 2s;
     }
     .index-container{
         z-index: 2;
@@ -65,6 +67,10 @@
     .clearfix;
     &-item {
         margin-right: 10px;
+    }
+
+    &-wx-qrcode {
+        width: 300px;
     }
 }
 
