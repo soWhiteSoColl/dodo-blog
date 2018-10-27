@@ -4,7 +4,7 @@ import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 import Head from 'next/head'
 import ToTop from '../components/ToTop'
-const Date = props => <div className="blogs-group-date">{dateFormater(props.date)}</div>
+const Date = props => <div className="blogs-group-date">{props.date}</div>
 
 const BlogItem = props => {
   const blog = props.blog
@@ -23,6 +23,7 @@ const BlogGroup = props => {
   const blogSort = blogs
     .sort((a, b) => a.created < b.created)
     .reduce((result, blog) => {
+      console.log(blog.created)
       const date = dateFormater(blog.created)
       if (result[date]) {
         result[date].push(blog)

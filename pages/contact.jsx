@@ -14,7 +14,7 @@ const LeavedMessage = props => {
         <span className="contact-message-nickname">{props.nickname}</span>
       </div>
       <div className="contact-message-content">
-        <span className="contact-message-create-time">{dateFormater(props.created)}</span>
+        <span className="contact-message-create-time">{dateFormater(props.created, true)}</span>
         <div dangerouslySetInnerHTML={{ __html: message }}></div>
       </div>
     </div>

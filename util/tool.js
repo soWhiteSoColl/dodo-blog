@@ -1,8 +1,10 @@
-export function dateFormater(date, isShowHour) {
-  date = new Date(date)
+export function dateFormater(originDate, isShowHour) {
+  console.log(originDate, 'lalalla')
+  const date = new Date(originDate)
+  
   let formatDate = date.getFullYear() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getDate()
   if (isShowHour) {
-    formatDate = formatDate + ' -- ' + date.getHours() + ' : ' + date.getMinutes()
+    formatDate = formatDate + ' - ' + date.getHours() + ' : ' + date.getMinutes()
   }
   return formatDate
 }
