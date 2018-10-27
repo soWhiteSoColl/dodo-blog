@@ -15,14 +15,14 @@
 .contact-message-item {
   display: inline-block;
   width: 185px;
-  background-color: @week-primary-color;
   min-height: 100px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   box-sizing: border-box;
   border-radius: 4px;
+  overflow: hidden;
   .contact-message-head {
-    margin-bottom: 5px;
     padding: 10px 20px;
+    background-color: @week-primary-color;
     border-bottom: 1px solid #ddd;
   }
   .contact-message-nickname {
@@ -36,5 +36,7 @@
   .contact-message-content {
     padding: 10px 20px 20px;
     font-weight: 300;
+    background-color: #f3f4f7;
+    .clearfix;
   }
 }
