@@ -40,9 +40,8 @@ export default class Contact extends React.Component {
       Dialog.open({
         title: '提示',
         content: (
-          <div className="">
+          <div className="contact-input-nickname">
             <Input
-              width={400}
               label="请先告诉我你的名字（昵称）"
               onChange={e => userInput = e.target.value}
             />

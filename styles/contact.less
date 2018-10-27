@@ -10,33 +10,50 @@
   margin-top: 40px;
   color: #666;
   columns: 3;
+  @media screen and (max-width: 768px) {
+    columns: 2;
+  }
 }
 
 .contact-message-item {
-  display: inline-block;
-  width: 185px;
+  width: 100%;
   min-height: 100px;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
+  display: inline-block;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+  border: 1px solid @week-primary-color;
   box-sizing: border-box;
   border-radius: 4px;
   overflow: hidden;
   .contact-message-head {
     padding: 10px 20px;
     background-color: @week-primary-color;
-    border-bottom: 1px solid #ddd;
   }
   .contact-message-nickname {
     font-size: 20px;
     margin-right: 10px;
-    color: #666;
+    color: rgb(127, 138, 172);
   }
   .contact-message-create-time {
     color: #666;
   }
   .contact-message-content {
-    padding: 10px 20px 20px;
+    padding: 10px 20px 15px;
     font-weight: 300;
-    background-color: #f3f4f7;
     .clearfix;
+  }
+}
+
+.ze-dialog {
+  .contact-input-nickname {
+    .ze-input-container {
+      width: 400px;
+      margin-bottom: 10px;
+      @media screen and (max-width: 768px) {
+        width: 300px;
+      }
+    }
   }
 }
