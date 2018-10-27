@@ -1,5 +1,4 @@
 export function dateFormater(originDate, isShowHour) {
-  console.log(originDate, 'lalalla')
   const date = new Date(originDate)
   
   let formatDate = date.getFullYear() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getDate()
