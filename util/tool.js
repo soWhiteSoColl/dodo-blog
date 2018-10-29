@@ -1,15 +1,32 @@
-export function dateFormater(originDate, isShowHour) {
-  const date = new Date(originDate)
-  
-  let formatDate = date.getFullYear() + ' / ' + (date.getMonth() + 1) + ' / ' + date.getDate()
+function formatTimeNumber(number) {
+  return (number + 100).toString().substr(1, 2)
+}
+
+function getDay(date, split) {
+  split = split || '/'
+  date = new Date(date)
+  return date.getFullYear() + split + formatTimeNumber((date.getMonth() + 1)) + split + formatTimeNumber(date.getDate())
+}
+
+function getHour(date) {
+  date = new Date(date)
+  return date.getHours() + ' : ' + formatTimeNumber(date.getMinutes())
+}
+
+export function dateFormater(originDate, isShowHour, opt = {}) {
+  const daySplit = opt.daySplit || '/'
+  const hourSplit = opt.hourSplit || ':'
+  let formatDate = getDay(originDate, daySplit)
+
   if (isShowHour) {
-    formatDate = formatDate + ' - ' + date.getHours() + ' : ' + date.getMinutes()
+    const formatHour = getHour(originDate, hourSplit)
+    formatDate = formatDate + ' - ' + formatHour
   }
+
   return formatDate
 }
 
 export function getLocationQuery(location) {
-  console.log(location.search)
   if (!location.search) {
     return {}
   }

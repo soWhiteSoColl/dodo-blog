@@ -22,7 +22,7 @@ const BlogGroup = props => {
   const blogSort = blogs
     .sort((a, b) => a.created < b.created)
     .reduce((result, blog) => {
-      const date = dateFormater(blog.created)
+      const date = dateFormater(blog.created, false, {daySplit: ' / '})
       if (result[date]) {
         result[date].push(blog)
       } else {

@@ -10,11 +10,8 @@ const LeavedMessage = props => {
 
   return (
     <div className="contact-message-item">
-      <div className="contact-message-head">
-        <span className="contact-message-nickname">{props.nickname}</span>
-      </div>
+      <span className="contact-message-nickname">{props.nickname}</span>
       <div className="contact-message-content">
-        <span className="contact-message-create-time">{dateFormater(props.created, true)}</span>
         <div dangerouslySetInnerHTML={{ __html: message }}></div>
       </div>
     </div>
@@ -62,9 +59,13 @@ export default class Contact extends React.Component {
     const { message } = this.state
     if (!nickname) {
       this.handleGetNickname()
-        .then(() => this.props.contactStore.nickname && leaveMessage(message))
+        .then(() => {
+          this.props.contactStore.nickname && leaveMessage(message)
+          this.setState({ message: '' })
+        })
     } else {
       leaveMessage(message)
+      this.setState({ message: '' })
     }
   }
 
