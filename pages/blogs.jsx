@@ -3,6 +3,8 @@ import withLayout from '../components/Layout'
 import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 import Head from 'next/head'
+
+
 const Date = props => <div className="blogs-group-date">{props.date}</div>
 
 const BlogItem = props => {

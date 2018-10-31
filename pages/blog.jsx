@@ -3,8 +3,11 @@ import withLayout from '../components/Layout'
 import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 import Head from 'next/head'
+import { InputArea, Button } from 'dodoui'
+import Comment from '../components/widgets/Comment'
+import checkNickname from '../util/checkNickname'
 
-const Tag = (props) => <div className="do-tag">{props.children}</div>
+
 const Header = () => {
   return (
     <header className="main-header">
@@ -24,15 +27,47 @@ const Header = () => {
   )
 }
 class BlogDetail extends Component {
+  state = {
+    comment: ''
+  }
+
   static async getInitialProps(ctx, store) {
     const id = ctx.req.params.blogId
     let blog = await store.blogStore.read(id)
     return { id, blog }
   }
 
+  componentDidMount() {
+    this.props.blogStore.setValue('currentBlog', this.props.blog)
+    this.props.contactStore.getNickname()
+  }
+
+  handleComment = () => {
+    const { comment } = this.state
+
+    const _commentBlog = () => {
+      const { nickname } = this.props.contactStore
+      this.props.blogStore.comment({ content: comment, nickname })
+      this.setState({ comment: '' })
+    }
+
+    if (!this.props.contactStore.nickname) {
+      checkNickname()
+        .then(_commentBlog)
+    } else {
+      _commentBlog()
+    }
+  }
+
+
+  handleChangeComment = e => this.setState({ comment: e.target.value })
+
   render() {
-    const blog = this.props.blog || {}
-    const blogDescription = blog.content.replace(/<.*?>/g, '').slice(0, 160)
+    const { nickname } = this.props.contactStore
+    const blog = this.props.blogStore.currentBlog || {}
+    const blogDescription = blog.content && blog.content.replace(/<.*?>/g, '').slice(0, 160)
+    const { comment } = this.state
+
     return (
       <React.Fragment>
         <Head>
@@ -50,9 +85,21 @@ class BlogDetail extends Component {
           <div className="blog-content">
             <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
           </div>
+
+          <div className="blog-comment-input">
+            <h2>评论区</h2>
+            <InputArea label={`哈咯！${nickname || ''}`} value={comment} onChange={this.handleChangeComment} />
+            <Button type={'primary'} onClick={this.handleComment}>评论</Button>
+          </div>
+
+          <div className="blog-comment-list">
+            {blog.comments && blog.comments.length > 0
+              ? blog.comments.map(comment => comment && <Comment key={comment._id} {...comment} />)
+              : null
+            }
+          </div>
         </div>
       </React.Fragment>
-
     )
   }
 }

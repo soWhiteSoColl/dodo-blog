@@ -11,61 +11,6 @@
   color: #666;
 }
 
-.contact-message-item {
-  width: auto;
-  margin-bottom: 30px;
-  display: flex;
-  box-sizing: border-box;
-
-  .contact-message-nickname {
-    font-size: 24px;
-    font-weight: 300;
-    margin-right: 10px;
-    color: rgb(127, 138, 172);
-    display: inline-block;
-  }
-  .contact-message-create-time {
-    color: #666;
-  }
-
-  .contact-message-content {
-    font-size: 16px;
-    background-color: #f3f3f3;
-    padding: 20px 30px 20px 20px;
-    position: relative;
-    margin-left: 10px;
-    min-width: 200px;
-    max-width: 480px;
-    position: relative;
-    &:before {
-      content: '';
-      display: block;
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      border: 10px solid transparent;
-      border-right-color: #f3f3f3;
-      left: -20px;
-      top: 5px;
-    }
-  }
-
-  &:nth-child(2n){
-    flex-direction: row-reverse;
-    .contact-message-content {
-      margin-left: 0px;
-      margin-right: 20px;
-      &:before {
-        border-right-color: transparent;
-        border-left-color: #f3f3f3;
-        right: -20px;
-        left: auto;
-        top: 5px;
-      }
-    }
-  }
-}
-
 .ze-dialog {
   .contact-input-nickname {
     .ze-input-container {

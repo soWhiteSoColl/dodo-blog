@@ -15,8 +15,6 @@ export default class Base {
    * @param value 属性值
    */
   setValue(key, value) {
-    if (this.hasOwnProperty(key)) {
-      this[key] = value
-    }
+    this[key] = value
   }
 }

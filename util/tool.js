@@ -36,7 +36,6 @@ export function getLocationQuery(location) {
   }, {})
 }
 
-
 export const pageScrollTo = (height) => {
   const currentTop = window.pageYOffset
   let goalTop

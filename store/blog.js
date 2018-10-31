@@ -35,4 +35,14 @@ export default class Store extends Base {
                 return Promise.resolve(blog)
             })
     }
+
+    @action
+    comment = comment => {
+        const blogId = this.currentBlog._id
+        return axios.put('/articles/' + blogId + '/comment', comment)
+            .then(blog => {
+                this.currentBlog = blog
+                return Promise.resolve(blog)
+            })
+    }
 }

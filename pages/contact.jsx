@@ -1,22 +1,9 @@
 import React from 'react';
 import withLayout from '../components/Layout'
 import Head from 'next/head'
-import { Button, Dialog, Input, InputArea } from 'dodoui'
-import { dateFormater } from '../util/tool'
-
-
-const LeavedMessage = props => {
-  const message = props.message.replace('<', '\&lt;').replace('\n', '<br/>').replace(' ', '&nbsp;')
-
-  return (
-    <div className="contact-message-item">
-      <span className="contact-message-nickname">{props.nickname}</span>
-      <div className="contact-message-content">
-        <div dangerouslySetInnerHTML={{ __html: message }}></div>
-      </div>
-    </div>
-  )
-}
+import { Button, InputArea } from 'dodoui'
+import Comment, { CommentList } from '../components/widgets/Comment'
+import checkNickname from '../util/checkNickname'
 @withLayout
 export default class Contact extends React.Component {
   state = {
@@ -26,39 +13,15 @@ export default class Contact extends React.Component {
   componentDidMount() {
     this.props.contactStore.getNickname()
     this.props.contactStore.getLeavedMessages()
-    if (!this.props.contactStore.nickname) {
-      this.handleGetNickname()
-    }
   }
 
-  handleGetNickname = () => {
-    return new Promise((resolve) => {
-      let userInput = ''
-      Dialog.open({
-        title: '提示',
-        content: (
-          <div className="contact-input-nickname">
-            <Input
-              label="请先告诉我你的名字（昵称）"
-              onChange={e => userInput = e.target.value}
-            />
-          </div>
-        ),
-        onOk: (_, close) => {
-          this.props.contactStore.saveNickname(userInput)
-          close()
-          resolve()
-        },
-      })
-    })
-  }
-
+  
   handleSubmit = e => {
     e.preventDefault();
     const { nickname, leaveMessage } = this.props.contactStore
     const { message } = this.state
     if (!nickname) {
-      this.handleGetNickname()
+      checkNickname()
         .then(() => {
           this.props.contactStore.nickname && leaveMessage(message)
           this.setState({ message: '' })
@@ -99,9 +62,9 @@ export default class Contact extends React.Component {
             </div>
           </div>
 
-          <div className="contact-message-list">
-            {leavedMessages.list.map(message => <LeavedMessage key={message._id} {...message} />)}
-          </div>
+          <CommentList>
+            {leavedMessages.list.map(message => <Comment key={message._id} nickname={message.nickname} content={message.message} />)}
+          </CommentList>
         </div>
       </React.Fragment>
     );
