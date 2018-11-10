@@ -7,7 +7,7 @@ import Head from 'next/head'
 
 const links = [
     { to: '/blogs', text: '博客' },
-    // { to: '/articles', text: '杂谈' },
+    { to: '/music', text: '音乐' },
     // { to: '/pictures', text: '图库' },
     { to: '/contact', text: '留言' }
 ]

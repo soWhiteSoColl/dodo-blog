@@ -1,4 +1,6 @@
-function formatTimeNumber(number) {
+import axios from 'axios'
+
+export function formatTimeNumber(number) {
   return (number + 100).toString().substr(1, 2)
 }
 
@@ -64,4 +66,39 @@ export const pageScrollTo = (height) => {
     }, frameInterval)
   }
   scroll()
+}
+
+export function loadSound(url) {
+  return new Promise(resolve => {
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'arraybuffer';
+    // 一旦获取完成，对音频进行进一步操作，比如解码
+    request.onload = function () {
+      var arraybuffer = request.response;
+      resolve(arraybuffer)
+    }
+    request.send();
+  })
+}
+
+
+export function formatLyric(lyric) {
+  const lyricRows = lyric.split('\n')
+  const lyrics = []
+  lyricRows.forEach(row => {
+    const matched = row.match(/\[(.*)\](.*)/) || {}
+    let time = matched[1]
+    const lyric = matched[2]
+    if (time && !lyric) {
+      lyrics.author = time
+    }
+    if (time && lyric) {
+      const [m, s] = time.split(':')
+      time = Number(m) * 60 + Number(s)
+      lyrics.push({ time, lyric })
+    }
+  })
+
+  return lyrics
 }

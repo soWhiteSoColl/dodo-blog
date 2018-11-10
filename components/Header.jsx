@@ -16,6 +16,9 @@ class Header extends Component {
                         <Link href="/blogs">
                             <a>博客</a>
                         </Link>
+                        <Link href="/music">
+                            <a>音乐</a>
+                        </Link>
                         <Link href="/contact">
                             <a>留言</a>
                         </Link>

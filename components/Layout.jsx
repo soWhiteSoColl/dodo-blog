@@ -7,7 +7,6 @@ import NProgress from 'nprogress'
 import '../styles/index.less'
 import '../config/axios'
 import store from '../store'
-import '../styles/animate.css'
 import 'dodoui/lib/dodo.css'
 
 function Layout(Component, option) {

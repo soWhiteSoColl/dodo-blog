@@ -1,0 +1,132 @@
+@heihgt: 80px;
+
+.music-item {
+  height: @heihgt;
+  margin-bottom: 10px;
+  display: flex;
+  
+  &-pic {
+    position: relative;
+    img {
+      height: @heihgt;
+      display: block;
+    }
+  }
+
+  &-info {
+    border: 1px solid #eee;
+    padding: 7px 12px;
+    position: relative;
+    width: calc(100% - 80px);
+    box-sizing: border-box;
+    background: #eee;
+    border-left: none;
+    border-bottom: none;
+  }
+
+  &-name {
+    font-size: 16px;
+  }
+
+  &-author {
+    color: #999999;
+    font-size: 12px;
+    position: relative;
+    top: 2px;
+  }
+
+  &-play-btn{
+    cursor: pointer;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translateY(-50%) translateX(-50%) scale(.6);
+    border-radius: 100px;
+    border: 3px solid #fff;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all ease 0.3s;
+    
+    .svg-paly-btn {
+      transition: all ease 0.3s;
+      d: path('M5 0 5 30 30 15 5 0 5 0');
+      stroke: #fff;
+    }
+
+    &:hover {
+      border-color: #39f;
+      .svg-paly-btn {
+        stroke: #39f;
+      }
+    }
+    
+    &.puase .svg-paly-btn{
+      d: path('M5 0 5 30 30 15 5 0 5 0');
+      stroke: #fff;
+    }
+  }
+
+  &-progress-bar {
+    background-color: #ccc;
+    position: absolute;
+    height: 3px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    cursor: pointer;
+
+    &-inner {
+      background-color: #39f;
+      height: 100%;
+      width: 0%;
+    }
+
+    &-timer {
+      position: absolute;
+      top: -23px;
+      font-size: 12px;
+      right: 12px;
+      font-weight: 300;
+      color: #999;
+    }
+
+    &-lyric {
+      position: absolute;
+      top: -23px;
+      font-size: 12px;
+      left: 12px;
+      color: #999;
+    }
+  }
+
+  &.active {
+    .music-item-info {
+      background-color: #fff;
+    }
+    &.active:hover {
+      .music-item-play-btn {
+        opacity: 1;
+      }
+    }
+    .music-item-play-btn {
+      opacity: 0;
+      border-color: #39f;
+      .svg-paly-btn {
+        stroke: #39f;
+      }
+      &.play {
+        .svg-paly-btn {
+          d: path('M 28 2 2 2 2 28 28 28 28 2');
+        }
+      }
+    } 
+  }
+}
+
+
+.music-list {
+  margin-top: 10px;
+}
