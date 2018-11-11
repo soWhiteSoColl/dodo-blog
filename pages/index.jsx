@@ -6,15 +6,14 @@ import Head from 'next/head'
 
 const links = [
     { to: '/blogs', text: '博客' },
-    { to: '/music', text: '音乐' },
-    // { to: '/pictures', text: '图库' },
+    { to: '/musics', text: '音乐' },
     { to: '/contact', text: '留言' }
 ]
 
 export default class App extends React.Component {
     canvasBg = React.createRef()
     static getInitialProps(){
-        return {footer: false, header: false, audio: false}
+        return {footer: false, header: false}
     }
     componentDidMount() {
         const canvasBg = this.canvasBg.current

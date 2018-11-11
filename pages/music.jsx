@@ -1,64 +1,113 @@
-import React from 'react';
+import React from 'react'
 import Head from 'next/head'
+import MusicCanvas from '../components/widgets/MusicCavas'
+import { formatLyric } from '../util/tool'
 import classnames from 'classnames'
-import { observer, inject } from 'mobx-react'
+import Link from 'next/link'
 
 
-@inject('musicStore')
-@observer
-class MusicList extends React.Component {
-  handlePlay = () => {
-    const { id } = this.props
-    this.props.musicStore.getListById(id)
+class Lyric extends React.Component {
+  state = {
+    lyricIndex: 0
+  }
 
-    localStorage.setItem('current-list-id', id)
+  get lyricsInfo() {
+    return formatLyric(this.props.lyricStr)
+  }
+
+  get lyricIndex() {
+    const audio = this.props.audio
+    if (!audio || !this.lyricsInfo) return false
+
+    let currentLyricIndex = 0
+
+    const lyricsInfo = this.lyricsInfo
+    lyricsInfo && lyricsInfo.forEach((item, index) => {
+      const isLast = lyricsInfo.length === index + 1
+      const musicTime = audio.currentTime
+
+      if (isLast && musicTime > item.time - 0.02) {
+        currentLyricIndex = index
+      } else {
+        if (musicTime > item.time - 0.02 && musicTime < lyricsInfo[index + 1].time - 0.02) {
+          currentLyricIndex = index
+        }
+      }
+    })
+
+    return currentLyricIndex
+  }
+
+  componentDidMount() {
+    this.handleInit()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.timer)
+  }
+
+  handleInit = () => {
+    this.timer = setInterval(() => {
+      const audio = this.props.audio
+      if (audio && audio.currentTime) {
+        this.setState({ lyricIndex: this.lyricIndex })
+      }
+    }, 200)
   }
 
   render() {
-    const { coverImgUrl, title } = this.props
-
+    const { lyricIndex } = this.state
     return (
-      <div className="music-album">
-        <div className="music-album-cover">
-          <img src={coverImgUrl} alt="" />
-
-          <div
-            className={classnames("music-player-play-btn")}
-            onClick={this.handlePlay}
-          >
-            <svg width={30} height={30}>
-              <path className="svg-play-btn" stroke="#fff" strokeWidth={3} strokeLinecap="butt" fill="none"></path>
-            </svg>
-          </div>
+      <div className="music-lyric">
+        <div
+          className="music-lyric-wrapper"
+          style={{ top: lyricIndex < 1 ? 0 : (-1 * (lyricIndex - 1) * 35) }}>
+          {this.lyricsInfo.map((item, index) => {
+            return (
+              <div key={index} className={classnames("music-lyric-item", index === lyricIndex && 'active')}>
+                {item.lyric}
+              </div>
+            )
+          })}
         </div>
-        <h3 className="music-album-title">{title}</h3>
       </div>
     )
   }
 }
-export default class Contact extends React.Component {
+export default class Music extends React.Component {
   static getInitialProps() {
     return { audioConfig: { size: 'large', position: 'bottom' } }
   }
 
-  componentDidMount() {
-    this.props.musicStore.getHostLists()
+  state = {
+    bufferArray: null,
+  }
+
+  componentDidUpdate(prevProps) {
+    const currentMusic = this.props.musicStore.currentMusic
+    if (prevProps.currentMusic != currentMusic) {
+      this.props.musicStore.getLyric()
+    }
   }
 
   render() {
-    const { hotMusicLists } = this.props.musicStore
-
     return (
       <React.Fragment>
         <Head>
           <title>dodo 音乐播放器</title>
         </Head>
-        <div className="do-common-container">
-          <div className="music-album-list">
-            {hotMusicLists &&
-              hotMusicLists.map(item => <MusicList key={item.id} {...item} />)
-            }
-          </div>
+        <div className="do-content-container">
+          <MusicCanvas
+            url={this.props.musicStore.currentMusic.url}
+            audio={this.props.musicStore.audio}
+          />
+          <Lyric
+            lyricStr={this.props.musicStore.currentMusicLyric}
+            audio={this.props.musicStore.audio}
+          />
+          <Link href="/musics">
+            <a><div className="music-detail-ball active">🎵</div></a>
+          </Link>
         </div>
       </React.Fragment>
     );

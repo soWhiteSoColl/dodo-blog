@@ -3,7 +3,6 @@ import classnames from 'classnames'
 import { secondToMunite } from '../../util/tool'
 import { formatLyric } from '../../util/tool'
 
-
 export default class MusicPlayer extends React.Component {
   $audio = React.createRef()
   currentIndex = 0
@@ -20,6 +19,7 @@ export default class MusicPlayer extends React.Component {
 
   componentDidMount() {
     this.setState({ open: window.localStorage.getItem('open-music-player') !== '0' })
+    this.props.getAudio && this.props.getAudio(this.$audio.current)
   }
 
   componentDidUpdate(nextProps) {
@@ -47,14 +47,13 @@ export default class MusicPlayer extends React.Component {
     if (typeof index === 'number') this.currentIndex = index
     const music = this.props.musics[this.currentIndex]
     const audio = this.$audio.current
-
     this.setState({ isPlay: true })
     this.handleLoadLrc()
 
     if (audio.src === music.url) {
       audio.play(audio.currentTime)
     } else {
-      this.props.beforePlay && this.props.beforePlay()
+      this.props.onPlay && this.props.onPlay(music)
       audio.src = music.url
       audio.play()
     }
@@ -149,7 +148,7 @@ export default class MusicPlayer extends React.Component {
         hiddenInBottom ? 'hidden' : 'show',
         showList && 'main-music-player-show-list',
       )}>
-        <audio ref={this.$audio} />
+        <audio ref={this.$audio} onEnded={this.handleNext}/>
         <div className="main-music-player-wrapper">
           <div className="main-music-player-pic">
             <img src={pic} />

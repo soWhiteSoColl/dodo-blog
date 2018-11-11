@@ -1,11 +1,13 @@
 import React from 'react'
-import { inject, observer } from 'mobx-react';
+import { loadSound } from '../../util/tool'
 
-@inject('musicStore')
-@observer
 export default class MusicCanvas extends React.Component {
-  $canvas = React.createRef()
+  state = {
+    loading: false
+  }
 
+  $canvas = React.createRef()
+  hash = 0
   audioBufferSouceNode = null
   bufferArray = null
   audioContext = null
@@ -16,94 +18,149 @@ export default class MusicCanvas extends React.Component {
       || window.webkitAudioContext
       || window.mozAudioContext
       || window.msAudioContext
-    this.audioContext = new window.AudioContext()
 
-    const bufferArray = this.props.musicStore.bufferArray
-    if (!bufferArray || !(bufferArray instanceof ArrayBuffer)) {
-      return false
-    }
-
-    // 开始绘制
-    this.handleDraw()
+    this.handleInit()
   }
 
   componentDidUpdate(prevProps) {
-    console.log(this.props.musicStore.bufferArray)
-    this.bufferArray = this.props.musicStore.bufferArray
-    this.audioBufferSouceNode && this.audioBufferSouceNode.stop()
-    this.handleDraw()
+    if (this.props.audio !== prevProps.audio) {
+      this.handleInit()
+    }
+    if (this.props.url !== prevProps.url) {
+      this.handlePause()
+    }
   }
 
-  handleDraw = () => {
-    const canvas = this.$canvas.current
-    const { bufferArray, audioContext } = this
-    const currentTime = this.props.musicStore.audioInfo.currentTime
-    this.audioContext.decodeAudioData(bufferArray, buffer => {
-      var audioBufferSouceNode = audioContext.createBufferSource()
-      this.audioBufferSouceNode = audioBufferSouceNode
-      audioBufferSouceNode.buffer = buffer
-      audioBufferSouceNode.connect(audioContext.destination)
-      audioBufferSouceNode.start(0, currentTime)
+  handleInit = async () => {
+    const audio = this.props.audio
+    if (!audio) return false
+    if (!audio.paused) this.handleStart()
+    audio.addEventListener('play', this.handleStart)
+    audio.addEventListener('pause', this.handlePause)
+  }
 
-      var analyser = audioContext.createAnalyser();
-      audioBufferSouceNode.connect(analyser)
-      analyser.connect(audioContext.destination)
+  handleStart = () => {
+    // 创建audioNode和audioCtx
+    this.hash = this.hash + 1
+    this.setState({ loading: true })
+    const audio = this.props.audio
+    const audioCtx = new window.AudioContext()
+    const audioNode = audioCtx.createBufferSource()
+    this.audioNode = audioNode
+    this.audioCtx = audioCtx
 
-      const cwidth = canvas.width,
-        cheight = canvas.height - 2,
-        meterWidth = 10,
-        gap = 2,
-        capHeight = 2,
-        capStyle = '#39f',
-        meterNum = 800 / (10 + 2),
-        capYPositionArray = [];
-
-      const ctx = canvas.getContext('2d'),
-        gradient = ctx.createLinearGradient(0, 0, 0, 300);
-
-      gradient.addColorStop(1, '#39f');
-      gradient.addColorStop(0.9, '#0cf');
-      gradient.addColorStop(0.76, '#08f');
-      gradient.addColorStop(0.3, '#14f');
-
-      var drawMeter = function () {
-        var array = new Uint8Array(analyser.frequencyBinCount);
-        analyser.getByteFrequencyData(array);
-        var step = Math.round(array.length / meterNum);
-        ctx.clearRect(0, 0, cwidth, cheight);
-        for (var i = 0; i < meterNum; i++) {
-          var value = array[i * step];
-          if (capYPositionArray.length < Math.round(meterNum)) {
-            capYPositionArray.push(value);
-          };
-          ctx.fillStyle = capStyle;
-          if (value < capYPositionArray[i]) {
-            ctx.fillRect(i * 12, cheight - (--capYPositionArray[i]), meterWidth, capHeight);
-          } else {
-            ctx.fillRect(i * 12, cheight - value, meterWidth, capHeight);
-            capYPositionArray[i] = value;
-          };
-          ctx.fillStyle = gradient;
-          ctx.fillRect(i * 12, cheight - value + capHeight, meterWidth, cheight);
+    // 加载声音
+    const currentHash = this.hash
+    loadSound(audio.src)
+      .then(bufferArray => this.handleDecode(bufferArray, currentHash))
+      .then(({ analyser, hash }) => {
+        console.log(hash, this.hash)
+        if (hash !== this.hash) {
+          return false
         }
-        requestAnimationFrame(drawMeter);
+        if (!this.audioNode) {
+          return false
+        }
+        audio.volume = 0
+        this.audioNode.start(0, audio.currentTime)
+        this.audioStart = true
+        this.setState({ loading: false })
+        this.handleDraw(analyser)
+      })
+      .catch(error => console.log(error))
+  }
+
+  handlePause = () => {
+    this.audioStart && this.audioNode.stop()
+    this.audioStart = false
+    this.audioCtx = null
+    this.audioNode = null
+  }
+
+  handleDecode = (bufferArray, hash) => {
+    if (hash !== this.hash) return false
+
+    return new Promise(resolve =>
+      this.audioCtx.decodeAudioData(bufferArray, buffer => {
+        const audioCtx = new window.AudioContext()
+        const audioNode = audioCtx.createBufferSource()
+        this.audioNode = audioNode
+        this.audioCtx = audioCtx
+
+        this.audioNode.buffer = buffer
+        if (!this.audioNode) return false
+
+        this.audioNode.connect(this.audioCtx.destination)
+        const analyser = this.audioCtx.createAnalyser();
+        this.audioNode.connect(analyser)
+        analyser.connect(this.audioCtx.destination)
+
+        resolve({ analyser, hash })
+      })
+    )
+  }
+
+  handleDraw = analyser => {
+    const canvas = this.$canvas.current
+
+    const cwidth = canvas.width,
+      cheight = canvas.height - 2,
+      meterWidth = 10,
+      gap = 2,
+      capHeight = 2,
+      capStyle = '#39f',
+      meterNum = 800 / (10 + 2),
+      capYPositionArray = [],
+      ctx = canvas.getContext('2d'),
+      gradient = ctx.createLinearGradient(0, 0, 0, 280)
+
+    gradient.addColorStop(1, '#39f')
+    gradient.addColorStop(0.9, '#0cf')
+    gradient.addColorStop(0.76, '#08f')
+    gradient.addColorStop(0.3, '#14f')
+
+    var drawMeter = function () {
+      var array = new Uint8Array(analyser.frequencyBinCount)
+      analyser.getByteFrequencyData(array)
+
+      var step = Math.round(array.length / meterNum)
+
+      ctx.clearRect(0, 0, cwidth, cheight);
+      for (var i = 0; i < meterNum; i++) {
+        var value = array[i * step];
+        if (capYPositionArray.length < Math.round(meterNum)) {
+          capYPositionArray.push(value)
+        }
+
+        ctx.fillStyle = capStyle
+        if (value < capYPositionArray[i]) {
+          ctx.fillRect(i * 12, cheight - (--capYPositionArray[i]), meterWidth, capHeight);
+        } else {
+          ctx.fillRect(i * 12, cheight - value, meterWidth, capHeight)
+          capYPositionArray[i] = value;
+        }
+
+        ctx.fillStyle = gradient
+        ctx.fillRect(i * 12, cheight - value + capHeight, meterWidth, cheight)
       }
-
       requestAnimationFrame(drawMeter);
+    }
 
-    })
+    requestAnimationFrame(drawMeter);
   }
 
   componentWillUnmount() {
-    this.audioContext = null
-    this.audioBufferSouceNode.stop()
-    this.audioBufferSouceNode = null
+    this.handlePause()
+    const audio = this.props.audio
+    audio && (audio.volume = 1)
+    audio.removeEventListener('play', this.handleStart)
+    audio.removeEventListener('pause', this.handlePause)
   }
 
   render() {
-    console.log(this.props.musicStore.bufferArray)
+    if (this.state.loading) return <div className="music-canvas-loading">加载中...</div>
     return (
-      <canvas width={720} height={320} ref={this.$canvas} />
+      <canvas width={720} height={280} ref={this.$canvas} />
     )
   }
 }

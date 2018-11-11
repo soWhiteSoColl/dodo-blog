@@ -10,27 +10,30 @@ import configConst from '../config'
 import store from '../store'
 import '../styles/index.less'
 import 'dodoui/lib/dodo.css'
-import {toJS} from 'mobx'
+import { toJS } from 'mobx'
 
 @inject('musicStore')
 @observer
 class AudioPlayer extends React.Component {
   componentDidMount() {
     const id = localStorage.getItem('current-list-id') || configConst.defaultMusicListId
-    !this.props.musicStore.currentList.songs
+    !this.props.musicStore.currentList || !this.props.musicStore.currentList.songs
       && this.props.musicStore.getListById(id)
   }
 
   render() {
-    if (!this.props.musicStore.currentList.songs) {
+    if (!this.props.musicStore.currentList || !this.props.musicStore.currentList.songs) {
       return null
     }
 
-    console.log(toJS(this.props.musicStore.currentMusic))
     return (
       <MusicPlayer
+        getAudio={audio => {
+          store.musicStore.setValue('audio', audio)
+        }}
         audioConfig={this.props.audioConfig}
         musics={store.musicStore.currentList.songs}
+        onPlay={store.musicStore.toggle}
       />
     )
   }
@@ -62,7 +65,7 @@ export default class MyApp extends App {
       audio: hasAudio = true,
       audioConfig = {}
     } = initialProps
-    
+
     return (
       <Container>
         <Provider {...store}>
