@@ -1,8 +1,11 @@
 import React, { Component } from 'react'
 import Router from 'next/router'
-import withLayout from '../components/Layout'
 
 class Page extends Component {
+  static getInitialProps() {
+    return { footer: false, header: false, audio: false }
+  }
+
   handleLogin = () => {
     Router.push('/')
   }
@@ -24,5 +27,3 @@ class Page extends Component {
     );
   }
 }
-
-export default withLayout(Page, { header: false, footer: false })
