@@ -3,8 +3,13 @@ import Head from 'next/head'
 import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
 import Link from 'next/link'
+import { pageScrollTo } from '../util/tool'
 
-
+const ToTop = () => {
+  return (
+    <div className="to-top" onClick={() => pageScrollTo(0)}>Top</div>
+  )
+}
 @inject('musicStore')
 @observer
 class MusicList extends React.Component {
@@ -44,9 +49,44 @@ export default class Contact extends React.Component {
     return { audioConfig: { size: 'large', position: 'bottom' } }
   }
 
-  componentDidMount() {
-    this.props.musicStore.getHostLists()
+  state = {
+    loading: false
   }
+
+  $musicList = React.createRef()
+
+  componentDidMount() {
+    setTimeout(this.handleScroll)
+    window.addEventListener('scroll', this.handleScroll)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+
+  handleScroll = () => {
+    const elBottom = this.$musicList.current.getBoundingClientRect().bottom
+    const windowHeihgt = window.innerHeight
+    if (elBottom <= windowHeihgt + 100 && !this.fetching) {
+      this.handleFetchMore()
+    }
+  }
+
+  handleFetchMore = () => {
+    if (this.props.musicStore.hotMusicLists.noMore) {
+      return false
+    }
+
+    this.fetching = true
+    this.setState({ loading: true })
+
+    this.props.musicStore.getHostLists({ more: true })
+      .then(() => {
+        this.fetching = false
+        this.setState({ loading: false })
+      })
+  }
+
 
   render() {
     const { hotMusicLists } = this.props.musicStore
@@ -57,7 +97,7 @@ export default class Contact extends React.Component {
           <title>dodo 音乐播放器</title>
         </Head>
         <div className="do-common-container">
-          <div className="music-album-list">
+          <div className="music-album-list" ref={this.$musicList}>
             {hotMusicLists &&
               hotMusicLists.map(item => <MusicList key={item.id} {...item} />)
             }
@@ -65,6 +105,9 @@ export default class Contact extends React.Component {
           <Link href="/music">
             <a><div className="music-detail-ball">🎵</div></a>
           </Link>
+
+          <ToTop/>
+
         </div>
       </React.Fragment>
     )

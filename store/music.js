@@ -15,10 +15,17 @@ export default class Store extends Base {
   @observable audio = null
 
   @action
-  getHostLists = () => {
-    return axios.get('/musics/hotSongList', { params: { limit: 20 } })
+  getHostLists = opt => {
+    let offset = 0
+    if(opt.more){
+      offset = this.hotMusicLists.length
+    }
+    return axios.get('/musics/hotSongList', { params: { limit: 20, offset  } })
       .then(musicLists => {
-        this.hotMusicLists = musicLists
+        if(musicLists.length < 20){
+          this.hotMusicLists.noMore = true
+        }
+        this.hotMusicLists = this.hotMusicLists.concat(musicLists)
         return this.hotMusicLists
       })
   }

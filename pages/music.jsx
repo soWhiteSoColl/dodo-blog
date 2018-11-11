@@ -57,6 +57,7 @@ class Lyric extends React.Component {
 
   render() {
     const { lyricIndex } = this.state
+
     return (
       <div className="music-lyric">
         <div
@@ -88,6 +89,10 @@ export default class Music extends React.Component {
     if (prevProps.currentMusic != currentMusic) {
       this.props.musicStore.getLyric()
     }
+  }
+
+  componentDidMount(){
+    this.props.musicStore.getLyric()
   }
 
   render() {
