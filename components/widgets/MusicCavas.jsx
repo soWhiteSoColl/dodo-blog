@@ -1,6 +1,8 @@
 import React from 'react'
+import { inject, observer } from 'mobx-react';
 
-
+@inject('musicStore')
+@observer
 export default class MusicCanvas extends React.Component {
   $canvas = React.createRef()
 
@@ -14,34 +16,34 @@ export default class MusicCanvas extends React.Component {
       || window.webkitAudioContext
       || window.mozAudioContext
       || window.msAudioContext
+    this.audioContext = new window.AudioContext()
 
-    const bufferArray = this.props.bufferArray
+    const bufferArray = this.props.musicStore.bufferArray
     if (!bufferArray || !(bufferArray instanceof ArrayBuffer)) {
       return false
     }
-
-    this.audioContext = new window.AudioContext()
 
     // 开始绘制
     this.handleDraw()
   }
 
   componentDidUpdate(prevProps) {
-    this.bufferArray = this.props.bufferArray
-    this.audioBufferSouceNode.stop()
+    console.log(this.props.musicStore.bufferArray)
+    this.bufferArray = this.props.musicStore.bufferArray
+    this.audioBufferSouceNode && this.audioBufferSouceNode.stop()
     this.handleDraw()
   }
 
   handleDraw = () => {
     const canvas = this.$canvas.current
     const { bufferArray, audioContext } = this
-
-    audioContext.decodeAudioData(bufferArray, buffer => {
+    const currentTime = this.props.musicStore.audioInfo.currentTime
+    this.audioContext.decodeAudioData(bufferArray, buffer => {
       var audioBufferSouceNode = audioContext.createBufferSource()
       this.audioBufferSouceNode = audioBufferSouceNode
       audioBufferSouceNode.buffer = buffer
       audioBufferSouceNode.connect(audioContext.destination)
-      audioBufferSouceNode.start(0)
+      audioBufferSouceNode.start(0, currentTime)
 
       var analyser = audioContext.createAnalyser();
       audioBufferSouceNode.connect(analyser)
@@ -99,6 +101,7 @@ export default class MusicCanvas extends React.Component {
   }
 
   render() {
+    console.log(this.props.musicStore.bufferArray)
     return (
       <canvas width={720} height={320} ref={this.$canvas} />
     )

@@ -1,38 +1,18 @@
 import React, { Component } from 'react'
-import withLayout from '../components/Layout'
 import { dateFormater } from '../util/tool'
-import Link from 'next/link'
 import Head from 'next/head'
 import { InputArea, Button } from 'dodoui'
 import Comment from '../components/widgets/Comment'
 import checkNickname from '../util/checkNickname'
 
 
-const Header = () => {
-  return (
-    <header className="main-header">
-      <div className="do-common-container">
-        <div className="logo-brand">
-          <Link href="/index">
-            <a><img src="/static/dodo-logo.png" alt="" /></a>
-          </Link>
-        </div>
-        <div className="do-pull-right">
-          <Link href="/blogs">
-            <a>列表</a>
-          </Link>
-        </div>
-      </div>
-    </header>
-  )
-}
-class BlogDetail extends Component {
+export default class BlogDetail extends Component {
   state = {
     comment: ''
   }
 
   static async getInitialProps(ctx, store) {
-    const id = ctx.req.params.blogId
+    const id = ctx.query.id
     let blog = await store.blogStore.read(id)
     return { id, blog }
   }
@@ -103,5 +83,3 @@ class BlogDetail extends Component {
     )
   }
 }
-
-export default withLayout(BlogDetail, { headerComponent: <Header /> })

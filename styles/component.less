@@ -11,8 +11,9 @@
 
 .do-content-container {
   .do-container;
-  max-width: @common-container-width;
+  max-width: @small-container-width;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 // header里的那个logo
@@ -196,4 +197,11 @@ textarea.do-input {
   &:hover {
     color: @light-primary-color;
   }
+}
+
+.text-overflow-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
 }

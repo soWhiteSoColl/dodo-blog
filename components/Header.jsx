@@ -6,7 +6,7 @@ class Header extends Component {
     render() {
         return (
             <header className="main-header">
-                <div className="do-common-container">
+                <div className="do-content-container">
                     <div className="logo-brand">
                         <Link href="/index">
                             <a><img src="/static/dodo-logo.png" alt="" /></a>

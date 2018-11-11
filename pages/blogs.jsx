@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import withLayout from '../components/Layout'
 import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 import Head from 'next/head'
@@ -12,7 +11,7 @@ const BlogItem = props => {
 
   return (
     <section className="blog-title">
-      <Link href={`/blogs/${blog._id}`}>
+      <Link href={`/blog?id=${blog._id}`}>
         <a>{blog.title}</a>
       </Link>
     </section>
@@ -47,7 +46,6 @@ const BlogGroup = props => {
   )
 }
 
-@withLayout
 export default class Blogs extends Component {
   $blogs = React.createRef()
   fetching = false

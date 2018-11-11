@@ -1,10 +1,10 @@
 import React from 'react';
-import withLayout from '../components/Layout'
 import Head from 'next/head'
 import { Button, InputArea } from 'dodoui'
 import Comment, { CommentList } from '../components/widgets/Comment'
 import checkNickname from '../util/checkNickname'
-@withLayout
+
+
 export default class Contact extends React.Component {
   state = {
     message: '',
@@ -45,7 +45,7 @@ export default class Contact extends React.Component {
         <Head>
           <title>dodo 留言</title>
         </Head>
-        <div className="do-common-container">
+        <div className="do-content-container">
           <div className="contact-form">
             <div className="do-group">
               <InputArea

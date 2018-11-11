@@ -1,11 +1,16 @@
 import axios from 'axios'
 
-// axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
-axios.defaults.baseURL = 'https://zeus-ui.com/api'
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
+// axios.defaults.baseURL = 'https://zeus-ui.com/api'
 axios.defaults.withCredentials = true
 axios.interceptors.response.use(
     response => {
-        if (response.hasAxiosPassport) {
+        if (response.hasAxiosPassport
+            || typeof response === 'string'
+            || typeof response === 'number'
+            || typeof response === 'boolean'
+            || !response
+        ) {
             return Promise.resolve(response)
         }
         if (!response) {
@@ -21,7 +26,9 @@ axios.interceptors.response.use(
             return Promise.reject(result)
         }
 
-        result.data.hasAxiosPassport = true
+        if (result.data && result.data instanceof Object) {
+            result.data.hasAxiosPassport = true
+        }
 
         return Promise.resolve(result.data)
     }
