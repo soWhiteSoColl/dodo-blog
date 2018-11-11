@@ -50,6 +50,7 @@ export default class MusicCanvas extends React.Component {
     this.audioCtx = audioCtx
 
     // 加载声音
+    audio.volume = 1
     const currentHash = this.hash
     loadSound(audio.src)
       .then(bufferArray => this.handleDecode(bufferArray, currentHash))
