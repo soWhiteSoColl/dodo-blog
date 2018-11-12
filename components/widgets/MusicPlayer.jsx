@@ -1,7 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import { secondToMunite } from '../../util/tool'
-import { formatLyric } from '../../util/tool'
+import { secondToMunite, formatLyric } from '../../util/tool'
 
 export default class MusicPlayer extends React.Component {
   $audio = React.createRef()
@@ -9,23 +8,33 @@ export default class MusicPlayer extends React.Component {
   lyricStr = ''
 
   state = {
-    open: false,
-    isPlay: false,
+    currentIndex: 0,
+    paused: true,
     currentTime: null,
     duration: null,
-    hiddenInBottom: false,
+
+    open: false,
     showList: false,
+    hiddenInBottom: false,
   }
 
   componentDidMount() {
-    this.setState({ open: window.localStorage.getItem('open-music-player') !== '0' })
-    this.props.getAudio && this.props.getAudio(this.$audio.current)
+    const musics = this.props.musics
+    const audio = this.$audio.current
+    this.setState({
+      open: window.localStorage.getItem('open-music-player') !== '0',
+      currentIndex: musics && musics.findIndex(item => item.id === window.localStorage.getItem('current-music-id')) || 0,
+    })
+
+    audio.addEventListener('play', this.handlePlay)
+    audio.addEventListener('pause', this.handlePause)
+    this.props.getAudio && this.props.getAudio(audio)
   }
 
   componentDidUpdate(nextProps) {
+    // 切换歌单
     if (nextProps.musics !== this.props.musics) {
-      this.currentIndex = 0
-      this.handlePlay()
+      this.setState({ currentIndex: 0 }, this.handlePlay)
     }
   }
 
@@ -35,7 +44,7 @@ export default class MusicPlayer extends React.Component {
 
   handleLoadLrc = () => {
     const request = new XMLHttpRequest();
-    const url = this.props.musics[this.currentIndex].lrc
+    const url = this.props.musics[this.state.currentIndex].lrc
     request.open('GET', url, true);
     request.onload = () => {
       this.lyricStr = request.response
@@ -43,20 +52,16 @@ export default class MusicPlayer extends React.Component {
     request.send();
   }
 
-  handlePlay = (index) => {
-    if (typeof index === 'number') this.currentIndex = index
-    const music = this.props.musics[this.currentIndex]
+  handlePlay = () => {
+    const music = this.props.musics[this.state.currentIndex]
     const audio = this.$audio.current
-    this.setState({ isPlay: true })
-    this.handleLoadLrc()
 
-    if (audio.src === music.url) {
-      audio.play(audio.currentTime)
-    } else {
-      this.props.onPlay && this.props.onPlay(music)
-      audio.src = music.url
-      audio.play()
-    }
+    this.handleLoadLrc()
+    this.props.onPlay && this.props.onPlay(music)
+    this.setState({ paused: false })
+
+    window.localStorage.setItem('current-music-id', music.id)
+    audio.play(audio.currentTime)
 
     this.timer = setInterval(() => {
       const { currentTime, duration } = audio
@@ -64,9 +69,10 @@ export default class MusicPlayer extends React.Component {
     }, 100)
   }
 
-  handlePuase = () => {
-    this.setState({ isPlay: false })
+  handlePause = () => {
+    this.setState({ paused: true })
     this.$audio.current.pause()
+    this.timer && clearInterval(this.timer)
   }
 
   handlePlayFrom = e => {
@@ -78,26 +84,33 @@ export default class MusicPlayer extends React.Component {
     audio.currentTime = time
   }
 
-  handleToggle = () => {
-    const open = !this.state.open
-    this.setState({ open })
-    localStorage.setItem('open-music-player', open ? '1' : '0')
-  }
-
   handleNext = () => {
-    this.currentIndex = this.currentIndex + 1
-    if (this.currentIndex >= this.props.musics.length) {
-      this.currentIndex = 0
+    let currentIndex = this.state.currentIndex + 1
+    if (currentIndex >= this.props.musics.length) {
+      currentIndex = 0
     }
-    this.handlePlay()
+
+    this.setState({currentIndex }, this.handlePlay)
   }
 
   handlePrev = () => {
-    this.currentIndex = this.currentIndex - 1
-    if (this.currentIndex < 0) {
-      this.currentIndex = this.props.musics.length - 1
+    let currentIndex = this.state.currentIndex - 1
+    if (currentIndex < 0) {
+      currentIndex = this.props.musics.length - 1
     }
-    this.handlePlay()
+
+    this.setState({currentIndex }, this.handlePlay)
+  }
+
+  handleToggle = currentIndex => {
+    this.setState({currentIndex }, this.handlePlay)
+  }
+
+  // ui 样式功能， 开关列表和播放器 open hiddenInBottom showList
+  handleToggleOpen = () => {
+    const open = !this.state.open
+    this.setState({ open })
+    localStorage.setItem('open-music-player', open ? '1' : '0')
   }
 
   handleToggleList = () => {
@@ -134,27 +147,30 @@ export default class MusicPlayer extends React.Component {
   }
 
   render() {
-    const { open, isPlay, duration, currentTime, hiddenInBottom, showList } = this.state
+    const { open, duration, currentTime, hiddenInBottom, showList, paused, currentIndex } = this.state
     const { audioConfig, musics } = this.props
-    const { pic, name, singer } = musics[this.currentIndex]
+
+    if (!musics || !musics.length) return false
+
+    const { pic, name, singer, url } = musics[currentIndex] || {}
     const audio = this.$audio.current || {}
 
     return (
       <div className={classnames(
         "main-music-player",
         open ? 'open' : 'close',
-        audioConfig.position === 'bottom' && 'main-music-player-in-bottom',
-        audioConfig.size === 'large' && 'main-music-player-large',
         hiddenInBottom ? 'hidden' : 'show',
         showList && 'main-music-player-show-list',
+        audioConfig.position === 'bottom' && 'main-music-player-in-bottom',
+        audioConfig.size === 'large' && 'main-music-player-large',
       )}>
-        <audio ref={this.$audio} onEnded={this.handleNext}/>
+        <audio src={url} ref={this.$audio} onEnded={this.handleNext} />
         <div className="main-music-player-wrapper">
           <div className="main-music-player-pic">
             <img src={pic} />
             <div
-              className={classnames("music-player-play-btn", isPlay ? 'play' : 'pause')}
-              onClick={isPlay ? this.handlePuase : this.handlePlay}
+              className={classnames("music-player-play-btn", paused ? 'pause' : 'play')}
+              onClick={paused ? this.handlePlay : this.handlePause}
             >
               <svg width={30} height={30}>
                 <path className="svg-play-btn" stroke="#fff" strokeWidth={3} strokeLinecap="butt" fill="none"></path>
@@ -207,12 +223,11 @@ export default class MusicPlayer extends React.Component {
             }
           </div>
 
-          <div className={classnames("main-music-player-toggle", open ? 'open' : 'close')} onClick={this.handleToggle}>
+          <div className={classnames("main-music-player-toggle", open ? 'open' : 'close')} onClick={this.handleToggleOpen}>
             <svg width={10} height={30}>
               <path className="svg-btn" stroke="#fff" strokeWidth={2} strokeLinecap="butt" fill="none"></path>
             </svg>
           </div>
-
         </div>
         <div className="main-music-player-sider">
           <div className="main-music-player-sider-ball" onClick={this.handleToggleList}>列表</div>
@@ -223,7 +238,7 @@ export default class MusicPlayer extends React.Component {
           <div className="main-music-player-list-wrapper">
             {
               musics.map((music, index) => (
-                <div key={music.id} className="main-music-player-list-item" onClick={() => this.handlePlay(index)}>
+                <div key={music.id} className="main-music-player-list-item" onClick={() => this.handleToggle(index)}>
                   <span className="main-music-player-list-item-name">{music.name}</span>
                   <span className="main-music-player-list-item-singer">{music.singer}</span>
                 </div>

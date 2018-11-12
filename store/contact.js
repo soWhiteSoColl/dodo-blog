@@ -3,12 +3,13 @@ import Base from './base'
 import axios from '../config/axios'
 
 export default class Store extends Base {
-  @observable nickname = ''
-  @observable leavedMessages = {list: [], page: 1, perPage: 20, total: 0}
+  @observable nickname = localStorage.getItem('dodo_name') || ''
+  @observable leavedMessages = { list: [], page: 1, perPage: 20, total: 0 }
 
   @action
-  getNickname = () => {
-    this.nickname = localStorage.getItem('dodo_name')
+  saveView = () => {
+    const nickname = this.nickname
+    axios.post('/view-records', { siteName: 'blog', info: { nickname } })
   }
 
   @action

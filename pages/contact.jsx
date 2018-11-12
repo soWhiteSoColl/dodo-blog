@@ -11,11 +11,9 @@ export default class Contact extends React.Component {
   }
 
   componentDidMount() {
-    this.props.contactStore.getNickname()
     this.props.contactStore.getLeavedMessages()
   }
 
-  
   handleSubmit = e => {
     e.preventDefault();
     const { nickname, leaveMessage } = this.props.contactStore
