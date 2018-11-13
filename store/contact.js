@@ -3,7 +3,7 @@ import Base from './base'
 import axios from '../config/axios'
 
 export default class Store extends Base {
-  @observable nickname = localStorage.getItem('dodo_name') || ''
+  @observable nickname = ''
   @observable leavedMessages = { list: [], page: 1, perPage: 20, total: 0 }
 
   @action
@@ -32,5 +32,10 @@ export default class Store extends Base {
     const nickname = this.nickname
     axios.post('/leaved-messages', { nickname, message })
       .then(this.getLeavedMessages)
+  }
+
+  @action
+  getNickName = () => {
+    this.nickname = localStorage.getItem('dodo_name') || ''
   }
 }

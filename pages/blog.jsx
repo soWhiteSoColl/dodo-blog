@@ -19,7 +19,7 @@ export default class BlogDetail extends Component {
 
   componentDidMount() {
     this.props.blogStore.setValue('currentBlog', this.props.blog)
-    this.props.contactStore.getNickname()
+    // this.props.contactStore.getNickname()
   }
 
   handleComment = () => {
