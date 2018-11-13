@@ -53,8 +53,8 @@ export default class MyApp extends App {
     Router.onRouteChangeComplete = () => NProgress.done()
     Router.onRouteChangeError = () => NProgress.done()
 
-    // store.contactStore.saveView()
     store.contactStore.getNickName()
+    store.contactStore.saveView()
   }
 
 
