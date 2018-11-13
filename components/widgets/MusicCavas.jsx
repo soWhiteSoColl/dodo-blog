@@ -37,10 +37,12 @@ export default class MusicCanvas extends React.Component {
     if (!audio.paused) this.handleStart()
     audio.addEventListener('play', this.handleStart)
     audio.addEventListener('pause', this.handlePause)
+    audio.addEventListener('seeked', this.handleStart)
   }
 
   handleStart = () => {
     // 创建audioNode和audioCtx
+    this.handlePause()
     this.hash = this.hash + 1
     this.setState({ loading: true })
     const audio = this.props.audio
@@ -52,10 +54,10 @@ export default class MusicCanvas extends React.Component {
     // 加载声音
     audio.volume = 1
     const currentHash = this.hash
+    
     loadSound(audio.src)
       .then(bufferArray => this.handleDecode(bufferArray, currentHash))
       .then(({ analyser, hash }) => {
-        console.log(hash, this.hash)
         if (hash !== this.hash) {
           return false
         }

@@ -21,9 +21,11 @@ export default class MusicPlayer extends React.Component {
   componentDidMount() {
     const musics = this.props.musics
     const audio = this.$audio.current
+
+    const currentIndex = musics.findIndex(item => item.id === window.localStorage.getItem('current-music-id'))
     this.setState({
       open: window.localStorage.getItem('open-music-player') !== '0',
-      currentIndex: musics && musics.findIndex(item => item.id === window.localStorage.getItem('current-music-id')) || 0,
+      currentIndex: currentIndex !== -1 ? currentIndex : 0,
     })
 
     audio.addEventListener('play', this.handlePlay)
@@ -71,7 +73,7 @@ export default class MusicPlayer extends React.Component {
 
   handlePause = () => {
     this.setState({ paused: true })
-    this.$audio.current.pause()
+    this.$audio.current && this.$audio.current.pause()
     this.timer && clearInterval(this.timer)
   }
 

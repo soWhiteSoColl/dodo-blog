@@ -152,7 +152,9 @@
     .main-music-player-toggle {
       display: none;
     }
-  } // 吸底
+  } 
+  
+  // 吸底
   &-in-bottom {
     bottom: 0px;
     left: 50%;
@@ -183,7 +185,9 @@
         bottom: 120px;
       }
     }
-  } // 列表样式
+  } 
+  
+  // 列表样式
   &-list {
     transition: all ease 0.3s;
     position: absolute;
@@ -265,16 +269,23 @@
   flex-wrap: wrap;
 }
 
-@album-width: 240px;
+@album-width: 220px;
 .music-album {
   width: @album-width;
   position: relative;
+  margin: 10px;
+  box-sizing: border-box;
+  overflow: hidden;
+  box-shadow: 1px 3px 20px -10px rgba(0, 0, 0, 0.7);
+
   &-cover {
     position: relative;
     width: 100%;
     height: @album-width;
     cursor: pointer;
     overflow: hidden;
+    // border-radius: 4px 4px 0 0;
+
     .music-player-play-btn {
       opacity: 0;
     }
@@ -284,6 +295,23 @@
       transition: all ease 0.3s;
     }
   }
+
+  &-info {
+    border-top: none;
+    display: flex;
+    background-color: #fff;
+  }
+
+  &-title {
+    display: block;
+    padding: 10px 10px;
+    width: 100%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #666;
+  }
+
   &.active .music-album-cover,
   .music-album-cover:hover {
     img {
@@ -294,17 +322,11 @@
       transform: translateX(-50%) translateY(-50%) scale(1);
     }
   }
+  
   &.active .music-album-cover {
     .svg-play-btn {
       d: path('M 28 2 2 2 2 28 28 28 28 2');
     }
-  }
-  h3 {
-    font-size: 14px;
-    font-weight: 400;
-    color: #4a4a4a;
-    .text-overflow-ellipsis;
-    width: calc(100% - 30px);
   }
 }
 
@@ -314,7 +336,7 @@
   margin-top: 20px;
   overflow: hidden;
   position: relative;
-  min-height: 200px;
+  min-height: 400px;
   height: calc(100vh - 500px);
   width: 720px;
   &:before,

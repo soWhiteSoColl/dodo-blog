@@ -26,13 +26,16 @@ class AudioPlayer extends React.Component {
       return null
     }
 
+    const songs = store.musicStore.currentList.songs
+    console.log(toJS(store.musicStore.currentList.songs))
+
     return (
       <MusicPlayer
         getAudio={audio => {
           store.musicStore.setValue('audio', audio)
         }}
         audioConfig={this.props.audioConfig}
-        musics={store.musicStore.currentList.songs}
+        musics={songs}
         onPlay={store.musicStore.toggle}
       />
     )

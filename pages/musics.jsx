@@ -16,12 +16,11 @@ class MusicList extends React.Component {
   handlePlay = () => {
     const { id } = this.props
     this.props.musicStore.getListById(id)
-
     localStorage.setItem('current-list-id', id)
   }
 
   render() {
-    const { coverImgUrl, title } = this.props
+    const { coverImgUrl, title, description } = this.props
     const { id } = this.props
     const { currentList } = this.props.musicStore
 
@@ -29,7 +28,6 @@ class MusicList extends React.Component {
       <div className={classnames("music-album", id === currentList.songListId && 'active', 'play')}>
         <div className="music-album-cover">
           <img src={coverImgUrl} alt="" />
-
           <div
             className={classnames("music-player-play-btn")}
             onClick={this.handlePlay}
@@ -39,12 +37,14 @@ class MusicList extends React.Component {
             </svg>
           </div>
         </div>
-        <h3 className="music-album-title">{title}</h3>
+        <div className="music-album-info">
+          <span className="music-album-title">{title}</span>
+        </div>
       </div>
     )
   }
 }
-export default class Contact extends React.Component {
+export default class Musics extends React.Component {
   static getInitialProps() {
     return { audioConfig: { size: 'large', position: 'bottom' } }
   }
@@ -106,8 +106,7 @@ export default class Contact extends React.Component {
             <a><div className="music-detail-ball">🎵</div></a>
           </Link>
 
-          <ToTop/>
-
+          <ToTop />
         </div>
       </React.Fragment>
     )
