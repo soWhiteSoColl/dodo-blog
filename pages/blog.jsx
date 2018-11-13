@@ -63,7 +63,7 @@ export default class BlogDetail extends Component {
             <div className="blog-date">{dateFormater(blog.created)}</div>
           </div>
           <div className="blog-content">
-            <div dangerouslySetInnerHTML={{ __html: blog.content }}></div>
+            <div className="blog-view-content" dangerouslySetInnerHTML={{ __html: blog.content }}></div>
           </div>
 
           <div className="blog-comment-input">

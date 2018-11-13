@@ -7,7 +7,7 @@ import Head from 'next/head'
 const links = [
     { to: '/blogs', text: '博客' },
     { to: '/musics', text: '音乐' },
-    { to: '/contact', text: '留言' }
+    // { to: '/contact', text: '留言墙' }
 ]
 
 export default class App extends React.Component {
