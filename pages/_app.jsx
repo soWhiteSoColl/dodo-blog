@@ -27,7 +27,6 @@ class AudioPlayer extends React.Component {
     }
 
     const songs = store.musicStore.currentList.songs
-    console.log(toJS(store.musicStore.currentList.songs))
 
     return (
       <MusicPlayer

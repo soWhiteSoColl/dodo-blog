@@ -8,6 +8,8 @@ export default class Store extends Base {
         perPage: 10,
         noMore: false
     }
+
+    @observable tags = []
     @observable currentBlog = null
 
     @action
@@ -43,6 +45,15 @@ export default class Store extends Base {
             .then(blog => {
                 this.currentBlog = blog
                 return Promise.resolve(blog)
+            })
+    }
+
+    @action
+    getTags = () => {
+        return axios.get('/articles/tags')
+            .then(tags => {
+                this.tags = tags
+                return this.tags
             })
     }
 }

@@ -245,7 +245,6 @@ function CanvasDraw(elem) {
       // 移动到第一点
       if (i > 0) {
         if (typeof _cfg[i] === "number") {
-          console.log(_cfg[i])
           nextPoint = _cfg[i + 1];
           prePiont = _cfg[i - 1];
           var x = prePiont[0] + (nextPoint[0] - prePiont[0]) * _cfg[i];

@@ -90,15 +90,31 @@
   box-sizing: border-box;
   color: #999;
   height: 100px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  text-align: center;
   .clearfix;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  
   &-item {
     margin-right: 10px;
   }
   &-wx-qrcode {
     width: 300px;
+  }
+
+  &-links {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    &:before, &:after{
+      content: '+';
+      transform: rotate(45deg);
+    }
+    >span,
+    >a {
+      padding: 0 10px;
+    }
   }
 }
 

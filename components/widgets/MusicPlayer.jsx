@@ -24,7 +24,7 @@ export default class MusicPlayer extends React.Component {
 
     const currentIndex = musics.findIndex(item => item.id === window.localStorage.getItem('current-music-id'))
     this.setState({
-      open: window.localStorage.getItem('open-music-player') !== '0',
+      open: window.localStorage.getItem('open-music-player') === '1',
       currentIndex: currentIndex !== -1 ? currentIndex : 0,
     })
 
