@@ -24,7 +24,7 @@ class Footer extends Component {
           </div>
 
           <div className="main-footer-links">
-            <span>友情链接</span> {friendLinks.map((link, index) => <a key={index} href={link.url}>{link.name}</a>)}
+            <span>友情链接</span> {friendLinks.map((link, index) => <a key={index} href={link.url} target="_new">{link.name}</a>)}
           </div>
         </div>
       </footer>
