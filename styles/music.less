@@ -2,15 +2,15 @@
 @large-height: 100px;
 @toggle-width: 20px;
 
+
 .main-music-player {
-  width: 400px;
-  max-width: 100%;
   position: fixed;
   left: 0;
   bottom: 40px;
   transition: all ease-out .3s;
   height: @heihgt;
   z-index: 100;
+
   .shadow;
   &.close {
     width: 20px;
@@ -236,6 +236,61 @@
       height: 345px;
     }
   }
+
+  @media screen and (max-width: 720px) {
+    &.open {
+      width: 100%;
+      left: 0;
+      bottom: 0;
+      
+    }
+    &-wrapper {
+      width: 100vw;
+    }
+    &.close {
+      width: 20px;
+      bottom: 0;
+    }
+
+    &-large.close,
+    &-large.open {
+      width: 100vw;
+      height: 80px;
+      transform: none;
+      .main-music-player-wrapper {
+        width: 100vw;
+        height: 80px;
+      }
+      .main-music-player-pic {
+        height: 80px;
+        width: 80px;
+      }
+      .main-music-player-info {
+        border: none;
+        padding: 5px 10px;
+        width: calc(100vw - 100px);
+      }
+      .main-music-player-progress-bar {
+        height: 5px;
+        &-lyric {
+          left: 10px;
+        }
+        &-timer {
+          right: 10px;
+        }
+      }
+      .main-music-player-toggle {
+        display: flex;
+      }
+    } 
+    &-large.close {
+      width: 20px;
+      left: 0;
+    }
+    .main-music-player-sider {
+      display: none;
+    }
+  }
 }
 
 .music-player-play-btn {
@@ -276,7 +331,7 @@
   margin: 10px;
   box-sizing: border-box;
   overflow: hidden;
-  box-shadow: 1px 3px 20px -10px rgba(0, 0, 0, 0.7);
+  // box-shadow: 1px 3px 20px -10px rgba(0, 0, 0, 0.7);
 
   &-cover {
     position: relative;
@@ -304,7 +359,7 @@
 
   &-title {
     display: block;
-    padding: 10px 10px;
+    padding: 10px 0px;
     width: 100%;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -326,6 +381,14 @@
   &.active .music-album-cover {
     .svg-play-btn {
       d: path('M 28 2 2 2 2 28 28 28 28 2');
+    }
+  }
+
+  @media screen and (max-width: 720px){
+    width: calc(50% - 20px);
+    height: auto;
+    &-cover { 
+      height: auto;
     }
   }
 }

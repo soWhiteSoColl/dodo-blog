@@ -92,7 +92,7 @@ export default class MusicPlayer extends React.Component {
       currentIndex = 0
     }
 
-    this.setState({currentIndex }, this.handlePlay)
+    this.setState({ currentIndex }, this.handlePlay)
   }
 
   handlePrev = () => {
@@ -101,11 +101,11 @@ export default class MusicPlayer extends React.Component {
       currentIndex = this.props.musics.length - 1
     }
 
-    this.setState({currentIndex }, this.handlePlay)
+    this.setState({ currentIndex }, this.handlePlay)
   }
 
   handleToggle = currentIndex => {
-    this.setState({currentIndex }, this.handlePlay)
+    this.setState({ currentIndex }, this.handlePlay)
   }
 
   // ui 样式功能， 开关列表和播放器 open hiddenInBottom showList
@@ -182,7 +182,7 @@ export default class MusicPlayer extends React.Component {
 
           <div className="main-music-player-info">
             <div style={{ width: '100%' }}>
-              <div className="main-music-player-name text-overflow-ellipsis" style={{ width: 'calc(100% - 200px)' }}>{name}</div>
+              <div className="main-music-player-name text-overflow-ellipsis" style={{ width: 'calc(100% - 80px)' }}>{name}</div>
               <div className="main-music-player-author">{singer}</div>
             </div>
             <div className="main-music-player-control">
@@ -217,7 +217,10 @@ export default class MusicPlayer extends React.Component {
 
                   {
                     this.lyric
-                      ? <span className="main-music-player-progress-bar-lyric">{this.lyric}</span>
+                      ? <span
+                        className="main-music-player-progress-bar-lyric text-overflow-ellipsis"
+                        style={{ width: 'calc(100% - 80px)' }}
+                      >{this.lyric}</span>
                       : null
                   }
                 </div>

@@ -25,6 +25,17 @@
       left: -20px;
       top: 7px;
     }
+
+    @media screen and (max-width: 720px){
+      padding: 7px 10px;
+      max-width: calc(100% - 80px);
+
+      &:before {
+        border-width: 5px;
+        left: -10px;
+        top: 4px;
+      }
+    }
   }
   
   &-nickname {
@@ -32,5 +43,11 @@
     font-weight: 300;
     margin-right: 10px;
     display: inline-block;
+
+    @media screen and (max-width: 720px){
+      font-size: 16px;
+      margin-right: 5px;
+      max-width: 80px;
+    }
   }
 }

@@ -40,6 +40,11 @@
 .main-header {
   height: @main-header-height;
   line-height: @main-header-height;
+  @media screen and (max-width: 720px) {
+    height: 80px;
+    line-height: 80px;
+  }
+
   .clearfix;
   .logo-brand {
     display: inline-block;
@@ -48,6 +53,7 @@
       vertical-align: middle;
     }
   }
+
   .do-pull-right {
     a {
       height: 100%;
@@ -75,6 +81,23 @@
           height: 100%;
         }
         color: #fff;
+      }
+    }
+
+    @media screen and (max-width: 720px) {
+      a{
+        &.active {
+          &:before {
+            height: 5px;
+          }
+          color: #333;
+        }
+        
+        &:focus,
+        &:active {
+          box-shadow: none;
+          background-color: transparent;
+        }
       }
     }
   }
