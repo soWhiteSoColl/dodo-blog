@@ -61,7 +61,6 @@ export default class Blogs extends Component {
   componentDidMount() {
     const blogs = this.props.blogs
     this.props.blogStore.setValues({ blogs })
-    this.props.blogStore.getTags()
     
     setTimeout(this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)

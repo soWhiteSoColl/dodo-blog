@@ -58,7 +58,7 @@ export default class BlogDetail extends Component {
         <div className="do-content-container blog-detail">
           <h1 className="blog-title"><a href="#">{blog.title}</a></h1>
 
-          <div className="blog-author">{blog.author && blog.author.username}</div>
+          {/* <div className="blog-author">{blog.author && blog.author.username}</div> */}
           <div className="blog-meta">
             <div className="blog-date">{dateFormater(blog.created)}</div>
           </div>

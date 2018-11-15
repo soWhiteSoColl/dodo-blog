@@ -5,41 +5,11 @@ import Router from 'next/router'
 import NProgress from 'nprogress'
 import Header from '../components/Header'
 import Footer from '../components/Footer'
-import MusicPlayer from '../components/widgets/MusicPlayer'
-import configConst from '../config'
+import Player from '../components/Player'
 import store from '../store'
 import '../styles/index.less'
 import 'dodoui/lib/dodo.css'
-import { toJS } from 'mobx'
 
-@inject('musicStore')
-@observer
-class AudioPlayer extends React.Component {
-  componentDidMount() {
-    const id = localStorage.getItem('current-list-id') || configConst.defaultMusicListId
-    !this.props.musicStore.currentList || !this.props.musicStore.currentList.songs
-      && this.props.musicStore.getListById(id)
-  }
-
-  render() {
-    if (!this.props.musicStore.currentList || !this.props.musicStore.currentList.songs) {
-      return null
-    }
-
-    const songs = store.musicStore.currentList.songs
-
-    return (
-      <MusicPlayer
-        getAudio={audio => {
-          store.musicStore.setValue('audio', audio)
-        }}
-        audioConfig={this.props.audioConfig}
-        musics={songs}
-        onPlay={store.musicStore.toggle}
-      />
-    )
-  }
-}
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -79,7 +49,7 @@ export default class MyApp extends App {
             <div className="main-content">
               <ObserverComponent {...initialProps} />
             </div>
-            {hasAudio && <AudioPlayer audioConfig={audioConfig} />}
+            {hasAudio && <Player audioConfig={audioConfig} />}
             {hasFooter && <Footer />}
           </>
         </Provider>
