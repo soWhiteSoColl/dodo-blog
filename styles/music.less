@@ -385,10 +385,34 @@
   }
 
   @media screen and (max-width: 720px){
-    width: calc(50% - 20px);
+    width: calc(50% - 5px);
     height: auto;
     &-cover { 
       height: auto;
+    }
+
+    &:nth-child(2n+1){
+      margin: 0;
+      margin-right: 5px;
+    }
+    &:nth-child(2n){
+      margin: 0;
+      margin-left: 5px;
+    }
+  }
+
+  @media screen and (max-width: 1200px){
+    width: calc(25% - 10px);
+    height: auto;
+    &-cover { 
+      height: auto;
+    }
+
+    &:nth-child(2n+1){
+      margin: 5px;
+    }
+    &:nth-child(2n){
+      margin: 5px;
     }
   }
 }

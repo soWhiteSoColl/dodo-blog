@@ -37,7 +37,7 @@ export default class Contact extends React.Component {
   render() {
     const { nickname, leavedMessages } = this.props.contactStore
     const { message } = this.state
-
+    
     return (
       <React.Fragment>
         <Head>

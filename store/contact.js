@@ -21,7 +21,7 @@ export default class Store extends Base {
 
   @action
   getLeavedMessages = () => {
-    axios.get('/leaved-messages')
+    return axios.get('/leaved-messages')
       .then(messages => {
         this.leavedMessages = messages
         return Promise.resolve(messages)
@@ -31,7 +31,7 @@ export default class Store extends Base {
   @action
   leaveMessage = message => {
     const nickname = this.nickname
-    axios.post('/leaved-messages', { nickname, message })
+    return axios.post('/leaved-messages', { nickname, message })
       .then(this.getLeavedMessages)
   }
 
