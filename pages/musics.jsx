@@ -4,6 +4,7 @@ import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
 import Link from 'next/link'
 import { pageScrollTo } from '../util/tool'
+import { AnimateQueue } from '../components/widgets/AnimateQueue'
 
 const ToTop = () => {
   return (
@@ -20,12 +21,12 @@ class MusicList extends React.Component {
   }
 
   render() {
-    const { coverImgUrl, title, description } = this.props
+    const { coverImgUrl, title, style } = this.props
     const { id } = this.props
     const { currentList } = this.props.musicStore
 
     return (
-      <div className={classnames("music-album", id === currentList.songListId && 'active', 'play')}>
+      <div className={classnames("music-album", id === currentList.songListId && 'active', 'play')} style={style}>
         <div className="music-album-cover">
           <img src={coverImgUrl} alt="" />
           <div
@@ -98,14 +99,21 @@ export default class Musics extends React.Component {
         </Head>
         <div className="do-common-container">
           <div className="music-album-list" ref={this.$musicList}>
-            {hotMusicLists &&
-              hotMusicLists.map(item => <MusicList key={item.id} {...item} />)
-            }
+            <AnimateQueue
+              animate={true}
+              interval={80}
+              speed={600}
+              from={{ transform: 'translateY(80px)' }}
+              to={{ transform: 'translateX(0px)' }}
+            >
+              {hotMusicLists &&
+                hotMusicLists.map(item => <MusicList key={item.id} {...item} />)
+              }
+            </AnimateQueue>
           </div>
           <Link href="/music">
             <a><div className="music-detail-ball">🎵</div></a>
           </Link>
-
           <ToTop />
         </div>
       </React.Fragment>

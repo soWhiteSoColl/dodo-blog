@@ -39,7 +39,6 @@
     height: 80px;
     line-height: 80px;
   }
-
   .clearfix;
   .logo-brand {
     display: inline-block;
@@ -48,7 +47,6 @@
       vertical-align: middle;
     }
   }
-
   .do-pull-right {
     a {
       height: 100%;
@@ -70,7 +68,6 @@
         top: 0;
         left: 0;
         background-color: @primary-color;
-        border-radius: 0 0 4px 4px;
       }
       &.active {
         &:before {
@@ -79,16 +76,14 @@
         color: #fff;
       }
     }
-
     @media screen and (max-width: 720px) {
-      a{
+      a {
         &.active {
           &:before {
             height: 5px;
           }
           color: #333;
         }
-        
         &:focus,
         &:active {
           box-shadow: none;
@@ -114,19 +109,18 @@
   justify-content: center;
   align-items: center;
   display: flex;
-  
   &-item {
     margin-right: 10px;
   }
   &-wx-qrcode {
     width: 300px;
   }
-
   &-links {
     margin-top: 10px;
     display: flex;
     justify-content: center;
-    &:before, &:after{
+    &:before,
+    &:after {
       content: '+';
       transform: rotate(45deg);
     }
@@ -146,6 +140,7 @@
   top: -60px;
 }
 
+// nprogress 样式
 #nprogress {
   pointer-events: none;
 }
