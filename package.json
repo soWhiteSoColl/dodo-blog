@@ -22,7 +22,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "classnames": "^2.2.6",
-    "dodoui": "^1.0.5",
+    "dodoui": "^1.0.6",
     "express": "^4.16.4",
     "mobx": "^5.5.0",
     "mobx-react": "^5.2.8",

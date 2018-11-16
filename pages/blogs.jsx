@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 import Head from 'next/head'
-import { AnimateQueue } from '../components/widgets/AnimateQueue'
+import { AnimateQueue } from 'dodoui'
 
 
 const Date = props => <div className="blogs-group-date">{props.date}</div>
