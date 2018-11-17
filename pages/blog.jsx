@@ -52,6 +52,8 @@ export default class BlogDetail extends Component {
       <React.Fragment>
         <Head>
           <title>{blog.title}</title>
+          <meta name="keywords" content={blogKeywords} />
+          <meta name="description" content={blogDescription} />
         </Head>
         <div className="do-content-container blog-detail">
           <h1 className="blog-title"><span>{blog.title}</span></h1>

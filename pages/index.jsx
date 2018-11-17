@@ -137,9 +137,6 @@ export default class Blogs extends Component {
       <React.Fragment>
         <Head>
           <title>dodo-小寒的博客-博客列表</title>
-          <title>dodo-小寒的博客-博客列表</title>
-          <title>dodo-小寒的博客-博客列表</title>
-          
         </Head>
         
         <div className="do-content-container">
