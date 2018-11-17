@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Button, InputArea } from 'dodoui'
 import Comment, { CommentList } from '../components/widgets/Comment'
 import checkNickname from '../util/checkNickname'
+import { AnimateQueue } from 'dodoui'
 
 
 export default class Contact extends React.Component {
@@ -37,7 +38,7 @@ export default class Contact extends React.Component {
   render() {
     const { nickname, leavedMessages } = this.props.contactStore
     const { message } = this.state
-    
+
     return (
       <React.Fragment>
         <Head>
@@ -61,7 +62,9 @@ export default class Contact extends React.Component {
           </div>
 
           <CommentList>
-            {leavedMessages.list.map(message => <Comment key={message._id} nickname={message.nickname} content={message.message} />)}
+            <AnimateQueue animate={true}>
+              {leavedMessages.list.map(message => <Comment key={message._id} nickname={message.nickname} content={message.message} created={message.created}/>)}
+            </AnimateQueue>
           </CommentList>
         </div>
       </React.Fragment>

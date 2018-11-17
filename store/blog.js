@@ -1,6 +1,8 @@
 import { observable, action } from 'mobx'
 import axios from '../config/axios'
 import Base from './base'
+import qs from 'qs'
+
 export default class Store extends Base {
   @observable blogs = {
     list: [],
@@ -13,13 +15,19 @@ export default class Store extends Base {
   @observable currentBlog = null
 
   @action
-  list = (currnetPage) => {
+  list = (currnetPage, tags) => {
     if (this.blogs.list.noMore) {
       return false
     }
     this.blogs.page = currnetPage || Number(this.blogs.page) + 1
+
     const { perPage, page } = this.blogs
-    return axios.get('/articles', { params: { perPage, page } })
+    return axios.get('/articles', {
+      params: { perPage, page, tags },
+      paramsSerializer: params => {
+        return qs.stringify(params, { arrayFormat: 'repeat' })
+      }
+    })
       .then(blogs => {
         this.blogs.list = currnetPage ? blogs.list : this.blogs.list.concat(blogs.list)
         this.blogs.page = blogs.page

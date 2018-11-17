@@ -101,7 +101,7 @@ export default class Musics extends React.Component {
           <div className="music-album-list" ref={this.$musicList}>
             <AnimateQueue
               animate={true}
-              interval={80}
+              interval={50}
               speed={600}
               from={{ transform: 'translateY(80px)' }}
               to={{ transform: 'translateX(0px)' }}
