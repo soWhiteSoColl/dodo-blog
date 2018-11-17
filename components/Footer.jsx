@@ -19,16 +19,17 @@ class Footer extends Component {
       <footer className="main-footer">
         <div className="do-common-container">
           {/* <span className="main-footer-item"><span className="do-link" onClick={this.handleShowQrcode}>@微信 小寒</span></span> */}
-          <div>
-            <span className="main-footer-item"><a target="_new" href="https://github.com/soWhiteSoColl">@github soWhiteSoColl</a></span>
-            <span className="main-footer-item">
-              <a href="http://boaer.com" target="_blank">京ICP备18038032号-2</a>
-            </span>
-            <span className="main-footer-item">&copy;2018 dodo</span>
-          </div>
-
           <div className="main-footer-links">
             <span>友情链接</span> {friendLinks.map((link, index) => <a key={index} href={link.url} target="_new">{link.name}</a>)}
+           <a target="_new" href="https://github.com/soWhiteSoColl">soWhiteSoColl</a>
+          </div>
+          
+          <div>
+            <span className="main-footer-item">&copy;2018 dodo</span>
+            <span className="main-footer-item">
+              <img src="http://www.beian.gov.cn/img/ghs.png" alt=""/>
+              <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">京ICP备18038032号-2</a>
+            </span>
           </div>
         </div>
       </footer>
