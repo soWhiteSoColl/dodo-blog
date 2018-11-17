@@ -165,15 +165,13 @@ export default class MusicPlayer extends React.Component {
         showList && 'main-music-player-show-list',
         audioConfig.position === 'bottom' && 'main-music-player-in-bottom',
         audioConfig.size === 'large' && 'main-music-player-large',
+        paused ? 'pause' : 'play'
       )}>
         <audio src={url} ref={this.$audio} onEnded={this.handleNext} />
         <div className="main-music-player-wrapper">
-          <div className="main-music-player-pic">
+          <div className="main-music-player-pic" onClick={paused ? this.handlePlay : this.handlePause}>
             <img src={pic} />
-            <div
-              className={classnames("music-player-play-btn", paused ? 'pause' : 'play')}
-              onClick={paused ? this.handlePlay : this.handlePause}
-            >
+            <div className={classnames("music-player-play-btn", paused ? 'pause' : 'play')}>
               <svg width={30} height={30}>
                 <path className="svg-play-btn" stroke="#fff" strokeWidth={3} strokeLinecap="butt" fill="none"></path>
               </svg>

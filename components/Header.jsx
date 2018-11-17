@@ -6,7 +6,7 @@ import {withRouter} from 'next/router'
 
 
 const menus = [
-	{ href: '/blogs', label: '博客' },
+	{ href: '/', label: '博客' },
 	{ href: '/musics', label: '音乐' },
 	{ href: '/contact', label: '留言' }
 ]
@@ -21,7 +21,7 @@ class Header extends Component {
 			<header className="main-header">
 				<div className="do-content-container">
 					<div className="logo-brand">
-						<Link href="/index">
+						<Link href="/home">
 							<a><img src="/static/dodo-logo.png" alt="" /></a>
 						</Link>
 					</div>

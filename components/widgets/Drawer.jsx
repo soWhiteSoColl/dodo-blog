@@ -30,6 +30,14 @@ export default class Drawer extends React.Component {
           <span className="w-drawer-toggle-bar"></span>
         </div>
         <div className="w-drawer-container">
+          <div
+            className={classnames('w-drawer-inner-toggle', open ? 'close' : 'open')}
+            onClick={this.handleToggle}
+          >
+            <span className="w-drawer-toggle-bar"></span>
+            <span className="w-drawer-toggle-bar"></span>
+            <span className="w-drawer-toggle-bar"></span>
+          </div>
           {this.props.children}
         </div>
       </div>

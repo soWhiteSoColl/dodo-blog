@@ -9,19 +9,19 @@
   border-left: 1px solid #ddd;
   width: 300px;
   box-sizing: border-box;
-  // box-shadow: 0 0 20px -8px rgba(0, 0, 0, 0.65);
-  
+  @media screen and (max-width: 720px) {
+    width: 100%;
+  } // box-shadow: 0 0 20px -8px rgba(0, 0, 0, 0.65);
   &.close {
-    right: -300px;
+    right: -100%;
   }
-
+  &-inner-toggle,
   &-toggle {
     position: absolute;
     left: -50px;
     width: 25px;
     height: 25px;
     top: 30px;
-    
     &-bar {
       background-color: #666;
       width: 100%;
@@ -29,35 +29,29 @@
       display: inline-block;
       position: absolute;
       transition: all ease 0.3s;
-
       &:nth-child(1) {
         top: 0px;
         transform: rotateZ(0deg);
       }
-
       &:nth-child(2) {
         top: 9px;
         transform: rotateY(0deg);
       }
-
       &:nth-child(3) {
         top: 18px;
         transform: rotateZ(0deg);
       }
     }
-
     &.close {
       .w-drawer-toggle-bar {
         &:nth-child(1) {
           top: 10px;
           transform: rotateZ(45deg);
         }
-  
         &:nth-child(2) {
           top: 9px;
           transform: rotateY(90deg);
         }
-  
         &:nth-child(3) {
           top: 10px;
           transform: rotateZ(-45deg);
@@ -65,10 +59,29 @@
       }
     }
   }
-  
-
+  @media screen and (max-width: 720px) {
+    &-toggle {
+      top: calc( 50% - 13px);
+      left: -42px;
+    }
+  }
   &-container {
     padding: 30px;
     padding-top: 26px;
+    position: relative;
+    .w-drawer-inner-toggle {
+      display: none;
+    }
+    @media screen and (max-width: 720px) {
+      .w-drawer-inner-toggle {
+        display: block;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 25px;
+        height: 25px;
+        left: auto;
+      }
+    }
   }
 }
