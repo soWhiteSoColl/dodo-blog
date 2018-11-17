@@ -20,8 +20,11 @@ class Footer extends Component {
         <div className="do-common-container">
           {/* <span className="main-footer-item"><span className="do-link" onClick={this.handleShowQrcode}>@微信 小寒</span></span> */}
           <div>
-          <span className="main-footer-item"><a target="_new" href="https://github.com/soWhiteSoColl">@github soWhiteSoColl</a></span>
-          <span className="main-footer-item">&copy;2018 dodo</span>
+            <span className="main-footer-item"><a target="_new" href="https://github.com/soWhiteSoColl">@github soWhiteSoColl</a></span>
+            <span className="main-footer-item">
+              <a href="http://boaer.com" target="_blank">京ICP备18038032号-2</a>
+            </span>
+            <span className="main-footer-item">&copy;2018 dodo</span>
           </div>
 
           <div className="main-footer-links">
