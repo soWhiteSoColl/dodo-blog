@@ -5,7 +5,6 @@ import { InputArea, Button } from 'dodoui'
 import Comment from '../components/widgets/Comment'
 import checkNickname from '../util/checkNickname'
 
-
 export default class BlogDetail extends Component {
   state = {
     comment: ''
@@ -45,19 +44,17 @@ export default class BlogDetail extends Component {
   render() {
     const { nickname } = this.props.contactStore
     const blog = this.props.blogStore.currentBlog || {}
-    const blogDescription = blog.content && blog.content.replace(/<.*?>/g, '').slice(0, 160)
     const { comment } = this.state
+    const blogDescription = blog.content && blog.content.replace(/<.*?>/g, '').slice(0, 160)
+    const blogKeywords = blog.tags && blog.tags.map(tag => tag.value).join(',')
 
     return (
       <React.Fragment>
         <Head>
           <title>{blog.title}</title>
-          <meta name="keywords" content={blog.tags ? blog.tags.join(',') : '博客 技术 前端'} />
-          <meta name="description" content={blogDescription} />
         </Head>
         <div className="do-content-container blog-detail">
-          <h1 className="blog-title"><a href="#">{blog.title}</a></h1>
-
+          <h1 className="blog-title"><span>{blog.title}</span></h1>
           {/* <div className="blog-author">{blog.author && blog.author.username}</div> */}
           <div className="blog-meta">
             <div className="blog-date">{dateFormater(blog.created)}</div>

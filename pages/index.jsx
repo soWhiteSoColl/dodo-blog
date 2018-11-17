@@ -7,6 +7,7 @@ import Drawer from '../components/widgets/Drawer'
 import { AnimateQueue } from '../components/widgets/AnimateQueue'
 import classnames from 'classnames'
 
+
 const Tag = props => {
   const { children, color, ...rest } = props
 
@@ -69,6 +70,8 @@ export default class Blogs extends Component {
   }
 
   handleScroll = () => {
+    if(!this.$blogs.current) return false
+    
     const elBottom = this.$blogs.current.getBoundingClientRect().bottom
     const windowHeihgt = window.innerHeight
     if (elBottom <= windowHeihgt + 100 && !this.fetching) {
@@ -133,10 +136,12 @@ export default class Blogs extends Component {
     return (
       <React.Fragment>
         <Head>
-          <title>dodo 博客</title>
-          <meta name="keywords" content={'博客 技术 前端'} />
-          <meta name="description" content={'dodo的博客列表'} />
+          <title>dodo-小寒的博客-博客列表</title>
+          <title>dodo-小寒的博客-博客列表</title>
+          <title>dodo-小寒的博客-博客列表</title>
+          
         </Head>
+        
         <div className="do-content-container">
           {!reloading
             ? (

@@ -9,12 +9,15 @@
   border-left: 1px solid #ddd;
   width: 300px;
   box-sizing: border-box;
+  &.close {
+    right: -300px;
+  }
   @media screen and (max-width: 720px) {
     width: 100%;
+    &.close {
+      right: -100%;
+    }
   } // box-shadow: 0 0 20px -8px rgba(0, 0, 0, 0.65);
-  &.close {
-    right: -100%;
-  }
   &-inner-toggle,
   &-toggle {
     position: absolute;

@@ -42,7 +42,7 @@ export default class Contact extends React.Component {
     return (
       <React.Fragment>
         <Head>
-          <title>dodo 留言</title>
+        <title>dodo-小寒的博客-联系我</title>
         </Head>
         <div className="do-content-container">
           <div className="contact-form">
