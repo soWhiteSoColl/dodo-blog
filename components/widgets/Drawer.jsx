@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom'
 
 class DrawerInner extends React.Component {
   state = {
-    open: true
+    open: false
   }
 
   handleToggle = () => {
