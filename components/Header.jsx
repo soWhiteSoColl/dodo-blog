@@ -8,7 +8,8 @@ import {withRouter} from 'next/router'
 const menus = [
 	{ href: '/', label: '博客' },
 	{ href: '/musics', label: '音乐' },
-	{ href: '/contact', label: '留言' }
+	{ href: 'https://ui.justdodo.cn', label: '组件库', target: '_blank' },
+	{ href: '/contact', label: '留言' },
 ]
 
 
@@ -27,9 +28,9 @@ class Header extends Component {
 					</div>
 					<div className="do-pull-right">
 						{
-							menus.map(({href, label}, index) => (
+							menus.map(({href, label, target}, index) => (
 								<Link href={href} key={index}>
-									<a className={classnames(href === current && 'active')}><span className="header-inner-text">{label}</span></a>
+									<a target={target} className={classnames(href === current && 'active')}><span className="header-inner-text">{label}</span></a>
 								</Link>
 							))
 						}
