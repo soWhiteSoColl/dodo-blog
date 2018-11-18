@@ -8,20 +8,23 @@ export default class Store extends Base {
     list: [],
     page: 0,  // 现在一共有0页，不是目前在第几页
     perPage: 20,
-    noMore: false
+    noMore: false,
+    tags: []
   }
 
   @observable tags = []
+  @observable hotBlogs = []
   @observable currentBlog = null
 
   @action
-  list = (currnetPage, tags) => {
+  list = ({ page: currnetPage, tags: currentTags }) => {
     if (this.blogs.list.noMore) {
       return false
     }
     this.blogs.page = currnetPage || Number(this.blogs.page) + 1
+    this.blogs.tags = currentTags || this.blogs.tags
 
-    const { perPage, page } = this.blogs
+    const { perPage, page, tags } = this.blogs
     return axios.get('/articles', {
       params: { perPage, page, tags },
       paramsSerializer: params => {
@@ -56,5 +59,11 @@ export default class Store extends Base {
   getTags = () => {
     return axios.get('/articles/tags')
       .then(tags => this.tags = tags)
+  }
+
+  @action
+  getHotBlogs = () => {
+    return axios.get('/articles', {params: {perPage: 3, sort: '-viewCount'}})
+      .then(blogs => this.hotBlogs = blogs.list)
   }
 }

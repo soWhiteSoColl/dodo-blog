@@ -1,30 +1,53 @@
+#drawer-root {
+  position: fixed;
+  top: 0;
+  z-index: 50;
+}
 .w-drawer {
   position: fixed;
   right: 0;
   top: 0;
-  transition: all ease 0.6s;
-  bottom: 0;
-  background-color: #fff;
+  height: 100%;
   z-index: 50;
-  border-left: 1px solid #ddd;
-  width: 300px;
-  box-sizing: border-box;
-  &.close {
-    right: -300px;
-  }
-  @media screen and (max-width: 720px) {
-    width: 100%;
-    &.close {
-      right: -100%;
+  
+
+  &-container {
+    padding: 25px;
+    position: absolute;
+    z-index: 1;
+    background-color: #fff;
+    height: 100%;
+    width: 340px;
+    right: 0;
+    transition: all ease 0.6s;
+    box-sizing: border-box;
+    border-left: 1px solid #ddd;
+    
+    .w-drawer-inner-toggle {
+      display: none;
     }
-  } // box-shadow: 0 0 20px -8px rgba(0, 0, 0, 0.65);
-  &-inner-toggle,
-  &-toggle {
+
+    @media screen and (max-width: 720px) {
+      .w-drawer-inner-toggle {
+        display: block;
+        position: absolute;
+        top: 30px;
+        right: 30px;
+        width: 25px;
+        height: 25px;
+        left: auto;
+      }
+    }
+  }
+
+  &-toggle,
+  &-inner-toggle {
     position: absolute;
     left: -50px;
     width: 25px;
     height: 25px;
     top: 30px;
+    cursor: pointer;
     &-bar {
       background-color: #666;
       width: 100%;
@@ -62,29 +85,28 @@
       }
     }
   }
+
+  &.close {
+    .w-drawer-mask {
+      display: none;
+    }
+    .w-drawer-container {
+      right: -340px;
+    }
+  }
+
   @media screen and (max-width: 720px) {
+    .w-drawer-container {
+      width: 100vw;
+    }
+    &.close {
+      .w-drawer-container {
+        right: -100vw;
+      }
+    }
     &-toggle {
       top: calc( 50% - 13px);
       left: -42px;
     }
-  }
-  &-container {
-    padding: 30px;
-    padding-top: 26px;
-    position: relative;
-    .w-drawer-inner-toggle {
-      display: none;
-    }
-    @media screen and (max-width: 720px) {
-      .w-drawer-inner-toggle {
-        display: block;
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        width: 25px;
-        height: 25px;
-        left: auto;
-      }
-    }
-  }
+  } 
 }

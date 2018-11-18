@@ -27,7 +27,7 @@ class Footer extends Component {
           <div>
             <span className="main-footer-item">&copy;2018 dodo</span>
             <span className="main-footer-item">
-              <img src="http://www.beian.gov.cn/img/ghs.png" alt=""/>
+              {/* <img src="http://www.beian.gov.cn/img/ghs.png" alt=""/> */}
               <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">京ICP备18038032号-2</a>
             </span>
           </div>

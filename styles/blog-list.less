@@ -24,9 +24,6 @@
   }
 }
 
-.blogs-drawer-title {
-  margin-bottom: 20px;
-}
 
 .blog-title {
   text-transform: capitalize;
@@ -129,6 +126,31 @@
     }
     button {
       margin-top: 15px;
+    }
+  }
+}
+
+.blogs-drawer-tags {
+  margin-bottom: 30px;
+}
+.blogs-drawer-title {
+  margin-bottom: 15px;
+}
+
+.blogs-drawer-hot-list {
+  .blogs-drawer-hot-item {
+    margin-bottom: 10px;
+    // border-bottom: 1px solid #ddd;
+    padding-bottom: 5px;
+
+    a {
+      color: #7a7a7a;
+      &:hover {
+        color: @primary-color;
+      }
+    }
+    &-count {
+      margin-left: 10px;
     }
   }
 }

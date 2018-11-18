@@ -47,7 +47,6 @@ export default class Blogs extends Component {
 
   state = {
     loading: false,
-    selectTags: [],
     reloading: false,
   }
 
@@ -60,6 +59,7 @@ export default class Blogs extends Component {
     const blogs = this.props.blogs
     this.props.blogStore.setValues({ blogs })
     this.props.blogStore.getTags()
+    this.props.blogStore.getHotBlogs()
 
     setTimeout(this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)
@@ -70,8 +70,8 @@ export default class Blogs extends Component {
   }
 
   handleScroll = () => {
-    if(!this.$blogs.current) return false
-    
+    if (!this.$blogs.current) return false
+
     const elBottom = this.$blogs.current.getBoundingClientRect().bottom
     const windowHeihgt = window.innerHeight
     if (elBottom <= windowHeihgt + 100 && !this.fetching) {
@@ -92,25 +92,23 @@ export default class Blogs extends Component {
       })
   }
 
-  handleRefetch = () => {
-    this.props.blogStore.list(1, this.state.selectTags)
+
+  handleToggleTag = id => {
+    const { tags } = this.props.blogStore.blogs
+    const selectedTags = [...tags]
+    const findIndex = selectedTags.findIndex(item => item === id)
+
+    if (findIndex === -1) {
+      selectedTags.push(id)
+    } else {
+      selectedTags.splice(findIndex, 1)
+    }
+
+    this.props.blogStore.list({ page: 1, tags: selectedTags })
       .then(() => {
         this.setState({ reloading: true })
         setTimeout(() => this.setState({ reloading: false }), 200)
       })
-  }
-
-  handleToggleTag = id => {
-    const { selectTags } = this.state
-    const findIndex = selectTags.findIndex(item => item === id)
-
-    if (findIndex === -1) {
-      selectTags.push(id)
-    } else {
-      selectTags.splice(findIndex, 1)
-    }
-
-    this.setState({ selectTags }, this.handleRefetch)
   }
 
   get blogSort() {
@@ -130,15 +128,16 @@ export default class Blogs extends Component {
   }
 
   render() {
-    const { tags } = this.props.blogStore
-    const { loading, selectTags, reloading } = this.state
+    const { tags, hotBlogs } = this.props.blogStore
+    const { loading, reloading } = this.state
+    const { tags: selectedTags } = this.props.blogStore.blogs
 
     return (
       <React.Fragment>
         <Head>
           <title>dodo-小寒的博客-博客列表</title>
         </Head>
-        
+
         <div className="do-content-container">
           {!reloading
             ? (
@@ -167,14 +166,29 @@ export default class Blogs extends Component {
 
         <Drawer>
           <h2 className="blogs-drawer-title">标签</h2>
-          <div>
+          <div className="blogs-drawer-tags">
             {tags.map(tag => <Tag
               key={tag._id}
-              color={selectTags.includes(tag._id) && '#39f'}
+              color={selectedTags.includes(tag._id) && '#39f'}
               onClick={() => this.handleToggleTag(tag._id)}
             >
               {tag.value}
             </Tag>)}
+          </div>
+
+          <h2 className="blogs-drawer-title">最热</h2>
+          <div className="blogs-drawer-hot-list">
+            {hotBlogs.map(blog => <div
+              key={blog._id}
+              className="blogs-drawer-hot-item"
+            >
+              <Link href={`/blog?id=${blog._id}`}>
+                <a>
+                  {blog.title}
+                  {/* <span className="blogs-drawer-hot-item-count">浏览次数 {blog.viewCount}</span> */}
+                </a>
+              </Link>
+            </div>)}
           </div>
         </Drawer>
       </React.Fragment>

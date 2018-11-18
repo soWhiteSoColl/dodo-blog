@@ -44,14 +44,14 @@ export default class MyApp extends App {
     return (
       <Container>
         <Provider {...store}>
-          <>
+          <div id="app">
             {hasHeader && <Header />}
             <div className="main-content">
               <ObserverComponent {...initialProps} />
             </div>
             {hasAudio && <Player audioConfig={audioConfig} />}
             {hasFooter && <Footer />}
-          </>
+          </div>
         </Provider>
       </Container>
     )
