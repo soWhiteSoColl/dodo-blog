@@ -2,19 +2,22 @@ import React, { Component } from 'react';
 import Link from 'next/link'
 import classnames from 'classnames'
 import {withRouter} from 'next/router'
-
+import axios from 'axios'
 
 
 const menus = [
 	{ href: '/', label: '博客' },
 	{ href: '/musics', label: '音乐' },
-	{ href: 'https://ui.justdodo.cn', label: '组件库', target: '_blank' },
+	{ href: 'https://ui.justdodo.cn', label: '组件库' },
 	{ href: '/contact', label: '留言' },
 ]
 
 
 @withRouter
 class Header extends Component {
+	login(){
+		axios.get('https://authapi.justdodo.cn/api/login-github?end=http://justdodo.cn')
+	}
 	render() {
 		const current = this.props.router.asPath
 
@@ -34,6 +37,7 @@ class Header extends Component {
 								</Link>
 							))
 						}
+						<a onClick={this.login}>登录</a>
 					</div>
 				</div>
 			</header>
