@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
 import Link from 'next/link'
 import { pageScrollTo } from '../util/tool'
-import { AnimateQueue } from 'dodoui'
+import { AnimateQueue } from '../components/widgets/AnimateQueue'
 
 const ToTop = () => {
   return (

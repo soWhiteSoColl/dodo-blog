@@ -3,7 +3,7 @@ import Head from 'next/head'
 import { Button, InputArea } from 'dodoui'
 import Comment, { CommentList } from '../components/widgets/Comment'
 import checkNickname from '../util/checkNickname'
-import { AnimateQueue } from 'dodoui'
+import { AnimateQueue } from '../components/widgets/AnimateQueue'
 
 
 export default class Contact extends React.Component {

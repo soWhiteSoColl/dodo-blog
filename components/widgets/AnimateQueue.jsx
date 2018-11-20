@@ -69,6 +69,10 @@ export class AnimateQueue extends React.Component {
     loop()
   }
 
+  componentWillUnmount(){
+    clearTimeout(this.timer)
+  }
+
   render() {
     const { children, speed = 400, animate, ...rest } = this.props
     const { current } = this.state

@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Link from 'next/link'
 import classnames from 'classnames'
-import {withRouter} from 'next/router'
-import axios from 'axios'
-
+import { withRouter } from 'next/router'
 
 const menus = [
 	{ href: '/', label: '博客' },
@@ -12,12 +10,13 @@ const menus = [
 	{ href: '/contact', label: '留言' },
 ]
 
-
 @withRouter
 class Header extends Component {
-	login(){
-		axios.get('https://authapi.justdodo.cn/api/login-github?end=http://justdodo.cn')
+	handleLogin = () => {
+		this.props.userStore.login()
+			.then(data => window.location.href = data.path)
 	}
+	
 	render() {
 		const current = this.props.router.asPath
 
@@ -31,13 +30,13 @@ class Header extends Component {
 					</div>
 					<div className="do-pull-right">
 						{
-							menus.map(({href, label, target}, index) => (
+							menus.map(({ href, label, target }, index) => (
 								<Link href={href} key={index}>
 									<a target={target} className={classnames(href === current && 'active')}><span className="header-inner-text">{label}</span></a>
 								</Link>
 							))
 						}
-						<a onClick={this.login}>登录</a>
+						{/* <a onClick={this.handleLogin}>登录</a> */}
 					</div>
 				</div>
 			</header>
