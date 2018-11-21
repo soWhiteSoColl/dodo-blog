@@ -1823,7 +1823,7 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-dodoui@^1.0.6:
+dodoui@1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/dodoui/-/dodoui-1.0.6.tgz#226862f1041eed149c93f0be8a040dc6eb4090e1"
   dependencies:

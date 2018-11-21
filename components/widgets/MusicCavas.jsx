@@ -3,7 +3,8 @@ import { loadSound } from '../../util/tool'
 
 export default class MusicCanvas extends React.Component {
   state = {
-    loading: false
+    loading: false,
+    paused: true
   }
 
   $canvas = React.createRef()
@@ -26,21 +27,22 @@ export default class MusicCanvas extends React.Component {
     if (this.props.audio !== prevProps.audio) {
       this.handleInit()
     }
-    if (this.props.url !== prevProps.url) {
-      this.handlePause()
-    }
   }
 
   handleInit = async () => {
     const audio = this.props.audio
     if (!audio) return false
     if (!audio.paused) this.handleStart()
-    audio.addEventListener('play', this.handleStart)
-    audio.addEventListener('pause', this.handlePause)
+
+    audio.addEventListener('play', this.handleResume)
+    audio.addEventListener('pause', this.handleSuspend)
     audio.addEventListener('seeked', this.handleStart)
+    audio.addEventListener('seeking', this.handleSuspend)
+    audio.addEventListener('loadstart', this.handleStart)
   }
 
   handleStart = () => {
+    console.log('重新加载')
     // 创建audioNode和audioCtx
     this.handlePause()
     this.hash = this.hash + 1
@@ -51,26 +53,44 @@ export default class MusicCanvas extends React.Component {
     this.audioNode = audioNode
     this.audioCtx = audioCtx
 
+
+    this.setState({ paused: false })
     // 加载声音
     audio.volume = 1
     const currentHash = this.hash
-    
+
     loadSound(audio.src)
       .then(bufferArray => this.handleDecode(bufferArray, currentHash))
       .then(({ analyser, hash }) => {
-        if (hash !== this.hash) {
-          return false
-        }
-        if (!this.audioNode) {
-          return false
-        }
+        if (hash !== this.hash || !this.audioNode) return false
+        this.setState({ loading: false })
         audio.volume = 0
         this.audioNode.start(0, audio.currentTime)
+        if(audio.paused) {
+          this.handleSuspend()
+        }else{
+          this.handleResume()
+        }
         this.audioStart = true
-        this.setState({ loading: false })
         this.handleDraw(analyser)
       })
       .catch(error => console.log(error))
+  }
+
+  handleResume = () => {
+    this.setState({ paused: false })
+    if (this.audioCtx && this.audioCtx.state === 'suspended' && !this.state.loading) {
+      console.log('播放')
+      this.audioCtx.resume()
+    }
+  }
+
+  handleSuspend = () => {
+    console.log('暂停')
+    this.setState({ paused: true })
+    if (this.audioCtx && this.audioCtx.state === 'running' && !this.state.loading) {
+      this.audioCtx.suspend()
+    }
   }
 
   handlePause = () => {
@@ -161,7 +181,9 @@ export default class MusicCanvas extends React.Component {
   }
 
   render() {
-    if (this.state.loading) return <div className="music-canvas-loading">加载中...</div>
+    const { loading, paused } = this.state
+
+    if (loading) return <div className="music-canvas-loading">{!paused ? '加载中...' : ''}</div>
     return (
       <canvas width={720} height={280} ref={this.$canvas} />
     )

@@ -30,7 +30,7 @@ export class AnimateQueue extends React.Component {
   }
 
   componentDidMount() {
-    setTimeout(() => this.handleAnimate(this.props.animate))
+    this.handleAnimate(this.props.animate)
   }
 
   componentDidUpdate(prevProps) {
@@ -44,38 +44,39 @@ export class AnimateQueue extends React.Component {
 
   handleAnimate = (animate) => {
     const { interval = defaultInterval, children } = this.props
-    const max = children ? children.length : 0
-    clearTimeout(this.timer)
-
+    if (!children || !children.length) return false
+    
     const loop = () => {
       let current = this.state.current
-
+      const max = children ? children.length : 0
       if (!animate && current <= 0) {
         this.setState({ current: 0 })
         this.props.onAnimateEnd && this.props.onAnimateEnd()
         return false
-      } else if (animate && current >= max) {
+      }
+
+      if (animate && current >= max) {
         this.setState({ current: max })
         this.props.onAnimateEnd && this.props.onAnimateEnd()
         return false
-      } else {
-        current = current + (animate ? 1 : -1)
       }
 
+      current = current + (animate ? 1 : -1)
       this.setState({ current })
       this.timer = setTimeout(loop, interval)
     }
 
-    loop()
+    setTimeout(loop, interval)
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearTimeout(this.timer)
   }
 
   render() {
     const { children, speed = 400, animate, ...rest } = this.props
     const { current } = this.state
+
     return React.Children.map(children, (item, index) => {
       return <Animate animate={index < current} speed={speed} {...rest}>{item}</Animate>
     })

@@ -63,7 +63,18 @@ export default class MusicPlayer extends React.Component {
     this.setState({ paused: false })
 
     window.localStorage.setItem('current-music-id', music.id)
-    audio.play(audio.currentTime)
+    if (this.palyPromise) {
+      this.palyPromise
+        .then(() => this.palyPromise = audio.play(audio.currentTime))
+        .catch(err => {
+          clearTimeout(this.palyTimer)
+          this.palyTimer = setTimeout(() => {
+            this.palyPromise = audio.play(audio.currentTime)
+          }, 2000)
+        })
+    } else {
+      this.palyPromise = audio.play(audio.currentTime)
+    }
 
     this.timer = setInterval(() => {
       const { currentTime, duration } = audio
@@ -79,7 +90,7 @@ export default class MusicPlayer extends React.Component {
 
   handlePlayFrom = e => {
     const audio = this.$audio.current
-    const { left, width } = e.target.getBoundingClientRect()
+    const { left, width } = e.currentTarget.getBoundingClientRect()
     const clickPos = (e.clientX - left) / width
     const time = audio.duration * clickPos
     if (!time) return false
@@ -212,7 +223,6 @@ export default class MusicPlayer extends React.Component {
                     style={{ width: `${currentTime / duration * 100}%` }}
                   ></div>
                   <span className="main-music-player-progress-bar-timer">{secondToMunite(audio.currentTime)} / {secondToMunite(audio.duration)}</span>
-
                   {
                     this.lyric
                       ? <span

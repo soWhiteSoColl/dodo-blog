@@ -107,7 +107,7 @@ export default class Blogs extends Component {
     this.props.blogStore.list({ page: 1, tags: selectedTags })
       .then(() => {
         this.setState({ reloading: true })
-        setTimeout(() => this.setState({ reloading: false }), 200)
+        setTimeout(() => this.setState({ reloading: false }))
       })
   }
 
@@ -146,7 +146,7 @@ export default class Blogs extends Component {
                   animate={true}
                   interval={200}
                   speed={600}
-                  from={{ transform: 'translateX(80px)' }}
+                  from={{ transform: 'translateX(100px)' }}
                   to={{ transform: 'translateX(0px)' }}
                 >
                   {

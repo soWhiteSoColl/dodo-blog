@@ -107,7 +107,7 @@ export default class Musics extends React.Component {
               to={{ transform: 'translateX(0px)' }}
             >
               {hotMusicLists &&
-                hotMusicLists.map(item => <MusicList key={item.id} {...item} />)
+                hotMusicLists.map((item, index) => <MusicList key={item.id + index} {...item} />)
               }
             </AnimateQueue>
           </div>
