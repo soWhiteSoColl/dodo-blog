@@ -6,6 +6,7 @@ const friendLinks = [
   { name: '欧吉祥博客', url: 'https://oujixiang.com' },
   { name: '小伟博客', url: 'http://www.mlwei.com' },
   { name: '渣渣航的博客', url: 'https://www.justdodo.cn' },
+  { name: '组件库', url: 'https://ui.justdodo.cn' },
 ]
 class Footer extends Component {
   // handleShowQrcode = () => {
