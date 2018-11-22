@@ -6,7 +6,8 @@ import Head from 'next/head'
 import Drawer from '../components/widgets/Drawer'
 import { AnimateQueue } from '../components/widgets/AnimateQueue'
 import classnames from 'classnames'
-
+import store from '../store'
+import { observable } from 'mobx';
 
 const Tag = props => {
   const { children, color, ...rest } = props
@@ -27,14 +28,29 @@ const Tag = props => {
 
 const Date = props => <div className="blogs-group-date">{props.date}</div>
 
+
 const BlogItem = props => {
   const blog = props.blog
-
+  const audio = store.musicStore.audio
   return (
     <section className="blog-title">
-      <Link href={`/blog?id=${blog._id}`}>
-        <a>{blog.title}</a>
-      </Link>
+      {
+        audio && !audio.paused
+          ? <Link href={`/blog?id=${blog._id}`}>
+            <a>{blog.title}</a>
+          </Link>
+          : <Link href={`/blogs/${blog._id}`}>
+            <a>{blog.title}</a>
+          </Link>
+      }
+      <div className="for-spider">
+        <Link href={`/blog?id=${blog._id}`}>
+          <a>{blog.title}</a>
+        </Link>
+        <Link href={`/blogs/${blog._id}`}>
+          <a>{blog.title}</a>
+        </Link>
+      </div>
     </section>
   )
 }
@@ -135,9 +151,8 @@ export default class Blogs extends Component {
     return (
       <React.Fragment>
         <Head>
-          <title>dodo-小寒的博客-博客列表</title>
+          <title>小寒的博客 - 博客列表</title>
         </Head>
-
         <div className="do-content-container">
           {!reloading
             ? (
@@ -182,7 +197,7 @@ export default class Blogs extends Component {
               key={blog._id}
               className="blogs-drawer-hot-item"
             >
-              <Link href={`/blog?id=${blog._id}`}>
+              <Link href={`/blog/${blog._id}`}>
                 <a>
                   {blog.title}
                   {/* <span className="blogs-drawer-hot-item-count">浏览次数 {blog.viewCount}</span> */}

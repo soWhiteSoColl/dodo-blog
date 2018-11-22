@@ -99,7 +99,7 @@ export default class Music extends React.Component {
     return (
       <React.Fragment>
         <Head>
-          <title>dodo 音乐播放器</title>
+          <title>小寒的音乐播放器</title>
         </Head>
         <div className="do-content-container">
           <MusicCanvas

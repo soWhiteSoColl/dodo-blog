@@ -95,7 +95,9 @@ export default class Musics extends React.Component {
     return (
       <React.Fragment>
         <Head>
-          <title>dodo-小寒的博客-音乐播放器</title>
+          <title>小寒的博客 - 听歌, 音乐, 学习</title>
+          <meta name="keywords" content={'听歌，学习，音乐'} />
+          <meta name="description" content={'听听歌，这里有各种各样的好听的音乐，小寒的博客 - 听歌, 音乐, 学习'} />
         </Head>
         <div className="do-common-container">
           <div className="music-album-list" ref={this.$musicList}>
