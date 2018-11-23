@@ -3,7 +3,6 @@ import { Dialog } from 'dodoui';
 
 const friendLinks = [
   { name: '鼻子亲了脸', url: 'https://www.bzqll.com/' },
-  { name: '欧吉祥博客', url: 'https://oujixiang.com' },
   { name: '小伟博客', url: 'http://www.mlwei.com' },
   { name: '渣渣航的博客', url: 'https://www.justdodo.cn' },
   { name: '组件库', url: 'https://ui.justdodo.cn' },
