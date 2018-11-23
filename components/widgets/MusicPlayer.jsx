@@ -2,6 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import { secondToMunite, formatLyric } from '../../util/tool'
 
+
 export default class MusicPlayer extends React.Component {
   $audio = React.createRef()
   currentIndex = 0
@@ -66,7 +67,7 @@ export default class MusicPlayer extends React.Component {
     if (this.palyPromise) {
       this.palyPromise
         .then(() => this.palyPromise = audio.play(audio.currentTime))
-        .catch(err => {
+        .catch(() => {
           clearTimeout(this.palyTimer)
           this.palyTimer = setTimeout(() => {
             this.palyPromise = audio.play(audio.currentTime)
@@ -76,6 +77,7 @@ export default class MusicPlayer extends React.Component {
       this.palyPromise = audio.play(audio.currentTime)
     }
 
+    clearInterval(this.timer)
     this.timer = setInterval(() => {
       const { currentTime, duration } = audio
       this.setState({ currentTime, duration })
@@ -167,7 +169,7 @@ export default class MusicPlayer extends React.Component {
 
     const { pic, name, singer, url } = musics[currentIndex] || {}
     const audio = this.$audio.current || {}
-
+    
     return (
       <div className={classnames(
         "main-music-player",

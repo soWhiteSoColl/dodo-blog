@@ -176,8 +176,11 @@ export default class MusicCanvas extends React.Component {
     this.handlePause()
     const audio = this.props.audio
     audio && (audio.volume = 1)
-    audio.removeEventListener('play', this.handleStart)
-    audio.removeEventListener('pause', this.handlePause)
+    audio.removeEventListener('play', this.handleResume)
+    audio.removeEventListener('pause', this.handleSuspend)
+    audio.removeEventListener('seeked', this.handleStart)
+    audio.removeEventListener('seeking', this.handleSuspend)
+    audio.removeEventListener('loadstart', this.handleStart)
   }
 
   render() {
