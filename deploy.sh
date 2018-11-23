@@ -7,4 +7,4 @@ yarn install
 
 npm run build
 
-pm2 restart blog-web
+pm2 startOrRestart ./ecosystem.config.js
