@@ -1,6 +1,8 @@
 #！ /bin/bash
+cd /project/blog-web
+
 git pull
 
 npm run build
 
-pm2 startOrReload ecosystem.config.js
+pm2 restart blog-web
