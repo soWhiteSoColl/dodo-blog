@@ -224,8 +224,8 @@ export default class MusicPlayer extends React.Component {
           <div
             className="main-music-player-pic"
             onClick={paused ? this.handlePlay : this.handlePause}
-            style={{ backgroundImage: `url(${pic})` }}
           >
+            <img src={pic} alt=""/>
             <div className={classnames("music-player-play-btn")}>
               <Icon type={paused ? 'pause' : 'play'} />
             </div>
@@ -247,7 +247,7 @@ export default class MusicPlayer extends React.Component {
                 : null
             }
 
-            <div style={{ width: '100%' }}>
+            <div className="main-music-player-desc">
               <div className="main-music-player-name text-overflow-ellipsis">{name}</div>
               <div className="main-music-player-author">{singer}</div>
             </div>
