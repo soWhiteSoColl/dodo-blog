@@ -1,0 +1,82 @@
+.svg-icon {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  cursor: pointer;
+
+  path {
+    transition: all ease 0.3s;
+    stroke: #333;
+    stroke-linecap: round;
+  }
+
+  &-antd {
+    fill: #333;
+  }
+
+  &-pause {
+    path {
+      d: path('M4 15 22 4 22 26 4 15 4 15');
+    }
+  }
+
+  &-play {
+    path {
+      d: path('M 25 5 5 5 5 25 25 25 25 5');
+    }
+  }
+
+  &-left-arrow {
+    path {
+      d: path('M 20 5 10 15 20 25');
+    }
+  }
+
+  &-right-arrow {
+    path {
+      d: path('M 10 5 20 15 10 25');
+    }
+  }
+
+  &-right-arrow {
+    path {
+      d: path('M 10 5 20 15 10 25');
+    }
+  }
+
+  &-menu {
+    path {
+      d: path('M5 7 25 7  M5 15 25 15 M5 23 25 23');
+    }
+  }
+
+  &-close {
+    path {
+      d: path('M5 7 25 7  M5 15 25 15 M5 23 25 23');
+    }
+  }
+}
+
+.svg-icon-wrapper {
+  display: inline-block;
+  line-height: 0;
+  &.active {
+    .svg-icon-antd {
+      path {
+        fill: @primary-color;
+      }
+    }
+    .svg-icon {
+      path {
+        stroke: @primary-color;
+      }
+    }
+  }
+}
+
+.icon-demos {
+  .svg-icon {
+    margin: 10px;
+    background-color: #ccc;
+  }
+}

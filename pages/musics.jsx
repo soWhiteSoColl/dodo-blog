@@ -2,15 +2,10 @@ import React from 'react';
 import Head from 'next/head'
 import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
-import Link from 'next/link'
-import { pageScrollTo } from '../util/tool'
 import { AnimateQueue } from '../components/widgets/AnimateQueue'
+import Icon from '../components/widgets/Icons'
+import Drawer from '../components/widgets/Drawer'
 
-const ToTop = () => {
-  return (
-    <div className="to-top" onClick={() => pageScrollTo(0)}>Top</div>
-  )
-}
 @inject('musicStore')
 @observer
 class MusicList extends React.Component {
@@ -24,18 +19,16 @@ class MusicList extends React.Component {
     const { coverImgUrl, title, style } = this.props
     const { id } = this.props
     const { currentList } = this.props.musicStore
-
+    const active = id === currentList.songListId
     return (
-      <div className={classnames("music-album", id === currentList.songListId && 'active', 'play')} style={style}>
+      <div className={classnames("music-album", active && 'active', 'play')} style={style}>
         <div className="music-album-cover">
           <img src={coverImgUrl} alt="" />
           <div
             className={classnames("music-player-play-btn")}
             onClick={this.handlePlay}
           >
-            <svg width={30} height={30}>
-              <path className="svg-play-btn" stroke="#fff" strokeWidth={3} strokeLinecap="butt" fill="none"></path>
-            </svg>
+            <Icon type={active ? 'play' : 'pause'} />
           </div>
         </div>
         <div className="music-album-info">
@@ -45,6 +38,7 @@ class MusicList extends React.Component {
     )
   }
 }
+
 export default class Musics extends React.Component {
   static getInitialProps() {
     return { audioConfig: { size: 'large', position: 'bottom' } }
@@ -57,6 +51,8 @@ export default class Musics extends React.Component {
   $musicList = React.createRef()
 
   componentDidMount() {
+    this.props.musicStore.getLeaderboard()
+
     setTimeout(this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)
   }
@@ -109,14 +105,12 @@ export default class Musics extends React.Component {
               to={{ transform: 'translateX(0px)' }}
             >
               {hotMusicLists &&
-                hotMusicLists.map((item, index) => <MusicList key={item.id + index} {...item} />)
+                hotMusicLists.map((item, index) =>
+                  <MusicList key={item.id + index} {...item} />
+                )
               }
             </AnimateQueue>
           </div>
-          <Link href="/music">
-            <a><div className="music-detail-ball">🎵</div></a>
-          </Link>
-          <ToTop />
         </div>
       </React.Fragment>
     )

@@ -15,14 +15,16 @@ export default class Store extends Base {
   @observable audio = null
 
   @action
-  getHostLists = opt => {
+  getHostLists = (opt = {}) => {
     let offset = 0
-    if(opt.more){
+    if (opt.more) {
       offset = this.hotMusicLists.length
     }
-    return axios.get('/musics/hotSongList', { params: { limit: 20, offset  } })
+
+    const limit = offset ? 20 : 19 // 第一次获取19个，其中一个是热搜榜
+    return axios.get('/musics/hotSongList', { params: { limit, offset } })
       .then(musicLists => {
-        if(musicLists.length < 20){
+        if (musicLists.length < limit) {
           this.hotMusicLists.noMore = true
         }
         this.hotMusicLists = this.hotMusicLists.concat(musicLists)
@@ -34,7 +36,7 @@ export default class Store extends Base {
   getListById = id => {
     return axios.get('/musics/songList', { params: { limit: 20, id } })
       .then(list => {
-        if(!list) return false
+        if (!list) return false
         this.currentList = list
         return this.currentList
       })
@@ -49,9 +51,23 @@ export default class Store extends Base {
   getLyric = id => {
     id = id || this.currentMusic.id
     return axios.get('/musics/lrc', { params: { id } })
-    .then(data => {
-      this.currentMusicLyric = data
-      return this.currentList
-    })
+      .then(data => {
+        this.currentMusicLyric = data
+        return this.currentList
+      })
+  }
+
+  @action
+  getLeaderboard = () => {
+    return axios.get('/musics/songList', { params: { limit: 200, id: 3778678 } })
+      .then(list => {
+        if (this.hotMusicLists[0] && this.hotMusicLists[0].songListId === list.songListId) {
+          return false
+        }
+        list.id = list.songListId
+        list.coverImgUrl = list.songListPic
+        list.title = list.songListName
+        this.hotMusicLists.unshift(list)
+      })
   }
 }

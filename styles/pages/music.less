@@ -7,10 +7,8 @@
   position: fixed;
   left: 0;
   bottom: 40px;
-  transition: all ease-out .3s;
   height: @heihgt;
   z-index: 100;
-
   .shadow;
   &.close {
     width: 20px;
@@ -27,7 +25,7 @@
     display: flex;
   }
   &-toggle {
-    background: @border-color;
+    background: #999;
     height: @heihgt;
     width: @toggle-width;
     .inner-center;
@@ -50,21 +48,34 @@
     width: @heihgt;
     height: @heihgt;
     overflow: hidden;
-    background-color: #ccc;
-    img {
-      height: 100%;
-      display: block;
-      opacity: 0.9;
+    background-color: #ddd;
+    background-size: 100% auto;
+    background-position: 50% 50%;
+    .music-player-play-btn {
+      opacity: 0;
+    }
+    &:hover {
+      .music-player-play-btn {
+        opacity: 1;
+      }
     }
   }
   &-info {
-    padding: 7px 12px;
+    padding: 25px;
     position: relative;
     width: calc(100% - 80px - 20px);
-    box-sizing: border-box;
     background: #fff;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    &:hover {
+      .main-music-player-progress-bar {
+        background-color: #ccc;
+        &-timer { 
+          opacity: 1;
+        }
+      }
+    }
   }
   &-name {
     font-size: 16px;
@@ -75,47 +86,78 @@
     position: relative;
     top: 2px;
   }
+  &-lyric {
+    position: absolute;
+    top: -50px;
+    text-align: center;
+    width: 100%;
+    color: #39f;
+    font-size: 24px;
+    z-index: 10;
+    &:hover {
+      color: #25f;
+    }
+  }
   &-control {
     position: absolute;
-    right: 10px;
+    right: 15px;
+    top: 35px;
     svg {
-      transform: scale(0.6);
-      margin-left: 12px;
+      transform: scale(0.7);
       cursor: pointer;
+      margin-left: 10px;
       &:hover {
         path {
           stroke: #39f;
         }
       }
-      path {
-        transition: all ease 0.3s;
+    }
+    .svg-icon {
+      &:hover {
+        fill: @primary-color;
+        stroke: @primary-color;
       }
+    }
+    &-lyric {
+      &.active {
+        color: @primary-color;
+      }
+      cursor: pointer;
+      display: inline-block;
+      position: relative;
+      top: -9px;
+      color: #666;
+      transform: scale(1.1);
+      margin-right: 10px;
     }
   }
   &-progress-bar {
-    background-color: #ccc;
-    position: absolute;
     height: 3px;
-    width: 100%;
-    bottom: 0px;
-    left: 0;
     cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    transition: all ease 0.3s;
+
     &-inner {
-      background-color: #39f;
+      background-color: @primary-color;
       height: 100%;
       width: 0%;
     }
     &-timer {
+      opacity: 0;
+      transition: all ease 0.3s;
       position: absolute;
-      top: -23px;
+      top: 10px;
       font-size: 12px;
-      right: 12px;
+      right: 25px;
       font-weight: 300;
       color: #999;
     }
     &-lyric {
       position: absolute;
-      top: -23px;
+      top: 10px;
       font-size: 12px;
       left: 12px;
       color: #999;
@@ -133,27 +175,54 @@
       width: @large-height;
       height: @large-height;
     }
-    .main-music-player-name {
-      font-size: 16px;
-    }
-    .main-music-player-info {
-      border: none;
-      padding: 15px;
-    }
-    .main-music-player-progress-bar {
-      height: 5px;
-      &-lyric {
-        left: 15px;
-      }
-      &-timer {
-        right: 15px;
-      }
-    }
     .main-music-player-toggle {
       display: none;
     }
   } 
-  
+  &-small {
+    transition: all ease .3s;
+    .main-music-player-info {
+      padding: 10px;
+    }
+    .main-music-player-name {
+      width: calc(100% - 100px);
+    }
+    .main-music-player-author {
+      display: none;
+    }
+    .main-music-player-list {
+      bottom: 80px;
+    }
+    .main-music-player-lyric {
+      display: none;
+    }
+    .main-music-player-list-item-singer {
+      display: none;
+    }
+
+    .main-music-player-control {
+      top: 25px;
+      right: 0;
+      &-lyric {
+        display: none;
+      }
+      .svg-icon {
+        margin-left: 3px;
+      }
+      .svg-icon-loop, .svg-icon-music {
+        display: none;
+      }
+    }
+
+    .main-music-player-progress-bar-timer {
+      display: none;
+    }
+    &.close {
+      .main-music-player-list {
+        display: none;
+      }
+    }
+  }
   // 吸底
   &-in-bottom {
     bottom: 0px;
@@ -179,34 +248,25 @@
         .shadow;
       }
     }
-    &.hidden {
-      bottom: -100px;
-      .main-music-player-sider {
-        bottom: 120px;
-      }
-    }
   } 
-  
   // 列表样式
   &-list {
     transition: all ease 0.3s;
     position: absolute;
     bottom: 100px;
-    
     width: 100%;
     height: 0;
     overflow: hidden;
-    display: none;
-    background-color: #f9f9f9;
+    background-color: #f3f3f3;
     h3 {
       padding: 10px 20px;
-      background-color: #ddd;
+      background-color: #333;
       font-weight: 400;
       margin: 0;
-      color: #333;
+      color: #fff;
       .sub {
-        color: #4a4a4a;
-        font-size: 14px;
+        font-size: 12px;
+        margin-left: 10px;
       }
     }
     &-wrapper {
@@ -304,43 +364,37 @@
   cursor: pointer;
   border: 3px solid #fff;
   transition: all ease 0.3s;
-  transform: translateX(-50%) translateY(-50%) scale(0.6);
-  &:hover {
-    border-color: #39f;
-    .svg-play-btn {
-      stroke: #39f;
-    }
-  }
-  .svg-play-btn {
-    transition: all ease 0.3s;
-    d: path('M5 0 5 30 30 15 5 0 5 0');
+  transform: translateX(-50%) translateY(-50%) scale(0.8);
+
+  .svg-icon path {
     stroke: #fff;
   }
-  &.play .svg-play-btn {
-    d: path('M 28 2 2 2 2 28 28 28 28 2');
+
+  &:hover {
+    border-color: @primary-color;;
+    .svg-icon path {
+      stroke: @primary-color;
+    }
   }
 }
 
-// albun
+// album
 .music-album-list {
   margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
+  box-sizing: content-box;
 }
 
-@album-width: 220px;
 .music-album {
-  width: @album-width;
+  width: 20%;
   position: relative;
-  margin: 10px;
   box-sizing: border-box;
   overflow: hidden;
-  // box-shadow: 1px 3px 20px -10px rgba(0, 0, 0, 0.7);
+  padding: 10px;
 
   &-cover {
     position: relative;
-    width: 100%;
-    height: @album-width;
     cursor: pointer;
     overflow: hidden;
     border-radius: 4px;

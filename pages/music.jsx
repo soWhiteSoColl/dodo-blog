@@ -110,9 +110,6 @@ export default class Music extends React.Component {
             lyricStr={this.props.musicStore.currentMusicLyric}
             audio={this.props.musicStore.audio}
           />
-          <Link href="/musics">
-            <a><div className="music-detail-ball active">🎵</div></a>
-          </Link>
         </div>
       </React.Fragment>
     );

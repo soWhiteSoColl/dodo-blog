@@ -17,7 +17,8 @@ export default class Store extends Base {
   @observable currentBlog = null
 
   @action
-  list = ({ page: currnetPage, tags: currentTags }) => {
+  list = opt => {
+    const { page: currnetPage, tags: currentTags } = opt || {}
     if (this.blogs.list.noMore) {
       return false
     }

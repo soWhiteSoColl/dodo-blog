@@ -1,7 +1,29 @@
 import React from 'react'
 import classnames from 'classnames'
 import { secondToMunite, formatLyric } from '../../util/tool'
+import Icon from './Icons'
+import Link from 'next/link'
+import Router from 'next/router'
 
+
+const MusicList = props => {
+  const { musics, onToggle } = props
+  return (
+    <div className="main-music-player-list">
+      <h3>播放列表 <span className="sub">共{musics.length}首</span></h3>
+      <div className="main-music-player-list-wrapper">
+        {
+          musics.map((music, index) => (
+            <div key={music.id} className="main-music-player-list-item" onClick={() => onToggle(index)}>
+              <span className="main-music-player-list-item-name">{music.name}</span>
+              <span className="main-music-player-list-item-singer">{music.singer}</span>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  )
+}
 
 export default class MusicPlayer extends React.Component {
   $audio = React.createRef()
@@ -11,12 +33,13 @@ export default class MusicPlayer extends React.Component {
   state = {
     currentIndex: 0,
     paused: true,
+    loop: false,
     currentTime: null,
     duration: null,
 
     open: false,
     showList: false,
-    hiddenInBottom: false,
+    showLyric: false
   }
 
   componentDidMount() {
@@ -29,6 +52,7 @@ export default class MusicPlayer extends React.Component {
       currentIndex: currentIndex !== -1 ? currentIndex : 0,
     })
 
+    audio.addEventListener('ended', this.handleNext)
     audio.addEventListener('play', this.handlePlay)
     audio.addEventListener('pause', this.handlePause)
     this.props.getAudio && this.props.getAudio(audio)
@@ -133,6 +157,22 @@ export default class MusicPlayer extends React.Component {
     this.setState({ showList })
   }
 
+  handleToggleLyric = () => {
+    const showLyric = !this.state.showLyric
+    this.setState({ showLyric })
+  }
+
+  handleToggleLoop = () => {
+    const loop = !this.state.loop
+    const audio = this.$audio.current
+    if (loop) {
+      audio.removeEventListener('ended', this.handleNext)
+    } else {
+      audio.addEventListener('ended', this.handleNext)
+    }
+    this.setState({ loop })
+  }
+
   handleTogglePanel = () => {
     const hiddenInBottom = !this.state.hiddenInBottom
     this.setState({ hiddenInBottom })
@@ -162,80 +202,66 @@ export default class MusicPlayer extends React.Component {
   }
 
   render() {
-    const { open, duration, currentTime, hiddenInBottom, showList, paused, currentIndex } = this.state
+    const { open, duration, currentTime, loop, showList, paused, currentIndex, showLyric } = this.state
     const { audioConfig, musics } = this.props
 
     if (!musics || !musics.length) return false
 
     const { pic, name, singer, url } = musics[currentIndex] || {}
     const audio = this.$audio.current || {}
-    
+
     return (
       <div className={classnames(
         "main-music-player",
         open ? 'open' : 'close',
-        hiddenInBottom ? 'hidden' : 'show',
         showList && 'main-music-player-show-list',
         audioConfig.position === 'bottom' && 'main-music-player-in-bottom',
-        audioConfig.size === 'large' && 'main-music-player-large',
-        paused ? 'pause' : 'play'
+        audioConfig.size === 'large' ? 'main-music-player-large' : 'main-music-player-small',
+        paused ? 'pause' : 'play',
       )}>
-        <audio src={url} ref={this.$audio} onEnded={this.handleNext} />
+        <audio src={url} ref={this.$audio} loop={loop} />
         <div className="main-music-player-wrapper">
-          <div className="main-music-player-pic" onClick={paused ? this.handlePlay : this.handlePause}>
-            <img src={pic} />
-            <div className={classnames("music-player-play-btn", paused ? 'pause' : 'play')}>
-              <svg width={30} height={30}>
-                <path className="svg-play-btn" stroke="#fff" strokeWidth={3} strokeLinecap="butt" fill="none"></path>
-              </svg>
+          <div
+            className="main-music-player-pic"
+            onClick={paused ? this.handlePlay : this.handlePause}
+            style={{ backgroundImage: `url(${pic})` }}
+          >
+            <div className={classnames("music-player-play-btn")}>
+              <Icon type={paused ? 'pause' : 'play'} />
             </div>
           </div>
+          {showLyric && <div className="main-music-player-lyric">{this.lyric}</div>}
 
           <div className="main-music-player-info">
-            <div style={{ width: '100%' }}>
-              <div className="main-music-player-name text-overflow-ellipsis" style={{ width: 'calc(100% - 80px)' }}>{name}</div>
-              <div className="main-music-player-author">{singer}</div>
-            </div>
-            <div className="main-music-player-control">
-              <svg width={25} height={30} onClick={this.handlePrev}>
-                <path className="svg-play-btn"
-                  stroke="#999"
-                  strokeWidth={3}
-                  strokeLinecap="round"
-                  fill="none"
-                  d="M18 3 5 15 18 27"
-                ></path>
-              </svg>
-
-              <svg width={25} height={30} onClick={this.handleNext}>
-                <path className="svg-paly-btn"
-                  stroke="#999"
-                  strokeWidth={3}
-                  strokeLinecap="round"
-                  fill="none"
-                  d="M3 3 18 15 3 27"
-                ></path>
-              </svg>
-            </div>
             {
               currentTime
-                ? <div className="main-music-player-progress-bar" onClick={this.handlePlayFrom}>
-                  <div
-                    className="main-music-player-progress-bar-inner"
-                    style={{ width: `${currentTime / duration * 100}%` }}
-                  ></div>
-                  <span className="main-music-player-progress-bar-timer">{secondToMunite(audio.currentTime)} / {secondToMunite(audio.duration)}</span>
-                  {
-                    this.lyric
-                      ? <span
-                        className="main-music-player-progress-bar-lyric text-overflow-ellipsis"
-                        style={{ width: 'calc(100% - 80px)' }}
-                      >{this.lyric}</span>
-                      : null
-                  }
-                </div>
+                ? (
+                  <div className="main-music-player-progress-bar" onClick={this.handlePlayFrom}>
+                    <div
+                      className="main-music-player-progress-bar-inner"
+                      style={{ width: `${currentTime / duration * 100}%` }}
+                    ></div>
+                    <span className="main-music-player-progress-bar-timer">{secondToMunite(audio.currentTime)} / {secondToMunite(audio.duration)}</span>
+                  </div>
+                )
                 : null
             }
+
+            <div style={{ width: '100%' }}>
+              <div className="main-music-player-name text-overflow-ellipsis">{name}</div>
+              <div className="main-music-player-author">{singer}</div>
+            </div>
+
+            <div className="main-music-player-control">
+              {/* <span className={classnames('main-music-player-control-lyric', showLyric && 'active')} onClick={this.handleToggleLyric}>词</span> */}
+              <Link href={Router.route === '/music' ? '/musics' : '/music'}>
+                <Icon type={'music'} antd={true} active={Router.route === '/music'} />
+              </Link>
+              <Icon type={'loop'} antd={true} active={loop} onClick={this.handleToggleLoop} />
+              <Icon type={'menu'} active={showList} onClick={this.handleToggleList} />
+              <Icon type={'left-arrow'} onClick={this.handlePrev} />
+              <Icon type={'right-arrow'} onClick={this.handleNext} />
+            </div>
           </div>
 
           <div className={classnames("main-music-player-toggle", open ? 'open' : 'close')} onClick={this.handleToggleOpen}>
@@ -244,23 +270,7 @@ export default class MusicPlayer extends React.Component {
             </svg>
           </div>
         </div>
-        <div className="main-music-player-sider">
-          <div className="main-music-player-sider-ball" onClick={this.handleToggleList}>列表</div>
-          <div className="main-music-player-sider-ball" onClick={this.handleTogglePanel}>收起</div>
-        </div>
-        <div className="main-music-player-list">
-          <h3>播放列表 <span className="sub">共{musics.length}首</span></h3>
-          <div className="main-music-player-list-wrapper">
-            {
-              musics.map((music, index) => (
-                <div key={music.id} className="main-music-player-list-item" onClick={() => this.handleToggle(index)}>
-                  <span className="main-music-player-list-item-name">{music.name}</span>
-                  <span className="main-music-player-list-item-singer">{music.singer}</span>
-                </div>
-              ))
-            }
-          </div>
-        </div>
+        <MusicList onToggle={this.handleToggle} musics={musics} />
       </div >
     )
   }

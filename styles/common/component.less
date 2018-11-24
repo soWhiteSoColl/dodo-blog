@@ -207,16 +207,23 @@ textarea.do-input {
   white-space: nowrap;
 }
 
-.to-top {
-  .ball(40px);
+.do-to-top {
+  width: 50px;
+  height: 50px;
   .inner-center;
   font-size: 12px;
   cursor: pointer;
-  background-color: #eee;
-  bottom: 20px;
-  left: calc(50% + 520px);
+  background-color: @primary-color;
+  color: #fff;
+  right: 50px;
+  bottom: -60px;
+  transition: all ease 0.3s;
   position: fixed;
   .shadow;
+
+  &.show {
+    bottom: 50px;
+  }
 }
 
 .for-spider {
