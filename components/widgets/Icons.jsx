@@ -36,12 +36,22 @@ export default class SvgIcon extends React.Component {
     return (
       <span className={classnames('svg-icon-wrapper', className, active && 'active')}>
         <svg {...rest} className={classnames("svg-icon", type && "svg-icon-" + type)}>
-          <path
-            stroke="#999"
-            strokeWidth={3}
-            strokeLinecap="round"
-            fill="none"
-          ></path>
+          {(() => {
+            switch (type) {
+              case 'play':
+                return <path d={'M 25 5 5 5 5 25 25 25 25 5'}></path>
+              case 'pause':
+                return <path d={'M4 15 22 4 22 26 4 15 4 15'}></path>
+              case 'left-arrow':
+                return <path d={'M 20 5 10 15 20 25'}></path>
+              case 'right-arrow':
+                return <path d={'M 10 5 20 15 10 25'}></path>
+              case 'top-arrow':
+                return <path d={'M 5 20 15 10 25 20'}></path>
+              case 'menu':
+                return <path d={'M5 7 25 7  M5 15 25 15 M5 23 25 23'}></path>
+            }
+          })}
         </svg>
       </span>
 

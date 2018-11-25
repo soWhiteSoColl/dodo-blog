@@ -1,7 +1,7 @@
 import React from 'react'
 import { pageScrollTo } from '../util/tool'
 import classnames from 'classnames'
-
+import Icon from './widgets/Icons'
 
 export default class ToTop extends React.Component {
   state = {
@@ -29,7 +29,7 @@ export default class ToTop extends React.Component {
 
     return (
       <div className={classnames('do-to-top', show && 'show')} onClick={this.handleClick}>
-        Top
+        <Icon type="top-arrow"/>
       </div>
     )
   }

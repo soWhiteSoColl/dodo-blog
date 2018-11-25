@@ -220,10 +220,28 @@ textarea.do-input {
   transition: all ease 0.3s;
   position: fixed;
   z-index: 200;
+  .svg-icon {
+    transform: scale(0.8);
+    path {
+      stroke: #fff;
+    }
+  }
   .shadow;
 
   &.show {
     bottom: 50px;
+  }
+
+  @media screen and (max-width:720px) {
+    width: 30px;
+    height: 30px;
+    right: 15px;
+    .svg-icon {
+      transform: scale(0.6);
+    }
+    &.show {
+      bottom: 100px;
+    }
   }
 }
 
@@ -231,4 +249,10 @@ textarea.do-input {
   overflow: hidden;
   width: 0;
   height: 0;
+}
+
+.hidden-xs {
+  @media screen and (max-width: 720px){
+    display: none !important;
+  }
 }

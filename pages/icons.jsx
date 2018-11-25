@@ -14,6 +14,8 @@ export default class Icons extends React.Component {
 
         <Icon type="right-arrow" />
 
+        <Icon type="top-arrow"/>
+
         <Icon type="menu"/>
 
         <Icon type="loop" antd={true} />

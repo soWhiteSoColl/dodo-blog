@@ -7,7 +7,7 @@ import { withRouter } from 'next/router'
 const menus = [
 	{ href: '/', label: '博客' },
 	{ href: '/musics', label: '音乐', active: route => route === '/musics' || route === '/music' },
-	{ href: 'https://ui.dodoblog.cn', label: '组件库', target: '_new' },
+	{ href: 'https://ui.dodoblog.cn', label: '组件库', target: '_new', className: 'hidden-xs' },
 	{ href: '/contact', label: '留言' },
 ]
 
@@ -37,9 +37,9 @@ class Header extends Component {
 					</div>
 					<div className="do-pull-right">
 						{
-							menus.map(({ href, label, target, active }, index) => (
+							menus.map(({ href, label, active, ...rest }, index) => (
 								<Link href={href} key={index}>
-									<a target={target} className={classnames((active ? active(current) : href === current) && 'active')}>
+									<a className={classnames((active ? active(current) : href === current) && 'active')} {...rest}>
 										<span className="header-inner-text">{label}</span>
 									</a>
 								</Link>

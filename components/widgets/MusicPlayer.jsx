@@ -63,6 +63,10 @@ export default class MusicPlayer extends React.Component {
     if (nextProps.musics !== this.props.musics) {
       this.setState({ currentIndex: 0 }, this.handlePlay)
     }
+
+    if (nextProps.audioConfig.size !== this.props.audioConfig.size) {
+      this.setState({ showList: false })
+    }
   }
 
   componentWillUnmount() {
@@ -225,7 +229,7 @@ export default class MusicPlayer extends React.Component {
             className="main-music-player-pic"
             onClick={paused ? this.handlePlay : this.handlePause}
           >
-            <img src={pic} alt=""/>
+            <img src={pic} alt="" />
             <div className={classnames("music-player-play-btn")}>
               <Icon type={paused ? 'pause' : 'play'} />
             </div>
