@@ -269,9 +269,7 @@ export default class MusicPlayer extends React.Component {
           </div>
 
           <div className={classnames("main-music-player-toggle", open ? 'open' : 'close')} onClick={this.handleToggleOpen}>
-            <svg width={10} height={30}>
-              <path className="svg-btn" stroke="#fff" strokeWidth={2} strokeLinecap="butt" fill="none"></path>
-            </svg>
+            <Icon type={open ? 'left-arrow' : 'right-arrow'}/>
           </div>
         </div>
         <MusicList onToggle={this.handleToggle} musics={musics} />

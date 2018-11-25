@@ -81,15 +81,9 @@
     display: none;
     svg {
       transform: scale(0.6);
-    }
-    .svg-btn {
-      stroke: #fff;
-    }
-    &.close .svg-btn {
-      d: path('M0 0 10 15 0 30');
-    }
-    &.open .svg-btn {
-      d: path('M10 0 0 15 10 30');
+      path {
+        stroke: #fff;
+      }
     }
   }
   &-desc {
@@ -288,6 +282,9 @@
       .svg-icon-music {
         display: none;
       }
+    }
+    .main-music-player-list {
+      bottom: 80px;
     }
   }
 }
