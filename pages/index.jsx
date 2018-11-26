@@ -2,23 +2,17 @@ import React, { Component } from 'react'
 import { dateFormater } from '../util/tool'
 import Link from 'next/link'
 import Head from 'next/head'
-// import { AnimateQueue } from 'dodoui'
 import Drawer from '../components/widgets/Drawer'
 import { AnimateQueue } from '../components/widgets/AnimateQueue'
 import classnames from 'classnames'
 import store from '../store'
-import { observable } from 'mobx';
 
 const Tag = props => {
-  const { children, color, ...rest } = props
+  const { children, active, ...rest } = props
 
   return (
     <span
-      className={classnames("w-tag", color && 'w-tag-custom-color')}
-      style={{
-        background: color,
-        borderColor: color,
-      }}
+      className={classnames("w-tag", active && 'active')}
       {...rest}
     >
       {children}
@@ -184,7 +178,7 @@ export default class Blogs extends Component {
           <div className="blogs-drawer-tags">
             {tags.map(tag => <Tag
               key={tag._id}
-              color={selectedTags.includes(tag._id) && '#3979E3'}
+              active={selectedTags.includes(tag._id)}
               onClick={() => this.handleToggleTag(tag._id)}
             >
               {tag.value}
