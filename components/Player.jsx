@@ -17,10 +17,11 @@ export default class Player extends React.Component {
       return null
     }
 
-    const songs = this.props.musicStore.currentList.songs
+    const { songs, songListId } = this.props.musicStore.currentList
 
     return (
       <MusicPlayer
+        songsKey={songListId}
         getAudio={audio => {
           this.props.musicStore.setValue('audio', audio)
         }}

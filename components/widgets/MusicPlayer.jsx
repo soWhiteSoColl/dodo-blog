@@ -4,7 +4,7 @@ import { secondToMunite, formatLyric } from '../../util/tool'
 import Icon from './Icons'
 import Link from 'next/link'
 import Router from 'next/router'
-
+import {toJS} from 'mobx'
 
 const MusicList = props => {
   const { musics, onToggle } = props
@@ -60,7 +60,7 @@ export default class MusicPlayer extends React.Component {
 
   componentDidUpdate(nextProps) {
     // 切换歌单
-    if (nextProps.musics !== this.props.musics) {
+    if (nextProps.musics !== this.props.musics && nextProps.songsKey !== this.props.songsKey) {
       this.setState({ currentIndex: 0 }, this.handlePlay)
     }
 
