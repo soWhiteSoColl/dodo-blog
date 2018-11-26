@@ -65,7 +65,12 @@ export default class Contact extends React.Component {
 
           <CommentList>
             <AnimateQueue animate={true}>
-              {leavedMessages.list.map(message => <Comment key={message._id} nickname={message.nickname} content={message.message} created={message.created}/>)}
+              {leavedMessages.list.map(message => <Comment
+                key={message._id}
+                nickname={message.nickname}
+                content={message.message}
+                created={message.created}
+              />)}
             </AnimateQueue>
           </CommentList>
         </div>

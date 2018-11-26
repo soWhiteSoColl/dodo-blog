@@ -105,3 +105,17 @@ export function loadSound(url) {
     request.send();
   })
 }
+
+export function rn(s, e) {
+  var start = s ? s : 0;
+  var end = e ? e : 255;
+  var i = end - start;
+  var color = parseInt(start + Math.random() * i);
+  return color;
+}
+
+
+export function rc(opacity) {
+  var op = opacity ? opacity : 1;
+  return 'rgba(' + rn() + ',' + rn() + ',' + rn() + ',' + op + ')'
+}

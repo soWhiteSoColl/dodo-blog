@@ -1,15 +1,5 @@
-function rn(s, e) {
-  var start = s ? s : 0;
-  var end = e ? e : 255;
-  var i = end - start;
-  var color = parseInt(start + Math.random() * i);
-  return color;
-}
+export { rn } from './tool'
 
-function rc(opacity) {
-  var op = opacity ? opacity : 1;
-  return 'rgba(' + rn() + ',' + rn() + ',' + rn() + ',' + op + ')'
-}
 
 function createCanvasDraw(target, w, h, x, y) {
   var canvas = document.createElement('canvas');

@@ -10,8 +10,9 @@ export default function checkNickname() {
       content: (
         <div className="contact-input-nickname">
           <Input
-            label="请先告诉我你的名字（昵称）"
+            placeholder="请输入一个三个字以内的名字"
             onChange={e => userInput = e.target.value}
+            maxLength="3"
           />
         </div>
       ),

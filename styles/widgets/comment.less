@@ -4,51 +4,55 @@
 }
 .w-comment-item {
   margin: 20px 0;
+  @comment-bg-color: #eee;
+  position: relative;
 
-  &-content {
-    font-size: 14px;
-    background-color: #f3f3f3;
-    padding: 15px;
-    position: relative;
-    min-width: 100px;
-    max-width: 480px;
-    display: inline-block;
-    border-radius: 4px;
-    margin-top: 10px;
-    // &:before {
-    //   content: '';
-    //   display: block;
-    //   position: absolute;
-    //   width: 1px;
-    //   height: 1px;
-    //   border: 10px solid transparent;
-    //   border-bottom-color: #f3f3f3;
-    //   border-bottom-width: 12px;
-    //   left: 10px;
-    //   top: -20px;
-    // }
-
-    @media screen and (max-width: 720px){
-      padding: 10px 15px;
-      max-width: calc(100% - 80px);
-
-      &:before {
-        border-width: 5px;
-        left: -10px;
-        top: 4px;
-      }
-    }
-  }
-  
   &-nickname {
     font-size: 24px;
+    margin-right: 5px;
+    display: inline-block;
     font-weight: 300;
-    margin-right: 10px;
 
     @media screen and (max-width: 720px){
-      font-size: 16px;
+      font-size: 20px;
       margin-right: 5px;
       max-width: 80px;
+    }
+  }
+
+  &-info {
+    display: flex;
+    flex-direction: column;
+    max-width: calc(100% - 80px);
+    position: relative;
+  }
+
+  &-time {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+
+  &-content {
+    display: inline-block;
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 30px;
+    background-color: @comment-bg-color;
+    padding: 15px;
+    position: relative;
+    min-width: 200px;
+    display: inline-block;
+    border-radius: 4px;
+  }
+
+  &-svg {
+    position: absolute;
+    left: -12px;
+    width: 20px;
+    top: -24px;
+    transform: scaleY(0.6) scaleX(1);
+    path {
+      fill: @comment-bg-color;
     }
   }
 }
