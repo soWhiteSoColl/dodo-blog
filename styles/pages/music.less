@@ -31,7 +31,7 @@
   }
   &-info {
     position: relative;
-    padding: 25px;
+    padding: 0 25px;
     width: 620px;
     transition: all ease .6s;
     align-items: center;
@@ -59,11 +59,11 @@
     top: -50px;
     text-align: center;
     width: 100%;
-    color: #39f;
+    color: @primary-color;
     font-size: 24px;
     z-index: 10;
     &:hover {
-      color: #25f;
+      color: @light-primary-color
     }
   }
   &-wrapper {
@@ -340,7 +340,6 @@
   &-info {
     border-top: none;
     display: flex;
-    background-color: #fff;
   }
   &-title {
     display: block;

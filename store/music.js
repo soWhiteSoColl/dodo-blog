@@ -38,6 +38,10 @@ export default class Store extends Base {
       .then(list => {
         if (!list) return false
         this.currentList = list
+        this.currentList.songs = this.currentList.songs.map(song => {
+          song.url += '&br=999000'
+          return song
+        })
         return this.currentList
       })
   }

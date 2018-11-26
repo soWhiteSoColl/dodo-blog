@@ -184,7 +184,7 @@ export default class Blogs extends Component {
           <div className="blogs-drawer-tags">
             {tags.map(tag => <Tag
               key={tag._id}
-              color={selectedTags.includes(tag._id) && '#39f'}
+              color={selectedTags.includes(tag._id) && '#3979E3'}
               onClick={() => this.handleToggleTag(tag._id)}
             >
               {tag.value}
