@@ -8,15 +8,15 @@
   height: @large-height;
   left: calc(50% - 360px);
   bottom: 0;
-  transition: all linear 0.4s;
+  transition: all ease 0.4s;
   display: flex;
-  .shadow;
+  
 
   &-pic {
     width: @large-height;
     height: @large-height;
     position: relative;
-    transition: all linear 0.4s;
+    transition: all ease 0.4s;
     img {
       width: 100%;
       height: 100%;
@@ -33,11 +33,11 @@
   &-info {
     position: relative;
     padding: 0 25px;
-    width: calc(100% - 100px);
+    width: 620px;
     align-items: center;
     display: flex;
     background-color: #fff;
-    transition: all linear 0.6s;
+    transition: all ease 0.6s;
     &:hover {
       .main-music-player-progress-bar {
         background-color: #ccc;
@@ -69,7 +69,8 @@
     }
   }
   &-wrapper {
-    width: 100%;
+    .shadow;
+    width: auto;
     display: flex;
     position: absolute;
     transition: all linear 0.4s;
@@ -117,7 +118,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    transition: all linear 0.6s;
+    transition: all ease 0.3s;
     &-inner {
       background-color: @primary-color;
       height: 100%;
@@ -150,7 +151,7 @@
       width: 20px;
     }
     .main-music-player-wrapper {
-      width: 400px;
+      width: auto;
     }
     .main-music-player-pic {
       height: @heihgt;
@@ -164,6 +165,7 @@
     }
     .main-music-player-info {
       padding: 0 15px;
+      width: 300px;
     }
     .main-music-player-author {
       display: none;
