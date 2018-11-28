@@ -15,19 +15,16 @@ export default class Contact extends React.Component {
     this.props.contactStore.getLeavedMessages()
   }
 
-  handleSubmit = e => {
+  handleSubmit = async e => {
     e.preventDefault();
-    const { nickname, leaveMessage } = this.props.contactStore
+    const { leaveMessage } = this.props.contactStore
     const { message } = this.state
-    if (!nickname) {
-      checkNickname()
-        .then(() => {
-          this.props.contactStore.nickname && leaveMessage(message)
-          this.setState({ message: '' })
-        })
-    } else {
-      leaveMessage(message)
+    const hasNickName = await checkNickname()
+
+    if (hasNickName) {
+      this.props.contactStore.nickname && leaveMessage(message)
       this.setState({ message: '' })
+      this.forceUpdate
     }
   }
 
