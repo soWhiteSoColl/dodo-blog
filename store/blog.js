@@ -19,9 +19,7 @@ export default class Store extends Base {
   @action
   list = opt => {
     const { page: currnetPage, tags: currentTags } = opt || {}
-    if (this.blogs.list.noMore) {
-      return false
-    }
+    if (this.blogs.list.noMore) return false
     this.blogs.page = currnetPage || Number(this.blogs.page) + 1
     this.blogs.tags = currentTags || this.blogs.tags
 
@@ -33,10 +31,10 @@ export default class Store extends Base {
       }
     })
       .then(blogs => {
+        if(blogs.list.length < this.blogs.perPage) this.blogs.noMore = true
         this.blogs.list = currnetPage ? blogs.list : this.blogs.list.concat(blogs.list)
         this.blogs.page = blogs.page
         this.blogs.count = blogs.count
-        this.blogs.noMore = this.blogs.list.length >= this.blogs.count
         return this.blogs
       })
   }
