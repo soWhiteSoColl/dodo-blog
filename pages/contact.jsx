@@ -17,14 +17,14 @@ export default class Contact extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    const { leaveMessage } = this.props.contactStore
+    const { leaveMessage, nickname } = this.props.contactStore
     const { message } = this.state
-    const hasNickName = await checkNickname()
-
-    if (hasNickName) {
+    if (!nickname) {
+      checkNickname()
+    } else {
       this.props.contactStore.nickname && leaveMessage(message)
       this.setState({ message: '' })
-      this.forceUpdate
+      this.forceUpdate()
     }
   }
 
@@ -47,7 +47,6 @@ export default class Contact extends React.Component {
           <div className="contact-form">
             <div className="do-group">
               <InputArea
-                rows={10}
                 fullWidth
                 placeholder="在这里留言..."
                 label={`哈咯！${nickname || ''}`}

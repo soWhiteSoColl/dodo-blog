@@ -1823,13 +1823,14 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-dodoui@1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/dodoui/-/dodoui-1.0.6.tgz#226862f1041eed149c93f0be8a040dc6eb4090e1"
+dodoui@1.0.8-beta:
+  version "1.0.8-beta"
+  resolved "https://registry.yarnpkg.com/dodoui/-/dodoui-1.0.8-beta.tgz#2bc50cdc0657eddeb04442a8a4336ea8823eff3c"
   dependencies:
     "@babel/plugin-proposal-decorators" "^7.1.2"
     babel-plugin-transform-decorators-legacy "^1.3.5"
     classnames "^2.2.6"
+    react-highlight "^0.12.0"
 
 domain-browser@^1.1.1:
   version "1.2.0"
@@ -2401,6 +2402,10 @@ hash.js@^1.0.0, hash.js@^1.0.3:
   dependencies:
     inherits "^2.0.3"
     minimalistic-assert "^1.0.1"
+
+highlight.js@^9.11.0:
+  version "9.13.1"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.13.1.tgz#054586d53a6863311168488a0f58d6c505ce641e"
 
 hmac-drbg@^1.0.0:
   version "1.0.1"
@@ -3835,6 +3840,12 @@ react-dom@^16.5.2:
 react-error-overlay@4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
+
+react-highlight@^0.12.0:
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/react-highlight/-/react-highlight-0.12.0.tgz#34de986a0bfdf228904d0c269b69538d95b35802"
+  dependencies:
+    highlight.js "^9.11.0"
 
 react-lifecycles-compat@^3.0.2:
   version "3.0.4"
