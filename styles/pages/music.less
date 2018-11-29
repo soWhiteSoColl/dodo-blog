@@ -230,9 +230,14 @@
       cursor: pointer;
       display: flex;
       justify-content: space-between;
+      transition: all ease 0.2s;
+      color: #666;
+      &.active {
+        background-color: #bbb;
+      }
       &:hover {
-        background-color: #aaa;
-        color: #4a4a4a;
+        color: #333;
+        background-color: #ddd;
       }
       &-singer {
         margin-left: 20px;

@@ -3,8 +3,7 @@ import Head from 'next/head'
 import MusicCanvas from '../components/widgets/MusicCavas'
 import { formatLyric } from '../util/tool'
 import classnames from 'classnames'
-import Link from 'next/link'
-
+import { autorun } from 'mobx'
 
 class Lyric extends React.Component {
   state = {
@@ -80,6 +79,8 @@ export default class Music extends React.Component {
     return { audioConfig: { size: 'large', position: 'bottom' } }
   }
 
+  titleChangeTimer = null
+
   state = {
     bufferArray: null,
   }
@@ -91,10 +92,27 @@ export default class Music extends React.Component {
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.props.musicStore.getLyric()
+
+    autorun(() => {
+      const music = this.props.musicStore.currentMusic
+      if (!music.name) return false
+      const title = ' - 正在播放 ' + music.name + '-' + music.singer
+      const titleLen = title.length
+      let timerCount = titleLen
+      clearInterval(this.titleChangeTimer)
+      this.titleChangeTimer = setInterval(() => {
+        timerCount--
+        document.title = title.substr(-1 * timerCount, timerCount) + title.substr(0, titleLen - timerCount)
+        if (timerCount === 0) timerCount = titleLen
+      }, 1000)
+    })
   }
 
+  componentWillUnmount() {
+    clearInterval(this.titleChangeTimer)
+  }
   render() {
     return (
       <React.Fragment>

@@ -4,17 +4,21 @@ import { secondToMunite, formatLyric } from '../../util/tool'
 import Icon from './Icons'
 import Link from 'next/link'
 import Router from 'next/router'
-import {toJS} from 'mobx'
+
 
 const MusicList = props => {
-  const { musics, onToggle } = props
+  const { musics, onToggle, current } = props
   return (
     <div className="main-music-player-list">
       <h3>播放列表 <span className="sub">共{musics.length}首</span></h3>
       <div className="main-music-player-list-wrapper">
         {
           musics.map((music, index) => (
-            <div key={music.id} className="main-music-player-list-item" onClick={() => onToggle(index)}>
+            <div
+              key={music.id}
+              className={classnames("main-music-player-list-item", current === index && 'active')}
+              onClick={() => onToggle(index)}
+            >
               <span className="main-music-player-list-item-name">{music.name}</span>
               <span className="main-music-player-list-item-singer">{music.singer}</span>
             </div>
@@ -269,10 +273,10 @@ export default class MusicPlayer extends React.Component {
           </div>
 
           <div className={classnames("main-music-player-toggle", open ? 'open' : 'close')} onClick={this.handleToggleOpen}>
-            <Icon type={open ? 'left-arrow' : 'right-arrow'}/>
+            <Icon type={open ? 'left-arrow' : 'right-arrow'} />
           </div>
         </div>
-        <MusicList onToggle={this.handleToggle} musics={musics} />
+        <MusicList onToggle={this.handleToggle} musics={musics} current={currentIndex} />
       </div >
     )
   }

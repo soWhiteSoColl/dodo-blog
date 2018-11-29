@@ -28,6 +28,18 @@ export default class MyApp extends App {
 
     store.contactStore.getNickName()
     store.contactStore.saveView()
+
+    let title = document.title
+    window.addEventListener('focus', () => {
+      document.title = '(๑>ω<๑) 又好了耶。。。'
+      setTimeout(() => {
+        document.title = title
+      }, 2000)
+    })
+    window.addEventListener('blur', () => {
+      title = document.title
+      document.title = '(ÒωÓױ) 页面崩溃了！！！'
+    })
   }
 
 

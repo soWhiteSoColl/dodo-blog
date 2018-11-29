@@ -1,4 +1,4 @@
-export { rn } from './tool'
+import { rn } from './tool'
 
 
 function createCanvasDraw(target, w, h, x, y) {

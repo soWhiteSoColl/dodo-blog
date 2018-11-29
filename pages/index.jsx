@@ -71,6 +71,19 @@ export default class Blogs extends Component {
     this.props.blogStore.getTags()
     this.props.blogStore.getHotBlogs()
 
+    const hiddenProperty = 'hidden' in document ? 'hidden' :
+      'webkitHidden' in document ? 'webkitHidden' :
+        'mozHidden' in document ? 'mozHidden' : null
+
+    document.addEventListener('show', () => {
+      console.log(123)
+      if (!document[hiddenProperty]) {
+        document.title = '被发现啦(*´∇｀*)'
+      } else {
+        document.title = '藏好啦(つд⊂)  '
+      }
+    })
+    
     setTimeout(this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)
   }

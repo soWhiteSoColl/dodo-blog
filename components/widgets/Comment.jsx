@@ -15,7 +15,7 @@ export default function Comment(props) {
     <div className="w-comment-item" style={props.style}>
       <div>
         <span className="w-comment-item-nickname">{props.nickname}</span>
-        <span className="w-comment-item-time">{dateFormater(props.created)}</span>
+        {props.created && <span className="w-comment-item-time">{dateFormater(props.created)}</span>}
       </div>
 
       <div className="w-comment-item-content">
