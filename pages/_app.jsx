@@ -29,16 +29,21 @@ export default class MyApp extends App {
     store.contactStore.getNickName()
     store.contactStore.saveView()
 
-    let title = document.title
+    let recoverTitleTimer = null
     window.addEventListener('focus', () => {
-      document.title = '(๑>ω<๑) 又好了耶。。。'
-      setTimeout(() => {
-        document.title = title
-      }, 2000)
+      const title = document.getElementById('just_for_fun_title')
+      title && (title.innerHTML = '(๑>ω<๑) 又好了耶。。。')
+      recoverTitleTimer = setTimeout(() => document.head.removeChild(title), 2000)
     })
     window.addEventListener('blur', () => {
-      title = document.title
-      document.title = '(ÒωÓױ) 页面崩溃了！！！'
+      clearTimeout(recoverTitleTimer)
+      let title = document.getElementById('just_for_fun_title')
+      if (!title) {
+        title = document.createElement('title')
+        title.id = 'just_for_fun_title'
+        document.head.insertBefore(title, document.head.firstChild)
+      }
+      title.innerHTML = '(ÒωÓױ) 页面崩溃了！！！'
     })
   }
 
