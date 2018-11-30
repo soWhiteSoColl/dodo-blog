@@ -23,13 +23,13 @@ export default class MusicBg extends React.Component {
       this.$bg1.current.style.opacity = 0
 
       this.$bg2.current.style.backgroundImage = `url(${this.props.src})`
-      this.$bg2.current.style.opacity = 0.5
+      this.$bg2.current.style.opacity = 0.4
 
       this.current = 2
       this.originSrc = this.props.src
     } else {
       this.$bg1.current.style.backgroundImage = `url(${this.props.src})`
-      this.$bg1.current.style.opacity = 0.5
+      this.$bg1.current.style.opacity = 0.4
 
       this.$bg2.current.style.backgroundImage = `url(${this.originSrc})`
       this.$bg2.current.style.opacity = 0
