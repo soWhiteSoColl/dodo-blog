@@ -50,6 +50,8 @@ export default class SvgIcon extends React.Component {
                 return <path d={'M 5 20 15 10 25 20'}></path>
               case 'menu':
                 return <path d={'M5 7 25 7  M5 15 25 15 M5 23 25 23'}></path>
+              case 'bars':
+                return <path d={'M5 25 5 15 M15 25 15 10 M25 25 25 5'}></path>
             }
           })()}
         </svg>

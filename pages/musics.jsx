@@ -41,7 +41,7 @@ class MusicList extends React.Component {
 
 export default class Musics extends React.Component {
   static getInitialProps() {
-    return { audioConfig: { size: 'large', position: 'bottom' } }
+    return { audioConfig: { size: 'large', position: 'bottom' }, footer: false }
   }
 
   state = {

@@ -32,11 +32,13 @@ export default class MyApp extends App {
     let recoverTitleTimer = null
     window.addEventListener('focus', () => {
       const title = document.getElementById('just_for_fun_title')
+      console.log(title)
       if(title){
         title.innerHTML = '(๑>ω<๑) 又好了耶。。。'
-        recoverTitleTimer = setTimeout(() => title && document.head.removeChild(title), 2000)
+        recoverTitleTimer = setTimeout(() => title && document.head.contains(title) && document.head.removeChild(title), 2000)
       } 
     })
+
     window.addEventListener('blur', () => {
       clearTimeout(recoverTitleTimer)
       let title = document.getElementById('just_for_fun_title')
@@ -48,7 +50,6 @@ export default class MyApp extends App {
       title.innerHTML = '(ÒωÓױ) 页面崩溃了！！！'
     })
   }
-
 
   render() {
     const { Component, initialProps } = this.props

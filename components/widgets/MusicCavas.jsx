@@ -66,9 +66,9 @@ export default class MusicCanvas extends React.Component {
         this.setState({ loading: false })
         audio.volume = 0
         this.audioNode.start(0, audio.currentTime)
-        if(audio.paused) {
+        if (audio.paused) {
           this.handleSuspend()
-        }else{
+        } else {
           this.handleResume()
         }
         this.audioStart = true
@@ -131,16 +131,16 @@ export default class MusicCanvas extends React.Component {
       meterWidth = 10,
       gap = 2,
       capHeight = 2,
-      capStyle = '#39f',
+      capStyle = '#abc',
       meterNum = 800 / (10 + 2),
       capYPositionArray = [],
       ctx = canvas.getContext('2d'),
       gradient = ctx.createLinearGradient(0, 0, 0, 280)
 
-    gradient.addColorStop(1, '#39f')
-    gradient.addColorStop(0.9, '#0cf')
-    gradient.addColorStop(0.76, '#08f')
-    gradient.addColorStop(0.3, '#14f')
+    gradient.addColorStop(1, '#abc')
+    gradient.addColorStop(0.9, '#fff')
+    gradient.addColorStop(0.76, '#def')
+    gradient.addColorStop(0.3, '#cde')
 
     var drawMeter = function () {
       var array = new Uint8Array(analyser.frequencyBinCount)
@@ -186,9 +186,18 @@ export default class MusicCanvas extends React.Component {
   render() {
     const { loading, paused } = this.state
 
-    if (loading) return <div className="music-canvas-loading">{!paused ? '加载中...' : ''}</div>
+    if (loading) {
+      return (
+        <div className="music-analyzer-canvas">
+          <div className="music-canvas-loading">{!paused ? '加载中...' : ''}</div>
+        </div>
+      )
+    }
+
     return (
-      <canvas width={720} height={280} ref={this.$canvas} />
+      <div className="music-analyzer-canvas">
+        <canvas width={720} height={280} ref={this.$canvas} />
+      </div>
     )
   }
 }
