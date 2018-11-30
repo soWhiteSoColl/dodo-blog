@@ -38,9 +38,6 @@ const BlogItem = props => {
           </Link>
       }
       <div className="for-spider">
-        <Link href={`/blog?id=${blog._id}`}>
-          <a>{blog.title}</a>
-        </Link>
         <Link href={`/blogs/${blog._id}`}>
           <a>{blog.title}</a>
         </Link>
