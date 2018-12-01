@@ -1,6 +1,7 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import { Provider, observer, inject } from 'mobx-react'
+import { hotjar } from 'react-hotjar';
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import Header from '../components/Header'
@@ -10,7 +11,6 @@ import ToTop from '../components/ToTop'
 import store from '../store'
 import '../styles/index.less'
 import 'dodoui/lib/dodo.css'
-
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -29,6 +29,8 @@ export default class MyApp extends App {
     store.contactStore.getNickName()
     store.contactStore.saveView()
 
+    hotjar.initialize(1111548, 6)
+    
     let recoverTitleTimer = null
     window.addEventListener('focus', () => {
       const title = document.getElementById('just_for_fun_title')

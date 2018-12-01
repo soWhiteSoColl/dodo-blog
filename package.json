@@ -30,6 +30,7 @@
     "next-compose-plugins": "^2.1.1",
     "nprogress": "^0.2.0",
     "react": "^16.5.2",
-    "react-dom": "^16.5.2"
+    "react-dom": "^16.5.2",
+    "react-hotjar": "^1.0.11"
   }
 }
