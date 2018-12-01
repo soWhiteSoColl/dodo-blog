@@ -461,11 +461,11 @@
   position: fixed;
   top: -100px;
   bottom: -100px;
-  left:  -100px;
-  right: -100px;
+  left:  -120px;
+  right: -120px;
   background-size: 100% auto;
   background-position: 50% 50%;
-  filter: blur(80px) saturate(100%) contrast(100%);
+  filter: blur(50px);
   z-index: -1;
   background-color: #222;
   transition: all ease 3s;
@@ -477,7 +477,7 @@
   .inner-center;
   font-size: 12px;
   cursor: pointer;
-  background-color: #fff;
+  background-color: @primary-color;
   color: #fff;
   right: 50px;
   bottom: 50px;
@@ -487,19 +487,21 @@
   .svg-icon {
     transform: scale(0.8);
     path {
-      stroke: @primary-color;
+      stroke: #fff
     }
   }
   .shadow;
 
   &.active {
-    background-color: @primary-color;
-    .svg-icon {
-      transform: scale(0.8);
-      path {
-        stroke: #fff;
-      }
+    background-color: #fff;
+    .svg-icon path{
+      stroke: @primary-color;
     }
+  }
+
+  @media screen and (max-width: 720px){
+    bottom: 100px;
+    right: 20px;
   }
 }
 
