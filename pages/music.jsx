@@ -25,6 +25,12 @@ export default class Music extends React.Component {
   }
 
   componentDidMount() {
+    if (this.props.musicStore.currentMusic) {
+      this.props.musicStore.getLyric()
+    }
+
+    this.titleEl = document.getElementById('music_player_title')
+
     autorun(() => {
       // 标题动画效果
       const music = this.props.musicStore.currentMusic
@@ -33,9 +39,16 @@ export default class Music extends React.Component {
       const titleLen = title.length
       let timerCount = titleLen
       clearInterval(this.titleChangeTimer)
+
+      if (!this.titleEl) {
+        this.titleEl = document.createElement('title')
+        this.titleEl.id = 'music_player_title'
+        document.head.insertBefore(this.titleEl, document.head.firstChild)
+      }
+
       this.titleChangeTimer = setInterval(() => {
         timerCount--
-        document.title = title.substr(-1 * timerCount, timerCount) + title.substr(0, titleLen - timerCount)
+        this.titleEl.innerHTML = title.substr(-1 * timerCount, timerCount) + title.substr(0, titleLen - timerCount)
         if (timerCount === 0) timerCount = titleLen
       }, 1000)
     })
@@ -43,6 +56,7 @@ export default class Music extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.titleChangeTimer)
+    document.head.removeChild(this.titleEl)
   }
 
   handleToggle = () => this.setState({ showAnalyzer: !this.state.showAnalyzer })

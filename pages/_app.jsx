@@ -34,7 +34,6 @@ export default class MyApp extends App {
     let recoverTitleTimer = null
     window.addEventListener('focus', () => {
       const title = document.getElementById('just_for_fun_title')
-      console.log(title)
       if(title){
         title.innerHTML = '(๑>ω<๑) 又好了耶。。。'
         recoverTitleTimer = setTimeout(() => title && document.head.contains(title) && document.head.removeChild(title), 2000)
