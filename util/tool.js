@@ -27,6 +27,7 @@ export function dateFormater(originDate, isShowHour, opt = {}) {
 }
 
 export function formatLyric(lyric) {
+  if(!lyric) return false
   const lyricRows = lyric.split('\n')
   const lyrics = []
   lyricRows.forEach(row => {

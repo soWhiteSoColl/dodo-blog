@@ -21,13 +21,11 @@ export default class Player extends React.Component {
 
     return (
       <MusicPlayer
-        songsKey={songListId}
-        getAudio={audio => {
-          this.props.musicStore.setValue('audio', audio)
-        }}
         audioConfig={this.props.audioConfig}
+        songsKey={songListId}
+        getAudio={audio => this.props.musicStore.setValue('audio', audio)}
         musics={songs}
-        onPlay={this.props.musicStore.toggle}
+        onChange={this.props.musicStore.toggle}
       />
     )
   }

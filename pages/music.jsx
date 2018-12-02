@@ -25,8 +25,6 @@ export default class Music extends React.Component {
   }
 
   componentDidMount() {
-    this.props.musicStore.getLyric()
-
     autorun(() => {
       // 标题动画效果
       const music = this.props.musicStore.currentMusic
@@ -66,11 +64,11 @@ export default class Music extends React.Component {
           {
             showAnalyzer
               ? <MusicCanvas
-                url={this.props.musicStore.currentMusic.url}
+                url={music.url}
                 audio={this.props.musicStore.audio}
               />
               : <MusicLyric
-                lyricStr={this.props.musicStore.currentMusicLyric}
+                lyricStr={music.lyric}
                 audio={this.props.musicStore.audio}
               />
           }

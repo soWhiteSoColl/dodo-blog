@@ -55,6 +55,8 @@ export default class Lyric extends React.Component {
 
   render() {
     const { lyricIndex } = this.state
+    
+    if(!this.lyricsInfo) return null
 
     return (
       <div className="music-lyric">

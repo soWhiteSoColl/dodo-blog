@@ -4,7 +4,7 @@ import { secondToMunite, formatLyric } from '../../util/tool'
 import Icon from './Icons'
 import Link from 'next/link'
 import Router from 'next/router'
-
+import _ from 'lodash'
 
 const MusicList = props => {
   const { musics, onToggle, current } = props
@@ -29,17 +29,19 @@ const MusicList = props => {
   )
 }
 
+
 export default class MusicPlayer extends React.Component {
   $audio = React.createRef()
   currentIndex = 0
   lyricStr = ''
-
+  randomList = _.shuffle(this.props.musics)
   state = {
     currentIndex: 0,
     paused: true,
     loop: false,
     currentTime: null,
     duration: null,
+    random: false,
 
     open: false,
     showList: false,
@@ -50,7 +52,10 @@ export default class MusicPlayer extends React.Component {
     const musics = this.props.musics
     const audio = this.$audio.current
 
-    const currentIndex = musics.findIndex(item => item.id === window.localStorage.getItem('current-music-id'))
+    const currentIndex = musics.findIndex(item =>
+      item.id === window.localStorage.getItem('current-music-id')
+    )
+
     this.setState({
       open: window.localStorage.getItem('open-music-player') === '1',
       currentIndex: currentIndex !== -1 ? currentIndex : 0,
@@ -59,7 +64,9 @@ export default class MusicPlayer extends React.Component {
     audio.addEventListener('ended', this.handleNext)
     audio.addEventListener('play', this.handlePlay)
     audio.addEventListener('pause', this.handlePause)
+
     this.props.getAudio && this.props.getAudio(audio)
+    this.props.onChange && this.props.onChange(musics[currentIndex])
   }
 
   componentDidUpdate(nextProps) {
@@ -92,7 +99,7 @@ export default class MusicPlayer extends React.Component {
     const audio = this.$audio.current
 
     this.handleLoadLrc()
-    this.props.onPlay && this.props.onPlay(music)
+    this.props.onChange && this.props.onChange(music)
     this.setState({ paused: false })
 
     window.localStorage.setItem('current-music-id', music.id)
@@ -132,21 +139,41 @@ export default class MusicPlayer extends React.Component {
   }
 
   handleNext = () => {
-    let currentIndex = this.state.currentIndex + 1
-    if (currentIndex >= this.props.musics.length) {
-      currentIndex = 0
+    const { random, currentIndex } = this.state
+    const { musics } = this.props
+    let nextIndex = ''
+    if (random) {
+      const currentId = musics[currentIndex].id
+      const randomIndex = this.randomList.findIndex(item => item.id === currentId)
+      const nextId = this.randomList[randomIndex + 1 > this.randomList.length ? 0 : randomIndex + 1].id
+      nextIndex = this.props.musics.findIndex(item => item.id === nextId)
+    } else {
+      nextIndex = this.state.currentIndex + 1
+      if (nextIndex >= this.props.musics.length) {
+        nextIndex = 0
+      }
     }
 
-    this.setState({ currentIndex }, this.handlePlay)
+    this.setState({ currentIndex: nextIndex }, this.handlePlay)
   }
 
   handlePrev = () => {
-    let currentIndex = this.state.currentIndex - 1
-    if (currentIndex < 0) {
-      currentIndex = this.props.musics.length - 1
+    const { random, currentIndex } = this.state
+    const { musics } = this.props
+    let nextIndex = currentIndex
+    if (random) {
+      const currentId = musics[currentIndex].id
+      const randomIndex = this.randomList.findIndex(item => item.id === currentId)
+      const nextId = this.randomList[randomIndex - 1 < 0 ? this.randomList.length - 1 : randomIndex - 1].id
+      nextIndex = this.props.musics.findIndex(item => item.id === nextId)
+    } else {
+      nextIndex = this.state.currentIndex - 1
+      if (currentIndex < 0) {
+        nextIndex = this.props.musics.length - 1
+      }
     }
 
-    this.setState({ currentIndex }, this.handlePlay)
+    this.setState({ currentIndex: nextIndex }, this.handlePlay)
   }
 
   handleToggle = currentIndex => {
@@ -186,6 +213,11 @@ export default class MusicPlayer extends React.Component {
     this.setState({ hiddenInBottom })
   }
 
+  handleRandom = () => {
+    const random = !this.state.random
+    this.setState({ random })
+  }
+
   get lyric() {
     if (!this.lyricStr) return false
 
@@ -210,7 +242,7 @@ export default class MusicPlayer extends React.Component {
   }
 
   render() {
-    const { open, duration, currentTime, loop, showList, paused, currentIndex, showLyric } = this.state
+    const { open, duration, currentTime, loop, showList, paused, currentIndex, showLyric, random } = this.state
     const { audioConfig, musics } = this.props
 
     if (!musics || !musics.length) return false
@@ -265,6 +297,7 @@ export default class MusicPlayer extends React.Component {
               <Link href={Router.route === '/music' ? '/musics' : '/music'}>
                 <Icon type={'music'} antd={true} active={Router.route === '/music'} />
               </Link>
+              <Icon type={'random'} antd={true} active={random} onClick={this.handleRandom} />
               <Icon type={'loop'} antd={true} active={loop} onClick={this.handleToggleLoop} />
               <Icon type={'menu'} active={showList} onClick={this.handleToggleList} />
               <Icon type={'left-arrow'} onClick={this.handlePrev} />

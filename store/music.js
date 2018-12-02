@@ -55,10 +55,7 @@ export default class Store extends Base {
   getLyric = id => {
     id = id || this.currentMusic.id
     return axios.get('/musics/lrc', { params: { id } })
-      .then(data => {
-        this.currentMusicLyric = data
-        return this.currentList
-      })
+      .then(data => this.currentMusic.lyric = data)
   }
 
   @action

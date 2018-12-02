@@ -23,6 +23,8 @@ export default class Icons extends React.Component {
         <Icon type="music" antd={true} />
 
         <Icon type="bars" />
+
+        <Icon type="random" antd={true} />
       </div>
     )
   }

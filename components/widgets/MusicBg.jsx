@@ -8,12 +8,10 @@ export default class MusicBg extends React.Component {
   current = 1
 
   componentDidMount() {
-    console.log('did mount')
     this.handleToggleBg()
   }
 
   componentDidUpdate() {
-    console.log('did update')
     this.handleToggleBg()
   }
 
