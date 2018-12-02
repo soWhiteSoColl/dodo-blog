@@ -38,7 +38,6 @@ export default class BlogDetail extends Component {
     }
   }
 
-
   handleChangeComment = e => this.setState({ comment: e.target.value })
 
   render() {

@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Drawer from '../components/widgets/Drawer'
 import { AnimateQueue } from '../components/widgets/AnimateQueue'
 import classnames from 'classnames'
-import store from '../store'
+
 
 const Tag = props => {
   const { children, active, ...rest } = props
@@ -25,18 +25,10 @@ const Date = props => <div className="blogs-group-date">{props.date}</div>
 
 const BlogItem = props => {
   const blog = props.blog
-  const audio = store.musicStore.audio
+
   return (
     <section className="blog-title">
-      {
-        audio && !audio.paused
-          ? <Link href={`/blog?id=${blog._id}`}>
-            <a>{blog.title}</a>
-          </Link>
-          : <Link href={`/blogs/${blog._id}`}>
-            <a>{blog.title}</a>
-          </Link>
-      }
+      <Link href={`/blog?id=${blog._id}`}><a>{blog.title}</a></Link>
       <div className="for-spider">
         <Link href={`/blogs/${blog._id}`}>
           <a>{blog.title}</a>
@@ -80,7 +72,7 @@ export default class Blogs extends Component {
         document.title = '藏好啦(つд⊂)  '
       }
     })
-    
+
     setTimeout(this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)
   }
