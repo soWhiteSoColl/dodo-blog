@@ -1,5 +1,4 @@
 import React from 'react'
-import { loadSound } from '../../util/tool'
 
 export default class MusicCanvas extends React.Component {
   state = {
@@ -12,6 +11,7 @@ export default class MusicCanvas extends React.Component {
   audioBufferSouceNode = null
   bufferArray = null
   audioContext = null
+  currentRequest = null
 
   componentDidMount() {
     // 创建音频上下文
@@ -52,6 +52,7 @@ export default class MusicCanvas extends React.Component {
     const audioNode = audioCtx.createBufferSource()
     this.audioNode = audioNode
     this.audioCtx = audioCtx
+    this.currentRequest && this.currentRequest.abort()
 
 
     this.setState({ paused: false })
@@ -59,22 +60,32 @@ export default class MusicCanvas extends React.Component {
     audio.volume = 1
     const currentHash = this.hash
 
-    loadSound(audio.src)
-      .then(bufferArray => this.handleDecode(bufferArray, currentHash))
-      .then(({ analyser, hash }) => {
-        if (hash !== this.hash || !this.audioNode) return false
-        this.setState({ loading: false })
-        audio.volume = 0
-        this.audioNode.start(0, audio.currentTime)
-        if (audio.paused) {
-          this.handleSuspend()
-        } else {
-          this.handleResume()
-        }
-        this.audioStart = true
-        this.handleDraw(analyser)
-      })
-      .catch(error => console.log(error))
+    var request = new XMLHttpRequest()
+    this.currentRequest = request
+
+    request.open('GET', audio.src, true)
+    request.responseType = 'arraybuffer'
+    // 一旦获取完成，对音频进行进一步操作，比如解码
+    request.onload = () => {
+      const bufferArray = request.response
+
+      this.handleDecode(bufferArray, currentHash)
+        .then(({ analyser, hash }) => {
+          if (hash !== this.hash || !this.audioNode) return false
+          this.setState({ loading: false })
+          audio.volume = 0
+          this.audioNode.start(0, audio.currentTime)
+          if (audio.paused) {
+            this.handleSuspend()
+          } else {
+            this.handleResume()
+          }
+          this.audioStart = true
+          this.handleDraw(analyser)
+        })
+        .catch(error => console.log(error))
+    }
+    request.send();
   }
 
   handleResume = () => {

@@ -168,7 +168,7 @@ export default class Blogs extends Component {
           {loading && <div className="do-text-loading">加载中...</div>}
         </div>
 
-        <Drawer>
+        <Drawer key={1}>
           <h2 className="blogs-drawer-title">标签</h2>
           <div className="blogs-drawer-tags">
             {tags.map(tag => <Tag

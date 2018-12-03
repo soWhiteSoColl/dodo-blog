@@ -80,8 +80,11 @@ export default class Drawer extends React.Component {
   }
 
   componentWillUnmount() {
+    const app = document.getElementById('__next')
+    app.style.width = '100%'
     ReactDOM.unmountComponentAtNode(document.querySelector('#drawer-container'))
   }
+
   render() {
     return null
   }

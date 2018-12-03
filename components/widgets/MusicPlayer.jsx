@@ -45,7 +45,8 @@ export default class MusicPlayer extends React.Component {
 
     open: false,
     showList: false,
-    showLyric: false
+    showLyric: false,
+    loading: false,
   }
 
   componentDidMount() {
@@ -105,7 +106,9 @@ export default class MusicPlayer extends React.Component {
     window.localStorage.setItem('current-music-id', music.id)
     if (this.palyPromise) {
       this.palyPromise
-        .then(() => this.palyPromise = audio.play(audio.currentTime))
+        .then(() => {
+          this.palyPromise = audio.play(audio.currentTime)
+        })
         .catch(() => {
           clearTimeout(this.palyTimer)
           this.palyTimer = setTimeout(() => {
@@ -114,6 +117,12 @@ export default class MusicPlayer extends React.Component {
         })
     } else {
       this.palyPromise = audio.play(audio.currentTime)
+      .catch(err => {
+        console.log(err)
+        setTimeout(() => {
+          this.handlePlay()
+        }, 300)
+      })
     }
 
     clearInterval(this.timer)
