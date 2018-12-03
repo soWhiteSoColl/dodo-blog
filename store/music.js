@@ -22,7 +22,8 @@ export default class Store extends Base {
     }
 
     const limit = offset ? 20 : 19 // 第一次获取19个，其中一个是热搜榜
-    return axios.get('/musics/hotSongList', { params: { limit, offset } })
+    const timestamp = Date.now()
+    return axios.get('/musics/hotSongList', { params: { limit, offset, timestamp } })
       .then(musicLists => {
         if (musicLists.length < limit) {
           this.hotMusicLists.noMore = true
@@ -34,8 +35,7 @@ export default class Store extends Base {
 
   @action
   getListById = id => {
-    const timestamp = Date.now()
-    return axios.get('/musics/songList', { params: { limit: 20, id, timestamp } })
+    return axios.get('/musics/songList', { params: { limit: 20, id } })
       .then(list => {
         if (!list) return false
         this.currentList = list
