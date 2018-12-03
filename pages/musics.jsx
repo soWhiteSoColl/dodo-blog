@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
 import { AnimateQueue } from '../components/widgets/AnimateQueue'
 import Icon from '../components/widgets/Icons'
-import Drawer from '../components/widgets/Drawer'
+import { Input } from 'dodoui'
 
 @inject('musicStore')
 @observer
@@ -95,7 +95,11 @@ export default class Musics extends React.Component {
           <meta name="keywords" content={'听歌，学习，音乐'} />
           <meta name="description" content={'听听歌，这里有各种各样的好听的音乐，小寒的博客 - 听歌, 音乐, 学习'} />
         </Head>
-        <div className="do-common-container">
+        <div className="music-list-page">
+          {/* <div className="do-content-container music-search">
+            <input type="search" placeholder="输入关键字" />
+            <button>搜索</button>
+          </div> */}
           <div className="music-album-list" ref={this.$musicList}>
             <AnimateQueue
               animate={true}

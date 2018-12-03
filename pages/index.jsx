@@ -9,12 +9,8 @@ import classnames from 'classnames'
 
 const Tag = props => {
   const { children, active, ...rest } = props
-
   return (
-    <span
-      className={classnames("w-tag", active && 'active')}
-      {...rest}
-    >
+    <span className={classnames("w-tag", active && 'active')} {...rest}>
       {children}
     </span>
   )
@@ -22,10 +18,8 @@ const Tag = props => {
 
 const Date = props => <div className="blogs-group-date">{props.date}</div>
 
-
 const BlogItem = props => {
   const blog = props.blog
-
   return (
     <section className="blog-title">
       <Link href={`/blog?id=${blog._id}`}><a>{blog.title}</a></Link>
@@ -37,7 +31,6 @@ const BlogItem = props => {
     </section>
   )
 }
-
 
 export default class Blogs extends Component {
   $blogs = React.createRef()
