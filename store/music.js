@@ -34,7 +34,8 @@ export default class Store extends Base {
 
   @action
   getListById = id => {
-    return axios.get('/musics/songList', { params: { limit: 20, id } })
+    const timestamp = Date.now()
+    return axios.get('/musics/songList', { params: { limit: 20, id, timestamp } })
       .then(list => {
         if (!list) return false
         this.currentList = list
