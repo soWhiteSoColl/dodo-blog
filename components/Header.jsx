@@ -6,7 +6,7 @@ import { withRouter } from 'next/router'
 
 const menus = [
 	{ href: '/', label: '博客' },
-	{ href: '/musics', label: '音乐', active: route => route === '/musics' || route === '/music' },
+	{ href: '/musics', label: '音乐', active: route => route === '/musics' || route === '/music', className: 'hidden-xs' },
 	{ href: 'https://ui.dodoblog.cn', label: '组件库', target: '_new', className: 'hidden-xs' },
 	{ href: '/contact', label: '留言' },
 ]

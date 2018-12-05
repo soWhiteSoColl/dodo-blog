@@ -5,7 +5,7 @@ import Head from 'next/head'
 import Drawer from '../components/widgets/Drawer'
 import { AnimateQueue } from '../components/widgets/AnimateQueue'
 import classnames from 'classnames'
-
+import store from '../store'
 
 const Tag = props => {
   const { children, active, ...rest } = props
@@ -20,14 +20,12 @@ const Date = props => <div className="blogs-group-date">{props.date}</div>
 
 const BlogItem = props => {
   const blog = props.blog
+  const audio = store.musicStore.audio
+  const paused = !audio || audio.paused
+
   return (
     <section className="blog-title">
-      <Link href={`/blog?id=${blog._id}`}><a>{blog.title}</a></Link>
-      <div className="for-spider">
-        <Link href={`/blogs/${blog._id}`}>
-          <a>{blog.title}</a>
-        </Link>
-      </div>
+      <Link href={paused ? `/blogs/${blog._id}` : `/blog?id=${blog._id}`}><a>{blog.title}</a></Link>
     </section>
   )
 }
@@ -186,12 +184,7 @@ export default class Blogs extends Component {
               key={blog._id}
               className="blogs-drawer-hot-item"
             >
-              <Link href={`/blog/${blog._id}`}>
-                <a>
-                  {blog.title}
-                  {/* <span className="blogs-drawer-hot-item-count">浏览次数 {blog.viewCount}</span> */}
-                </a>
-              </Link>
+              <Link href={`/blog?id=${blog._id}`}>{blog.title}</Link>
             </div>)}
           </div>
         </Drawer>

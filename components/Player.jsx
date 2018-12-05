@@ -13,12 +13,18 @@ export default class Player extends React.Component {
   }
 
   render() {
-    if (!this.props.musicStore.currentList || !this.props.musicStore.currentList.songs) {
+    const { audio, currentList } = this.props.musicStore
+    const { audioConfig } = this.props
+
+    if (!currentList || !currentList.songs) {
       return null
     }
 
-    const { songs, songListId } = this.props.musicStore.currentList
+    if ((audioConfig && audioConfig.position !== 'bottom') && (!audio || audio.paused)) {
+      return null
+    }
 
+    const { songs, songListId } = currentList
     return (
       <MusicPlayer
         audioConfig={this.props.audioConfig}

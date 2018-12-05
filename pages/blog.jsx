@@ -46,7 +46,6 @@ export default class BlogDetail extends Component {
     const { comment } = this.state
     const blogDescription = blog.content && blog.content.replace(/<.*?>/g, '').slice(0, 160)
     const blogKeywords = blog.tags ? blog.tags.map(tag => tag.value) : []
-    blogKeywords.push('小寒的博客')
 
     return (
       <React.Fragment>
