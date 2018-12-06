@@ -174,7 +174,8 @@
 .blog-table {
   padding-left: 20px;
   min-width: 300px;
-  @media screen and (max-width: 1200px) {
+  margin-top: 10px;
+  @media screen and (max-width: 720px) {
     display: none;
   }
   h4 {
@@ -185,12 +186,12 @@
   }
   .blog-table-item {
     a {
-      color: #666;
+      color: #4a4a4a;
       &:hover {
         text-decoration: underline;
       }
       &.blog-table-item-h2 {
-        font-weight: bold;
+        font-size: 1.1em;
         margin-top: 10px;
         display: inline-block;
       }
@@ -210,8 +211,9 @@
         }
       }
       &.blog-table-item-h4 {
-        font-size: 1em;
-        margin-left: 20px;
+        color: #777;
+        font-size: 12px;
+        margin-left: 10px;
       }
     }
   }

@@ -4,22 +4,16 @@ import Drawer from './Drawer'
 export default class Blog extends React.Component {
   state = {
     tables: [],
-    content: ''
+    content: '',
   }
 
   table = React.createRef()
+  parsed = false
 
   componentDidMount() {
     if (this.props.content) {
       this.handleParse()
     }
-
-    window.addEventListener('scroll', () => {
-      const table = this.table.current
-      if (!table) {
-        return false
-      }
-    })
   }
 
   componentDidUpdate(nextProps) {
@@ -37,7 +31,7 @@ export default class Blog extends React.Component {
     let result = content
     const tables = []
     if (content) {
-      result = content.replace(/<(h\d)>.*?<\/h\d>/g, (match, tag) => {
+      result = content.replace(/<(h\d).*?>.*?<\/h\d>/g, (match, tag) => {
         const hash = match.replace(/<.*?>/g, '')
         tables.push({ hash, tag })
         return `<a class="blog-content-anchor" href="#${hash}" id="${hash}">${match}</a>`
@@ -49,7 +43,7 @@ export default class Blog extends React.Component {
 
   render() {
     const { tables, content } = this.state
-
+    
     return (
       <div className="blog-wrapper">
         <div className="blog-content" dangerouslySetInnerHTML={{ __html: content || this.props.content }}></div>
