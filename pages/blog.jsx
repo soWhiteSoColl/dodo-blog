@@ -4,6 +4,8 @@ import Head from 'next/head'
 import { InputArea, Button } from 'dodoui'
 import Comment from '../components/widgets/Comment'
 import checkNickname from '../util/checkNickname'
+import Blog from '../components/widgets/Blog'
+
 
 export default class BlogDetail extends Component {
   static async getInitialProps(ctx, store) {
@@ -20,6 +22,7 @@ export default class BlogDetail extends Component {
     this.props.blogStore.setValue('currentBlog', this.props.blog)
     // this.props.contactStore.getNickname()
   }
+
 
   handleComment = () => {
     const { comment } = this.state
@@ -60,9 +63,7 @@ export default class BlogDetail extends Component {
           <div className="blog-meta">
             <div className="blog-date">{dateFormater(blog.created)}</div>
           </div>
-          <div className="blog-content">
-            <div className="blog-view-content" dangerouslySetInnerHTML={{ __html: blog.content }}></div>
-          </div>
+          <Blog content={blog.content} />
           <div className="blog-comment-input">
             <h2>评论区</h2>
             <InputArea label={`哈咯！${nickname || ''}`} value={comment} onChange={this.handleChangeComment} />

@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import ReactDOM from 'react-dom'
-
+import { getDOMById } from 'tool'
 class DrawerInner extends React.Component {
   state = {
     open: false
@@ -71,18 +71,17 @@ const createDOM = () => {
 }
 export default class Drawer extends React.Component {
   componentDidMount() {
-    createDOM()
-    ReactDOM.render(<DrawerInner {...this.props} />, document.querySelector('#drawer-container'))
+
+    ReactDOM.render(<DrawerInner {...this.props} />, getDOMById('drawer-root'))
   }
 
   componentDidUpdate() {
-    ReactDOM.render(<DrawerInner {...this.props} />, document.querySelector('#drawer-container'))
+    ReactDOM.render(<DrawerInner {...this.props} />, getDOMById('drawer-root'))
   }
 
   componentWillUnmount() {
-    const app = document.getElementById('__next')
-    app.style.width = '100%'
-    ReactDOM.unmountComponentAtNode(document.querySelector('#drawer-container'))
+    ReactDOM.unmountComponentAtNode(getDOMById('drawer-root'))
+    document.body.removeChild(getDOMById('drawer-root'))
   }
 
   render() {

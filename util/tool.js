@@ -27,7 +27,7 @@ export function dateFormater(originDate, isShowHour, opt = {}) {
 }
 
 export function formatLyric(lyric) {
-  if(!lyric) return false
+  if (!lyric) return false
   const lyricRows = lyric.split('\n')
   const lyrics = []
   lyricRows.forEach(row => {
@@ -63,15 +63,23 @@ export function getLocationQuery(location) {
   }, {})
 }
 
-export function pageScrollTo(height) {
+export function pageScrollTo(height, offset) {
   const currentTop = window.pageYOffset
   let goalTop
+
+  if (!height) {
+    return false
+  }
+
   if (typeof height === 'number') {
     goalTop = height
   } else {
-    goalTop = getOffsetPos(height).top
+    goalTop = height.getBoundingClientRect().top
   }
 
+  if (offset) {
+    goalTop = goalTop + offset
+  }
   const interval = 600
   const frameRate = 60
   const frameInterval = 1000 / frameRate
@@ -84,6 +92,7 @@ export function pageScrollTo(height) {
     if (currentFrame > totalFrame) {
       return false
     }
+
     const y = animateFn(currentFrame, currentTop, goalTop - currentTop, totalFrame)
     window.scrollTo(0, y)
     setTimeout(() => {
@@ -119,4 +128,14 @@ export function rn(s, e) {
 export function rc(opacity) {
   var op = opacity ? opacity : 1;
   return 'rgba(' + rn() + ',' + rn() + ',' + rn() + ',' + op + ')'
+}
+
+export function getDOMById(id){
+  let el = document.getElementById(id)
+  if(!el){
+    el = document.createElement('div')
+    el.id = id
+    document.body.appendChild(el)
+  }
+  return el
 }

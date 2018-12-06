@@ -184,7 +184,7 @@ export default class Blogs extends Component {
               key={blog._id}
               className="blogs-drawer-hot-item"
             >
-              <Link href={`/blog?id=${blog._id}`}>{blog.title}</Link>
+              <Link href={`/blog?id=${blog._id}`}><a>{blog.title}</a></Link>
             </div>)}
           </div>
         </Drawer>
