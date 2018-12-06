@@ -67,10 +67,6 @@ export function pageScrollTo(height, offset) {
   const currentTop = window.pageYOffset
   let goalTop
 
-  if (!height) {
-    return false
-  }
-
   if (typeof height === 'number') {
     goalTop = height
   } else {
@@ -80,6 +76,7 @@ export function pageScrollTo(height, offset) {
   if (offset) {
     goalTop = goalTop + offset
   }
+
   const interval = 600
   const frameRate = 60
   const frameInterval = 1000 / frameRate

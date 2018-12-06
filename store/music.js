@@ -37,7 +37,7 @@ export default class Store extends Base {
   getListById = id => {
     return axios.get('/musics/songList', { params: { limit: 20, id } })
       .then(list => {
-        if (!list) return false
+        if (!list || !list.songs) return false
         this.currentList = list
         this.currentList.songs = this.currentList.songs.map(song => {
           song.url += '&br=999000'

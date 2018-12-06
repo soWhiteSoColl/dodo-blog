@@ -1,5 +1,5 @@
 import React from 'react'
-import { pageScrollTo } from '../util/tool'
+import { pageScrollTo } from 'tool'
 import classnames from 'classnames'
 import Icon from './widgets/Icons'
 
@@ -21,6 +21,7 @@ export default class ToTop extends React.Component {
     })
   }
   handleClick = () => {
+    console.log(123)
     pageScrollTo(0)
   }
 
