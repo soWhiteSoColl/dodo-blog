@@ -1,4 +1,4 @@
-import { rn } from './tool'
+import { rn } from 'tools'
 
 
 function createCanvasDraw(target, w, h, x, y) {

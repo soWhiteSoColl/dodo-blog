@@ -1,16 +1,16 @@
 import React from 'react'
 import Head from 'next/head'
-import MusicCanvas from '../components/widgets/MusicCavas'
-import MusicBg from '../components/widgets/MusicBg'
-import MusicLyric from '../components/widgets/MusicLyric'
+import MusicCanvas from '../../components/widgets/MusicCavas'
+import MusicBg from '../../components/widgets/MusicBg'
+import MusicLyric from '../../components/widgets/MusicLyric'
 import { autorun } from 'mobx'
-import Icon from '../components/widgets/Icons'
+import Icon from '../../components/widgets/Icons'
 import classnames from 'classnames'
 
 
 export default class Music extends React.Component {
   static getInitialProps() {
-    return { audioConfig: { size: 'large', position: 'bottom' }, header: false, footer: false }
+    return { audioConfig: {position: 'bottom' }, header: false, footer: false }
   }
 
   state = {

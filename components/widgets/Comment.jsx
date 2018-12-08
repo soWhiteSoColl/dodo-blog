@@ -1,5 +1,5 @@
 import React from 'react'
-import { dateFormater, rn } from '../../util/tool'
+import { dateFormater } from 'tools'
 
 // const colors = ['#f96', '#3af', '#a93', '#752', '#9bb', '#69d', '851', '3a9', '#892']
 

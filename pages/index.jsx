@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import { dateFormater } from '../util/tool'
+import { dateFormater } from 'tools'
 import Link from 'next/link'
 import Head from 'next/head'
-import Drawer from '../components/widgets/Drawer'
-import { AnimateQueue } from '../components/widgets/AnimateQueue'
+import Drawer from 'widgets/Drawer'
+import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
 import store from '../store'
 
@@ -50,19 +50,6 @@ export default class Blogs extends Component {
     this.props.blogStore.setValues({ blogs })
     this.props.blogStore.getTags()
     this.props.blogStore.getHotBlogs()
-
-    const hiddenProperty = 'hidden' in document ? 'hidden' :
-      'webkitHidden' in document ? 'webkitHidden' :
-        'mozHidden' in document ? 'mozHidden' : null
-
-    document.addEventListener('show', () => {
-      console.log(123)
-      if (!document[hiddenProperty]) {
-        document.title = '被发现啦(*´∇｀*)'
-      } else {
-        document.title = '藏好啦(つд⊂)  '
-      }
-    })
 
     setTimeout(this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)
@@ -146,7 +133,7 @@ export default class Blogs extends Component {
               <div className="blogs-list" ref={this.$blogs}>
                 <AnimateQueue
                   animate={true}
-                  interval={200}
+                  interval={100}
                   speed={600}
                   from={{ transform: 'translateX(100px)' }}
                   to={{ transform: 'translateX(0px)' }}

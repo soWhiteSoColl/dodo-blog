@@ -1,7 +1,7 @@
 import React from 'react'
 import classnames from 'classnames'
 import ReactDOM from 'react-dom'
-import { getDOMById } from 'tool'
+import { getDOMById } from 'tools'
 class DrawerInner extends React.Component {
   state = {
     open: false

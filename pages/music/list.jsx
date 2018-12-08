@@ -2,24 +2,33 @@ import React from 'react';
 import Head from 'next/head'
 import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
-import { AnimateQueue } from '../components/widgets/AnimateQueue'
-import Icon from '../components/widgets/Icons'
-import Drawer from '../components/widgets/Drawer'
+
+import AnimateQueue from 'components/widgets/AnimateQueue'
+import Icon from 'components/widgets/Icons'
+
 
 @inject('musicStore')
 @observer
 class MusicList extends React.Component {
   handlePlay = () => {
     const { id } = this.props
-    this.props.musicStore.getListById(id)
-    localStorage.setItem('current-list-id', id)
+    const { getListById, currentList } = this.props.musicStore
+
+    if (id === currentList.songListId) {
+      this.props.musicStore.setValues({ paused: true })
+    } else {
+      this.props.musicStore.setValues({ paused: false })
+      getListById(id)
+      localStorage.setItem('current-list-id', id)
+    }
   }
 
   render() {
     const { coverImgUrl, title, style } = this.props
     const { id } = this.props
-    const { currentList } = this.props.musicStore
-    const active = id === currentList.songListId
+    const { currentList, paused } = this.props.musicStore
+    const active = !paused && id === currentList.songListId
+
     return (
       <div className={classnames("music-album", active && 'active', 'play')} style={style}>
         <div className="music-album-cover">
@@ -51,8 +60,6 @@ export default class Musics extends React.Component {
   $musicList = React.createRef()
 
   componentDidMount() {
-    this.props.musicStore.getLeaderboard()
-
     setTimeout(this.handleScroll)
     window.addEventListener('scroll', this.handleScroll)
   }
@@ -96,10 +103,6 @@ export default class Musics extends React.Component {
           <meta name="description" content={'听听歌，这里有各种各样的好听的音乐，小寒的博客 - 听歌, 音乐, 学习'} />
         </Head>
         <div className="music-list-page">
-          {/* <div className="do-content-container music-search">
-            <input type="search" placeholder="输入关键字" />
-            <button>搜索</button>
-          </div> */}
           <div className="music-album-list" ref={this.$musicList}>
             <AnimateQueue
               animate={true}

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { dateFormater } from '../util/tool'
+import { dateFormater } from 'tools'
 import Head from 'next/head'
 import { InputArea, Button } from 'dodoui'
-import Comment from '../components/widgets/Comment'
-import checkNickname from '../util/checkNickname'
-import Blog from '../components/widgets/Blog'
+import Comment from 'widgets/Comment'
+import checkNickname from 'util/checkNickname'
+import Blog from 'widgets/Blog'
 
 
 export default class BlogDetail extends Component {

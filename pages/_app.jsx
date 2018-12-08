@@ -1,14 +1,14 @@
 import React from 'react'
 import App, { Container } from 'next/app'
 import { Provider, observer, inject } from 'mobx-react'
-// import { hotjar } from 'react-hotjar';
 import Router from 'next/router'
 import NProgress from 'nprogress'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
-import Player from '../components/Player'
-import ToTop from '../components/ToTop'
-import store from '../store'
+import Header from 'components/Header'
+import Footer from 'components/Footer'
+import Player from 'components/Player'
+import ToTop from 'components/ToTop'
+import store from 'store'
+
 import '../styles/index.less'
 import 'dodoui/lib/dodo.css'
 

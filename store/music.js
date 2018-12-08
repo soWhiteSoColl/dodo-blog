@@ -7,23 +7,22 @@ export default class Store extends Base {
   audio = null
 
   @observable hotMusicLists = []
-  @observable currentList = []
+  @observable currentList = {}
   @observable currentMusic = {}
   @observable audioInfo = {}
   @observable bufferArray = null
   @observable currentMusicLyric = ''
   @observable audio = null
+  @observable leaderboard = {}
+  @observable paused = true
+  @observable searchedList = []
 
   @action
-  getHostLists = (opt = {}) => {
-    let offset = 0
-    if (opt.more) {
-      offset = this.hotMusicLists.length
-    }
-
-    const limit = offset ? 20 : 19 // 第一次获取19个，其中一个是热搜榜
-    const timestamp = Date.now()
-    return axios.get('/musics/hotSongList', { params: { limit, offset, timestamp } })
+  getHostLists = () => {
+    const offset = this.hotMusicLists.length
+    const limit = 20
+    // 第一次获取19个，其中一个是热搜榜
+    return axios.get('/musics/hotSongList', { params: { limit, offset } })
       .then(musicLists => {
         if (musicLists.length < limit) {
           this.hotMusicLists.noMore = true
@@ -43,13 +42,9 @@ export default class Store extends Base {
           song.url += '&br=999000'
           return song
         })
+
         return this.currentList
       })
-  }
-
-  @action
-  toggle = current => {
-    this.currentMusic = current
   }
 
   @action
@@ -61,15 +56,22 @@ export default class Store extends Base {
 
   @action
   getLeaderboard = () => {
-    return axios.get('/musics/songList', { params: { limit: 200, id: 3778678 } })
-      .then(list => {
-        if (this.hotMusicLists[0] && this.hotMusicLists[0].songListId === list.songListId) {
-          return false
-        }
-        list.id = list.songListId
-        list.coverImgUrl = list.songListPic
-        list.title = list.songListName
-        this.hotMusicLists.unshift(list)
-      })
+    return axios.get('/musics/songList', { params: { limit: 20, id: 3778678, offset: 0 } })
+      .then(list => this.leaderboard = list)
+  }
+
+  @action
+  search = s => {
+    return axios.get('/musics/search', { params: { s, limit: 30, offset: 0 } })
+      .then(list => this.searchedList = list)
+  }
+
+  @action
+  appendMusic = music => {
+    if (this.currentList.songs) {
+      this.currentList.songs.push(music)
+    } else {
+      this.currentList.songs = [music]
+    }
   }
 }

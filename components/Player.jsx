@@ -1,37 +1,60 @@
 import { observer, inject } from 'mobx-react'
-import MusicPlayer from '../components/widgets/MusicPlayer'
+import MusicPlayer from 'widgets/MusicPlayer'
 import configConst from '../config'
 
-
+/**
+ * 负责控制歌曲的数据
+ * 而播放器的职责是接受歌曲的信息进行播放
+ */
 @inject('musicStore')
 @observer
 export default class Player extends React.Component {
   componentDidMount() {
-    const id = localStorage.getItem('current-list-id') || configConst.defaultMusicListId
-    !this.props.musicStore.currentList || !this.props.musicStore.currentList.songs
-      && this.props.musicStore.getListById(id)
+    const listId = localStorage.getItem('current-list-id') || configConst.defaultMusicListId
+    const musicId = localStorage.getItem('current-music-id')
+
+    listId && this.props.musicStore.getListById(listId)
+      .then(list => {
+        if (musicId && list.songs) {
+          const currentMusic = list.songs.find(item => item.id === musicId)
+          if(!currentMusic) return false
+          
+          this.props.musicStore.setValues({ currentMusic })
+        }
+      })
+  }
+
+  handleChange = music => {
+    localStorage.setItem('current-music-id', music.id)
+  }
+  handlePlay = () => {
+    this.props.musicStore.setValue('paused', false)
+  }
+
+  handlePause = () => {
+    this.props.musicStore.setValue('paused', true)
   }
 
   render() {
-    const { audio, currentList } = this.props.musicStore
+    const { currentList, paused, currentMusic } = this.props.musicStore
     const { audioConfig } = this.props
 
-    if (!currentList || !currentList.songs) {
-      return null
-    }
-
-    if ((audioConfig && audioConfig.position !== 'bottom') && (!audio || audio.paused)) {
-      return null
-    }
+    if (!currentList) return false
 
     const { songs, songListId } = currentList
+    if (paused && audioConfig.position !== 'bottom') return null
+
     return (
       <MusicPlayer
-        audioConfig={this.props.audioConfig}
-        songsKey={songListId}
-        getAudio={audio => this.props.musicStore.setValue('audio', audio)}
+        audioConfig={audioConfig}
+        listId={songListId}
+        musicId={currentMusic && currentMusic.id}
         musics={songs}
-        onChange={this.props.musicStore.toggle}
+        paused={paused}
+        onPlay={this.handlePlay}
+        onPause={this.handlePause}
+        onChange={this.handleChange}
+        getAudio={audio => this.props.musicStore.setValue('audio', audio)}
       />
     )
   }

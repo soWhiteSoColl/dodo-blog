@@ -4,16 +4,17 @@ import classnames from 'classnames'
 import { withRouter } from 'next/router'
 
 
-const menus = [
-	{ href: '/', label: '博客' },
-	{
-		href: '/musics',
-		label: '音乐',
-		active: route => route === '/musics' || route === '/music',
-		hiddenXs: true
-	},
-	{ href: 'https://ui.dodoblog.cn', label: '组件库', target: '_new', hiddenXs: true },
+const musicMenus = [
+	{ href: '/music/list', label: '歌单' },
+	{ href: '/music/leaderboard', label: '排行榜' },
+	{ href: '/music/search', label: '搜索' },
+	{ href: '/', label: '去看博客' },
+]
+
+const blogMenus = [
+	{ href: '/', label: '博客', active: route => route === '/' || /^\/blogs\/.*/.test(route) },
 	{ href: '/contact', label: '留言' },
+	{ href: '/music/list', label: '去听音乐' },
 ]
 
 @withRouter
@@ -23,16 +24,11 @@ class Header extends Component {
 			.then(data => window.location.href = data.path)
 	}
 
-
 	render() {
 		const current = this.props.router.asPath
+		const menus = current.match(/^\/music\//) ? musicMenus : blogMenus
 
 		return (
-			// <AnimateQueue
-			// 	animate={true}
-			// 	from={{ transform: 'translateX(80px)' }}
-			// 	to={{ transform: 'translateX(0px)' }}
-			// >
 			<header className="main-header">
 				<div className="do-content-container">
 					<div className="logo-brand">
@@ -56,7 +52,6 @@ class Header extends Component {
 					</div>
 				</div>
 			</header>
-			// </AnimateQueue>
 		)
 	}
 }

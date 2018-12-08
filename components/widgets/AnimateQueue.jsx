@@ -22,7 +22,7 @@ export class Animate extends React.Component {
   }
 }
 
-export class AnimateQueue extends React.Component {
+export default class AnimateQueue extends React.Component {
   timer = null
 
   state = {

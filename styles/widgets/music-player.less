@@ -17,6 +17,7 @@
     position: relative;
     transition: all ease 0.4s;
     overflow: hidden;
+    background-color: #ccc;
     img {
       min-width: 100%;
       width: auto;
@@ -51,12 +52,14 @@
   }
   &-name {
     font-size: 16px;
+    .text-overflow-ellipsis;
   }
   &-author {
     color: #999999;
     font-size: 12px;
     position: relative;
     top: 2px;
+    .text-overflow-ellipsis;
   }
   &-lyric {
     position: absolute;

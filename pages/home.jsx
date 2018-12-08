@@ -1,12 +1,11 @@
 import React from 'react'
 import Link from 'next/link'
-import '../styles/index.less'
-import mouseMoveAnimation from '../util/mouse-animation'
+import mouseMoveAnimation from 'util/mouse-animation'
 import Head from 'next/head'
 
 const links = [
   { to: '/', text: '博客' },
-  { to: '/musics', text: '音乐' },
+  { to: '/music/list', text: '音乐' },
   // { to: '/contact', text: '留言墙' }
 ]
 

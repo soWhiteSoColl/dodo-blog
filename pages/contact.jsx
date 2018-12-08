@@ -1,9 +1,9 @@
 import React from 'react';
 import Head from 'next/head'
 import { Button, InputArea } from 'dodoui'
-import Comment, { CommentList } from '../components/widgets/Comment'
-import checkNickname from '../util/checkNickname'
-import { AnimateQueue } from '../components/widgets/AnimateQueue'
+import Comment, { CommentList } from 'widgets/Comment'
+import checkNickname from 'util/checkNickname'
+import AnimateQueue from 'widgets/AnimateQueue'
 
 
 export default class Contact extends React.Component {

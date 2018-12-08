@@ -1,4 +1,4 @@
 export default {
-  defaultMusicListId: 2498085539,
+  defaultMusicListId: 962934202,
   defaultKeywords: ['博客','技术','个人网站','个人博客','教程','前端','设计']
 }
