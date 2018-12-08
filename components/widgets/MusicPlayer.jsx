@@ -68,12 +68,15 @@ export default class MusicPlayer extends React.Component {
     }
 
     if (prevProps.listId !== this.props.listId) {
+      this.setState({ currentIndex: 0 })
       !this.props.paused && this.handleToggle(0)
     }
 
     if (prevProps.musicId !== this.props.musicId) {
-      const currentIndex = this.props.musics.findIndex(item => item.id === this.props.musicId)
+      const musics = this.props.musics
+      const currentIndex = musics.findIndex(item => item.id === this.props.musicId)
       if (currentIndex !== -1) {
+        this.setState({ currentIndex })
         !this.props.paused && this.handleToggle(currentIndex)
       }
     }
