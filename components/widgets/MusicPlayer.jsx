@@ -3,6 +3,8 @@ import classnames from 'classnames'
 import { secondToMunite } from 'tools'
 import Icon from './Icons'
 import _ from 'lodash'
+import Link from 'next/link'
+import Router from 'next/router'
 
 const noop = () => { }
 
@@ -188,6 +190,7 @@ export default class MusicPlayer extends React.Component {
     const { open, duration, currentTime, loop, showList, currentIndex, random } = this.state
     const { audioConfig, musics = [], paused, onPlay = noop, onPause = noop } = this.props
     const { pic, name, singer, url } = musics[currentIndex] || {}
+    const currentRoute = Router.router && Router.router.route
 
     return (
       <div className={classnames(
@@ -224,7 +227,9 @@ export default class MusicPlayer extends React.Component {
             </div>
 
             <div className="main-music-player-control">
-              <Icon type={'music'} antd={true} />
+              <Link href={currentRoute === '/music/list' ? '/music/player' : '/music/list'}>
+                <Icon type={'music'} antd={true} active={currentRoute === '/music/player'} />
+              </Link>
               <Icon type={'random'} antd={true} active={random} onClick={this.handleRandom} />
               <Icon type={'loop'} antd={true} active={loop} onClick={this.handleToggleLoop} />
               <Icon type={'menu'} active={showList} onClick={this.handleToggleList} />

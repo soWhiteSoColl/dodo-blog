@@ -17,16 +17,18 @@ export default class Player extends React.Component {
       .then(list => {
         if (musicId && list.songs) {
           const currentMusic = list.songs.find(item => item.id === musicId)
-          if(!currentMusic) return false
-          
+          if (!currentMusic) return false
+
           this.props.musicStore.setValues({ currentMusic })
         }
       })
   }
 
-  handleChange = music => {
-    localStorage.setItem('current-music-id', music.id)
+  handleChange = currentMusic => {
+    localStorage.setItem('current-music-id', currentMusic.id)
+    this.props.musicStore.setValues({ currentMusic })
   }
+
   handlePlay = () => {
     this.props.musicStore.setValue('paused', false)
   }
@@ -44,6 +46,8 @@ export default class Player extends React.Component {
     const { songs, songListId } = currentList
     if (paused && audioConfig.position !== 'bottom') return null
 
+    if(!songs) return null
+    
     return (
       <MusicPlayer
         audioConfig={audioConfig}

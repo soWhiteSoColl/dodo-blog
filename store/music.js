@@ -3,7 +3,7 @@ import axios from '../config/axios'
 import Base from './base'
 
 
-export default class Store extends Base {
+export default class MusicStore extends Base {
   audio = null
 
   @observable hotMusicLists = []
@@ -16,6 +16,7 @@ export default class Store extends Base {
   @observable leaderboard = {}
   @observable paused = true
   @observable searchedList = []
+  @observable searchValue = ''
 
   @action
   getHostLists = () => {
@@ -62,6 +63,11 @@ export default class Store extends Base {
 
   @action
   search = s => {
+    if(s === this.searchValue) {
+      return
+    }
+
+    this.searchValue = s
     return axios.get('/musics/search', { params: { s, limit: 30, offset: 0 } })
       .then(list => this.searchedList = list)
   }

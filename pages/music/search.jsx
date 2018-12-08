@@ -3,7 +3,6 @@ import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
 import Icon from 'widgets/Icons'
 import { observer, inject } from 'mobx-react';
-import { toJS } from 'mobx';
 
 
 @inject('musicStore')
@@ -49,7 +48,7 @@ export default class Search extends React.Component {
   }
 
   state = {
-    searched: ''
+    searched: this.props.musicStore.searchValue
   }
 
   handleSearch = () => {
@@ -66,12 +65,13 @@ export default class Search extends React.Component {
 
   render() {
     const { searchedList } = this.props.musicStore
+    const { searched } = this.state
 
     return (
       <div className="music-search-page">
         <div className="do-content-container">
           <div className="music-search">
-            <input className="music-search-input" type="text" onChange={this.handleChange} onKeyDown={e => e.keyCode === 13 && this.handleSearch()} />
+            <input value={searched} className="music-search-input" type="text" onChange={this.handleChange} onKeyDown={e => e.keyCode === 13 && this.handleSearch()} />
             <button className="music-search-btn" onClick={this.handleSearch}>搜索</button>
           </div>
           {

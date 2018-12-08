@@ -17,28 +17,20 @@ export default class Music extends React.Component {
     showAnalyzer: false
   }
 
-  componentDidUpdate(prevProps) {
-    const currentMusic = this.props.musicStore.currentMusic
-    if (prevProps.currentMusic != currentMusic) {
-      this.props.musicStore.getLyric()
-    }
-  }
-
   componentDidMount() {
-    if (this.props.musicStore.currentMusic) {
-      this.props.musicStore.getLyric()
-    }
-
     this.titleEl = document.getElementById('music_player_title')
 
     autorun(() => {
       // 标题动画效果
       const music = this.props.musicStore.currentMusic
       if (!music.name) return false
+      
       const title = ' - 正在播放 ' + music.name + '-' + music.singer
       const titleLen = title.length
       let timerCount = titleLen
       clearInterval(this.titleChangeTimer)
+
+      this.props.musicStore.getLyric()
 
       if (!this.titleEl) {
         this.titleEl = document.createElement('title')
@@ -64,7 +56,7 @@ export default class Music extends React.Component {
   render() {
     const music = this.props.musicStore.currentMusic
     const { showAnalyzer } = this.state
-
+    
     return (
       <React.Fragment>
         <Head>
