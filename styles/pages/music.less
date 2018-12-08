@@ -185,6 +185,7 @@
 
 .music-info-list {
   margin-top: 30px;
+  padding-bottom: 140px;
 }
 
 .music-info-item {
@@ -193,7 +194,27 @@
   align-items: center;
   justify-content: space-between;
   height: 60px;
-
+  &:nth-child(1) {
+    .music-info-no {
+      color: #f93;
+    }
+  }
+  &:nth-child(2) {
+    .music-info-no {
+      color: #e94;
+    }
+  }
+  &:nth-child(3) {
+    .music-info-no {
+      color: #c96;
+    }
+  }
+  .music-info-no {
+    width: 60px;
+    font-size: 18px;
+    color: #999;
+    text-align: center;
+  }
   .music-info-pic {
     margin-right: 20px;
     display: inline-block;
@@ -206,7 +227,7 @@
   }
   .music-info-name {
     .text-overflow-ellipsis;
-    width: 400px;
+    width: 300px;
     margin-right: 15px;
     display: inline-block;
     color: #333;
@@ -218,11 +239,9 @@
     display: inline-block;
     color: #999;
   }
-
   .music-info-toggle {
-    width: 30px;
+    width: 100px;
   }
-
   .music-info-play-btn {
     border: 1px solid #666;
     border-radius: 50%;

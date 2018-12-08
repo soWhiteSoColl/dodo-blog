@@ -25,12 +25,13 @@ class MusicItem extends React.Component {
   }
 
   render() {
-    const { id, name, singer, pic, style } = this.props
+    const { id, name, singer, pic, style, NO } = this.props
     const { currentMusic, paused } = this.props.musicStore
     const active = id === currentMusic.id
 
     return (
       <li className="music-info-item" style={style}>
+        <span className="music-info-no">{NO}</span>
         <div className="music-info-pic">
           <img className="music-info-cover" src={pic} alt={name} />
         </div>
@@ -102,7 +103,7 @@ export default class Search extends React.Component {
               from={{ transform: 'translateY(80px)' }}
               to={{ transform: 'translateX(0px)' }}
             >
-              {songs.slice(0, showNum).map(music => <MusicItem key={music.id} {...music} />)}
+              {songs.slice(0, showNum).map((music, key) => <MusicItem key={music.id} NO={key + 1} {...music} />)}
             </AnimateQueue>
           </ul>
         </div>

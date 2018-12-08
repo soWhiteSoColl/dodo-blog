@@ -17,9 +17,9 @@ class MusicList extends React.Component {
     if (id === currentList.songListId) {
       this.props.musicStore.setValues({ paused: true })
     } else {
-      this.props.musicStore.setValues({ paused: false })
-      getListById(id)
       localStorage.setItem('current-list-id', id)
+      getListById(id)
+        .then(() => this.props.musicStore.setValues({ paused: false }))
     }
   }
 
@@ -50,7 +50,7 @@ class MusicList extends React.Component {
 
 export default class Musics extends React.Component {
   static getInitialProps() {
-    return { audioConfig: { size: 'large', position: 'bottom' }, footer: false }
+    return { audioConfig: { position: 'bottom' }, footer: false }
   }
 
   state = {
@@ -69,8 +69,8 @@ export default class Musics extends React.Component {
   }
 
   handleScroll = () => {
-    if(!this.$musicList.current) return false
-    
+    if (!this.$musicList.current) return false
+
     const elBottom = this.$musicList.current.getBoundingClientRect().bottom
     const windowHeihgt = window.innerHeight
     if (elBottom <= windowHeihgt + 100 && !this.fetching) {
