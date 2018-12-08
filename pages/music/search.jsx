@@ -74,7 +74,7 @@ export default class Search extends React.Component {
       <div className="music-search-page">
         <div className="do-content-container">
           <div className="music-search" style={{ top: hasResult ? '0vh' : '25vh' }} >
-            <input value={searched} className="music-search-input" type="text" onChange={this.handleChange} onKeyDown={e => e.keyCode === 13 && this.handleSearch()} />
+            <input value={searched} placeholder="告诉我你想听什么呀" className="music-search-input" type="text" onChange={this.handleChange} onKeyDown={e => e.keyCode === 13 && this.handleSearch()} />
             <button className="music-search-btn" onClick={this.handleSearch}>搜索</button>
           </div>
           {

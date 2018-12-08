@@ -48,7 +48,7 @@ export function formatLyric(lyric) {
 }
 
 export function secondToMunite(time) {
-  if (!time) return '--:--'
+  if (!time) return '00:00'
   const seconds = parseInt(time)
   return formatTimeNumber(parseInt(seconds / 60)) + ':' + formatTimeNumber(seconds % 60)
 }
@@ -127,9 +127,9 @@ export function rc(opacity) {
   return 'rgba(' + rn() + ',' + rn() + ',' + rn() + ',' + op + ')'
 }
 
-export function getDOMById(id){
+export function getDOMById(id) {
   let el = document.getElementById(id)
-  if(!el){
+  if (!el) {
     el = document.createElement('div')
     el.id = id
     document.body.appendChild(el)

@@ -57,6 +57,10 @@ export default class MusicPlayer extends React.Component {
     audio.addEventListener('ended', this.handleNext)
     audio.addEventListener('play', this.handlePlay)
     audio.addEventListener('pause', this.handlePause)
+    audio.addEventListener('canplay', () => {
+      const { currentTime, duration } = audio
+      this.setState({ currentTime, duration })
+    })
 
     this.props.getAudio && this.props.getAudio(audio)
   }
@@ -91,10 +95,6 @@ export default class MusicPlayer extends React.Component {
     if (this.palyPromise) await this.palyPromise
 
     this.palyPromise = await audio.play(audio.currentTime)
-      .catch(err => {
-        console.log(err)
-        this.palyTimer = setTimeout(() => this.handlePlay(), 500)
-      })
 
     clearInterval(this.timer)
     this.timer = setInterval(() => {
@@ -194,7 +194,7 @@ export default class MusicPlayer extends React.Component {
   }
 
   render() {
-    const { open, duration, currentTime, loop, showList, currentIndex, random } = this.state
+    const { open, duration, currentTime, loop, showList, currentIndex, random, loading } = this.state
     const { audioConfig, musics = [], paused, onPlay = noop, onPause = noop } = this.props
     const { pic, name, singer, url } = musics[currentIndex] || {}
     const currentRoute = Router.router.route
@@ -219,15 +219,15 @@ export default class MusicPlayer extends React.Component {
             </div>
           </div>
           <div className="main-music-player-info">
-            {currentTime
-              ? <div className="main-music-player-progress-bar" onClick={this.handlePlayFrom}>
-                <div
-                  className="main-music-player-progress-bar-inner"
-                  style={{ width: `${currentTime / duration * 100}%` }}
-                ></div>
-                <span className="main-music-player-progress-bar-timer">{secondToMunite(currentTime)} / {secondToMunite(duration)}</span>
-              </div>
-              : null}
+            <div className="main-music-player-progress-bar" onClick={this.handlePlayFrom}>
+              <div
+                className="main-music-player-progress-bar-inner"
+                style={{ width: `${currentTime / duration * 100}%` }}
+              ></div>
+              <span className="main-music-player-progress-bar-timer">
+                {duration ? `${secondToMunite(currentTime)} / ${secondToMunite(duration)}`: '加载中...'}
+              </span>
+            </div>
             <div className="main-music-player-desc">
               <div className="main-music-player-name text-overflow-ellipsis">{name}</div>
               <div className="main-music-player-author">{singer}</div>

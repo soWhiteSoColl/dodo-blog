@@ -58,7 +58,7 @@ export default class Search extends React.Component {
   fetching = true
 
   state = {
-    showNum: 16
+    showNum: 12
   }
 
   componentDidMount() {
@@ -78,11 +78,11 @@ export default class Search extends React.Component {
     const windowHeihgt = window.innerHeight
     if (elBottom <= windowHeihgt + 100 && !this.fetching) {
       this.fetching = true
-      this.setState({ showNum: this.state.showNum + 10 }, () => {
+      this.setState({ showNum: this.state.showNum + 12 }, () => {
         this.showTimer = setTimeout(() => {
           this.fetching = false
           this.handleCheckShow()
-        }, 3000)
+        }, 1500)
       })
     }
   }
