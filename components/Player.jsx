@@ -9,6 +9,8 @@ import configConst from '../config'
 @inject('musicStore')
 @observer
 export default class Player extends React.Component {
+  alreadyUse = false
+
   componentDidMount() {
     const listId = localStorage.getItem('current-list-id') || configConst.defaultMusicListId
     const musicId = localStorage.getItem('current-music-id')
@@ -25,11 +27,13 @@ export default class Player extends React.Component {
   }
 
   handleChange = currentMusic => {
+    !this.alreadyUse && (this.alreadyUse = true)
     localStorage.setItem('current-music-id', currentMusic.id)
     this.props.musicStore.setValues({ currentMusic })
   }
 
   handlePlay = () => {
+    !this.alreadyUse && (this.alreadyUse = true)
     this.props.musicStore.setValue('paused', false)
   }
 
@@ -40,14 +44,10 @@ export default class Player extends React.Component {
   render() {
     const { currentList, paused, currentMusic } = this.props.musicStore
     const { audioConfig } = this.props
-
-    if (!currentList) return false
-
     const { songs, songListId } = currentList
-    if (paused && audioConfig.position !== 'bottom') return null
+    if (!currentList || !currentList.songs) return null
+    if (!this.alreadyUse && paused && audioConfig.position !== 'bottom') return null
 
-    if(!songs) return null
-    
     return (
       <MusicPlayer
         audioConfig={audioConfig}

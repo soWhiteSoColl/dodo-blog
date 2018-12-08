@@ -5,10 +5,10 @@ import { withRouter } from 'next/router'
 
 
 const musicMenus = [
-	{ href: '/music/list', label: '歌单' },
-	{ href: '/music/leaderboard', label: '排行榜' },
-	{ href: '/music/search', label: '搜索' },
 	{ href: '/', label: '去看博客' },
+	{ href: '/music/search', label: '搜索' },
+	{ href: '/music/leaderboard', label: '排行榜' },
+	{ href: '/music/list', label: '歌单' },
 ]
 
 const blogMenus = [
