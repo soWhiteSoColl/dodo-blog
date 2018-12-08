@@ -24,12 +24,12 @@ class SearchedItem extends React.Component {
   }
 
   render() {
-    const { name, singer, id } = this.props
+    const { name, singer, id, style } = this.props
     const { currentMusic, paused } = this.props.musicStore
     const active = id === (currentMusic && currentMusic.id)
 
     return (
-      <li className="music-info-item">
+      <li className="music-info-item" style={style}>
         <span className="music-info-name">{name}</span>
         <span className="music-info-singer">{singer}</span>
         <span className="music-info-toggle" onClick={() => this.handlePlay()}>

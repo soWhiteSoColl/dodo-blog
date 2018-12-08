@@ -25,12 +25,12 @@ class MusicItem extends React.Component {
   }
 
   render() {
-    const { id, name, singer, pic } = this.props
+    const { id, name, singer, pic, style } = this.props
     const { currentMusic, paused } = this.props.musicStore
     const active = id === currentMusic.id
 
     return (
-      <li className="music-info-item">
+      <li className="music-info-item" style={style}>
         <div className="music-info-pic">
           <img className="music-info-cover" src={pic} alt={name} />
         </div>
@@ -54,17 +54,47 @@ export default class Search extends React.Component {
     }
   }
 
+  $list = React.createRef()
+  fetching = true
+
+  state = {
+    showNum: 16
+  }
+
   componentDidMount() {
     this.props.musicStore.getLeaderboard()
+      .then(() => this.fetching = false)
+    setTimeout(this.handleCheckShow)
+    window.addEventListener('scroll', this.handleCheckShow)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleCheckShow)
+    clearTimeout(this.showTimer)
+  }
+
+  handleCheckShow = () => {
+    const elBottom = this.$list.current.getBoundingClientRect().bottom
+    const windowHeihgt = window.innerHeight
+    if (elBottom <= windowHeihgt + 100 && !this.fetching) {
+      this.fetching = true
+      this.setState({ showNum: this.state.showNum + 10 }, () => {
+        this.showTimer = setTimeout(() => {
+          this.fetching = false
+          this.handleCheckShow()
+        }, 3000)
+      })
+    }
   }
 
   render() {
     const { songs = [] } = this.props.musicStore.leaderboard
+    const { showNum } = this.state
 
     return (
       <div className="music-leader-page">
         <div className="do-content-container">
-          <ul className="music-info-list">
+          <ul className="music-info-list" ref={this.$list}>
             <AnimateQueue
               animate={true}
               interval={50}
@@ -72,7 +102,7 @@ export default class Search extends React.Component {
               from={{ transform: 'translateY(80px)' }}
               to={{ transform: 'translateX(0px)' }}
             >
-              {songs.slice(0, 15).map(music => <MusicItem key={music.id} {...music} />)}
+              {songs.slice(0, showNum).map(music => <MusicItem key={music.id} {...music} />)}
             </AnimateQueue>
           </ul>
         </div>
