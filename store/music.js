@@ -63,7 +63,12 @@ export default class MusicStore extends Base {
 
   @action
   search = s => {
-    if(s === this.searchValue) {
+    if (!s) {
+      this.searchValue = ''
+      this.searchedList = []
+    }
+    
+    if (s === this.searchValue) {
       return
     }
 
@@ -75,7 +80,9 @@ export default class MusicStore extends Base {
   @action
   appendMusic = music => {
     if (this.currentList.songs) {
-      this.currentList.songs.push(music)
+      if (!this.currentList.songs.find(item => item.id === music.id)) {
+        this.currentList.songs.push(music)
+      }
     } else {
       this.currentList.songs = [music]
     }

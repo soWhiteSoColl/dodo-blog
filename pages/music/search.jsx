@@ -51,43 +51,48 @@ export default class Search extends React.Component {
     searched: this.props.musicStore.searchValue
   }
 
-  handleSearch = () => {
-    if (!this.state.searched) return false
-
-    this.props.musicStore.search(this.state.searched)
+  componentWillUnmount(){
+    clearTimeout(this.changeTimer)
   }
 
+  handleSearch = () => {
+    this.props.musicStore.search(this.state.searched)
+  }
+  
   handleChange = e => {
     this.setState({ searched: e.target.value })
     clearTimeout(this.changeTimer)
-    this.changeTimer = setTimeout(() => this.handleSearch(), 300)
+    this.changeTimer = setTimeout(() => this.handleSearch(), 1000)
   }
 
   render() {
     const { searchedList } = this.props.musicStore
     const { searched } = this.state
+    const hasResult = searchedList && searchedList.length
 
     return (
       <div className="music-search-page">
         <div className="do-content-container">
-          <div className="music-search">
+          <div className="music-search" style={{ top: hasResult ? '0vh' : '25vh' }} >
             <input value={searched} className="music-search-input" type="text" onChange={this.handleChange} onKeyDown={e => e.keyCode === 13 && this.handleSearch()} />
             <button className="music-search-btn" onClick={this.handleSearch}>搜索</button>
           </div>
           {
-            searchedList && (
-              <ul className="music-info-list">
-                <AnimateQueue
-                  animate={true}
-                  interval={50}
-                  speed={600}
-                  from={{ transform: 'translateY(80px)' }}
-                  to={{ transform: 'translateX(0px)' }}
-                >
-                  {searchedList.map(music => <SearchedItem key={music.id} {...music} />)}
-                </AnimateQueue>
-              </ul>
-            )
+            hasResult
+              ? (
+                <ul className="music-info-list">
+                  <AnimateQueue
+                    animate={true}
+                    interval={50}
+                    speed={600}
+                    from={{ transform: 'translateY(80px)' }}
+                    to={{ transform: 'translateX(0px)' }}
+                  >
+                    {searchedList.map(music => <SearchedItem key={music.id} {...music} />)}
+                  </AnimateQueue>
+                </ul>
+              )
+              : null
           }
         </div>
       </div>

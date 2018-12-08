@@ -10,7 +10,7 @@ import classnames from 'classnames'
 
 export default class Music extends React.Component {
   static getInitialProps() {
-    return { audioConfig: {position: 'bottom' }, header: false, footer: false }
+    return { audioConfig: { position: 'bottom' }, header: false, footer: false }
   }
 
   state = {
@@ -24,7 +24,7 @@ export default class Music extends React.Component {
       // 标题动画效果
       const music = this.props.musicStore.currentMusic
       if (!music.name) return false
-      
+
       const title = ' - 正在播放 ' + music.name + '-' + music.singer
       const titleLen = title.length
       let timerCount = titleLen
@@ -48,7 +48,7 @@ export default class Music extends React.Component {
 
   componentWillUnmount() {
     clearInterval(this.titleChangeTimer)
-    document.head.removeChild(this.titleEl)
+    this.titleEl && document.head.removeChild(this.titleEl)
   }
 
   handleToggle = () => this.setState({ showAnalyzer: !this.state.showAnalyzer })
@@ -56,7 +56,7 @@ export default class Music extends React.Component {
   render() {
     const music = this.props.musicStore.currentMusic
     const { showAnalyzer } = this.state
-    
+
     return (
       <React.Fragment>
         <Head>

@@ -158,10 +158,13 @@
 .music-search {
   display: flex;
   margin-top: 30px;
+  position: relative;
+  transition: all ease .6s;
   input {
     width: calc(100% - 120px);
     padding: 15px;
     font-size: 16px;
+    background-color: transparent;
     border: 1px solid #ddd;
     border-right: none;
     &:focus {
@@ -203,15 +206,17 @@
   }
   .music-info-name {
     .text-overflow-ellipsis;
-    width: 300px;
+    width: 400px;
     margin-right: 15px;
     display: inline-block;
+    color: #333;
   }
   .music-info-singer {
     .text-overflow-ellipsis;
-    width: 300px;
+    width: 200px;
     margin-right: 15px;
     display: inline-block;
+    color: #999;
   }
 
   .music-info-toggle {

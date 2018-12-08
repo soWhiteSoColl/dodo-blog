@@ -60,7 +60,12 @@ export default class Contact extends React.Component {
           </div>
 
           <CommentList>
-            <AnimateQueue animate={true}>
+            <AnimateQueue
+              animate={true}
+              from={{ transform: 'translateX(80px)' }}
+              to={{ transform: 'translateX(0px)' }}
+              interval={100}
+            >
               {leavedMessages.list.map(message => <Comment
                 key={message._id}
                 nickname={message.nickname}

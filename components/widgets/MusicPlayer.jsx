@@ -186,11 +186,17 @@ export default class MusicPlayer extends React.Component {
     this.setState({ random: !this.state.random })
   }
 
+  handlePushHistory = () => {
+    if (Router.router.asPath !== '/music/player') {
+      this.historyRoute = Router.router.asPath
+    }
+  }
+
   render() {
     const { open, duration, currentTime, loop, showList, currentIndex, random } = this.state
     const { audioConfig, musics = [], paused, onPlay = noop, onPause = noop } = this.props
     const { pic, name, singer, url } = musics[currentIndex] || {}
-    const currentRoute = Router.router && Router.router.route
+    const currentRoute = Router.router.route
 
     return (
       <div className={classnames(
@@ -227,8 +233,8 @@ export default class MusicPlayer extends React.Component {
             </div>
 
             <div className="main-music-player-control">
-              <Link href={currentRoute === '/music/list' ? '/music/player' : '/music/list'}>
-                <Icon type={'music'} antd={true} active={currentRoute === '/music/player'} />
+              <Link href={currentRoute === '/music/player' ? (this.historyRoute || '/music/list') : '/music/player'}>
+                <Icon type={'music'} antd={true} active={currentRoute === '/music/player'} onClick={this.handlePushHistory} />
               </Link>
               <Icon type={'random'} antd={true} active={random} onClick={this.handleRandom} />
               <Icon type={'loop'} antd={true} active={loop} onClick={this.handleToggleLoop} />

@@ -69,6 +69,8 @@ export default class Musics extends React.Component {
   }
 
   handleScroll = () => {
+    if(!this.$musicList.current) return false
+    
     const elBottom = this.$musicList.current.getBoundingClientRect().bottom
     const windowHeihgt = window.innerHeight
     if (elBottom <= windowHeihgt + 100 && !this.fetching) {
