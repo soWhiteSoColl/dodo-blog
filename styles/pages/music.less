@@ -157,9 +157,6 @@
 
 .music-search {
   display: flex;
-  margin-top: 30px;
-  position: relative;
-  transition: all ease .6s;
   input {
     width: calc(100% - 120px);
     padding: 15px;
@@ -180,6 +177,20 @@
     &:hover {
       background-color: @light-primary-color;
     }
+  }
+  &-logo {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .svg-icon {
+      transform: scale(5);
+    }
+  }
+  &-wrapper {
+    margin-top: 30px;
+    position: relative;
+    transition: all ease .6s;
   }
 }
 
@@ -240,7 +251,7 @@
     color: #999;
   }
   .music-info-toggle {
-    width: 100px;
+    width: 50px;
   }
   .music-info-play-btn {
     border: 1px solid #666;

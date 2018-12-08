@@ -51,14 +51,14 @@ export default class Search extends React.Component {
     searched: this.props.musicStore.searchValue
   }
 
-  componentWillUnmount(){
+  componentWillUnmount() {
     clearTimeout(this.changeTimer)
   }
 
   handleSearch = () => {
     this.props.musicStore.search(this.state.searched)
   }
-  
+
   handleChange = e => {
     this.setState({ searched: e.target.value })
     clearTimeout(this.changeTimer)
@@ -73,10 +73,13 @@ export default class Search extends React.Component {
     return (
       <div className="music-search-page">
         <div className="do-content-container">
-          <div className="music-search" style={{ top: hasResult ? '0vh' : '25vh' }} >
-            <input value={searched} placeholder="告诉我你想听什么呀" className="music-search-input" type="text" onChange={this.handleChange} onKeyDown={e => e.keyCode === 13 && this.handleSearch()} />
-            <button className="music-search-btn" onClick={this.handleSearch}>搜索</button>
+          <div className="music-search-wrapper" style={{ top: hasResult ? '0vh' : '25vh' }}>
+            <div className="music-search">
+              <input value={searched} placeholder="告诉我你想听什么呀" className="music-search-input" type="text" onChange={this.handleChange} onKeyDown={e => e.keyCode === 13 && this.handleSearch()} />
+              <button className="music-search-btn" onClick={this.handleSearch}>搜索</button>
+            </div>
           </div>
+
           {
             hasResult
               ? (
