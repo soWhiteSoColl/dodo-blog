@@ -21,15 +21,8 @@ export default class MusicStore extends Base {
   @action
   getHostLists = () => {
     const offset = this.hotMusicLists.length
-    const limit = 20
-    return axios.get('/musics/hotSongList', { params: { limit, offset } })
-      .then(musicLists => {
-        if (musicLists.length < limit) {
-          this.hotMusicLists.noMore = true
-        }
-        this.hotMusicLists = this.hotMusicLists.concat(musicLists)
-        return this.hotMusicLists
-      })
+    return axios.get('/musics/highQualitySongList', { params: { limit: 200, offset } })
+      .then(res => this.hotMusicLists = res.playlists)
   }
 
   @action

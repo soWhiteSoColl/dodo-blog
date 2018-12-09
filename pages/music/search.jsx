@@ -41,7 +41,7 @@ class SearchedItem extends React.Component {
           <div className={classnames('music-info-btn', active && 'active')} onClick={() => this.handlePlay()}>
             <Icon type={active && !paused ? 'play' : 'pause'} />
           </div>
-          <div className={classnames('music-info-btn')}  onClick={() => this.handleDownLoad()}>
+          <div className={classnames('music-info-btn')} onClick={() => this.handleDownLoad()}>
             <Icon antd={true} type={'download'} />
           </div>
         </span>
@@ -57,15 +57,18 @@ export default class Search extends React.Component {
 
   state = {
     searched: this.props.musicStore.searchValue,
-    showNum: 12
+    showNum: 12,
+    loading: false,
   }
 
   componentWillUnmount() {
     clearTimeout(this.changeTimer)
   }
 
-  handleSearch = () => {
-    this.props.musicStore.search(this.state.searched)
+  handleSearch = async () => {
+    this.setState({ loading: true })
+    await this.props.musicStore.search(this.state.searched)
+    this.setState({ loading: false })
   }
 
   handleChange = e => {
@@ -80,8 +83,9 @@ export default class Search extends React.Component {
 
   render() {
     const { searchedList } = this.props.musicStore
-    const { searched, showNum } = this.state
+    const { searched, showNum, loading } = this.state
     const hasResult = searchedList && searchedList.length
+    const noMore = showNum >= searchedList.length
 
     return (
       <div className="music-search-page">
@@ -92,11 +96,14 @@ export default class Search extends React.Component {
               <button className="music-search-btn" onClick={this.handleSearch}>搜索</button>
             </div>
           </div>
-
           {
             hasResult
               ? (
-                <ScrollDetect onScrollOut={this.handleShowMore} protectTime={500}>
+                <ScrollDetect
+                  onScrollOut={this.handleShowMore}
+                  protectTime={500}
+                  detect={!noMore}
+                >
                   <div className="music-info-list-wrapper">
                     <ul className="music-info-list music-search-list">
                       <AnimateQueue
@@ -109,7 +116,7 @@ export default class Search extends React.Component {
                         {searchedList.slice(0, showNum).map(music => <SearchedItem key={music.id} {...music} />)}
                       </AnimateQueue>
                     </ul>
-                    {showNum < searchedList.length && <div className="fetching-loading">加载中...</div>}
+                    {(loading || !noMore) && <div className="fetching-loading">加载中...</div>}
                   </div>
                 </ScrollDetect>
               )

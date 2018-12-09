@@ -3,9 +3,9 @@ import Head from 'next/head'
 import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
 
-import AnimateQueue from 'components/widgets/AnimateQueue'
-import Icon from 'components/widgets/Icons'
-
+import AnimateQueue from 'widgets/AnimateQueue'
+import Icon from 'widgets/Icons'
+import ScrollDetect from 'widgets/ScrollDetect'
 
 @inject('musicStore')
 @observer
@@ -54,49 +54,22 @@ export default class Musics extends React.Component {
   }
 
   state = {
-    loading: false
+    showNum: 20
   }
-
-  $musicList = React.createRef()
 
   componentDidMount() {
-    setTimeout(this.handleScroll)
-    window.addEventListener('scroll', this.handleScroll)
+    this.props.musicStore.getHostLists()
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
+  handleShowMore = () => {
+    this.setState({ showNum: this.state.showNum + 20 })
   }
-
-  handleScroll = () => {
-    if (!this.$musicList.current) return false
-
-    const elBottom = this.$musicList.current.getBoundingClientRect().bottom
-    const windowHeihgt = window.innerHeight
-    if (elBottom <= windowHeihgt + 100 && !this.fetching) {
-      this.handleFetchMore()
-    }
-  }
-
-  handleFetchMore = () => {
-    if (this.props.musicStore.hotMusicLists.noMore) {
-      return false
-    }
-
-    this.fetching = true
-    this.setState({ loading: true })
-
-    this.props.musicStore.getHostLists({ more: true })
-      .then(() => {
-        this.fetching = false
-        this.setState({ loading: false })
-      })
-  }
-
 
   render() {
     const { hotMusicLists } = this.props.musicStore
-
+    const { showNum } = this.state
+    const noMore = showNum >= hotMusicLists.length
+    
     return (
       <React.Fragment>
         <Head>
@@ -105,21 +78,33 @@ export default class Musics extends React.Component {
           <meta name="description" content={'听听歌，这里有各种各样的好听的音乐，小寒的博客 - 听歌, 音乐, 学习'} />
         </Head>
         <div className="music-list-page">
-          <div className="music-album-list" ref={this.$musicList}>
-            <AnimateQueue
-              animate={true}
-              interval={50}
-              speed={600}
-              from={{ transform: 'translateY(80px)' }}
-              to={{ transform: 'translateX(0px)' }}
-            >
-              {hotMusicLists &&
-                hotMusicLists.map((item, index) =>
-                  <MusicList key={item.id + index} {...item} />
-                )
-              }
-            </AnimateQueue>
-          </div>
+          {hotMusicLists.length
+            ? (
+              <ScrollDetect
+                onScrollOut={this.handleShowMore}
+                detect={!noMore}
+              >
+                <div className="music-album-list">
+                  <AnimateQueue
+                    animate={true}
+                    interval={50}
+                    speed={600}
+                    from={{ transform: 'translateY(80px)' }}
+                    to={{ transform: 'translateX(0px)' }}
+                  >
+                    {hotMusicLists.slice(0, showNum).map((item, index) =>
+                      <MusicList key={item.id + index} {...item} />
+                    )}
+                  </AnimateQueue>
+                </div>
+              </ScrollDetect>
+            )
+            : null
+          }
+          {(!hotMusicLists.length || !noMore)
+            ? <div className="fetching-loading">加载中...</div>
+            : null
+          }
         </div>
       </React.Fragment>
     )

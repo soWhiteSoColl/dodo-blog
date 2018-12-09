@@ -74,26 +74,38 @@ export default class Search extends React.Component {
   render() {
     const { songs = [] } = this.props.musicStore.leaderboard
     const { showNum } = this.state
-
+    const noMore = showNum >= songs.length
+    
     return (
       <div className="music-leader-page">
         <div className="do-content-container">
-          <ScrollDetect onScrollOut={this.handleShowMore}>
-            <div className="music-info-list-wrapper">
-              <ul className="music-info-list">
-                <AnimateQueue
-                  animate={true}
-                  interval={50}
-                  speed={600}
-                  from={{ transform: 'translateY(80px)' }}
-                  to={{ transform: 'translateX(0px)' }}
-                >
-                  {songs.slice(0, showNum).map((music, key) => <MusicItem key={music.id} NO={key + 1} {...music} />)}
-                </AnimateQueue>
-              </ul>
-              {showNum < songs.length && <div className="fetching-loading">加载中...</div>}
-            </div>
-          </ScrollDetect>
+          {
+            !!songs.length && (
+              <ScrollDetect
+                onScrollOut={this.handleShowMore}
+                detect={!noMore}
+              >
+                <div className="music-info-list-wrapper">
+                  <ul className="music-info-list">
+                    <AnimateQueue
+                      animate={true}
+                      interval={50}
+                      speed={600}
+                      from={{ transform: 'translateY(80px)' }}
+                      to={{ transform: 'translateX(0px)' }}
+                    >
+                      {songs.slice(0, showNum).map((music, key) =>
+                        <MusicItem key={music.id} NO={key + 1} {...music} />
+                      )}
+                    </AnimateQueue>
+                  </ul>
+                </div>
+              </ScrollDetect>
+            )
+          }
+          {(!songs.length || !noMore) &&
+            <div className="fetching-loading">加载中...</div>
+          }
         </div>
       </div>
     )

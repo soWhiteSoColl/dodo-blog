@@ -14,16 +14,25 @@ export default class ScrollDetect extends React.Component {
     clearTimeout(this.taskTimer)
   }
 
-  handleDetect = () => {
-    if(this.sleeping) return false
+  componentDidUpdate(prevProps) {
+    if (prevProps.detect !== this.props.detect) {
+      this.props.detect
+        ? window.addEventListener('scroll', this.handleDetect)
+        : window.removeEventListener('scroll', this.handleDetect)
+    }
+  }
 
+  handleDetect = () => {
+    if (this.sleeping) return false
     const { protectTime = 1000, onScrollOut } = this.props
     const { bottom } = this.el.current && this.el.current.getBoundingClientRect()
+
     if (bottom < window.innerHeight + 100) {
       this.sleeping = true
       this.taskTimer = setTimeout(() => {
         this.sleeping = false
         onScrollOut()
+        this.handleDetect()
       }, protectTime)
     }
   }
