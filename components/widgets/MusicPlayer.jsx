@@ -5,6 +5,7 @@ import Icon from './Icons'
 import _ from 'lodash'
 import Link from 'next/link'
 import Router from 'next/router'
+import axios from '../../config/axios';
 
 const noop = () => { }
 
@@ -62,6 +63,8 @@ export default class MusicPlayer extends React.Component {
       this.setState({ currentTime, duration })
     })
 
+    audio.addEventListener('error', () => setTimeout(this.handleNext, 500))
+
     this.props.getAudio && this.props.getAudio(audio)
   }
 
@@ -93,14 +96,19 @@ export default class MusicPlayer extends React.Component {
   handlePlay = async () => {
     const audio = this.$audio.current
     if (this.palyPromise) await this.palyPromise
-
     this.palyPromise = await audio.play(audio.currentTime)
-
-    clearInterval(this.timer)
-    this.timer = setInterval(() => {
-      const { currentTime, duration } = audio
-      this.setState({ currentTime, duration })
-    }, 100)
+      .catch(err => {
+        console.log(err)
+        clearTimeout(this.playTimer)
+        this.palyTimer = setTimeout(() => this.handlePlay(), 1000)
+      })
+      .then(() => {
+        clearInterval(this.timer)
+        this.timer = setInterval(() => {
+          const { currentTime, duration } = audio
+          this.setState({ currentTime, duration })
+        }, 200)
+      })
   }
 
   handlePause = () => {
@@ -225,7 +233,7 @@ export default class MusicPlayer extends React.Component {
                 style={{ width: `${currentTime / duration * 100}%` }}
               ></div>
               <span className="main-music-player-progress-bar-timer">
-                {duration ? `${secondToMunite(currentTime)} / ${secondToMunite(duration)}`: '加载中...'}
+                {duration ? `${secondToMunite(currentTime)} / ${secondToMunite(duration)}` : '加载中...'}
               </span>
             </div>
             <div className="main-music-player-desc">
@@ -234,6 +242,7 @@ export default class MusicPlayer extends React.Component {
             </div>
 
             <div className="main-music-player-control">
+              {/* <Icon type={'download'} antd={true} onClick={this.handleDownload} /> */}
               <Link href={currentRoute === '/music/player' ? (this.historyRoute || '/music/list') : '/music/player'}>
                 <Icon type={'music'} antd={true} active={currentRoute === '/music/player'} onClick={this.handlePushHistory} />
               </Link>

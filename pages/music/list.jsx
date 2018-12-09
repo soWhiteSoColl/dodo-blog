@@ -12,10 +12,10 @@ import Icon from 'components/widgets/Icons'
 class MusicList extends React.Component {
   handlePlay = () => {
     const { id } = this.props
-    const { getListById, currentList } = this.props.musicStore
+    const { getListById, currentList, paused } = this.props.musicStore
 
     if (id === currentList.songListId) {
-      this.props.musicStore.setValues({ paused: true })
+      this.props.musicStore.setValues({ paused: !paused })
     } else {
       localStorage.setItem('current-list-id', id)
       getListById(id)
