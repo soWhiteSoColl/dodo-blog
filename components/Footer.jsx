@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { Dialog } from 'dodoui';
 
 const friendLinks = [
   { name: '鼻子亲了脸', url: 'https://www.bzqll.com/' },
   { name: '小伟博客', url: 'http://www.mlwei.com' },
   { name: 'justdodo的博客', url: 'https://www.justdodo.cn' },
+  { name: 'Ronaldo', url: 'http://www.cronaldo7.cn/' },
   { name: '组件库', url: 'https://ui.dodoblog.cn' },
 ]
 class Footer extends Component {

@@ -24,7 +24,7 @@ class MusicList extends React.Component {
   }
 
   render() {
-    const { coverImgUrl, title, style } = this.props
+    const { coverImgUrl: pic, title: name, style } = this.props
     const { id } = this.props
     const { currentList, paused } = this.props.musicStore
     const active = !paused && id === currentList.songListId
@@ -32,7 +32,7 @@ class MusicList extends React.Component {
     return (
       <div className={classnames("music-album", active && 'active', 'play')} style={style}>
         <div className="music-album-cover">
-          <img src={coverImgUrl} alt="" />
+          <img src={pic} alt="" />
           <div
             className={classnames("music-player-play-btn")}
             onClick={this.handlePlay}
@@ -41,7 +41,7 @@ class MusicList extends React.Component {
           </div>
         </div>
         <div className="music-album-info">
-          <span className="music-album-title">{title}</span>
+          <span className="music-album-title">{name}</span>
         </div>
       </div>
     )

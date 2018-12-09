@@ -22,7 +22,6 @@ export default class MusicStore extends Base {
   getHostLists = () => {
     const offset = this.hotMusicLists.length
     const limit = 20
-    // 第一次获取19个，其中一个是热搜榜
     return axios.get('/musics/hotSongList', { params: { limit, offset } })
       .then(musicLists => {
         if (musicLists.length < limit) {
@@ -57,7 +56,7 @@ export default class MusicStore extends Base {
 
   @action
   getLeaderboard = () => {
-    return axios.get('/musics/songList', { params: { limit: 20, id: 3778678, offset: 0 } })
+    return axios.get('/musics/songList', { params: { id: 3778678, offset: 0 } })
       .then(list => this.leaderboard = list)
   }
 
