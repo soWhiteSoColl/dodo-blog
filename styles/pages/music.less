@@ -247,7 +247,7 @@
   }
   .music-info-name {
     .text-overflow-ellipsis;
-    width: 300px;
+    width: 360px;
     padding-left: 10px;
     margin-right: 15px;
     display: inline-block;
@@ -255,13 +255,20 @@
   }
   .music-info-singer {
     .text-overflow-ellipsis;
-    width: 200px;
+    width: 140px;
     margin-right: 15px;
     display: inline-block;
     color: #999;
   }
+  &:hover {
+    .music-info-toggle {
+      opacity: 1;
+    }
+  }
   .music-info-toggle {
     width: 80px;
+    opacity: 0;
+    transition: opacity ease .3s;
   }
   .music-info-btn {
     border: 1px solid #666;
