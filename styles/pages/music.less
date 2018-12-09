@@ -4,6 +4,7 @@
 .music-list-page {
   padding-bottom: 140px;
 }
+
 .music-album-list {
   display: flex;
   flex-wrap: wrap;
@@ -203,7 +204,7 @@
 
 .music-info-list {
   margin-top: 30px;
-  @media screen and (max-width: 750px){
+  @media screen and (max-width: 750px) {
     margin-top: 20px;
   }
 }
@@ -254,6 +255,9 @@
     margin-right: 15px;
     display: inline-block;
     color: #333;
+    @media screen and (max-width: 720px) {
+      width: 300px;
+    }
   }
   .music-info-singer {
     .text-overflow-ellipsis;
@@ -272,6 +276,11 @@
     opacity: 0;
     transition: opacity ease .3s;
   }
+  @media screen and (max-width: 720px) {
+    .music-info-toggle {
+      opacity: 1;
+    }
+  }
   .music-info-btn {
     border: 1px solid #666;
     border-radius: 50%;
@@ -284,6 +293,9 @@
     margin-right: 10px;
     &:last-child {
       margin-right: 0;
+      @media screen and (max-width: 720px) {
+        display: none;
+      }
     }
     &:hover,
     &.active {
@@ -314,6 +326,7 @@
     height: 45px;
   }
 }
+
 .fetching-loading {
   margin-top: 20px;
   text-align: center;

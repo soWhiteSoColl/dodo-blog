@@ -69,7 +69,7 @@ export default class Musics extends React.Component {
     const { hotMusicLists } = this.props.musicStore
     const { showNum } = this.state
     const noMore = showNum >= hotMusicLists.length
-    
+
     return (
       <React.Fragment>
         <Head>
@@ -83,6 +83,7 @@ export default class Musics extends React.Component {
               <ScrollDetect
                 onScrollOut={this.handleShowMore}
                 detect={!noMore}
+                protectTime={300}
               >
                 <div className="music-album-list">
                   <AnimateQueue

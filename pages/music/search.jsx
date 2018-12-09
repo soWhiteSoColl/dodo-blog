@@ -101,7 +101,7 @@ export default class Search extends React.Component {
               ? (
                 <ScrollDetect
                   onScrollOut={this.handleShowMore}
-                  protectTime={500}
+                  protectTime={300}
                   detect={!noMore}
                 >
                   <div className="music-info-list-wrapper">

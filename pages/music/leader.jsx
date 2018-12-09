@@ -75,7 +75,7 @@ export default class Search extends React.Component {
     const { songs = [] } = this.props.musicStore.leaderboard
     const { showNum } = this.state
     const noMore = showNum >= songs.length
-    
+
     return (
       <div className="music-leader-page">
         <div className="do-content-container">
@@ -84,6 +84,7 @@ export default class Search extends React.Component {
               <ScrollDetect
                 onScrollOut={this.handleShowMore}
                 detect={!noMore}
+                protectTime={300}
               >
                 <div className="music-info-list-wrapper">
                   <ul className="music-info-list">
