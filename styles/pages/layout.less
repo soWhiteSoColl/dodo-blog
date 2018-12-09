@@ -100,12 +100,15 @@
     }
     @media screen and (max-width: 720px) {
       a {
-        padding: 0 10px;
+        padding: 0 5px;
         &.active {
           &:before {
-            height: 5px;
+            height: 5px
           }
-          color: #333;
+          color: @primary-color;
+          &:hover {
+            color: @primary-color;
+          }
         }
         &:focus,
         &:active {

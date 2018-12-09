@@ -178,19 +178,21 @@
       background-color: @light-primary-color;
     }
   }
-  &-logo {
-    height: 200px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    .svg-icon {
-      transform: scale(5);
-    }
-  }
   &-wrapper {
     margin-top: 30px;
     position: relative;
     transition: all ease .6s;
+  }
+  @media screen and (max-width: 720px) {
+    button {
+      width: 80px;
+      font-size: 14px;
+    }
+    input {
+      width: calc(100% - 80px);
+      padding: 10px;
+      font-size: 14px;
+    }
   }
 }
 

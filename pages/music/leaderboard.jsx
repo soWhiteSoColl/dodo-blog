@@ -32,7 +32,7 @@ class MusicItem extends React.Component {
     return (
       <li className="music-info-item" style={style}>
         <span className="music-info-no">{NO}</span>
-        <div className="music-info-pic">
+        <div className="music-info-pic hidden-xs">
           <img className="music-info-cover" src={pic} alt={name} />
         </div>
         <span className="music-info-name">{name}</span>
