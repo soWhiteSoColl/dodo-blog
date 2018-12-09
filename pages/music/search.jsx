@@ -2,6 +2,7 @@ import React from 'react'
 import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
 import Icon from 'widgets/Icons'
+import ScrollDetect from 'widgets/ScrollDetect'
 import { observer, inject } from 'mobx-react';
 
 
@@ -48,7 +49,8 @@ export default class Search extends React.Component {
   }
 
   state = {
-    searched: this.props.musicStore.searchValue
+    searched: this.props.musicStore.searchValue,
+    showNum: 12
   }
 
   componentWillUnmount() {
@@ -65,9 +67,13 @@ export default class Search extends React.Component {
     this.changeTimer = setTimeout(() => this.handleSearch(), 1000)
   }
 
+  handleShowMore = () => {
+    this.setState({ showNum: this.state.showNum + 12 })
+  }
+
   render() {
     const { searchedList } = this.props.musicStore
-    const { searched } = this.state
+    const { searched, showNum } = this.state
     const hasResult = searchedList && searchedList.length
 
     return (
@@ -83,17 +89,22 @@ export default class Search extends React.Component {
           {
             hasResult
               ? (
-                <ul className="music-info-list">
-                  <AnimateQueue
-                    animate={true}
-                    interval={50}
-                    speed={600}
-                    from={{ transform: 'translateY(80px)' }}
-                    to={{ transform: 'translateX(0px)' }}
-                  >
-                    {searchedList.map(music => <SearchedItem key={music.id} {...music} />)}
-                  </AnimateQueue>
-                </ul>
+                <ScrollDetect onScrollOut={this.handleShowMore} protectTime={500}>
+                  <div className="music-info-list-wrapper">
+                    <ul className="music-info-list music-search-list">
+                      <AnimateQueue
+                        animate={true}
+                        interval={50}
+                        speed={600}
+                        from={{ transform: 'translateY(80px)' }}
+                        to={{ transform: 'translateX(0px)' }}
+                      >
+                        {searchedList.slice(0, showNum).map(music => <SearchedItem key={music.id} {...music} />)}
+                      </AnimateQueue>
+                    </ul>
+                    {showNum < searchedList.length && <div className="fetching-loading">加载中...</div>}
+                  </div>
+                </ScrollDetect>
               )
               : null
           }

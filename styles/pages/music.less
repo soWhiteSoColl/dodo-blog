@@ -198,7 +198,12 @@
 
 .music-info-list {
   margin-top: 30px;
-  padding-bottom: 140px;
+  @media screen and (max-width: 750px){
+    margin-top: 20px;
+  }
+  &-wrapper {
+    padding-bottom: 140px;
+  }
 }
 
 .music-info-item {
@@ -283,4 +288,16 @@
       }
     }
   }
+}
+
+.music-search-list {
+  .music-info-item {
+    height: 45px;
+  }
+}
+.fetching-loading {
+  margin-top: 20px;
+  text-align: center;
+  color: #aaa;
+  font-size: 12px;
 }
