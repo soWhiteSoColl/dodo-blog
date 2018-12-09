@@ -4,7 +4,7 @@ import classnames from 'classnames'
 import Icon from 'widgets/Icons'
 import ScrollDetect from 'widgets/ScrollDetect'
 import { observer, inject } from 'mobx-react';
-
+import { downloadFile } from 'tools'
 
 @inject('musicStore')
 @observer
@@ -24,6 +24,10 @@ class SearchedItem extends React.Component {
     })
   }
 
+  handleDownLoad = () => {
+    downloadFile(this.props.url)
+  }
+
   render() {
     const { name, singer, id, style } = this.props
     const { currentMusic, paused } = this.props.musicStore
@@ -33,12 +37,15 @@ class SearchedItem extends React.Component {
       <li className="music-info-item" style={style}>
         <span className="music-info-name">{name}</span>
         <span className="music-info-singer">{singer}</span>
-        <span className="music-info-toggle" onClick={() => this.handlePlay()}>
-          <div className={classnames('music-info-play-btn', active && 'active')}>
+        <span className="music-info-toggle">
+          <div className={classnames('music-info-btn', active && 'active')} onClick={() => this.handlePlay()}>
             <Icon type={active && !paused ? 'play' : 'pause'} />
           </div>
+          <div className={classnames('music-info-btn')}  onClick={() => this.handleDownLoad()}>
+            <Icon antd={true} type={'download'} />
+          </div>
         </span>
-      </li>
+      </li >
     )
   }
 }

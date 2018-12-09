@@ -261,23 +261,32 @@
     color: #999;
   }
   .music-info-toggle {
-    width: 50px;
+    width: 80px;
   }
-  .music-info-play-btn {
+  .music-info-btn {
     border: 1px solid #666;
     border-radius: 50%;
     width: 30px;
     height: 30px;
-    display: flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     transition: all ease 0.3s;
+    margin-right: 10px;
+    &:last-child {
+      margin-right: 0;
+    }
     &:hover,
     &.active {
       border-color: @primary-color;
       .svg-icon {
         path {
           stroke: @primary-color;
+        }
+      }
+      .svg-icon-antd {
+        path {
+          fill: @primary-color;
         }
       }
     }

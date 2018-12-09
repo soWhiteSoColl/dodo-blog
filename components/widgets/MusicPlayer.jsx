@@ -5,7 +5,6 @@ import Icon from './Icons'
 import _ from 'lodash'
 import Link from 'next/link'
 import Router from 'next/router'
-import axios from '../../config/axios';
 
 const noop = () => { }
 
@@ -201,8 +200,10 @@ export default class MusicPlayer extends React.Component {
     }
   }
 
+
+
   render() {
-    const { open, duration, currentTime, loop, showList, currentIndex, random, loading } = this.state
+    const { open, duration, currentTime, loop, showList, currentIndex, random } = this.state
     const { audioConfig, musics = [], paused, onPlay = noop, onPause = noop } = this.props
     const { pic, name, singer, url } = musics[currentIndex] || {}
     const currentRoute = Router.router.route
@@ -215,7 +216,7 @@ export default class MusicPlayer extends React.Component {
         audioConfig.position === 'bottom' ? 'main-music-player-in-bottom' : 'main-music-player-small',
         paused ? 'pause' : 'play',
       )}>
-        <audio src={url} ref={this.$audio} loop={loop} />
+        <audio src={url} ref={this.$audio} loop={loop} name={name}/>
         <div className="main-music-player-wrapper">
           <div
             className="main-music-player-pic"
@@ -242,7 +243,6 @@ export default class MusicPlayer extends React.Component {
             </div>
 
             <div className="main-music-player-control">
-              {/* <Icon type={'download'} antd={true} onClick={this.handleDownload} /> */}
               <Link href={currentRoute === '/music/player' ? (this.historyRoute || '/music/list') : '/music/player'}>
                 <Icon type={'music'} antd={true} active={currentRoute === '/music/player'} onClick={this.handlePushHistory} />
               </Link>

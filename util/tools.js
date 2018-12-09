@@ -136,3 +136,12 @@ export function getDOMById(id) {
   }
   return el
 }
+
+export function downloadFile(src) {
+  const downloader = document.createElement('a')
+  downloader.setAttribute('href', src)
+  downloader.setAttribute('target', '_blank')
+  document.body.appendChild(downloader)
+  downloader.click()
+  document.body.removeChild(downloader)
+}
