@@ -67,13 +67,13 @@ export default class MusicStore extends Base {
       this.searchValue = ''
       this.searchedList = []
     }
-    
+
     if (s === this.searchValue) {
       return
     }
 
     this.searchValue = s
-    return axios.get('/musics/search', { params: { s, limit: 30, offset: 0 } })
+    return axios.get('/musics/search', { params: { s, limit: 100, offset: 0 } })
       .then(list => this.searchedList = list)
   }
 
