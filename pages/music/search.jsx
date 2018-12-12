@@ -61,6 +61,7 @@ export default class Search extends React.Component {
     searched: this.props.musicStore.searchValue,
     showNum: 12,
     loading: false,
+    startSearch: false
   }
 
   componentWillUnmount() {
@@ -69,6 +70,8 @@ export default class Search extends React.Component {
 
   handleSearch = async () => {
     this.setState({ loading: true })
+    clearTimeout(this.changeTimer)
+    this.props.musicStore.setValues({ searchedList: [] })
     await this.props.musicStore.search(this.state.searched)
     this.setState({ loading: false })
   }
@@ -96,16 +99,16 @@ export default class Search extends React.Component {
         </Head>
         <div className="music-search-page">
           <div className="do-content-container">
-            <div className="music-search-wrapper" style={{ top: hasResult ? '0vh' : '25vh' }}>
+            <div className="music-search-wrapper" style={{ marginTop: (hasResult || loading) ? '20px' : '200px' }}>
               <div className="music-search">
                 <input value={searched} placeholder="告诉我你想听什么呀" className="music-search-input" type="text" onChange={this.handleChange} onKeyDown={e => e.keyCode === 13 && this.handleSearch()} />
                 <button className="music-search-btn" onClick={this.handleSearch}>搜索</button>
               </div>
             </div>
+            {loading && <div className="do-fetching-loading">搜索中...</div>}
             {
-              hasResult
+              !loading && hasResult
                 ? (
-
                   <ScrollDetect
                     onScrollOut={this.handleShowMore}
                     protectTime={300}
@@ -129,7 +132,7 @@ export default class Search extends React.Component {
                           {searchedList.slice(0, showNum).map(music => <SearchedItem key={music.id} {...music} />)}
                         </AnimateQueue>
                       </ul>
-                      {(loading || !noMore) && <div className="do-fetching-loading">加载中...</div>}
+                      {!noMore && <div className="do-fetching-loading">加载中...</div>}
                     </div>
                   </ScrollDetect>
                 )
