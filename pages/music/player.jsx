@@ -60,7 +60,7 @@ export default class Music extends React.Component {
     return (
       <React.Fragment>
         <Head>
-          <title>小寒的音乐播放器</title>
+          <title>小寒的音乐-播放器</title>
         </Head>
         <MusicBg src={music.pic} />
         <div className="do-content-container music-detail-page">

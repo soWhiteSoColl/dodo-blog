@@ -6,6 +6,8 @@ import Drawer from 'widgets/Drawer'
 import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
 import store from '../store'
+import ScrollDetect from 'widgets/ScrollDetect'
+
 
 const Tag = props => {
   const { children, active, ...rest } = props
@@ -36,8 +38,7 @@ export default class Blogs extends Component {
   fetching = false
 
   state = {
-    loading: false,
-    reloading: false,
+    showNum: 10
   }
 
   static async getInitialProps(cxt, store) {
@@ -50,38 +51,11 @@ export default class Blogs extends Component {
     this.props.blogStore.setValues({ blogs })
     this.props.blogStore.getTags()
     this.props.blogStore.getHotBlogs()
-
-    setTimeout(this.handleScroll)
-    window.addEventListener('scroll', this.handleScroll)
   }
 
-  componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleScroll)
+  handleShowMore = () => {
+    this.setState({ showNum: this.state.showNum + 10 })
   }
-
-  handleScroll = () => {
-    if (!this.$blogs.current) return false
-
-    const elBottom = this.$blogs.current.getBoundingClientRect().bottom
-    const windowHeihgt = window.innerHeight
-    if (elBottom <= windowHeihgt + 100 && !this.fetching) {
-      this.handleFetchMore()
-    }
-  }
-
-  handleFetchMore = () => {
-    if (this.props.blogStore.blogs.noMore) {
-      return false
-    }
-    this.fetching = true
-    this.setState({ loading: true })
-    this.props.blogStore.list()
-      .then(() => {
-        this.fetching = false
-        this.setState({ loading: false })
-      })
-  }
-
 
   handleToggleTag = id => {
     const { tags } = this.props.blogStore.blogs
@@ -101,9 +75,10 @@ export default class Blogs extends Component {
       })
   }
 
+
   get blogSort() {
     const blogSort = this.props.blogStore.blogs.list
-      .slice()
+      .slice(0, this.state.showNum)
       .sort((a, b) => a.created < b.created)
       .reduce((result, blog) => {
         const date = dateFormater(blog.created, false, { daySplit: ' / ' })
@@ -118,42 +93,43 @@ export default class Blogs extends Component {
   }
 
   render() {
-    const { tags, hotBlogs } = this.props.blogStore
-    const { loading, reloading } = this.state
+    const { tags, hotBlogs, blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
-
+    const noMore = this.state.showNum >= blogs.list.length
+    
     return (
       <React.Fragment>
         <Head>
           <title>小寒的博客 - 博客列表</title>
         </Head>
         <div className="do-content-container">
-          {!reloading
-            ? (
-              <div className="blogs-list" ref={this.$blogs}>
-                <AnimateQueue
-                  animate={true}
-                  interval={100}
-                  speed={600}
-                  from={{ transform: 'translateX(100px)' }}
-                  to={{ transform: 'translateX(0px)' }}
-                >
-                  {
-                    Object.entries(this.blogSort).map(([date, blogs]) => (
-                      <div className="blogs-group" key={date}>
-                        <Date date={date} />
-                        {blogs.map(blog => <BlogItem key={blog._id} blog={blog} />)}
-                      </div>
-                    ))
-                  }
-                </AnimateQueue>
-              </div>)
-            : null
-          }
-          {loading && <div className="do-text-loading">加载中...</div>}
+          <div className="blogs-list" ref={this.$blogs}>
+            <ScrollDetect
+              onScrollOut={this.handleShowMore}
+              detect={!noMore}
+              protectTime={500}
+            >
+              <AnimateQueue
+                animate={true}
+                interval={100}
+                speed={600}
+                from={{ transform: 'translateX(100px)' }}
+                to={{ transform: 'translateX(0px)' }}
+              >
+                {
+                  Object.entries(this.blogSort).map(([date, blogs]) => (
+                    <div className="blogs-group" key={date}>
+                      <Date date={date} />
+                      {blogs.map(blog => <BlogItem key={blog._id} blog={blog} />)}
+                    </div>
+                  ))
+                }
+              </AnimateQueue>
+            </ScrollDetect>
+            {!noMore && <div className="do-fetching-loading">加载中...</div>}
+          </div>
         </div>
-
-        <Drawer key={1}>
+        <Drawer>
           <h2 className="blogs-drawer-title">标签</h2>
           <div className="blogs-drawer-tags">
             {tags.map(tag => <Tag

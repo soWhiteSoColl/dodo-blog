@@ -209,6 +209,14 @@
   }
 }
 
+.music-info-item.music-info-item-title {
+  font-size: 14px;
+  color: #999;
+  .music-info-singer {
+    color: #999;
+  }
+}
+
 .music-info-item {
   margin-bottom: 10px;
   display: flex;
@@ -250,11 +258,10 @@
   }
   .music-info-name {
     .text-overflow-ellipsis;
-    width: 360px;
+    width: 200px;
     padding-left: 10px;
     margin-right: 15px;
     display: inline-block;
-    color: #333;
     @media screen and (max-width: 720px) {
       width: 300px;
     }
@@ -264,7 +271,7 @@
     width: 140px;
     margin-right: 15px;
     display: inline-block;
-    color: #999;
+    color: #4a4a4a;
   }
   &:hover {
     .music-info-toggle {
@@ -275,6 +282,10 @@
     width: 80px;
     opacity: 0;
     transition: opacity ease .3s;
+  }
+  .music-info-time {
+    width: 80px;
+    color: #999;
   }
   @media screen and (max-width: 720px) {
     .music-info-toggle {
@@ -327,9 +338,3 @@
   }
 }
 
-.fetching-loading {
-  margin-top: 20px;
-  text-align: center;
-  color: #aaa;
-  font-size: 12px;
-}

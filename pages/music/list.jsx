@@ -73,7 +73,7 @@ export default class Musics extends React.Component {
     return (
       <React.Fragment>
         <Head>
-          <title>小寒的博客 - 听歌, 音乐, 学习</title>
+          <title>小寒的音乐-列表</title>
           <meta name="keywords" content={'听歌，学习，音乐'} />
           <meta name="description" content={'听听歌，这里有各种各样的好听的音乐，小寒的博客 - 听歌, 音乐, 学习'} />
         </Head>
@@ -102,8 +102,8 @@ export default class Musics extends React.Component {
             )
             : null
           }
-          {(!hotMusicLists.length || !noMore)
-            ? <div className="fetching-loading">加载中...</div>
+          {!hotMusicLists.length || !noMore
+            ? <div className="do-fetching-loading">加载中...</div>
             : null
           }
         </div>

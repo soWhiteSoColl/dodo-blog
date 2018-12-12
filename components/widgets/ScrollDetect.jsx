@@ -25,7 +25,8 @@ export default class ScrollDetect extends React.Component {
   handleDetect = () => {
     if (this.sleeping) return false
     const { protectTime = 1000, onScrollOut } = this.props
-    const { bottom } = this.el.current && this.el.current.getBoundingClientRect()
+    const { bottom, height } = this.el.current && this.el.current.getBoundingClientRect()
+    if(!height) return false
 
     if (bottom < window.innerHeight + 100) {
       this.sleeping = true

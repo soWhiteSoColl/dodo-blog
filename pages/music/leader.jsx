@@ -1,10 +1,11 @@
 import React from 'react'
+import Head from 'next/head'
 import Icon from 'widgets/Icons'
 import AnimateQueue from 'widgets/AnimateQueue'
 import ScrollDetect from 'widgets/ScrollDetect'
 import { inject, observer } from 'mobx-react'
 import classnames from 'classnames'
-import { downloadFile } from 'tools'
+import { downloadFile, secondToMunite } from 'tools'
 
 @inject('musicStore')
 @observer
@@ -31,7 +32,7 @@ class MusicItem extends React.Component {
   }
 
   render() {
-    const { id, name, singer, pic, style, NO } = this.props
+    const { id, name, singer, pic, style, NO, time } = this.props
     const { currentMusic, paused } = this.props.musicStore
     const active = id === currentMusic.id
 
@@ -42,7 +43,6 @@ class MusicItem extends React.Component {
           <img className="music-info-cover" src={pic} alt={name} />
         </div>
         <span className="music-info-name">{name}</span>
-        <span className="music-info-singer">{singer}</span>
         <span className="music-info-toggle">
           <div className={classnames('music-info-btn', active && 'active')} onClick={() => this.handlePlay()}>
             <Icon type={active && !paused ? 'play' : 'pause'} />
@@ -51,6 +51,9 @@ class MusicItem extends React.Component {
             <Icon antd={true} type={'download'} />
           </div>
         </span>
+
+        <span className="music-info-singer">{singer}</span>
+        <span className="music-info-time">{secondToMunite(time)}</span>
       </li>
     )
   }
@@ -77,38 +80,43 @@ export default class Search extends React.Component {
     const noMore = showNum >= songs.length
 
     return (
-      <div className="music-leader-page">
-        <div className="do-content-container">
-          {
-            !!songs.length && (
-              <ScrollDetect
-                onScrollOut={this.handleShowMore}
-                detect={!noMore}
-                protectTime={300}
-              >
-                <div className="music-info-list-wrapper">
-                  <ul className="music-info-list">
-                    <AnimateQueue
-                      animate={true}
-                      interval={50}
-                      speed={600}
-                      from={{ transform: 'translateY(80px)' }}
-                      to={{ transform: 'translateX(0px)' }}
-                    >
-                      {songs.slice(0, showNum).map((music, key) =>
-                        <MusicItem key={music.id} NO={key + 1} {...music} />
-                      )}
-                    </AnimateQueue>
-                  </ul>
-                </div>
-              </ScrollDetect>
-            )
-          }
-          {(!songs.length || !noMore) &&
-            <div className="fetching-loading">加载中...</div>
-          }
+      <>
+        <Head>
+          <title>小寒的音乐-排行榜</title>
+        </Head>
+        <div className="music-leader-page">
+          <div className="do-content-container">
+            {
+              !!songs.length && (
+                <ScrollDetect
+                  onScrollOut={this.handleShowMore}
+                  detect={!noMore}
+                  protectTime={300}
+                >
+                  <div className="music-info-list-wrapper">
+                    <ul className="music-info-list">
+                      <AnimateQueue
+                        animate={true}
+                        interval={50}
+                        speed={600}
+                        from={{ transform: 'translateY(80px)' }}
+                        to={{ transform: 'translateX(0px)' }}
+                      >
+                        {songs.slice(0, showNum).map((music, key) =>
+                          <MusicItem key={music.id} NO={key + 1} {...music} />
+                        )}
+                      </AnimateQueue>
+                    </ul>
+                  </div>
+                </ScrollDetect>
+              )
+            }
+            {(!songs.length || !noMore) &&
+              <div className="do-fetching-loading">加载中...</div>
+            }
+          </div>
         </div>
-      </div>
+      </>
     )
   }
 }
