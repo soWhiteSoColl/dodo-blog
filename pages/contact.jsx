@@ -22,6 +22,8 @@ export default class Contact extends React.Component {
     if (!nickname) {
       checkNickname()
     } else {
+      if(!message) return false
+
       this.props.contactStore.nickname && leaveMessage(message)
       this.setState({ message: '' })
       this.forceUpdate()
@@ -48,14 +50,14 @@ export default class Contact extends React.Component {
             <div className="do-group">
               <InputArea
                 fullWidth
-                placeholder="在这里留言..."
+                placeholder="随便说点什么吧..."
                 label={`哈咯！${nickname || ''}`}
                 onChange={e => this.handleChangeMessage(e.target.value)}
                 value={message}
               />
             </div>
             <div className="do-group">
-              <Button disabled={!message} type="primary" onClick={this.handleSubmit}>留言</Button>
+              <Button type="primary" onClick={this.handleSubmit}>留言</Button>
             </div>
           </div>
 

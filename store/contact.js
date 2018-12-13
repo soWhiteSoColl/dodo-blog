@@ -16,6 +16,7 @@ export default class Store extends Base {
   @action
   saveNickname = nickname => {
     this.nickname = nickname
+    this.saveView()
     localStorage.setItem('dodo_name', nickname)
   }
 
