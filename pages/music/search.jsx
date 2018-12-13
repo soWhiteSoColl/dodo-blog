@@ -69,6 +69,10 @@ export default class Search extends React.Component {
   }
 
   handleSearch = async () => {
+    if(this.props.musicStore.searchValue === this.state.searched){
+      return false
+    }
+    
     this.setState({ loading: true })
     clearTimeout(this.changeTimer)
     this.props.musicStore.setValues({ searchedList: [] })
