@@ -156,8 +156,8 @@ export default class MusicPlayer extends React.Component {
       const nextId = this.randomList[randomIndex - 1 < 0 ? this.randomList.length - 1 : randomIndex - 1].id
       nextIndex = musics.findIndex(item => item.id === nextId)
     } else {
-      nextIndex = this.state.currentIndex - 1
-      if (currentIndex < 0) nextIndex = musics.length - 1
+      nextIndex = currentIndex - 1
+      if (nextIndex < 0) nextIndex = musics.length - 1
     }
 
     this.setState({ currentIndex: nextIndex }, () => this.handleChangeIndex(nextIndex))
