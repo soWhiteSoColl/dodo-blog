@@ -54,7 +54,7 @@ export default class Contact extends React.Component {
         <div className="do-content-container">
           <div className="contact-form">
             <div className="do-group">
-              <h2>Hi, {nickname}</h2>
+              <h2>{!!nickname && `嗨，${nickname}！`} 留个言呗</h2>
               <Editor
                 placeholder={'啦啦啦。。。'}
                 value={message}

@@ -11,7 +11,6 @@ const colors = [
 
 const controls = [
   'bold', 'italic', 'underline', 'text-color', 'remove-styles', 'separator',
-  'code', 'blockquote', 'headings', 'separator',
   'emoji', 'link'
 ]
 
