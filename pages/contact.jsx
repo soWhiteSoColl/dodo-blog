@@ -4,11 +4,14 @@ import { Button, InputArea } from 'dodoui'
 import Comment, { CommentList } from 'widgets/Comment'
 import checkNickname from 'util/checkNickname'
 import AnimateQueue from 'widgets/AnimateQueue'
+import dynamic from 'next/dynamic'
+
+const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
 
 
 export default class Contact extends React.Component {
   state = {
-    message: '',
+    message: null
   }
 
   componentDidMount() {
@@ -17,20 +20,23 @@ export default class Contact extends React.Component {
 
   handleSubmit = async e => {
     e.preventDefault();
-    const { leaveMessage, nickname } = this.props.contactStore
     const { message } = this.state
+    const { leaveMessage, nickname } = this.props.contactStore
+
     if (!nickname) {
       checkNickname()
     } else {
-      if(!message) return false
+      if (!message) return false
+      const messageContent = message.toHTML()
+      console.log(message.toHTML())
+      if (!messageContent || !messageContent.replace(/<.*?>/g, '')) return false
 
-      this.props.contactStore.nickname && leaveMessage(message)
-      this.setState({ message: '' })
-      this.forceUpdate()
+      this.props.contactStore.nickname && leaveMessage(messageContent)
+      this.setState({ message: null })
     }
   }
 
-  handleChangeMessage = message => {
+  handleEditorChange = message => {
     this.setState({ message })
   }
 
@@ -48,12 +54,11 @@ export default class Contact extends React.Component {
         <div className="do-content-container">
           <div className="contact-form">
             <div className="do-group">
-              <InputArea
-                fullWidth
-                placeholder="随便说点什么吧..."
-                label={`哈咯！${nickname || ''}`}
-                onChange={e => this.handleChangeMessage(e.target.value)}
+              <h2>Hi, {nickname}</h2>
+              <Editor
+                placeholder={'啦啦啦。。。'}
                 value={message}
+                onChange={this.handleEditorChange}
               />
             </div>
             <div className="do-group">

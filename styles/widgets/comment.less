@@ -2,36 +2,32 @@
   margin-top: 40px;
   margin-bottom: 80px;
 }
+
 .w-comment-item {
   margin: 20px 0;
   @comment-bg-color: #f1f2f3;
   position: relative;
-
   &-nickname {
     font-size: 24px;
     margin-right: 10px;
     display: inline-block;
     font-weight: 300;
-
-    @media screen and (max-width: 720px){
+    @media screen and (max-width: 720px) {
       font-size: 20px;
       margin-right: 5px;
       max-width: 80px;
     }
   }
-
   &-info {
     display: flex;
     flex-direction: column;
     max-width: calc(100% - 80px);
     position: relative;
   }
-
   &-time {
     font-size: 12px;
     margin-bottom: 5px;
   }
-
   &-content {
     display: inline-block;
     font-size: 14px;
@@ -45,7 +41,6 @@
     border-radius: 4px;
     color: #555;
   }
-
   &-svg {
     position: absolute;
     left: -12px;
@@ -56,4 +51,10 @@
       fill: @comment-bg-color;
     }
   }
+}
+
+
+
+.w-comment-item-content-value {
+  .blog-reset;
 }
