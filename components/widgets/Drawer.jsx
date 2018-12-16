@@ -3,7 +3,6 @@ import classnames from 'classnames'
 import ReactDOM from 'react-dom'
 import { getDOMById } from 'tools'
 
-
 class DrawerInner extends React.Component {
   state = {
     open: false

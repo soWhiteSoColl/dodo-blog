@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { dateFormater } from 'tools'
 import Link from 'next/link'
 import Head from 'next/head'
-import Drawer from 'widgets/Drawer'
+import { Drawer } from 'dodoui'
 import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
 import store from '../store'
@@ -96,7 +96,7 @@ export default class Blogs extends Component {
     const { tags, hotBlogs, blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
-    
+
     return (
       <React.Fragment>
         <Head>

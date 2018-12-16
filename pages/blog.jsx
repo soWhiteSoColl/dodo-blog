@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { dateFormater } from 'tools'
 import Head from 'next/head'
-import { InputArea, Button } from 'dodoui'
+import { Button } from 'dodoui'
 import Comment from 'widgets/Comment'
 import checkNickname from 'util/checkNickname'
 import Blog from 'widgets/Blog'
+import dynamic from 'next/dynamic'
+const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
 
 
 export default class BlogDetail extends Component {
@@ -15,7 +17,7 @@ export default class BlogDetail extends Component {
   }
 
   state = {
-    comment: ''
+    comment:  null
   }
 
   componentDidMount() {
@@ -23,14 +25,17 @@ export default class BlogDetail extends Component {
     // this.props.contactStore.getNickname()
   }
 
+  handleEditorChange = comment => {
+    this.setState({ comment })
+  }
 
   handleComment = () => {
     const { comment } = this.state
 
     const _commentBlog = () => {
       const { nickname } = this.props.contactStore
-      this.props.blogStore.comment({ content: comment, nickname })
-      this.setState({ comment: '' })
+      this.props.blogStore.comment({ content: comment.toHTML(), nickname })
+      this.setState({ comment: null })
     }
 
     if (!this.props.contactStore.nickname) {
@@ -41,10 +46,7 @@ export default class BlogDetail extends Component {
     }
   }
 
-  handleChangeComment = e => this.setState({ comment: e.target.value })
-
   render() {
-    const { nickname } = this.props.contactStore
     const blog = this.props.blogStore.currentBlog || {}
     const { comment } = this.state
     const blogDescription = blog.content && blog.content.replace(/<.*?>/g, '').slice(0, 160)
@@ -66,7 +68,11 @@ export default class BlogDetail extends Component {
           <Blog content={blog.content} />
           <div className="blog-comment-input">
             <h2>评论区</h2>
-            <InputArea label={`哈咯！${nickname || ''}`} value={comment} onChange={this.handleChangeComment} />
+            <Editor
+              placeholder={'啦啦啦。。。'}
+              value={comment}
+              onChange={this.handleEditorChange}
+            />
             <Button type={'primary'} onClick={this.handleComment}>评论</Button>
           </div>
           <div className="blog-comment-list">

@@ -1,11 +1,10 @@
 import React from 'react';
 import Head from 'next/head'
-import { Button, InputArea } from 'dodoui'
+import { Button } from 'dodoui'
 import Comment, { CommentList } from 'widgets/Comment'
 import checkNickname from 'util/checkNickname'
 import AnimateQueue from 'widgets/AnimateQueue'
 import dynamic from 'next/dynamic'
-
 const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
 
 

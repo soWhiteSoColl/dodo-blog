@@ -1,5 +1,5 @@
 import React from 'react'
-import Drawer from './Drawer'
+import { Drawer } from 'dodoui'
 
 export default class Blog extends React.Component {
   state = {
@@ -43,7 +43,7 @@ export default class Blog extends React.Component {
 
   render() {
     const { tables, content } = this.state
-    
+
     return (
       <div className="blog-wrapper">
         <div className="blog-content" dangerouslySetInnerHTML={{ __html: content || this.props.content }}></div>

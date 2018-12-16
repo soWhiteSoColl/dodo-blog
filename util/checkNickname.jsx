@@ -6,8 +6,9 @@ export default function checkNickname() {
   return new Promise((resolve) => {
     let userInput = ''
     const { saveNickname, nickname } = stores.contactStore
+
     if (!nickname) {
-      Dialog.open({
+      const dialog = Dialog.create({
         title: '提示',
         content: (
           <div className="contact-input-nickname">
@@ -17,19 +18,16 @@ export default function checkNickname() {
               maxLength="3"
             />
           </div>
-        ),
-        onOk: (_, close) => {
+        )
+      })
+
+      return dialog.show()
+        .then(() => {
           saveNickname(userInput)
           close()
           resolve(true)
-        },
-        onCancel: (_, close) => {
-          resolve(false)
-          close()
-        }
-      })
-    } else {
-      resolve(true)
+          dialog.close()
+        })
     }
   })
 }
