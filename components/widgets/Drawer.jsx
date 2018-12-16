@@ -2,6 +2,8 @@ import React from 'react'
 import classnames from 'classnames'
 import ReactDOM from 'react-dom'
 import { getDOMById } from 'tools'
+
+
 class DrawerInner extends React.Component {
   state = {
     open: false
@@ -54,21 +56,6 @@ class DrawerInner extends React.Component {
   }
 }
 
-const createDOM = () => {
-  let el = document.getElementById('drawer-root')
-
-  if (!el) {
-    el = document.createElement('div')
-    el.id = 'drawer-root'
-    const container = document.createElement('div')
-    container.id = 'drawer-container'
-
-    el.appendChild(container)
-    document.body.appendChild(el)
-  }
-
-  return el
-}
 export default class Drawer extends React.Component {
   componentDidMount() {
 
