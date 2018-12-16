@@ -5,6 +5,7 @@ import Base from './base'
 
 export default class MusicStore extends Base {
   audio = null
+  timestamp = 1
 
   @observable hotMusicLists = []
   @observable currentList = {}
@@ -21,7 +22,7 @@ export default class MusicStore extends Base {
   @action
   getHostLists = () => {
     const offset = this.hotMusicLists.length
-    return axios.get('/musics/highQualitySongList', { params: { limit: 200, offset } })
+    return axios.get('/musics/highQualitySongList', { params: { limit: 200, offset, timestamp: this.timestamp } })
       .then(res => this.hotMusicLists = res.playlists)
   }
 
@@ -49,7 +50,7 @@ export default class MusicStore extends Base {
 
   @action
   getLeaderboard = () => {
-    return axios.get('/musics/songList', { params: { id: 3778678, offset: 0 } })
+    return axios.get('/musics/songList', { params: { id: 3778678, offset: 0, timestamp: this.timestamp } })
       .then(list => this.leaderboard = list)
   }
 
