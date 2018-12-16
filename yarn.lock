@@ -1872,9 +1872,9 @@ diffie-hellman@^5.0.0:
     miller-rabin "^4.0.0"
     randombytes "^2.0.0"
 
-dodoui@1.0.9-beta:
-  version "1.0.9-beta"
-  resolved "https://registry.yarnpkg.com/dodoui/-/dodoui-1.0.9-beta.tgz#8502a80023fb49c746f90bd2f96d72dd03415ef5"
+dodoui@1.1.0-beta:
+  version "1.1.0-beta"
+  resolved "https://registry.yarnpkg.com/dodoui/-/dodoui-1.1.0-beta.tgz#c00bceec171fcd73b488100c8f364f6af5f8110b"
   dependencies:
     "@babel/plugin-proposal-decorators" "^7.1.2"
     babel-plugin-transform-decorators-legacy "^1.3.5"
