@@ -1,4 +1,4 @@
-.blog-reset {
+@mixin blog-reset {
   font-size: 14px;
   color: #444;
   span,
@@ -48,7 +48,7 @@
   h3 {
     font-size: 1.4em;
     padding-left: 0.4em;
-    border-left: 4px solid @primary-color;
+    border-left: 4px solid $primary-color;
   }
   h4 {
     font-size: 1.1em;

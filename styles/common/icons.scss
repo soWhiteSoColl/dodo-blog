@@ -59,12 +59,12 @@
   &.active {
     .svg-icon-antd {
       path {
-        fill: @primary-color;
+        fill: $primary-color;
       }
     }
     .svg-icon {
       path {
-        stroke: @primary-color;
+        stroke: $primary-color;
       }
     }
   }

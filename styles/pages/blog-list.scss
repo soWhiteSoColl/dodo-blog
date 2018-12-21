@@ -34,7 +34,7 @@
   margin-bottom: 10px;
   margin-top: 0;
   line-height: 1.2em;
-  color: @primary-color;
+  color: $primary-color;
   @media screen and (max-width: 768px) {
     font-size: 20px;
     margin: 10px 0px;
@@ -48,7 +48,7 @@
 }
 
 .blog-detail {
-  max-width: @small-container-width;
+  max-width: $small-container-width;
   margin: 0px auto;
   .blog-title {
     margin-top: 20px;
@@ -71,7 +71,7 @@
   .blog-content {
     font-size: 14px;
     color: #444;
-    .blog-reset;
+    @include blog-reset;
   }
   .blog-comment-input {
     margin-top: 100px;
@@ -103,7 +103,7 @@
     a {
       color: #7a7a7a;
       &:hover {
-        color: @primary-color;
+        color: $primary-color;
       }
     }
     &-count {
@@ -145,7 +145,7 @@
           width: 5px;
           height: 5px;
           border-radius: 5px;
-          background-color: @primary-color;
+          background-color: $primary-color;
           position: relative;
           margin-right: 5px;
           top: -2px;
@@ -196,7 +196,7 @@
       padding-left: 10px;
     }
     .control-item.button.active {
-      color: @primary-color;
+      color: $primary-color;
     }
     .separator-line {
       height: 30px;

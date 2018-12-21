@@ -38,15 +38,15 @@
 }
 
 .main-header {
-  height: @main-header-height;
-  line-height: @main-header-height;
+  height: $main-header-height;
+  line-height: $main-header-height;
   // box-shadow: 0 0 20px -7px rgba(0, 0, 0, 0.65);
 
   @media screen and (max-width: 720px) {
     height: 80px;
     line-height: 80px;
   }
-  .clearfix;
+  @include clearfix;
   .logo-brand {
     display: inline-block;
     img {
@@ -72,7 +72,7 @@
         z-index: 10;
       }
       &:hover {
-        color: @primary-color;
+        color: $primary-color;
       }
       &:before {
         content: '';
@@ -83,13 +83,13 @@
         transition: all ease 0.3s;
         top: 0;
         left: 0;
-        background-color: @primary-color;
+        background-color: $primary-color;
       }
       &.active {
         &:hover {
           color: #fff;
           &:before {
-            background-color: @light-primary-color;
+            background-color: $light-primary-color;
           }
         }
         &:before {
@@ -105,9 +105,9 @@
           &:before {
             height: 5px
           }
-          color: @primary-color;
+          color: $primary-color;
           &:hover {
-            color: @primary-color;
+            color: $primary-color;
           }
         }
         &:focus,
@@ -121,18 +121,17 @@
 }
 
 .main-content {
-  min-height: calc(100vh - @main-header-height - @main-footer-height);
+  min-height: calc(100vh - $main-header-height - $main-footer-height);
   // background-color: #f3f3f3;
-  .clearfix;
+  @include clearfix;
 }
 
 .main-footer {
-  height: @main-footer-height;
+  height: $main-footer-height;
   box-sizing: border-box;
   color: #999;
-  height: 100px;
   text-align: center;
-  .clearfix;
+  @include clearfix;
   justify-content: center;
   align-items: center;
   display: flex;
@@ -186,7 +185,7 @@
 }
 
 #nprogress .bar {
-  background: @primary-color;
+  background: $primary-color;
   position: fixed;
   z-index: 9999;
   top: 0;
@@ -201,7 +200,7 @@
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px @primary-color, 0 0 5px @primary-color;
+  box-shadow: 0 0 10px $primary-color, 0 0 5px $primary-color;
   opacity: 1;
   transform: rotate(3deg) translate(0px, -4px);
 }

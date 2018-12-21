@@ -19,9 +19,9 @@
       height: 36px;
       border-radius: 36px;
       font-size: 14px;
-      background-color: @primary-color;
+      background-color: $primary-color;
       color: #fff;
-      border-color: @primary-color;
+      border-color: $primary-color;
       &:focus {
         outline: none;
       }

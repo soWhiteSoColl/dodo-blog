@@ -5,7 +5,7 @@
 
 .w-comment-item {
   margin: 20px 0;
-  @comment-bg-color: #f1f2f3;
+  $comment-bg-color: #f1f2f3;
   position: relative;
   &-nickname {
     font-size: 24px;
@@ -33,7 +33,7 @@
     font-size: 14px;
     margin-top: 10px;
     margin-left: 40px;
-    background-color: @comment-bg-color;
+    background-color: $comment-bg-color;
     padding: 15px;
     position: relative;
     min-width: 200px;
@@ -48,13 +48,13 @@
     top: -24px;
     transform: scaleY(0.6) scaleX(1);
     path {
-      fill: @comment-bg-color;
+      fill: $comment-bg-color;
     }
   }
 }
 
 .w-comment-item-content-value {
-  .blog-reset;
+  @include blog-reset;
   p {
     margin-bottom: 0;
     &+p {

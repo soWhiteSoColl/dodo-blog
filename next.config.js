@@ -1,10 +1,10 @@
-const withLess = require('@zeit/next-less') 
+const withScss = require('@zeit/next-sass') 
 const withCss = require('@zeit/next-css')
 const withPlugins = require('next-compose-plugins')
 
 module.exports = withPlugins([
   [
-    withLess,
+    withScss,
     {
       pageExtensions: ['jsx', 'js', 'tsx'],
       cssModules: false,

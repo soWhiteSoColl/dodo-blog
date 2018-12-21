@@ -6,7 +6,7 @@ body {
   color: rgba(0, 0, 0, 0.65);
   line-height: 1.5;
   font-size: 14px;
-  background-color: @main-bg-color;
+  background-color: $main-bg-color;
   * {
     box-sizing: border-box;
   }
@@ -22,12 +22,12 @@ p {
 }
 
 a {
-  color: @primary-color;
+  color: $primary-color;
   transition: all ease 0.3s;
   text-decoration: none;
   cursor: pointer;
   &:hover {
-    color: @light-primary-color;
+    color: $light-primary-color;
   }
 }
 

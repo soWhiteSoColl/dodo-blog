@@ -30,5 +30,5 @@
 }
 
 .editor-wrapper .DraftEditor-root {
- .blog-reset;
+ @include blog-reset;
 }

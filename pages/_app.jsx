@@ -9,7 +9,7 @@ import Player from 'components/Player'
 import ToTop from 'components/ToTop'
 import store from 'store'
 
-import '../styles/index.less'
+import '../styles/index.scss'
 import 'dodoui/lib/dodo.css'
 
 export default class MyApp extends App {

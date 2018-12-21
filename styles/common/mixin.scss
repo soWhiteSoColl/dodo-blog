@@ -1,0 +1,43 @@
+@mixin ball($r) {
+  width: $r;
+  height: $r;
+  border-radius: $r;
+}
+
+
+@mixin clearfix {
+  &:before {
+    display: table;
+    content: ''
+  }
+  &:after {
+    display: table;
+    content: ''
+  }
+}
+
+@mixin abs-center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateY(-50%) translateX(-50%);
+}
+
+
+
+@mixin inner-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin shadow {
+  box-shadow: 1px -4px 30px -12px rgba(0, 0, 0, 0.7);
+}
+
+@mixin text-overflow-ellipsis {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 100%;
+  white-space: nowrap;
+}
