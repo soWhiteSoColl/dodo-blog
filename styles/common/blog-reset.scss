@@ -81,4 +81,17 @@
     color: #666;
     font-style: italic;
   }
+
+  .DraftEditor-editorContainer {
+    margin: 0;
+  }
+  .public-DraftEditorPlaceholder-root {
+    margin: 0;
+    .public-DraftEditorPlaceholder-inner {
+      font-size: 14px;
+    }
+  }
+  .public-DraftEditorPlaceholder-inner {
+    margin: 0;
+  }
 }

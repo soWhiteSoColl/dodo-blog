@@ -31,7 +31,7 @@ export default class Store extends Base {
       }
     })
       .then(blogs => {
-        if(blogs.list.length < this.blogs.perPage) this.blogs.noMore = true
+        if (blogs.list.length < this.blogs.perPage) this.blogs.noMore = true
         this.blogs.list = currnetPage ? blogs.list : this.blogs.list.concat(blogs.list)
         this.blogs.page = blogs.page
         this.blogs.count = blogs.count
@@ -49,9 +49,8 @@ export default class Store extends Base {
 
   @action
   comment = comment => {
-    const blogId = this.currentBlog._id
-    return axios.put('/articles/' + blogId + '/comment', comment)
-      .then(blog => this.currentBlog = blog)
+    const id = this.currentBlog._id
+    return axios.put('/articles/' + id + '/comment', comment)
   }
 
   @action
@@ -62,7 +61,7 @@ export default class Store extends Base {
 
   @action
   getHotBlogs = () => {
-    return axios.get('/articles', {params: {perPage: 3, sort: '-viewCount'}})
+    return axios.get('/articles', { params: { perPage: 3, sort: '-viewCount' } })
       .then(blogs => this.hotBlogs = blogs.list)
   }
 }

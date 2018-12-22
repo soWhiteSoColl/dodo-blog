@@ -3,14 +3,15 @@ import Head from 'next/head'
 import { Button } from 'dodoui'
 import Comment, { CommentList } from 'widgets/Comment'
 import checkNickname from 'util/checkNickname'
-import AnimateQueue from 'widgets/AnimateQueue'
+import AnimateQueue, { Animate } from 'widgets/AnimateQueue'
 import dynamic from 'next/dynamic'
 const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
 
 
 export default class Contact extends React.Component {
   state = {
-    message: null
+    message: null,
+    newMessages: []
   }
 
   componentDidMount() {
@@ -27,11 +28,15 @@ export default class Contact extends React.Component {
     } else {
       if (!message) return false
       const messageContent = message.toHTML()
-      console.log(message.toHTML())
       if (!messageContent || !messageContent.replace(/<.*?>/g, '')) return false
 
-      this.props.contactStore.nickname && leaveMessage(messageContent)
-      this.setState({ message: null })
+      this.props.contactStore.nickname &&
+        leaveMessage(messageContent)
+          .then(message => {
+            const newMessages = this.state.newMessages
+            newMessages.unshift(message)
+            this.setState({ newMessages, message: null })
+          })
     }
   }
 
@@ -41,7 +46,7 @@ export default class Contact extends React.Component {
 
   render() {
     const { nickname, leavedMessages } = this.props.contactStore
-    const { message } = this.state
+    const { message, newMessages } = this.state
 
     return (
       <React.Fragment>
@@ -53,7 +58,7 @@ export default class Contact extends React.Component {
         <div className="do-content-container">
           <div className="contact-form">
             <div className="do-group">
-              <h2>{!!nickname && `嗨，${nickname}！`} 留个言呗</h2>
+              <h2>{!!nickname && `嗨，${nickname}`}。。。</h2>
               <Editor
                 placeholder={'啦啦啦。。。'}
                 value={message}
@@ -66,6 +71,25 @@ export default class Contact extends React.Component {
           </div>
 
           <CommentList>
+            {
+              newMessages.map(message => {
+                return <Animate
+                  animate={true}
+                  from={{ transform: 'translateX(80px)' }}
+                  to={{ transform: 'translateX(0px)' }}
+                  key={message._id}
+                  speed={400}
+                >
+                  <Comment
+                    key={message._id}
+                    nickname={message.nickname}
+                    content={message.message}
+                    created={message.created}
+                  />
+                </Animate>
+              })
+            }
+
             <AnimateQueue
               animate={true}
               from={{ transform: 'translateX(80px)' }}
