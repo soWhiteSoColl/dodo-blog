@@ -24,6 +24,7 @@ export default class BlogDetail extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props.blog)
     this.props.blogStore.setValue('currentBlog', this.props.blog)
   }
 

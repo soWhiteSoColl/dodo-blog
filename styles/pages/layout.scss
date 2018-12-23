@@ -21,7 +21,7 @@
     position: relative;
     top: -30px;
     .index-logo {
-      width: 150px;
+      width: 160px;
     }
     .index-links {
       a {
@@ -50,12 +50,12 @@
   .logo-brand {
     display: inline-block;
     img {
-      height: 25px;
+      height: 28px;
       position: relative;
-      top: -5px;
+      top: -2px;
       vertical-align: middle;
       @media screen and (max-width: 720px) {
-        height: 20px;
+        height: 25px;
         top: -3px;
       }
     }

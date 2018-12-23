@@ -33,7 +33,7 @@ class Header extends Component {
 				<div className="do-content-container">
 					<div className="logo-brand">
 						<Link href="/home">
-							<a><img src="/static/dodo-logo.png" alt="" /></a>
+							<a><img src="/static/logo.png" alt="" /></a>
 						</Link>
 					</div>
 					<div className="do-pull-right">
