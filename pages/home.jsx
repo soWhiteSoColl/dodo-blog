@@ -29,7 +29,7 @@ export default class App extends React.Component {
         <div className="index-page">
           <div className="index-container">
             <div className="index-logo">
-              <img src="/static/logo.png" alt="" />
+              <img src="/static/dodo2.svg" alt="" />
             </div>
 
             <div className="index-links">
