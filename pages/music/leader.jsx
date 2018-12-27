@@ -5,7 +5,7 @@ import AnimateQueue from 'widgets/AnimateQueue'
 import ScrollDetect from 'widgets/ScrollDetect'
 import { inject, observer } from 'mobx-react'
 import classnames from 'classnames'
-import { downloadFile, secondToMunite } from 'tools'
+import { downloadFile, secondToMunite } from 'tools/main'
 
 @inject('musicStore')
 @observer

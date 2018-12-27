@@ -1,7 +1,8 @@
 import React from 'react'
 import Link from 'next/link'
-import mouseMoveAnimation from 'util/mouse-animation'
 import Head from 'next/head'
+import mouseMoveAnimation from 'tools/mouse-animation'
+
 
 const links = [
   { to: '/', text: '博客' },

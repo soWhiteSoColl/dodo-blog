@@ -1,5 +1,5 @@
 import React from 'react'
-import { pageScrollTo } from 'tools'
+import { pageScrollTo } from 'tools/main'
 import classnames from 'classnames'
 import Icon from './widgets/Icons'
 

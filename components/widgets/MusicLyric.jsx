@@ -1,5 +1,5 @@
 import React from 'react'
-import { formatLyric } from 'tools'
+import { formatLyric } from 'tools/main'
 import classnames from 'classnames'
 
 

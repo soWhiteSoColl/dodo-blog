@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import Link from 'next/link'
-import classnames from 'classnames'
 import { withRouter } from 'next/router'
+import classnames from 'classnames'
 
 
 const musicMenus = [

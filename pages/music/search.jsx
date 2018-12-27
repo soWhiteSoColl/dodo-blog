@@ -1,11 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
-import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
+import { observer, inject } from 'mobx-react'
+import AnimateQueue from 'widgets/AnimateQueue'
 import Icon from 'widgets/Icons'
 import ScrollDetect from 'widgets/ScrollDetect'
-import { observer, inject } from 'mobx-react';
-import { downloadFile, secondToMunite } from 'tools'
+import { downloadFile, secondToMunite } from 'tools/main'
+
 
 @inject('musicStore')
 @observer

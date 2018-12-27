@@ -1,11 +1,11 @@
 import React from 'react'
 import Head from 'next/head'
-import MusicCanvas from '../../components/widgets/MusicCavas'
-import MusicBg from '../../components/widgets/MusicBg'
-import MusicLyric from '../../components/widgets/MusicLyric'
 import { autorun } from 'mobx'
-import Icon from '../../components/widgets/Icons'
 import classnames from 'classnames'
+import MusicCanvas from 'widgets/MusicCavas'
+import MusicBg from 'widgets/MusicBg'
+import MusicLyric from 'widgets/MusicLyric'
+import Icon from 'widgets/Icons'
 
 
 export default class Music extends React.Component {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { dateFormater } from 'tools'
+import { dateFormater } from 'tools/main'
 import Link from 'next/link'
 import Head from 'next/head'
 import { Drawer } from 'dodoui'
 import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
-import store from '../store'
+import stores from '../stores'
 import ScrollDetect from 'widgets/ScrollDetect'
 
 
@@ -22,7 +22,7 @@ const Date = props => <div className="blogs-group-date">{props.date}</div>
 
 const BlogItem = props => {
   const blog = props.blog
-  const audio = store.musicStore.audio
+  const audio = stores.musicStore.audio
   const paused = !audio || audio.paused
 
   return (
@@ -41,8 +41,8 @@ export default class Blogs extends Component {
     showNum: 10
   }
 
-  static async getInitialProps(cxt, store) {
-    const blogs = await store.blogStore.list(1)
+  static async getInitialProps(cxt, stores) {
+    const blogs = await stores.blogStore.list(1)
     return { blogs }
   }
 

@@ -1,15 +1,15 @@
 import React, { Component } from 'react'
-import { dateFormater } from 'tools'
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
+import Blog from 'widgets/Blog'
 import { Button } from 'dodoui'
 import Comment, { CommentList } from 'widgets/Comment'
 import AnimateQueue, { Animate } from 'widgets/AnimateQueue'
-import checkNickname from 'util/checkNickname'
-import Blog from 'widgets/Blog'
-import dynamic from 'next/dynamic'
-import { toJS } from 'mobx'
-const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
+import { dateFormater } from 'tools/main'
+import { checkNickname } from 'tools/checker'
 
+
+const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
 
 export default class BlogDetail extends Component {
   static async getInitialProps(ctx, store) {

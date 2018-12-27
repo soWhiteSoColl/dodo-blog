@@ -12,8 +12,7 @@
 					"."
 				],
 				"alias": {
-					"tools": "./util/tools",
-					"util": "./util",
+					"tools": "./tools",
 					"components": "./components",
 					"widgets": "./components/widgets"
 				}

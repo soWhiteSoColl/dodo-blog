@@ -1,12 +1,13 @@
 import React from 'react';
 import Head from 'next/head'
+import dynamic from 'next/dynamic'
 import { Button } from 'dodoui'
 import Comment, { CommentList } from 'widgets/Comment'
-import checkNickname from 'util/checkNickname'
+import { checkNickname } from 'tools/checker'
 import AnimateQueue, { Animate } from 'widgets/AnimateQueue'
-import dynamic from 'next/dynamic'
-const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
 
+
+const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
 
 export default class Contact extends React.Component {
   state = {

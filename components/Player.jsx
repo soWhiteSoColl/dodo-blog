@@ -1,7 +1,7 @@
 import { observer, inject } from 'mobx-react'
 import MusicPlayer from 'widgets/MusicPlayer'
 import configConst from '../config'
-import { toJS } from 'mobx'
+
 /**
  * 负责控制歌曲的数据
  * 而播放器的职责是接受歌曲的信息进行播放

@@ -1,6 +1,6 @@
 import React from 'react'
 import classnames from 'classnames'
-import { secondToMunite } from 'tools'
+import { secondToMunite } from 'tools/main'
 import Icon from './Icons'
 import _ from 'lodash'
 import Link from 'next/link'

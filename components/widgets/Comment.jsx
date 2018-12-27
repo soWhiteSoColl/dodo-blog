@@ -1,5 +1,5 @@
 import React from 'react'
-import { dateFormater } from 'tools'
+import { dateFormater } from 'tools/main'
 
 
 export default function Comment(props) {

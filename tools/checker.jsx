@@ -1,8 +1,8 @@
 import { Dialog, Input } from 'dodoui'
-import stores from '../store'
+import stores from '../stores'
 
 
-export default function checkNickname() {
+export function checkNickname() {
   return new Promise((resolve) => {
     let userInput = ''
     const { saveNickname, nickname } = stores.contactStore

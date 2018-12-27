@@ -1,8 +1,7 @@
-import React from 'react';
+import React from 'react'
 import Head from 'next/head'
-import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
-
+import classnames from 'classnames'
 import AnimateQueue from 'widgets/AnimateQueue'
 import Icon from 'widgets/Icons'
 import ScrollDetect from 'widgets/ScrollDetect'

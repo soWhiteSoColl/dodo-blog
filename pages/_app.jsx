@@ -7,7 +7,7 @@ import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Player from 'components/Player'
 import ToTop from 'components/ToTop'
-import store from 'store'
+import stores from '../stores'
 
 import '../styles/index.scss'
 import 'dodoui/lib/dodo.css'
@@ -16,7 +16,7 @@ export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let initialProps = {}
     if (Component.getInitialProps) {
-      initialProps = await Component.getInitialProps(ctx, store)
+      initialProps = await Component.getInitialProps(ctx, stores)
     }
     return { initialProps }
   }
@@ -26,8 +26,8 @@ export default class MyApp extends App {
     Router.onRouteChangeComplete = () => NProgress.done()
     Router.onRouteChangeError = () => NProgress.done()
 
-    store.contactStore.getNickName()
-    store.contactStore.saveView()
+    stores.contactStore.getNickName()
+    stores.contactStore.saveView()
 
     // hotjar.initialize(1111548, 6)
 
@@ -54,7 +54,7 @@ export default class MyApp extends App {
 
   render() {
     const { Component, initialProps } = this.props
-    const ObserverComponent = inject(store => store)(observer(Component))
+    const ObserverComponent = inject(stores => stores)(observer(Component))
 
     const {
       header: hasHeader = true,
@@ -66,7 +66,7 @@ export default class MyApp extends App {
 
     return (
       <Container>
-        <Provider {...store}>
+        <Provider {...stores}>
           <div id="app">
             {hasHeader && <Header />}
             <div className="main-content">
