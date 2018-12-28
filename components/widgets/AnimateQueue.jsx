@@ -51,7 +51,7 @@ export default class AnimateQueue extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if(!this.props.children || !prevProps.children) {
+    if (!this.props.children || !prevProps.children) {
       return null
     }
     if (prevProps.animate !== this.props.animate) {
@@ -63,8 +63,12 @@ export default class AnimateQueue extends React.Component {
   }
 
   handleAnimate = (animate) => {
-    const { interval = defaultInterval, children } = this.props
+    const { interval = defaultInterval, children, refreshInNumberChange } = this.props
     if (!children || !children.length) return false
+
+    if (refreshInNumberChange) {
+      this.setState({ current: 0 })
+    }
 
     const loop = () => {
       let current = this.state.current
@@ -96,7 +100,7 @@ export default class AnimateQueue extends React.Component {
   render() {
     const { children, speed = 400, animate, ...rest } = this.props
     const { current } = this.state
-    if(!children) return null
+    if (!children) return null
 
     return React.Children.map(children, (item, index) => {
       return <Animate animate={index < current} speed={speed} {...rest}>{item}</Animate>

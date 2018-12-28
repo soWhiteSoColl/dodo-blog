@@ -58,15 +58,7 @@ export default class Blogs extends Component {
   }
 
   handleToggleTag = id => {
-    const { tags } = this.props.blogStore.blogs
-    const selectedTags = [...tags]
-    const findIndex = selectedTags.findIndex(item => item === id)
-
-    if (findIndex === -1) {
-      selectedTags.push(id)
-    } else {
-      selectedTags.splice(findIndex, 1)
-    }
+    const selectedTags = [id]
 
     this.props.blogStore.list({ page: 1, tags: selectedTags })
       .then(() => {
@@ -115,6 +107,7 @@ export default class Blogs extends Component {
                 speed={600}
                 from={{ transform: 'translateX(100px)' }}
                 to={{ transform: 'translateX(0px)' }}
+                refreshInNumberChange={true}
               >
                 {
                   Object.entries(this.blogSort).map(([date, blogs]) => (
