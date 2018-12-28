@@ -38,7 +38,8 @@ export default class Blogs extends Component {
   fetching = false
 
   state = {
-    showNum: 10
+    showNum: 10,
+    refreshInNumberChange: false,
   }
 
   static async getInitialProps(cxt, stores) {
@@ -64,11 +65,9 @@ export default class Blogs extends Component {
     } else {
       selectedTags = [id]
     }
+    this.setState({ refreshInNumberChange: true })
     this.props.blogStore.list({ page: 1, tags: selectedTags })
-      .then(() => {
-        this.setState({ reloading: true })
-        setTimeout(() => this.setState({ reloading: false }))
-      })
+      .then(() => this.setState({ refreshInNumberChange: false }))
   }
 
 
@@ -92,6 +91,7 @@ export default class Blogs extends Component {
     const { tags, hotBlogs, blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
+    const { refreshInNumberChange } = this.state
 
     return (
       <React.Fragment>
@@ -111,7 +111,7 @@ export default class Blogs extends Component {
                 speed={600}
                 from={{ transform: 'translateX(100px)' }}
                 to={{ transform: 'translateX(0px)' }}
-                refreshInNumberChange={true}
+                refreshInNumberChange={refreshInNumberChange}
               >
                 {
                   Object.entries(this.blogSort).map(([date, blogs]) => (
