@@ -58,8 +58,12 @@ export default class Blogs extends Component {
   }
 
   handleToggleTag = id => {
-    const selectedTags = [id]
-
+    let selectedTags
+    if (this.props.blogStore.blogs.tags[0] === id) {
+      selectedTags = []
+    } else {
+      selectedTags = [id]
+    }
     this.props.blogStore.list({ page: 1, tags: selectedTags })
       .then(() => {
         this.setState({ reloading: true })
