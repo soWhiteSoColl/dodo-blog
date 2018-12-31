@@ -24,7 +24,9 @@ export default class CommentGroup extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.list.length !== prevProps.list.length) {
+    if (this.props.list.length && !prevProps.list.length) {
+      this.handlePushList()
+    } else if (this.props.list.length !== prevProps.list.length) {
       this.handlePushNewMessage()
     }
   }
@@ -41,6 +43,11 @@ export default class CommentGroup extends React.Component {
     this.setState({ newMessages })
   }
 
+  handlePushList = () => {
+    const list = this.props.list
+    this.setState({ list })
+  }
+
   handleSubmit = () => {
     const { nickname } = this.props.contactStore
 
@@ -55,12 +62,10 @@ export default class CommentGroup extends React.Component {
 
   render() {
     const { message, newMessages, list } = this.state
-    const { title } = this.props
 
     return (
       <div className="comment-group">
         <div className="comment-form">
-          <h2>{title}</h2>
           <div className="comment-form-wrapper">
             <Editor
               placeholder={'啦啦啦。。。'}
