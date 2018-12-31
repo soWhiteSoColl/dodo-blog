@@ -51,12 +51,15 @@ export default class Contact extends React.Component {
               <Tab>联系小寒</Tab>
               <Tab>github</Tab>
             </Tabs>
-
-            <CommentGroup
-              title={greet}
-              list={leavedMessages.list}
-              onSubmit={this.handleSubmit}
-            />
+            {
+              currentTab === 0 && <CommentGroup
+                title={greet}
+                list={leavedMessages.list}
+                onSubmit={this.handleSubmit}
+              />
+            }
+            {currentTab === 1 && <div>开发中</div>}
+            {currentTab === 2 && <div>开发中</div>}
           </div>
         </div>
       </React.Fragment>
