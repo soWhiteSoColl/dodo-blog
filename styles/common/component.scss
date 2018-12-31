@@ -5,7 +5,7 @@
 }
 
 .do-common-container {
-  @include do-container;
+  padding: 0 15px;
   max-width: $common-container-width;
   margin: 0 auto;
 }

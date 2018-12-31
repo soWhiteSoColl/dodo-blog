@@ -2,84 +2,88 @@
   font-size: 14px;
   color: #444;
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6,
-  span,
-  div,
-  pre,
-  ul,
-  ol,
-  p, 
-  code,
-  blockquote {
-    font-weight: normal;
-    line-height: 1.5;
-    margin: 0.5em 0;
-    div, span {
-      line-height: inherit;
-      margin: 0;
-    }
-  }
+  div[data-contents=true] {
+    padding-bottom: 0;
 
-  p {
-    min-height: 1.5em;
-  }
-  ul,
-  ol {
-    margin: 0.5em 0;
-    padding-left: 16px;
-    li {
-      margin-left: 1.5em;
-      margin-bottom: 0.5em;
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    span,
+    div,
+    pre,
+    ul,
+    ol,
+    p,
+    code,
+    blockquote {
+      font-weight: normal;
+      line-height: 1.5;
+      margin: 0.5em 0;
+      div,
+      span {
+        line-height: inherit;
+        margin: 0;
+      }
     }
-  }
-  h1 {
-    font-size: 2.2em;
-    margin: 30px 0;
-  }
-  h2 {
-    font-size: 1.6em;
-    margin: 25px 0;
-  }
-  h3 {
-    font-size: 1.3em;
-    padding-left: 0.4em;
-    line-height: 1;
-    margin: 20px 0;
-    border-left: 4px solid $primary-color;
-  }
-  h4 {
-    font-size: 1.2em;
-    line-height: 1em;
-    margin: 15px 0;
-  }
-  pre {
-    max-width: 100%;
-    max-height: 100%;
-    margin: 10px 0;
-    padding: 15px;
-    overflow: auto;
-    background-color: #36312f;
-    border-radius: 4px;
-    color: #fff;
-    font-family: monospace;
-    font-size: 14px;
-    font-weight: 400;
-    line-height: 16px;
-    word-wrap: break-word;
-    white-space: pre-wrap;
-  }
-  blockquote {
-    margin: 0 0 10px;
-    padding: 15px 20px;
-    background-color: #f1f2f3;
-    border-left: 5px solid #ccc;
-    color: #666;
-    font-style: italic;
+    p {
+      min-height: 1.5em;
+    }
+    ul,
+    ol {
+      margin: 0.5em 0;
+      padding-left: 16px;
+      li {
+        margin-left: 1.5em;
+        margin-bottom: 0.5em;
+      }
+    }
+    h1 {
+      font-size: 2.2em;
+      margin: 30px 0;
+    }
+    h2 {
+      font-size: 1.6em;
+      margin: 25px 0;
+    }
+    h3 {
+      font-size: 1.3em;
+      padding-left: 0.4em;
+      line-height: 1;
+      margin: 20px 0;
+      border-left: 4px solid $primary-color;
+    }
+    h4 {
+      font-size: 1.2em;
+      line-height: 1em;
+      margin: 15px 0;
+    }
+    pre {
+      max-width: 100%;
+      max-height: 100%;
+      margin: 10px 0;
+      padding: 15px;
+      overflow: auto;
+      background-color: #36312f;
+      border-radius: 4px;
+      color: #fff;
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 16px;
+      word-wrap: break-word;
+      white-space: pre-wrap;
+    }
+    blockquote {
+      margin: 0 0 10px;
+      padding: 15px 20px;
+      background-color: #f1f2f3;
+      border-left: 5px solid #ccc;
+      color: #666;
+      font-style: italic;
+    }
   }
 
   .DraftEditor-editorContainer {
@@ -93,5 +97,7 @@
   }
   .public-DraftEditorPlaceholder-inner {
     margin: 0;
+    top: -2px;
+    position: relative;
   }
 }

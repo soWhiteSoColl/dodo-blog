@@ -1,13 +1,12 @@
 import React from 'react'
 import { Drawer } from 'dodoui'
 
-export default class Blog extends React.Component {
+export default class ContentsTable extends React.Component {
   state = {
     tables: [],
     content: '',
   }
 
-  table = React.createRef()
   parsed = false
 
   componentDidMount() {
@@ -27,7 +26,7 @@ export default class Blog extends React.Component {
   }
 
   handleParse = () => {
-    const content = this.props.content
+    const { content } = this.props
     let result = content
     const tables = []
     if (content) {
@@ -42,14 +41,13 @@ export default class Blog extends React.Component {
   }
 
   render() {
-    const { tables, content } = this.state
+    const { tables, } = this.state
 
     return (
       <div className="blog-wrapper">
-        <div className="blog-content" dangerouslySetInnerHTML={{ __html: content || this.props.content }}></div>
         {tables.length > 0 &&
           <Drawer>
-            <div className="blog-table" ref={this.table}>
+            <div className="blog-table">
               <h4>目录</h4>
               {tables.map(({ hash, tag }, index) => (
                 <div key={index} className="blog-table-item">

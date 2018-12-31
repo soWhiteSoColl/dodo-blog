@@ -2,6 +2,7 @@ import { observable, action } from 'mobx'
 import Base from './base'
 import axios from '../config/axios'
 
+
 export default class Store extends Base {
   @observable nickname = ''
   @observable leavedMessages = { list: [], page: 1, perPage: 20, total: 0 }
@@ -33,6 +34,7 @@ export default class Store extends Base {
   leaveMessage = message => {
     const nickname = this.nickname
     return axios.post('/leaved-messages', { nickname, message, type: 0 })
+      .then(this.getLeavedMessages)
   }
 
   @action

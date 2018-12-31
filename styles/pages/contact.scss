@@ -1,22 +1,3 @@
-.contact-form {
-  textarea.ze-input {
-    min-height: 200px;
-  }
-  .ze-input-area {
-    margin-bottom: 10px;
-  }
-
-  h2 {
-    font-weight: 300;
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-}
-.contact-message-list {
-  margin-top: 60px;
-  color: #666;
-}
-
 .do-dialog {
   .contact-input-nickname {
     .ze-input-container {
@@ -31,4 +12,39 @@
 
 .editor-wrapper .DraftEditor-root {
  @include blog-reset;
+}
+
+.comment-group {
+  .ze-btn {
+    width: 150px;
+  }
+}
+.contact-page {
+  border-top: 1px solid #ccc;
+
+  .ze-tabs {
+    display: flex;
+    justify-content: center;
+
+    .ze-tab {
+      padding: 12px 32px 13px;
+    }
+  }
+  // .comment-form {
+  //   position: fixed;
+  //   bottom: 0;
+  //   z-index: 10;
+  //   background-color: #fff;
+  //   width: 100%;
+  //   right: 0;
+
+  //   &-wrapper {
+  //     width: 720px;
+  //     margin: 0 auto;
+  //   }
+  // }
+
+  .comment-group {
+    margin-top: 40px;
+  }
 }

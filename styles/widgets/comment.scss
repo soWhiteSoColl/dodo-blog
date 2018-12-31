@@ -1,11 +1,29 @@
+$comment-bg-color: #eee;
+.comment-group {
+  .comment-form-wrapper {
+    .bf-content {
+      min-height: 120px;
+      height: auto;
+    }
+  }
+  h2 {
+    font-weight: 300;
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .comment-form-submit {
+    text-align: right;
+    margin-top: 15px;
+  }
+}
+
 .w-comment-list {
-  margin-top: 40px;
-  margin-bottom: 80px;
+  margin-top: 20px 0;
 }
 
 .w-comment-item {
   margin: 20px 0;
-  $comment-bg-color: #f1f2f3;
   position: relative;
   &-nickname {
     font-size: 24px;

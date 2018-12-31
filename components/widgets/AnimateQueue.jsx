@@ -90,7 +90,7 @@ export default class AnimateQueue extends React.Component {
       this.timer = setTimeout(loop, interval)
     }
 
-    setTimeout(loop, interval)
+    this.timer = setTimeout(loop, interval)
   }
 
   componentWillUnmount() {

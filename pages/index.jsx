@@ -51,7 +51,6 @@ export default class Blogs extends Component {
     const blogs = this.props.blogs
     this.props.blogStore.setValues({ blogs })
     this.props.blogStore.getTags()
-    this.props.blogStore.getHotBlogs()
   }
 
   handleShowMore = () => {
@@ -88,7 +87,7 @@ export default class Blogs extends Component {
   }
 
   render() {
-    const { tags, hotBlogs, blogs } = this.props.blogStore
+    const { tags, blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
     const { refreshInNumberChange } = this.state
@@ -136,16 +135,6 @@ export default class Blogs extends Component {
             >
               {tag.value}
             </Tag>)}
-          </div>
-
-          <h2 className="blogs-drawer-title">最热</h2>
-          <div className="blogs-drawer-hot-list">
-            {hotBlogs.map(blog => <div
-              key={blog._id}
-              className="blogs-drawer-hot-item"
-            >
-              <Link href={`/blog?id=${blog._id}`}><a>{blog.title}</a></Link>
-            </div>)}
           </div>
         </Drawer>
       </React.Fragment>

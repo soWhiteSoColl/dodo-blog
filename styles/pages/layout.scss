@@ -154,11 +154,12 @@
     width: 300px;
   }
   &-links {
-    margin-bottom: 15px;
+    margin-bottom: 25px;
     font-size: 14px;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+
     &:before,
     &:after {
       content: '+';

@@ -1,58 +1,28 @@
 import React, { Component } from 'react'
 import Head from 'next/head'
-import dynamic from 'next/dynamic'
-import Blog from 'widgets/Blog'
-import { Button } from 'dodoui'
-import Comment, { CommentList } from 'widgets/Comment'
-import AnimateQueue, { Animate } from 'widgets/AnimateQueue'
+import ContentsTable from 'widgets/ContentsTable'
 import { dateFormater } from 'tools/main'
-import { checkNickname } from 'tools/checker'
-
-
-const Editor = dynamic(() => import('widgets/Editor'), { ssr: false })
+import CommentGroup from '../components/CommentGroup'
 
 export default class BlogDetail extends Component {
   static async getInitialProps(ctx, store) {
-    let id = ctx.query && ctx.query.id
-    let blog = await store.blogStore.read(id)
+    const id = ctx.query && ctx.query.id
+    const blog = await store.blogStore.read(id)
     return { id, blog }
   }
 
-  state = {
-    newComments: [],
-    message: null
+  constructor(props) {
+    super(props)
+    this.props.blogStore.setValues({ currentBlog: props.blog })
   }
 
-  componentDidMount() {
-    console.log(this.props.blog)
-    this.props.blogStore.setValue('currentBlog', this.props.blog)
-  }
-
-  handleEditorChange = message => {
-    this.setState({ message })
-  }
-
-  handleComment = () => {
-    const { message } = this.state
-
-    const _commentBlog = () => {
-      const { nickname } = this.props.contactStore
-      this.props.blogStore.comment({ message: message.toHTML(), nickname })
-        .then(comment => this.setState({ newComments: this.state.newComments.concat([comment]) }))
-      this.setState({ message: null })
-    }
-
-    if (!this.props.contactStore.nickname) {
-      checkNickname()
-        .then(_commentBlog)
-    } else {
-      _commentBlog()
-    }
+  handleComment = message => {
+    const { nickname } = this.props.contactStore
+    this.props.blogStore.comment({ message, nickname })
   }
 
   render() {
-    const blog = this.props.blog || {}
-    const { message, newComments } = this.state
+    const blog = this.props.blogStore.currentBlog || {}
     const blogDescription = blog.content && blog.content.replace(/<.*?>/g, '').slice(0, 160)
     const blogKeywords = blog.tags ? blog.tags.map(tag => tag.value) : []
 
@@ -68,49 +38,18 @@ export default class BlogDetail extends Component {
           <div className="blog-meta">
             <div className="blog-date">{dateFormater(blog.created)}</div>
           </div>
-          <Blog content={blog.content} />
-          <div className="blog-comment-input">
-            <h2>评论区</h2>
-            <Editor
-              placeholder={'啦啦啦。。。'}
-              value={message}
-              onChange={this.handleEditorChange}
-            />
-            <Button type={'primary'} onClick={this.handleComment}>评论</Button>
+          <div className="blog-wrapper">
+            <div
+              className="blog-content"
+              dangerouslySetInnerHTML={{ __html: blog.content }}
+            ></div>
           </div>
-          <CommentList>
-            {
-              newComments.map(message => {
-                return <Animate
-                  animate={true}
-                  from={{ transform: 'translateX(80px)' }}
-                  to={{ transform: 'translateX(0px)' }}
-                  key={message._id}
-                  speed={400}
-                >
-                  <Comment
-                    key={message._id}
-                    nickname={message.nickname}
-                    content={message.message}
-                    created={message.created}
-                  />
-                </Animate>
-              })
-            }
-            <AnimateQueue
-              animate={true}
-              from={{ transform: 'translateX(80px)' }}
-              to={{ transform: 'translateX(0px)' }}
-              interval={100}
-            >
-              {blog.comments && blog.comments.map(message => <Comment
-                key={message._id}
-                nickname={message.nickname}
-                content={message.message}
-                created={message.created}
-              />)}
-            </AnimateQueue>
-          </CommentList>
+          <ContentsTable content={blog.content} />
+          <CommentGroup
+            title={'评论区'}
+            list={blog.comments || []}
+            onSubmit={this.handleComment}
+          />
         </div>
       </React.Fragment>
     )

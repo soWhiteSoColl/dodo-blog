@@ -88,6 +88,9 @@
   .blog-content-anchor {}
 }
 
+.blog-wrapper {
+  padding-bottom: 60px;
+}
 .blogs-drawer-tags {
   margin-bottom: 30px;
 }
@@ -163,7 +166,11 @@
 .editor-wrapper {
   border: 1px solid #ccc;
   .bf-content {
-    height: 200px;
+    height: 150px;
+    padding-bottom: 0;
+    .public-DraftEditor-content {
+      padding: 5px 15px;
+    }
   }
 
   .bf-controlbar {
@@ -203,4 +210,9 @@
       margin: 0 5px;
     }
   }
+}
+
+.do-fetching-loading.editor-loading{
+  text-align: left;
+  margin-bottom: 20px;
 }

@@ -1,4 +1,4 @@
-import { observable, action } from 'mobx'
+import { observable, action, toJS } from 'mobx'
 import axios from '../config/axios'
 import Base from './base'
 import qs from 'qs'
@@ -51,6 +51,7 @@ export default class Store extends Base {
   comment = comment => {
     const id = this.currentBlog._id
     return axios.put('/articles/' + id + '/comment', comment)
+      .then(() => this.read(id))
   }
 
   @action
