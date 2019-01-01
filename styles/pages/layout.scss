@@ -122,7 +122,7 @@
 }
 
 .main-content {
-  min-height: calc(100vh - #{$main-header-height} - #{$main-footer-height});
+  min-height: calc(100vh - #{$main-header-height} - #{$main-footer-height} + 20px);
   // background-color: #f3f3f3;
   @include clearfix;
 }
