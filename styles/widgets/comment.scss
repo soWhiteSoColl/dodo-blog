@@ -2,7 +2,7 @@ $comment-bg-color: #eee;
 .comment-group {
   .comment-form-wrapper {
     .bf-content {
-      min-height: 150px;
+      min-height: 200px;
       height: auto;
     }
   }
@@ -15,22 +15,47 @@ $comment-bg-color: #eee;
   }
 
   .comment-form-submit {
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
     margin-top: 10px;
+    &-info {
+      color: #999;
+      line-height: 34px;
+    }
     .ze-btn {
       width: 120px;
-      margin-right: 0;
+      margin: 0;
     }
   }
 }
 
 .w-comment-list {
-  margin-top: 20px 0;
+  margin: 40px 0;
 }
 
 .w-comment-item {
   margin: 20px 0;
   position: relative;
+
+  &.self-comment {
+    text-align: right;
+    .w-comment-item-info {
+      flex-direction: row-reverse;
+    }
+    .w-comment-item-nickname {
+      margin-right: 0;
+      margin-left: 5px;
+    }
+    .w-comment-item-content {
+      margin-right: 40px;
+      margin-left: 0;
+    }
+    .w-comment-item-svg {
+      left: calc(100% - 8px);
+      transform: rotateY(180deg) scaleY(0.6) scaleX(1);
+    }
+  }
+
   &-nickname {
     font-size: 16px;
     margin-right: 5px;
@@ -43,13 +68,13 @@ $comment-bg-color: #eee;
   }
   &-info {
     display: flex;
-    flex-direction: column;
-    max-width: calc(100% - 80px);
-    position: relative;
+    margin-bottom: 6px;
   }
   &-time {
     font-size: 12px;
-    margin-bottom: 5px;
+    color: #999;
+    position: relative;
+    top: 5px;
   }
   &-content {
     display: inline-block;

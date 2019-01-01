@@ -74,6 +74,7 @@ export default class CommentGroup extends React.Component {
               onChange={this.handleEditorChange}
             />
             <div className="comment-form-submit">
+              <span className="comment-form-submit-info">{'(๑>ω<๑) 请不要随便，名字和内容都可以有意义一点'}</span>
               <Button type="primary" onClick={this.handleSubmit}>留言</Button>
             </div>
           </div>

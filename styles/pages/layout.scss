@@ -40,7 +40,7 @@
 .main-header {
   height: $main-header-height;
   line-height: $main-header-height;
-  // box-shadow: 0 0 20px -7px rgba(0, 0, 0, 0.65);
+  // background-color: #ccc;
 
   @media screen and (max-width: 720px) {
     height: 80px;
@@ -122,21 +122,25 @@
 }
 
 .main-content {
-  min-height: calc(100vh - #{$main-header-height} - #{$main-footer-height} + 20px);
-  // background-color: #f3f3f3;
+  min-height: calc(100vh - #{$main-header-height} - #{$main-footer-height});
   @include clearfix;
 }
 
 .main-footer {
   height: $main-footer-height;
   box-sizing: border-box;
-  color: #999;
   text-align: center;
   @include clearfix;
-  justify-content: center;
-  align-items: center;
-  display: flex;
+  position: relative;
   font-size: 12px;
+
+  .do-content-container {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+  }
 
   &-item {
     margin-right: 10px;
