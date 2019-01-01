@@ -62,10 +62,11 @@ export default class CommentGroup extends React.Component {
 
   render() {
     const { message, newMessages, list } = this.state
-
+    const { title } = this.props
     return (
       <div className="comment-group">
         <div className="comment-form">
+          {title && <h2 className="comment-form-title">{title}</h2>}
           <div className="comment-form-wrapper">
             <Editor
               placeholder={'啦啦啦。。。'}
