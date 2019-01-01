@@ -4,7 +4,6 @@ import CommentGroup from '../components/CommentGroup'
 import { Tabs } from 'dodoui'
 import { checkNickname } from 'tools/checker'
 
-
 class About extends React.Component {
   render() {
     return (
@@ -70,8 +69,8 @@ export default class Contact extends React.Component {
           <div className="do-content-container">
             <div className="contact-page-tab">
               <Tabs value={currentTab} onChange={this.handleToggleTab}>
-                <Tab>关于小寒</Tab>
                 <Tab>留言板</Tab>
+                <Tab>关于小寒</Tab>
               </Tabs>
             </div>
           </div>
