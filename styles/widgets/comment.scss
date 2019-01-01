@@ -8,14 +8,19 @@ $comment-bg-color: #eee;
   }
 
   h2 {
-    font-weight: 300;
-    font-size: 24px;
+    font-weight: 400;
+    font-size: 18px;
     margin-bottom: 10px;
+    color: #555;
   }
 
   .comment-form-submit {
     text-align: right;
-    margin-top: 15px;
+    margin-top: 10px;
+    .ze-btn {
+      width: 120px;
+      margin-right: 0;
+    }
   }
 }
 
@@ -27,10 +32,9 @@ $comment-bg-color: #eee;
   margin: 20px 0;
   position: relative;
   &-nickname {
-    font-size: 24px;
-    margin-right: 10px;
+    font-size: 16px;
+    margin-right: 5px;
     display: inline-block;
-    font-weight: 300;
     @media screen and (max-width: 720px) {
       font-size: 20px;
       margin-right: 5px;
@@ -50,7 +54,7 @@ $comment-bg-color: #eee;
   &-content {
     display: inline-block;
     font-size: 14px;
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 40px;
     background-color: $comment-bg-color;
     padding: 15px;
@@ -74,6 +78,7 @@ $comment-bg-color: #eee;
 
 .w-comment-item-content-value {
   @include blog-reset;
+  color: #4a4a4a;
   p {
     margin-top: 0;
     margin-bottom: 0;
