@@ -69,8 +69,8 @@ class More extends React.Component {
               <div className="contact-project-cover">
                 <img src={item.cover} alt="" />
                 <div className="contact-project-mask">
-                  <a target="_new" href={item.link}><Button type="primary">在线演示</Button></a>
-                  <a target="_new" href={item.codeLink}><Button>项目地址</Button></a>
+                  <a target="_blank" href={item.link}><Button type="primary">在线演示</Button></a>
+                  <a target="_blank" href={item.codeLink}><Button>项目地址</Button></a>
                 </div>
               </div>
               <div className="contact-project-name">
