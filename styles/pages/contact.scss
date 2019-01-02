@@ -69,7 +69,6 @@
   margin-top: 20px;
 
   &-item {
-    width: 32%;
     background-color: #fff;
     margin-bottom: 20px;
     padding: 10px;
@@ -77,7 +76,8 @@
     border-radius: 4px;
     position: relative;
     top: 0;
-    transition: all ease 0.3s;
+    transition: all ease .3s;
+
     @media screen and (max-width: 750px) {
       width: 100%;
     }
@@ -85,6 +85,10 @@
       top: -2px;
       box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
     }
+  }
+
+  &-item-wrapper {
+    width: 32%;
   }
 
   &-cover {
@@ -115,6 +119,7 @@
     background-color: rgba(255, 255, 255, 0.7);
     opacity: 0;
     transition: all ease .3s;
+    
     .ze-btn:not(.ze-btn-primary) {
       background-color: transparent;
       border: 1px solid $primary-color;

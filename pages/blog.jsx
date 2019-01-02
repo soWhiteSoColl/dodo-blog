@@ -46,7 +46,7 @@ export default class BlogDetail extends Component {
           </div>
           <ContentsTable content={blog.content} />
           <CommentGroup
-            title={'评论区'}
+            placeholder={'请在这里发表评论'}
             list={blog.comments || []}
             onSubmit={this.handleComment}
           />

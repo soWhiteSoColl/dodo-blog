@@ -53,10 +53,7 @@ export default class Contact extends React.Component {
 
   render() {
     const { currentTab } = this.state
-    const { leavedMessages, nickname } = this.props.contactStore
-    const greet = nickname
-      ? `嗨，${nickname}。。。`
-      : <span className="do-link" onClick={this.handleInputName}>你是谁呀？</span>
+    const { leavedMessages } = this.props.contactStore
 
     return (
       <React.Fragment>
@@ -76,7 +73,7 @@ export default class Contact extends React.Component {
           </div>
           {currentTab === 0 && (
             <div className="do-content-container">
-              <CommentGroup list={leavedMessages.list} title={greet} onSubmit={this.handleSubmit} />
+              <CommentGroup list={leavedMessages.list} placeholder={'请在这里留言'} onSubmit={this.handleSubmit} />
             </div>
           )}
           {currentTab === 1 && <About />}

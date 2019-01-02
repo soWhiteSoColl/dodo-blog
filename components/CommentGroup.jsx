@@ -62,19 +62,19 @@ export default class CommentGroup extends React.Component {
 
   render() {
     const { message, newMessages, list } = this.state
-    const { title } = this.props
+    const { title, placeholder } = this.props
     return (
       <div className="comment-group">
         <div className="comment-form">
           {title && <h2 className="comment-form-title">{title}</h2>}
           <div className="comment-form-wrapper">
             <Editor
-              placeholder={'啦啦啦。。。'}
+              placeholder={placeholder || '啦啦啦。。。'}
               value={message}
               onChange={this.handleEditorChange}
             />
             <div className="comment-form-submit">
-              <span className="comment-form-submit-info">{'(๑>ω<๑) 请不要随便，名字和内容都可以有意义一点'}</span>
+              <span className="comment-form-submit-info">{'(๑>ω<๑) 大家起名字和填写内容都可以稍微有意义一点吖'}</span>
               <Button type="primary" onClick={this.handleSubmit}>留言</Button>
             </div>
           </div>
