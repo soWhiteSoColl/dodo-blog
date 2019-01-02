@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import Link from 'next/link'
+
 
 const friendLinks = [
   { name: '鼻子亲了脸', url: 'https://www.bzqll.com/' },
@@ -8,13 +10,6 @@ const friendLinks = [
   { name: '组件库', url: 'https://ui.dodoblog.cn' },
 ]
 class Footer extends Component {
-  // handleShowQrcode = () => {
-  //     Dialog.open({
-  //         title: '加微信',
-  //         content: <img className="main-footer-wx-qrcode" src="/static/qrcode.jpg" alt=""/>,
-  //         animationIn: 'bounce',
-  //     })
-  // }
   render() {
     return (
       <footer className="main-footer">
@@ -28,7 +23,7 @@ class Footer extends Component {
             <div>
               <span className="main-footer-item">&copy;2018 dodo</span>
               <span className="main-footer-item">
-                <a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">京ICP备18038032号-2</a>
+                <Link href="/blog?id=5c2c8bf7e71e1855ab4d18f0" target="_blank">关于小寒</Link>
               </span>
             </div>
           </div>

@@ -1,7 +1,5 @@
 import React from 'react';
 import Head from 'next/head'
-import CommentGroup from '../components/CommentGroup'
-import { Tabs } from 'dodoui'
 import { checkNickname } from 'tools/checker'
 
 class About extends React.Component {
@@ -26,35 +24,12 @@ class About extends React.Component {
 }
 
 
-const Tab = Tabs.Item
 export default class Contact extends React.Component {
   state = {
     currentTab: 0
   }
 
-  componentDidMount() {
-    this.props.contactStore.getLeavedMessages()
-  }
-
-  handleSubmit = message => {
-    const { leaveMessage } = this.props.contactStore
-
-    this.props.contactStore.nickname &&
-      leaveMessage(message)
-  }
-
-  handleToggleTab = currentTab => {
-    this.setState({ currentTab })
-  }
-
-  handleInputName = () => {
-    checkNickname()
-  }
-
   render() {
-    const { currentTab } = this.state
-    const { leavedMessages } = this.props.contactStore
-
     return (
       <React.Fragment>
         <Head>
@@ -64,19 +39,8 @@ export default class Contact extends React.Component {
         </Head>
         <div className="contact-page">
           <div className="do-content-container">
-            <div className="contact-page-tab">
-              <Tabs value={currentTab} onChange={this.handleToggleTab}>
-                <Tab>留言板</Tab>
-                <Tab>关于小寒</Tab>
-              </Tabs>
-            </div>
+            <About />
           </div>
-          {currentTab === 0 && (
-            <div className="do-content-container">
-              <CommentGroup list={leavedMessages.list} placeholder={'请在这里留言'} onSubmit={this.handleSubmit} />
-            </div>
-          )}
-          {currentTab === 1 && <About />}
         </div>
       </React.Fragment >
     )

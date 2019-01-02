@@ -50,7 +50,7 @@ export default class More extends React.Component {
           animate={true}
           from={{ transform: 'translateY(80px)' }}
           to={{ transform: 'translateY(0px)' }}
-          speed={800}
+          speed={600}
           interval={100}
         >
           {
