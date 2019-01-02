@@ -97,6 +97,7 @@
     img {
       width: 100%;
       height: 200px;
+      border-radius: 2px;
     }
 
     &:hover {
@@ -127,8 +128,13 @@
     }
   }
 
+  &-info {
+    padding: 10px;
+    padding-bottom: 0;
+  }
+
   &-name {
     text-align: center;
-    margin-top: 10px;
+    color: #666;
   }
 }
