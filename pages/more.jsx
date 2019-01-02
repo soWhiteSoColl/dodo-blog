@@ -1,4 +1,5 @@
 import React from 'react'
+import Head from 'next/head'
 import AnimateQueue from 'widgets/AnimateQueue'
 import { Button } from 'dodoui'
 
@@ -51,36 +52,43 @@ export default class More extends React.Component {
 
   render() {
     return (
-      <div className="contact-project">
-        <AnimateQueue
-          animate={true}
-          from={{ transform: 'translateY(80px)' }}
-          to={{ transform: 'translateY(0px)' }}
-          speed={600}
-          interval={100}
-        >
-          {
-            this.projects.map((item, index) =>
-              <div className="contact-project-item-wrapper">
-                <div className="contact-project-item" key={index}>
-                  <div className="contact-project-cover">
-                    <img src={item.cover} alt="" />
-                    <div className="contact-project-mask">
-                      <a target="_blank" href={item.link}><Button type="primary">在线演示</Button></a>
-                      <a target="_blank" href={item.codeLink}><Button>项目地址</Button></a>
+      <>
+        <Head>
+          <title>小寒的博客 - 项目列表</title>
+        </Head>
+
+        <div className="contact-project">
+          <AnimateQueue
+            animate={true}
+            from={{ transform: 'translateY(80px)' }}
+            to={{ transform: 'translateY(0px)' }}
+            speed={600}
+            interval={100}
+          >
+            {
+              this.projects.map((item, index) =>
+                <div className="contact-project-item-wrapper">
+                  <div className="contact-project-item" key={index}>
+                    <div className="contact-project-cover">
+                      <img src={item.cover} alt="" />
+                      <div className="contact-project-mask">
+                        <a target="_blank" href={item.link}><Button type="primary">在线演示</Button></a>
+                        <a target="_blank" href={item.codeLink}><Button>项目地址</Button></a>
+                      </div>
                     </div>
-                  </div>
-                  <div className="contact-project-info">
-                    <div className="contact-project-name">
-                      {item.name}
+                    <div className="contact-project-info">
+                      <div className="contact-project-name">
+                        {item.name}
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )
-          }
-        </AnimateQueue>
-      </div>
+              )
+            }
+          </AnimateQueue>
+        </div>
+
+      </>
     )
   }
 }
