@@ -14,49 +14,6 @@
  @include blog-reset;
 }
 
-.comment-group {
-
-}
-.contact-page {
-
-  .ze-tabs {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
-    
-    .ze-tab {
-      padding: 12px 32px 13px;
-    }
-  }
-
-  .comment-group {
-    margin-top: 20px;
-  }
-}
-
-.contact-about {
-  line-height: 3em;
-  text-align: center;
-  margin-top: 30px;
-
-  &-pay-row {
-    text-align: center;
-    margin-top: 40px;
-    
-
-    img {
-      width: 200px;
-      margin-bottom: 10px;
-      &:first-child {
-        @media screen and (max-width: 750px) {
-          margin-right: 0px;
-        }
-        margin-right: 20px;
-      }
-    }
-  }
-}
-
 .contact-project {
   display: flex;
   flex-wrap: wrap;
@@ -117,12 +74,16 @@
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.7);
+    background-color: rgba(255, 255, 255, 0.5);
     opacity: 0;
     transition: all ease .3s;
-    
+    .ze-btn {
+      width: 120px;
+      padding-left: 0;
+      padding-right: 0;
+    }
     .ze-btn:not(.ze-btn-primary) {
-      background-color: transparent;
+      background-color: #fff;
       border: 1px solid $primary-color;
       color: $primary-color;
     }
