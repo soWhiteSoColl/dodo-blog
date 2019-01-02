@@ -23,7 +23,7 @@ class Footer extends Component {
             <div>
               <span className="main-footer-item">&copy;2018 dodo</span>
               <span className="main-footer-item">
-                <Link href="/blog?id=5c2c8bf7e71e1855ab4d18f0" target="_blank">关于小寒</Link>
+                <Link href="/blog?id=5c2c8bf7e71e1855ab4d18f0">关于小寒</Link>
               </span>
             </div>
           </div>

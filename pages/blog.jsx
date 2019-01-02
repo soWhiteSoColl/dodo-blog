@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Head from 'next/head'
-import ContentsTable from 'widgets/ContentsTable'
+import BlogWithTable from 'widgets/BlogWithTable'
 import { dateFormater } from 'tools/main'
 import CommentGroup from '../components/CommentGroup'
 
@@ -38,13 +38,7 @@ export default class BlogDetail extends Component {
           <div className="blog-meta">
             <div className="blog-date">{dateFormater(blog.created)}</div>
           </div>
-          <div className="blog-wrapper">
-            <div
-              className="blog-content"
-              dangerouslySetInnerHTML={{ __html: blog.content }}
-            ></div>
-          </div>
-          <ContentsTable content={blog.content} />
+          <BlogWithTable content={blog.content}/>
           <CommentGroup
             placeholder={'请在这里发表评论'}
             list={blog.comments || []}
