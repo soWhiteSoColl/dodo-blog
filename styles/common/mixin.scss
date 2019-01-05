@@ -1,3 +1,12 @@
+/**
+text-overflow-ellipsis 文字省略
+clearfix 清楚浮动
+shadow 阴影
+ball 球形
+abs-center 绝对居中
+flex-center 内部居中
+**/
+
 @mixin ball($r) {
   width: $r;
   height: $r;

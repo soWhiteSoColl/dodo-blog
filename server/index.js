@@ -11,6 +11,11 @@ app.prepare().then(() => {
     return app.render(req, res, '/blog', { id: req.params.blogId })
   })
 
+  server.get('/*/_dodo/*', (req, res) => {
+    req.url = req.url.replace(/.*\/_dodo/, '')
+    return handle(req, res)
+  })
+
   server.get('*', (req, res) => {
     return handle(req, res)
   })

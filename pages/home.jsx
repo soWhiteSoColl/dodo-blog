@@ -12,6 +12,8 @@ const links = [
 
 export default class App extends React.Component {
   canvasBg = React.createRef()
+  canvasEl = React.createRef()
+
   static getInitialProps() {
     return { footer: false, header: false }
   }
