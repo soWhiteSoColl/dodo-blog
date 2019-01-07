@@ -8,16 +8,15 @@ export default class Store extends Base {
   @observable leavedMessages = { list: [], page: 1, perPage: 20, total: 0 }
 
   @action
-  saveView = () => {
+  saveViewRecord = () => {
     const nickname = this.nickname
-    if (nickname === '小明' || nickname === '小寒' || 'nickname' === '小白') return false
+    if (nickname === '小明' || nickname === '小寒' || nickname === '小白') return false
     axios.post('/view-records', { siteName: 'blog', info: { nickname } })
   }
 
   @action
   saveNickname = nickname => {
     this.nickname = nickname
-    this.saveView()
     localStorage.setItem('dodo_name', nickname)
   }
 
@@ -38,7 +37,7 @@ export default class Store extends Base {
   }
 
   @action
-  getNickName = () => {
+  getNickname = () => {
     this.nickname = localStorage.getItem('dodo_name') || ''
   }
 }

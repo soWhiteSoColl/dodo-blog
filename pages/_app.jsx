@@ -8,7 +8,7 @@ import Footer from 'components/Footer'
 import Player from 'components/Player'
 import ToTop from 'components/ToTop'
 import stores from '../stores'
-
+import { checkNickname } from 'tools/checker'
 import '../styles/index.scss'
 import 'dodoui/lib/dodo.css'
 
@@ -26,18 +26,19 @@ export default class MyApp extends App {
     Router.onRouteChangeComplete = () => NProgress.done()
     Router.onRouteChangeError = () => NProgress.done()
 
-    stores.contactStore.getNickName()
-    stores.contactStore.saveView()
-
-    // hotjar.initialize(1111548, 6)
+    checkNickname()
+      .then(() => {
+        console.log(1231231231)
+        stores.contactStore.saveViewRecord()
+      })
 
     let recoverTitleTimer = null
     window.addEventListener('focus', () => {
       const title = document.getElementById('just_for_fun_title')
-      if(title){
+      if (title) {
         title.innerHTML = '(๑>ω<๑) 又好了耶。。。'
         recoverTitleTimer = setTimeout(() => title && document.head.contains(title) && document.head.removeChild(title), 2000)
-      } 
+      }
     })
 
     window.addEventListener('blur', () => {

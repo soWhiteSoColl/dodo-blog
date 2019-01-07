@@ -67,8 +67,8 @@ export default class More extends React.Component {
           >
             {
               this.projects.map((item, index) =>
-                <div className="contact-project-item-wrapper">
-                  <div className="contact-project-item" key={index}>
+                <div className="contact-project-item-wrapper" key={index}>
+                  <div className="contact-project-item">
                     <div className="contact-project-cover">
                       <img src={item.cover} alt="" />
                       <div className="contact-project-mask">

@@ -4,11 +4,15 @@ import stores from '../stores'
 
 export function checkNickname() {
   return new Promise((resolve) => {
+    stores.contactStore.getNickname()
     let userInput = ''
-    const { saveNickname, nickname } = stores.contactStore
 
-    if (!nickname) {
+    const { saveNickname, nickname } = stores.contactStore
+    if (nickname) {
+      resolve(true)
+    } else {
       const dialog = Dialog.create({
+        noCancelBtn: true,
         title: '提示',
         content: (
           <div className="contact-input-nickname">
@@ -20,13 +24,11 @@ export function checkNickname() {
           </div>
         )
       })
-
       return dialog.show()
         .then(() => {
-          saveNickname(userInput)
-          close()
-          resolve(true)
           dialog.close()
+          userInput && saveNickname(userInput)
+          return resolve(!!userInput)
         })
     }
   })
