@@ -7,7 +7,7 @@ export function checkNickname() {
     stores.contactStore.getNickname()
     let userInput = ''
 
-    const { saveNickname, nickname } = stores.contactStore
+    const { saveNickname, nickname, saveViewRecord } = stores.contactStore
     if (nickname) {
       resolve(true)
     } else {
@@ -28,6 +28,7 @@ export function checkNickname() {
         .then(() => {
           dialog.close()
           userInput && saveNickname(userInput)
+          saveViewRecord()
           return resolve(!!userInput)
         })
     }

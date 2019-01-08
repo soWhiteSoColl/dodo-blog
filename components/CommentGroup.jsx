@@ -51,12 +51,11 @@ export default class CommentGroup extends React.Component {
 
   handleSubmit = () => {
     const { nickname } = this.props.contactStore
-
+    console.log(nickname, '12313')
     if (!nickname) {
       checkNickname()
     } else {
       const hasMessage = this.state.message.toHTML().replace(/<.*?>/g, '').trim()
-      console.log(hasMessage)
       hasMessage && this.props.onSubmit(this.state.message.toHTML())
     }
   }
