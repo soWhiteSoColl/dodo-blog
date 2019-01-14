@@ -34,11 +34,10 @@ const BlogItem = props => {
 
 export default class Blogs extends Component {
   $blogs = React.createRef()
-  $blogsElement = React.createRef()
   fetching = false
 
   state = {
-    showNum: 10,
+    showNum: 15,
     refreshInNumberChange: false,
   }
 
@@ -90,7 +89,6 @@ export default class Blogs extends Component {
     const { tags, blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
-    const { refreshInNumberChange } = this.state
 
     return (
       <React.Fragment>
@@ -104,23 +102,14 @@ export default class Blogs extends Component {
               detect={!noMore}
               protectTime={500}
             >
-              <AnimateQueue
-                animate={true}
-                interval={100}
-                speed={600}
-                from={{ transform: 'translateX(100px)' }}
-                to={{ transform: 'translateX(0px)' }}
-                refreshInNumberChange={refreshInNumberChange}
-              >
-                {
-                  Object.entries(this.blogSort).map(([date, blogs]) => (
-                    <div className="blogs-group" key={date}>
-                      <Date date={date} />
-                      {blogs.map(blog => <BlogItem key={blog._id} blog={blog} />)}
-                    </div>
-                  ))
-                }
-              </AnimateQueue>
+              {
+                Object.entries(this.blogSort).map(([date, blogs]) => (
+                  <div className="blogs-group" key={date}>
+                    <Date date={date} />
+                    {blogs.map(blog => <BlogItem key={blog._id} blog={blog} />)}
+                  </div>
+                ))
+              }
             </ScrollDetect>
             {!noMore && <div className="do-fetching-loading">加载中...</div>}
           </div>
