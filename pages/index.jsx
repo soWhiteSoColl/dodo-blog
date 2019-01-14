@@ -7,6 +7,8 @@ import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
 import stores from '../stores'
 import ScrollDetect from 'widgets/ScrollDetect'
+import { observer, inject } from 'mobx-react'
+import { toJS } from 'mobx'
 
 
 const Tag = props => {
@@ -32,6 +34,34 @@ const BlogItem = props => {
   )
 }
 
+@inject('blogStore')
+@observer
+class Tags extends React.Component {
+  componentDidMount() {
+    this.props.blogStore.getTags()
+  }
+
+  render() {
+    const { tags } = this.props.blogStore
+    const { selected } = this.props
+
+    return (
+      <Drawer>
+        <h2 className="blogs-drawer-title">标签</h2>
+        <div className="blogs-drawer-tags">
+          {tags.map(tag => <Tag
+            key={tag._id}
+            active={selected.includes(tag._id)}
+            onClick={() => this.handleToggleTag(tag._id)}
+          >
+            {tag.value}
+          </Tag>)}
+        </div>
+      </Drawer>
+    )
+  }
+}
+
 export default class Blogs extends Component {
   $blogs = React.createRef()
   fetching = false
@@ -46,10 +76,10 @@ export default class Blogs extends Component {
     return { blogs }
   }
 
-  componentDidMount() {
-    const blogs = this.props.blogs
+  constructor(props){
+    super(props)
+    const { blogs } = props
     this.props.blogStore.setValues({ blogs })
-    this.props.blogStore.getTags()
   }
 
   handleShowMore = () => {
@@ -70,8 +100,8 @@ export default class Blogs extends Component {
 
 
   get blogSort() {
-    const blogSort = this.props.blogStore.blogs.list
-      .slice(0, this.state.showNum)
+    const list = this.props.blogs.list || []
+    const blogSort = list.slice(0, this.state.showNum)
       .sort((a, b) => a.created < b.created)
       .reduce((result, blog) => {
         const date = dateFormater(blog.created, false, { daySplit: ' / ' })
@@ -86,7 +116,7 @@ export default class Blogs extends Component {
   }
 
   render() {
-    const { tags, blogs } = this.props.blogStore
+    const { blogs } = this.props
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
 
@@ -114,18 +144,7 @@ export default class Blogs extends Component {
             {!noMore && <div className="do-fetching-loading">加载中...</div>}
           </div>
         </div>
-        <Drawer>
-          <h2 className="blogs-drawer-title">标签</h2>
-          <div className="blogs-drawer-tags">
-            {tags.map(tag => <Tag
-              key={tag._id}
-              active={selectedTags.includes(tag._id)}
-              onClick={() => this.handleToggleTag(tag._id)}
-            >
-              {tag.value}
-            </Tag>)}
-          </div>
-        </Drawer>
+        <Tags selected={selectedTags} />
       </React.Fragment>
     )
   }
