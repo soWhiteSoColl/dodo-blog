@@ -1,13 +1,25 @@
-import { observable, action, toJS } from 'mobx'
+import { observable, action } from 'mobx'
 import axios from '../config/axios'
 import Base from './base'
 
-
+const CancelToken = axios.CancelToken
 export default class MusicStore extends Base {
   audio = null
   timestamp = 1
 
-  @observable hotMusicLists = []
+  @observable hotMusicInfo = {
+    limit: 200,
+    offset: 0,
+    cat: '',
+    list: [],
+    loading: true
+  }
+
+  @observable categoryInfo = {
+    sub: [],
+    categories: {}
+  }
+
   @observable currentList = {}
   @observable currentMusic = {}
   @observable audioInfo = {}
@@ -19,13 +31,29 @@ export default class MusicStore extends Base {
   @observable searchedList = []
   @observable searchValue = ''
 
+
+  hostMusicrRequestCancel = null
+
   @action
-  getHostLists = () => {
-    const offset = this.hotMusicLists.length
-    return axios.get('/musics/hotSongList', { params: { limit: 200, offset, timestamp: this.timestamp } })
-      .then(lists => {
-        this.hotMusicLists = lists
-        return this.hotMusicLists
+  getHotMusicInfo = cat => {
+    cat = cat || '全部'
+    this.hotMusicInfo.cat = cat
+    this.hotMusicInfo.loading = true
+    this.hotMusicInfo.list = []
+    const { offset, limit } = this.hotMusicInfo
+    if (this.hostMusicrRequestCancel) {
+      this.hostMusicrRequestCancel()
+      this.hostMusicrRequestCancel = null
+    }
+    return this.request = axios.get('/musics/hotSongList', {
+      params: { limit, offset, cat },
+      customCancelToken: 'get-hot-song-list'
+    })
+      .then(list => {
+        this.hotMusicInfo.list = list
+        this.hotMusicInfo.offset = list.length
+        this.hotMusicInfo.loading = false
+        return this.hotMusicInfo
       })
   }
 
@@ -55,6 +83,12 @@ export default class MusicStore extends Base {
   getLeaderboard = () => {
     return axios.get('/musics/songList', { params: { id: 3778678, offset: 0, timestamp: this.timestamp } })
       .then(list => this.leaderboard = list)
+  }
+
+  @action
+  getCategoryInfo = () => {
+    return axios.get('/musics/songListCategory')
+      .then(categoryInfo => this.categoryInfo = categoryInfo)
   }
 
   @action
