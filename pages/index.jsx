@@ -43,7 +43,7 @@ class Tags extends React.Component {
 
   render() {
     const { tags } = this.props.blogStore
-    const { selected } = this.props
+    const { selected, onChange } = this.props
 
     return (
       <Drawer>
@@ -52,7 +52,7 @@ class Tags extends React.Component {
           {tags.map(tag => <Tag
             key={tag._id}
             active={selected.includes(tag._id)}
-            onClick={() => this.handleToggleTag(tag._id)}
+            onClick={() => onChange(tag._id)}
           >
             {tag.value}
           </Tag>)}
@@ -98,9 +98,8 @@ export default class Blogs extends Component {
       .then(() => this.setState({ refreshInNumberChange: false }))
   }
 
-
   get blogSort() {
-    const list = this.props.blogs.list || []
+    const list = this.props.blogStore.blogs.list || []
     const blogSort = list.slice(0, this.state.showNum)
       .sort((a, b) => a.created < b.created)
       .reduce((result, blog) => {
@@ -116,7 +115,7 @@ export default class Blogs extends Component {
   }
 
   render() {
-    const { blogs } = this.props
+    const { blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
 
@@ -144,7 +143,7 @@ export default class Blogs extends Component {
             {!noMore && <div className="do-fetching-loading">加载中...</div>}
           </div>
         </div>
-        <Tags selected={selectedTags} />
+        <Tags selected={selectedTags} onChange={this.handleToggleTag}/>
       </React.Fragment>
     )
   }
