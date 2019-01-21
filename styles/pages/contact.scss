@@ -31,7 +31,7 @@ div.do-dialog {
     border-radius: 4px;
     position: relative;
     top: 0;
-    transition: all ease .3s;
+    transition: all ease .2s;
     
 
     &:hover {
@@ -73,9 +73,9 @@ div.do-dialog {
     align-items: center;
     width: 100%;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
     opacity: 0;
-    transition: all ease .3s;
+    transition: all ease .5s;
     .ze-btn {
       width: 120px;
       padding-left: 0;
