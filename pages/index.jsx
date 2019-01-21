@@ -72,7 +72,7 @@ export default class Blogs extends Component {
   }
 
   static async getInitialProps(cxt, stores) {
-    const blogs = await stores.blogStore.list(1)
+    const blogs = await stores.blogStore.list({ page: 1 })
     return { blogs }
   }
 
@@ -80,10 +80,6 @@ export default class Blogs extends Component {
     super(props)
     const { blogs } = props
     this.props.blogStore.setValues({ blogs })
-  }
-
-  componentDidMount(){
-    this.handleToggleTag()
   }
 
   handleShowMore = () => {
@@ -136,23 +132,23 @@ export default class Blogs extends Component {
               detect={!noMore}
               protectTime={500}
             >
-              <AnimateQueue
+              {/* <AnimateQueue
                 animate={true}
                 interval={100}
                 speed={600}
                 from={{ transform: 'translateX(100px)' }}
                 to={{ transform: 'translateX(0px)' }}
                 refreshInNumberChange={refreshInNumberChange}
-              >
-                {
-                  Object.entries(this.blogSort).map(([date, blogs]) => (
-                    <div className="blogs-group" key={date}>
-                      <Date date={date} />
-                      {blogs.map(blog => <BlogItem key={blog._id} blog={blog} />)}
-                    </div>
-                  ))
-                }
-              </AnimateQueue>
+              > */}
+              {
+                Object.entries(this.blogSort).map(([date, blogs]) => (
+                  <div className="blogs-group" key={date}>
+                    <Date date={date} />
+                    {blogs.map(blog => <BlogItem key={blog._id} blog={blog} />)}
+                  </div>
+                ))
+              }
+              {/* </AnimateQueue> */}
             </ScrollDetect>
             {!noMore && <div className="do-fetching-loading">加载中...</div>}
           </div>

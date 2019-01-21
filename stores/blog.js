@@ -22,7 +22,6 @@ export default class Store extends Base {
     if (this.blogs.list.noMore) return false
     this.blogs.page = currnetPage || Number(this.blogs.page) + 1
     this.blogs.tags = currentTags || this.blogs.tags
-
     const { perPage, page, tags } = this.blogs
     return axios.get('/articles', {
       params: { perPage, page, tags },
