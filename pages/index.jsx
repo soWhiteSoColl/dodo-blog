@@ -82,6 +82,10 @@ export default class Blogs extends Component {
     this.props.blogStore.setValues({ blogs })
   }
 
+  componentDidMount(){
+    this.handleToggleTag()
+  }
+
   handleShowMore = () => {
     this.setState({ showNum: this.state.showNum + 10 })
   }
