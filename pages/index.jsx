@@ -100,7 +100,6 @@ export default class Blogs extends Component {
   get blogSort() {
     const list = this.props.blogStore.blogs.list || []
     const blogSort = list.slice(0, this.state.showNum)
-      .sort((a, b) => a.created < b.created)
       .reduce((result, blog) => {
         const date = dateFormater(blog.created, false, { daySplit: ' / ' })
         if (result[date]) {
@@ -117,7 +116,6 @@ export default class Blogs extends Component {
     const { blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
-    const { refreshInNumberChange } = this.state
 
     return (
       <React.Fragment>
