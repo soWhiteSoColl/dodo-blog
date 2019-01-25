@@ -8,7 +8,6 @@ import classnames from 'classnames'
 import stores from '../stores'
 import ScrollDetect from 'widgets/ScrollDetect'
 import { observer, inject } from 'mobx-react'
-import { toJS } from 'mobx'
 
 
 const Tag = props => {

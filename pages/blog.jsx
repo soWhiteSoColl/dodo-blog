@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Head from 'next/head'
 import BlogWithTable from 'widgets/BlogWithTable'
 import { dateFormater } from 'tools/main'
-import CommentGroup from '../components/CommentGroup'
+import CommentGroup from 'components/CommentGroup'
 
 export default class BlogDetail extends Component {
   static async getInitialProps(ctx, store) {
