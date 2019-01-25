@@ -22,6 +22,7 @@ let removePending = (request = {}) => {
   })
 }
 
+const responseHasAxiosSymbol = Symbol('hasAxiosPassport')
 // axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
 axios.defaults.baseURL = 'https://zeus-ui.com/api'
 axios.defaults.withCredentials = true
@@ -29,16 +30,16 @@ axios.interceptors.response.use(
   response => {
     removePending(response.config)
     
-    if (response.hasAxiosPassport
+    if (response[responseHasAxiosSymbol]
       || typeof response === 'string'
       || typeof response === 'number'
       || typeof response === 'boolean'
-      || !response
     ) {
       return Promise.resolve(response)
     }
+
     if (!response) {
-      return Promise.reject('Uncatch error')
+      return Promise.reject('no response')
     }
 
     if (response.status !== 200) {
@@ -51,7 +52,7 @@ axios.interceptors.response.use(
     }
 
     if (result.data && result.data instanceof Object) {
-      result.data.hasAxiosPassport = true
+      result.data[responseHasAxiosSymbol] = true
     }
 
     return Promise.resolve(result.data)
