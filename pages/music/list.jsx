@@ -33,10 +33,7 @@ class MusicList extends React.Component {
       <div className={classnames("music-album", active && 'active', 'play')} style={style}>
         <div className="music-album-cover">
           <img src={pic} alt="" />
-          <div
-            className={classnames("music-player-play-btn")}
-            onClick={this.handlePlay}
-          >
+          <div className={classnames("music-player-play-btn")} onClick={this.handlePlay}>
             <Icon type={active ? 'play' : 'pause'} />
           </div>
         </div>
@@ -92,7 +89,7 @@ class MusicFilter extends React.Component {
 
     return (
       <div className="do-common-container">
-        <div className={classnames('music-list-tabs-wrapper', noSub && 'music-list-tabs-no-sub')}>
+        <div className={classnames('music-list-tabs-wrapper', noSub && 'music-list-tabs-no-sub', 'hidden-xs')}>
           {!!categories.length &&
             <div className="music-main-tabs">
               <Tabs type="easy" value={mainCategory.toString()} onChange={this.handleToggleMainCategory}>
