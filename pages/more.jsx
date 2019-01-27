@@ -47,6 +47,13 @@ export default class More extends React.Component {
       codeLink: 'https://github.com/soWhiteSoColl/mousemoveAnimation',
       cover: '/static/works/mouse.png',
       desc: 'canvas 3d交互效果，自己很喜欢的一个小项目'
+    },
+    {
+      name: 'Ripple effect组件',
+      link: 'https://github.com/soWhiteSoColl/dodo-ripple',
+      codeLink: 'https://github.com/soWhiteSoColl/mousemoveAnimation',
+      cover: '/static/works/ripple.png',
+      desc: '一个精致的交互组件'
     }
   ]
 

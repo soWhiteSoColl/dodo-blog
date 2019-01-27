@@ -1,18 +1,17 @@
 import React from 'react'
-import { a } from 'tools/test'
+import { RippleBlock } from 'dodo-ripple'
+
 
 export default class Text extends React.Component {
   componentDidMount() {
-    console.log(a)
-
-    setTimeout(() => {
-      console.log(a)
-    }, 2000)
+    console.log(RippleBlock)
   }
 
   render() {
     return (
-      <div>Test</div>
+      <RippleBlock rippleColor="#39f" style={{width: 100, height: 200}}>
+        123
+      </RippleBlock>
     )
   }
 }

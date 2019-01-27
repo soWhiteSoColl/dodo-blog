@@ -42,7 +42,6 @@ export default class MusicCanvas extends React.Component {
   }
 
   handleStart = () => {
-    console.log('重新加载')
     // 创建audioNode和audioCtx
     this.handlePause()
     this.hash = this.hash + 1
@@ -91,13 +90,11 @@ export default class MusicCanvas extends React.Component {
   handleResume = () => {
     this.setState({ paused: false })
     if (this.audioCtx && this.audioCtx.state === 'suspended' && !this.state.loading) {
-      console.log('播放')
       this.audioCtx.resume()
     }
   }
 
   handleSuspend = () => {
-    console.log('暂停')
     this.setState({ paused: true })
     if (this.audioCtx && this.audioCtx.state === 'running' && !this.state.loading) {
       this.audioCtx.suspend()

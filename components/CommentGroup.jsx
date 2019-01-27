@@ -51,7 +51,6 @@ export default class CommentGroup extends React.Component {
 
   handleSubmit = () => {
     const { nickname } = this.props.contactStore
-    console.log(nickname, '12313')
     if (!nickname) {
       checkNickname()
     } else {
