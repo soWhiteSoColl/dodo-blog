@@ -210,7 +210,7 @@ export default class MusicPlayer extends React.Component {
 
     return (
       <div className={classnames(
-        "main-music-player",
+        "w-main-music-player main-music-player",
         open ? 'open' : 'close',
         showList && 'main-music-player-show-list',
         audioConfig.position === 'bottom' ? 'main-music-player-in-bottom' : 'main-music-player-small',

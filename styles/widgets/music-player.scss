@@ -219,7 +219,7 @@ $toggle-width: 20px;
     background-color: #fff;
     h3 {
       padding: 10px 20px;
-      background-color: #d8d8d8;
+      background-color: #ccc;
       font-weight: 400;
       margin: 0;
       color: #333;
@@ -304,6 +304,21 @@ $toggle-width: 20px;
   }
 }
 
+.w-main-music-player {
+  .main-music-player-list h3 {
+    background-color: rgb(161, 185, 235);
+    color: #fff;
+  }
+  .main-music-player-list-item{
+    &:hover {
+      background-color: rgb(228, 234, 245);
+    }
+    &.active{
+      background-color: $primary-color;
+      color: #fff;
+    }
+  }
+}
 .music-player-play-btn {
   @include abs-center;
   @include ball(60px);

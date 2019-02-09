@@ -8,8 +8,9 @@ import Footer from 'components/Footer'
 import Player from 'components/Player'
 import ToTop from 'components/ToTop'
 import stores from '../stores'
-import '../styles/index.scss'
 import 'dodoui/lib/dodo.css'
+import '../styles/index.scss'
+
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
