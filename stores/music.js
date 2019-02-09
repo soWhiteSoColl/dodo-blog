@@ -2,7 +2,7 @@ import { observable, action } from 'mobx'
 import axios from '../config/axios'
 import Base from './base'
 
-const CancelToken = axios.CancelToken
+
 export default class MusicStore extends Base {
   audio = null
   timestamp = 1
@@ -62,13 +62,11 @@ export default class MusicStore extends Base {
     return axios.get('/musics/songList', { params: { limit: 20, id } })
       .then(list => {
         if (!list || !list.songs) return false
-        this.currentList = list
-        this.currentList.songs = this.currentList.songs.map(song => {
+        list.songs.forEach(song => {
           song.url += '&br=999000'
-          return song
         })
 
-        return this.currentList
+        return this.currentList = list
       })
   }
 

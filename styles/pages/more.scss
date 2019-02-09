@@ -25,14 +25,14 @@ div.do-dialog {
 
   &-item {
     background-color: #fff;
-    margin-bottom: 20px;
     padding: 10px;
     padding-bottom: 15px;
     border-radius: 4px;
     position: relative;
     top: 0;
     transition: all ease .2s;
-    
+    width: 100%;
+    height: 100%;
 
     &:hover {
       top: -2px;
@@ -42,6 +42,8 @@ div.do-dialog {
 
   &-item-wrapper {
     width: 32%;
+    margin-bottom: 20px;
+
     @media screen and (max-width: 750px) {
       width: 100%;
     }
@@ -51,12 +53,13 @@ div.do-dialog {
     display: flex;
     position: relative;
     width: 100%;
-    height: 40%;
+    height: calc(100% - 36px);
 
     img {
       width: 100%;
       height: 100%;
       border-radius: 2px;
+      background-color: #ccc;
     }
 
     &:hover {

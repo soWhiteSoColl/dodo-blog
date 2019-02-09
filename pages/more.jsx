@@ -50,8 +50,8 @@ export default class More extends React.Component {
     },
     {
       name: 'Ripple effect组件',
-      link: 'https://github.com/soWhiteSoColl/dodo-ripple',
-      codeLink: 'https://github.com/soWhiteSoColl/mousemoveAnimation',
+      link: 'https://sowhitesocoll.github.io/dodo-ripple/',
+      codeLink: 'https://github.com/soWhiteSoColl/dodo-ripple',
       cover: '/static/works/ripple.png',
       desc: '一个精致的交互组件'
     }
