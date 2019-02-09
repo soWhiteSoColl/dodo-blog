@@ -26,7 +26,7 @@ export default class MyApp extends App {
     Router.onRouteChangeError = () => NProgress.done()
 
     stores.contactStore.getNickname()
-    // stores.contactStore.saveViewRecord()
+    stores.contactStore.saveViewRecord()
 
     let recoverTitleTimer = null
     window.addEventListener('focus', () => {
