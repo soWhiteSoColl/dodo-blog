@@ -6,6 +6,7 @@ import { checkNickname } from 'tools/checker'
 import AnimateQueue, { Animate } from 'widgets/AnimateQueue'
 import { inject, observer } from 'mobx-react'
 
+
 const Editor = dynamic(
   () => import('widgets/Editor'),
   {
@@ -14,6 +15,10 @@ const Editor = dynamic(
   }
 )
 
+const BraftEditor = dynamic(
+  () => import('widgets/Editor'),
+  { ssr: false }
+)
 
 @inject('contactStore')
 @observer
@@ -51,11 +56,17 @@ export default class CommentGroup extends React.Component {
 
   handleSubmit = () => {
     const { nickname } = this.props.contactStore
+    const { message } = this.state
     if (!nickname) {
       checkNickname()
     } else {
-      const hasMessage = this.state.message.toHTML().replace(/<.*?>/g, '').trim()
-      hasMessage && this.props.onSubmit(this.state.message.toHTML())
+      if (!message) {
+        return null
+      }
+      const messageHTML = message.toHTML()
+      const hasMessage = messageHTML.replace(/<.*?>/g, '').trim()
+      hasMessage && this.props.onSubmit(messageHTML)
+      this.setState({ message: ''})
     }
   }
 
@@ -98,7 +109,6 @@ export default class CommentGroup extends React.Component {
               </Animate>
             })
           }
-
           <AnimateQueue
             animate={true}
             from={{ transform: 'translateX(80px)' }}

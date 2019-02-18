@@ -1285,13 +1285,13 @@ braft-convert@^2.1.10:
     draft-convert "^2.0.0"
     draft-js "^0.10.3"
 
-braft-editor@^2.1.35:
-  version "2.1.35"
-  resolved "https://registry.yarnpkg.com/braft-editor/-/braft-editor-2.1.35.tgz#cef11dfbc2632fd88deac094f29723fd171a602b"
+braft-editor@^2.2.5:
+  version "2.2.5"
+  resolved "https://registry.yarnpkg.com/braft-editor/-/braft-editor-2.2.5.tgz#72de72ad3ef4a2b9f38041d82b4e64a070835226"
   dependencies:
     "@babel/runtime" "^7.0.0"
     braft-convert "^2.1.10"
-    braft-finder "^0.0.16"
+    braft-finder "^0.0.18"
     braft-utils "^3.0.8"
     draft-convert "^2.0.0"
     draft-js "^0.10.3"
@@ -1299,9 +1299,9 @@ braft-editor@^2.1.35:
     draftjs-utils "^0.9.4"
     immutable "~3.7.4"
 
-braft-finder@^0.0.16:
-  version "0.0.16"
-  resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.16.tgz#56a31de8c8465a75a272cab195c6189cbf655eac"
+braft-finder@^0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/braft-finder/-/braft-finder-0.0.18.tgz#5f43659b61290081fb2920cc3ce1f62e31e9da57"
 
 braft-utils@^3.0.8:
   version "3.0.9"

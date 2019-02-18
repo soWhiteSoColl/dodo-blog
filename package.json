@@ -23,7 +23,7 @@
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.18.0",
     "babel-plugin-module-resolver": "^3.1.1",
-    "braft-editor": "^2.1.35",
+    "braft-editor": "^2.2.5",
     "classnames": "^2.2.6",
     "dodoui": "1.1.6-beta",
     "express": "^4.16.4",

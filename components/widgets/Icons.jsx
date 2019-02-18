@@ -47,9 +47,9 @@ export default class SvgIcon extends React.Component {
           {(() => {
             switch (type) {
               case 'play':
-                return <path d={'M 25 5 5 5 5 25 25 25 25 5'}></path>
+                return <path d={'M26 15 8 4 8 26 26 15 26 15'}></path>
               case 'pause':
-                return <path d={'M4 15 22 4 22 26 4 15 4 15'}></path>
+                return <path d={'M7 4 7 26 25 15 7 4 7 4'}></path>
               case 'left-arrow':
                 return <path d={'M 20 5 10 15 20 25'}></path>
               case 'right-arrow':

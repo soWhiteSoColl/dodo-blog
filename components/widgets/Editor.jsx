@@ -15,6 +15,17 @@ const controls = [
 ]
 
 export default class Editor extends React.Component {
+  state = {
+    value: BraftEditor.createEditorState('')
+  }
+
+  static getDerivedStateFromProps(nextProps) {
+    if (!nextProps.value) {
+      return { value: BraftEditor.createEditorState('') }
+    }
+    return { value: nextProps.value }
+  }
+
   render() {
     return (
       <div className={'editor-wrapper'}>
@@ -22,6 +33,7 @@ export default class Editor extends React.Component {
           controls={controls}
           colors={colors}
           {...this.props}
+          value={this.state.value}
         />
       </div>
     )
