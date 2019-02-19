@@ -99,7 +99,9 @@ export default class Blogs extends Component {
 
   get blogSort() {
     const list = this.props.blogStore.blogs.list || []
-    const blogSort = list.slice(0, this.state.showNum)
+    const blogSort = list
+      .filter(blog => blog.type === 1)
+      .slice(0, this.state.showNum)
       .reduce((result, blog) => {
         const date = dateFormater(blog.created, false, { daySplit: ' / ' })
         if (result[date]) {
