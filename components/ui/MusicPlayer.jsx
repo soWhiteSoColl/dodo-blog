@@ -6,26 +6,26 @@ import _ from 'lodash'
 import Link from 'next/link'
 import Router from 'next/router'
 
-const noop = () => { }
+const noop = () => {}
 
 const MusicList = props => {
   const { musics, onToggle, current } = props
   return (
     <div className="main-music-player-list">
-      <h3>播放列表 <span className="sub">共{musics.length}首</span></h3>
+      <h3>
+        播放列表 <span className="sub">共{musics.length}首</span>
+      </h3>
       <div className="main-music-player-list-wrapper">
-        {
-          musics.map((music, index) => (
-            <div
-              key={music.id}
-              className={classnames("main-music-player-list-item", current === index && 'active')}
-              onClick={() => onToggle(index)}
-            >
-              <span className="main-music-player-list-item-name">{music.name}</span>
-              <span className="main-music-player-list-item-singer">{music.singer}</span>
-            </div>
-          ))
-        }
+        {musics.map((music, index) => (
+          <div
+            key={music.id}
+            className={classnames('main-music-player-list-item', current === index && 'active')}
+            onClick={() => onToggle(index)}
+          >
+            <span className="main-music-player-list-item-name">{music.name}</span>
+            <span className="main-music-player-list-item-singer">{music.singer}</span>
+          </div>
+        ))}
       </div>
     </div>
   )
@@ -46,7 +46,7 @@ export default class MusicPlayer extends React.Component {
     duration: null,
     random: false,
     open: false,
-    showList: false,
+    showList: false
   }
 
   componentDidMount() {
@@ -95,7 +95,8 @@ export default class MusicPlayer extends React.Component {
   handlePlay = async () => {
     const audio = this.$audio.current
     if (this.palyPromise) await this.palyPromise
-    this.palyPromise = await audio.play(audio.currentTime)
+    this.palyPromise = await audio
+      .play(audio.currentTime)
       .catch(err => {
         console.log(err)
         clearTimeout(this.playTimer)
@@ -200,8 +201,6 @@ export default class MusicPlayer extends React.Component {
     }
   }
 
-
-
   render() {
     const { open, duration, currentTime, loop, showList, currentIndex, random } = this.state
     const { audioConfig, musics = [], paused, onPlay = noop, onPause = noop } = this.props
@@ -209,21 +208,20 @@ export default class MusicPlayer extends React.Component {
     const currentRoute = Router.router.route
 
     return (
-      <div className={classnames(
-        "w-main-music-player main-music-player",
-        open ? 'open' : 'close',
-        showList && 'main-music-player-show-list',
-        audioConfig.position === 'bottom' ? 'main-music-player-in-bottom' : 'main-music-player-small',
-        paused ? 'pause' : 'play',
-      )}>
-        <audio src={url} ref={this.$audio} loop={loop} name={name}/>
+      <div
+        className={classnames(
+          'w-main-music-player main-music-player',
+          open ? 'open' : 'close',
+          showList && 'main-music-player-show-list',
+          audioConfig.position === 'bottom' ? 'main-music-player-in-bottom' : 'main-music-player-small',
+          paused ? 'pause' : 'play'
+        )}
+      >
+        <audio src={url} ref={this.$audio} loop={loop} name={name} />
         <div className="main-music-player-wrapper">
-          <div
-            className="main-music-player-pic"
-            onClick={paused ? onPlay : onPause}
-          >
+          <div className="main-music-player-pic" onClick={paused ? onPlay : onPause}>
             <img src={pic} alt={name} />
-            <div className={classnames("music-player-play-btn")}>
+            <div className={classnames('music-player-play-btn')}>
               <Icon type={paused ? 'pause' : 'play'} />
             </div>
           </div>
@@ -231,8 +229,8 @@ export default class MusicPlayer extends React.Component {
             <div className="main-music-player-progress-bar" onClick={this.handlePlayFrom}>
               <div
                 className="main-music-player-progress-bar-inner"
-                style={{ width: `${currentTime / duration * 100}%` }}
-              ></div>
+                style={{ width: `${(currentTime / duration) * 100}%` }}
+              />
               <span className="main-music-player-progress-bar-timer">
                 {duration ? `${secondToMunite(currentTime)} / ${secondToMunite(duration)}` : '加载中...'}
               </span>
@@ -243,8 +241,13 @@ export default class MusicPlayer extends React.Component {
             </div>
 
             <div className="main-music-player-control">
-              <Link href={currentRoute === '/music/player' ? (this.historyRoute || '/music/list') : '/music/player'}>
-                <Icon type={'music'} antd={true} active={currentRoute === '/music/player'} onClick={this.handlePushHistory} />
+              <Link href={currentRoute === '/music/player' ? this.historyRoute || '/music/list' : '/music/player'}>
+                <Icon
+                  type={'music'}
+                  antd={true}
+                  active={currentRoute === '/music/player'}
+                  onClick={this.handlePushHistory}
+                />
               </Link>
               <Icon type={'random'} antd={true} active={random} onClick={this.handleRandom} />
               <Icon type={'loop'} antd={true} active={loop} onClick={this.handleToggleLoop} />
@@ -254,12 +257,15 @@ export default class MusicPlayer extends React.Component {
             </div>
           </div>
 
-          <div className={classnames("main-music-player-toggle", open ? 'open' : 'close')} onClick={this.handleToggleOpen}>
+          <div
+            className={classnames('main-music-player-toggle', open ? 'open' : 'close')}
+            onClick={this.handleToggleOpen}
+          >
             <Icon type={open ? 'left-arrow' : 'right-arrow'} />
           </div>
         </div>
         <MusicList onToggle={this.handleToggle} musics={musics} current={currentIndex} />
-      </div >
+      </div>
     )
   }
 }

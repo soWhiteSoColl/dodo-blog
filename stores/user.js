@@ -1,7 +1,7 @@
 import { observable, action, toJS } from 'mobx'
-import axios from '../config/axios'
+import githubAxios from '../config/axios'
+import axios from 'axios'
 import Base from './base'
-
 
 export default class Store extends Base {
   audio = null
@@ -11,8 +11,20 @@ export default class Store extends Base {
   @observable token = null
 
   @action
-  login = () => {
-    return axios.get('/users/login-github', { params: { origin: 'http://localhost:8082/login-result' } })
+  login = userInfo => {
+    return axios.post('/users/login', userInfo)
+  }
+
+  @action
+  sendCodeToEmail = email => {
+    return axios.post('/mail/code', { to: email })
+  }
+
+  @action
+  loginWithGithub = () => {
+    return githubAxios.post('/users/login', {
+      params: { origin: 'http://localhost:8082/login-result' }
+    })
   }
 
   @action
@@ -23,7 +35,8 @@ export default class Store extends Base {
 
   @action
   getInfo = () => {
-    return axios.get('/users/tokentoinfo', { headers: { vf: this.toekn } })
-      .then(data => { this.info = data })
+    return githubAxios.get('/users/tokentoinfo', { headers: { vf: this.toekn } }).then(data => {
+      this.info = data
+    })
   }
 }

@@ -1,8 +1,4 @@
 // container 一共有三种
-@mixin do-container {
-  padding: 0 15px;
-  max-width: 100%;
-}
 
 .do-common-container {
   padding: 0 15px;
@@ -22,81 +18,9 @@
   float: right;
 }
 
-.do-input {
-  padding: 0 14px;
-  font-size: 14px;
-  text-indent: 0px;
-  width: 100%;
-  border: 1px solid #ccc;
-  line-height: $input-height;
-  height: $input-height;
-  border-radius: $input-radius;
-  box-sizing: border-box;
-  color: #444;
-  &:hover {
-    border: 1px solid $primary-color;
-  }
-  &:focus {
-    border: 1px solid $primary-color;
-    outline: none;
-    box-shadow: 0 0 2px $primary-color;
-  }
-  &::placeholder {
-    text-transform: capitalize;
-  }
-}
-
-textarea.do-input {
-  text-indent: 0;
-  height: auto;
-  padding: 10px 14px;
-  display: inline-block;
-  overflow: hidden;
-  line-height: 1.4em;
-}
-
 .do-group {
   @include clearfix;
   margin: 10px 0;
-}
-
-.do-btn {
-  font-size: 14px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  background: none;
-  padding: 6px 40px;
-  text-transform: capitalize;
-  color: #666;
-  border-radius: 30px;
-  display: inline-block;
-  margin: 0;
-  a {
-    text-decoration: none;
-    color: #666;
-  }
-  &:focus {
-    outline: none;
-  }
-  &:hover {
-    background: #eee;
-  }
-  &[disabled] {
-    cursor: not-allowed;
-    opacity: 0.7;
-  }
-  &-primary {
-    border-color: $primary-color;
-    background-color: $primary-color;
-    color: #fff;
-    &:hover {
-      background: $high-primary-color;
-    }
-  }
-}
-
-.full-btn {
-  width: 100%;
 }
 
 .do-list {
@@ -123,11 +47,10 @@ textarea.do-input {
   color: #fff;
   font-size: 12px;
   border-radius: 20px;
-  &+.do-tag {
+  & + .do-tag {
     margin-left: 5px;
   }
 }
-
 
 @keyframes modal-animate-in {
   0% {
@@ -166,12 +89,12 @@ textarea.do-input {
       color: #222;
     }
     .modal-cancel-btn {
-        position: absolute;
-        right: 20px;
-        top: 6px;
-        font-size: 30px;
-        transform: rotateZ(45deg);
-        cursor: pointer;
+      position: absolute;
+      right: 20px;
+      top: 6px;
+      font-size: 30px;
+      transform: rotateZ(45deg);
+      cursor: pointer;
     }
   }
   &-content {
@@ -181,14 +104,14 @@ textarea.do-input {
     text-align: right;
     padding: 20px;
     button {
-        margin-left: 10px;
+      margin-left: 10px;
     }
   }
   &.modal-animate-in {
-    animation: modal-animate-in .6s 1 forwards;
+    animation: modal-animate-in 0.6s 1 forwards;
   }
   &.modal-animate-out {
-    animation: modal-animate-out .6s 1 forwards;
+    animation: modal-animate-out 0.6s 1 forwards;
   }
 }
 
@@ -203,7 +126,6 @@ textarea.do-input {
 .text-overflow-ellipsis {
   @include text-overflow-ellipsis;
 }
-
 
 .do-to-top {
   width: 50px;
@@ -230,7 +152,7 @@ textarea.do-input {
     bottom: 50px;
   }
 
-  @media screen and (max-width:720px) {
+  @media screen and (max-width: 720px) {
     width: 40px;
     height: 40px;
     right: 15px;
@@ -250,7 +172,7 @@ textarea.do-input {
 }
 
 .hidden-xs {
-  @media screen and (max-width: 720px){
+  @media screen and (max-width: 720px) {
     display: none !important;
   }
 }

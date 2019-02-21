@@ -1,10 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
-import AnimateQueue from 'widgets/AnimateQueue'
+import AnimateQueue from 'ui/AnimateQueue'
 import { Button } from 'dodoui'
 
 export default class More extends React.Component {
-
   projects = [
     {
       name: 'zeus-ui 组件库',
@@ -72,29 +71,28 @@ export default class More extends React.Component {
             speed={600}
             interval={100}
           >
-            {
-              this.projects.map((item, index) =>
-                <div className="contact-project-item-wrapper" key={index}>
-                  <div className="contact-project-item">
-                    <div className="contact-project-cover">
-                      <img src={item.cover} alt="" />
-                      <div className="contact-project-mask">
-                        <a target="_blank" href={item.link}><Button type="primary">在线演示</Button></a>
-                        <a target="_blank" href={item.codeLink}><Button>项目地址</Button></a>
-                      </div>
-                    </div>
-                    <div className="contact-project-info">
-                      <div className="contact-project-name">
-                        {item.name}
-                      </div>
+            {this.projects.map((item, index) => (
+              <div className="contact-project-item-wrapper" key={index}>
+                <div className="contact-project-item">
+                  <div className="contact-project-cover">
+                    <img src={item.cover} alt="" />
+                    <div className="contact-project-mask">
+                      <a target="_blank" href={item.link}>
+                        <Button type="primary">在线演示</Button>
+                      </a>
+                      <a target="_blank" href={item.codeLink}>
+                        <Button>项目地址</Button>
+                      </a>
                     </div>
                   </div>
+                  <div className="contact-project-info">
+                    <div className="contact-project-name">{item.name}</div>
+                  </div>
                 </div>
-              )
-            }
+              </div>
+            ))}
           </AnimateQueue>
         </div>
-
       </>
     )
   }

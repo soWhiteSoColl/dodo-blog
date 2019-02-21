@@ -1,40 +1,7 @@
-#__next, #app {
+#__next,
+#app {
   transition: all ease 0.6s;
   width: 100%;
-}
-
-.index-page {
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  .index-canvas-bg {
-    position: absolute;
-    z-index: 1;
-    width: 100vw;
-    height: 100vh;
-    transition: background ease 2s;
-  }
-  .index-container {
-    z-index: 2;
-    display: flex;
-    position: relative;
-    top: -30px;
-    .index-logo {
-      width: 160px;
-    }
-    .index-links {
-      a {
-        padding: 0 15px;
-      }
-      position: relative;
-      top: 7px;
-      display: flex;
-      justify-content: space-around;
-      padding: 0 20px;
-      align-items: center;
-    }
-  }
 }
 
 .main-header {
@@ -104,7 +71,7 @@
         padding: 0 5px;
         &.active {
           &:before {
-            height: 5px
+            height: 5px;
           }
           color: $primary-color;
           &:hover {
@@ -146,7 +113,7 @@
     margin-right: 10px;
     display: inline-block;
 
-    >img {
+    > img {
       height: 16px;
       vertical-align: center;
       position: relative;
@@ -169,8 +136,8 @@
       content: '+';
       transform: rotate(45deg);
     }
-    >span,
-    >a {
+    > span,
+    > a {
       padding: 0 5px;
     }
   }

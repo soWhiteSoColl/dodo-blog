@@ -1,10 +1,10 @@
-#drawer-root {
+#do-drawer-root {
   position: fixed;
   top: 0;
   z-index: 50;
 }
 
-.w-drawer {
+.do-drawer {
   position: fixed;
   right: 0;
   top: 0;
@@ -21,13 +21,13 @@
     right: 0;
     transition: all ease 0.6s;
     box-sizing: border-box;
-    
-    .w-drawer-inner-toggle {
+
+    .do-drawer-inner-toggle {
       display: none;
     }
 
     @media screen and (max-width: 720px) {
-      .w-drawer-inner-toggle {
+      .do-drawer-inner-toggle {
         display: block;
         position: absolute;
         top: 30px;
@@ -68,7 +68,7 @@
       }
     }
     &.close {
-      .w-drawer-toggle-bar {
+      .do-drawer-toggle-bar {
         &:nth-child(1) {
           top: 10px;
           transform: rotateZ(45deg);
@@ -86,26 +86,26 @@
   }
 
   &.close {
-    .w-drawer-mask {
+    .do-drawer-mask {
       display: none;
     }
-    .w-drawer-container {
+    .do-drawer-container {
       right: -340px;
     }
   }
 
   @media screen and (max-width: 720px) {
-    .w-drawer-container {
+    .do-drawer-container {
       width: 100vw;
     }
     &.close {
-      .w-drawer-container {
+      .do-drawer-container {
         right: -100vw;
       }
     }
     &-toggle {
-      top: calc( 50% - 13px);
+      top: calc(50% - 13px);
       left: -42px;
     }
-  } 
+  }
 }

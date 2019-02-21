@@ -29,27 +29,30 @@ class DrawerInner extends React.Component {
     const { children } = this.props
 
     return (
-      <div className={classnames('w-drawer', open ? 'open' : 'close')}>
-        <div className="w-drawer-container">
+      <div className={classnames('do-drawer', open ? 'open' : 'close')}>
+        <div className="do-drawer-container">
           <div
-            className={classnames('w-drawer-toggle', open ? 'close' : 'open')}
+            className={classnames('do-drawer-toggle', open ? 'close' : 'open')}
             onClick={this.handleToggle}
           >
-            <span className="w-drawer-toggle-bar"></span>
-            <span className="w-drawer-toggle-bar"></span>
-            <span className="w-drawer-toggle-bar"></span>
+            <span className="do-drawer-toggle-bar" />
+            <span className="do-drawer-toggle-bar" />
+            <span className="do-drawer-toggle-bar" />
           </div>
           <div
-            className={classnames('w-drawer-inner-toggle', open ? 'close' : 'open')}
+            className={classnames(
+              'do-drawer-inner-toggle',
+              open ? 'close' : 'open'
+            )}
             onClick={this.handleToggle}
           >
-            <span className="w-drawer-toggle-bar"></span>
-            <span className="w-drawer-toggle-bar"></span>
-            <span className="w-drawer-toggle-bar"></span>
+            <span className="do-drawer-toggle-bar" />
+            <span className="do-drawer-toggle-bar" />
+            <span className="do-drawer-toggle-bar" />
           </div>
           {children}
         </div>
-        <div className="w-drawer-mask"></div>
+        <div className="do-drawer-mask" />
       </div>
     )
   }
@@ -57,7 +60,6 @@ class DrawerInner extends React.Component {
 
 export default class Drawer extends React.Component {
   componentDidMount() {
-
     ReactDOM.render(<DrawerInner {...this.props} />, getDOMById('drawer-root'))
   }
 

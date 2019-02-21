@@ -1,8 +1,8 @@
 import React from 'react'
 import Head from 'next/head'
-import Icon from 'widgets/Icons'
-import AnimateQueue from 'widgets/AnimateQueue'
-import ScrollDetect from 'widgets/ScrollDetect'
+import Icon from 'ui/Icons'
+import AnimateQueue from 'ui/AnimateQueue'
+import ScrollDetect from 'ui/ScrollDetect'
 import { inject, observer } from 'mobx-react'
 import classnames from 'classnames'
 import { downloadFile, secondToMunite } from 'tools/main'
@@ -86,34 +86,26 @@ export default class Search extends React.Component {
         </Head>
         <div className="music-leader-page">
           <div className="do-content-container">
-            {
-              !!songs.length && (
-                <ScrollDetect
-                  onScrollOut={this.handleShowMore}
-                  detect={!noMore}
-                  protectTime={300}
-                >
-                  <div className="music-info-list-wrapper">
-                    <ul className="music-info-list">
-                      <AnimateQueue
-                        animate={true}
-                        interval={50}
-                        speed={600}
-                        from={{ transform: 'translateY(80px)' }}
-                        to={{ transform: 'translateX(0px)' }}
-                      >
-                        {songs.slice(0, showNum).map((music, key) =>
-                          <MusicItem key={music.id} NO={key + 1} {...music} />
-                        )}
-                      </AnimateQueue>
-                    </ul>
-                  </div>
-                </ScrollDetect>
-              )
-            }
-            {(!songs.length || !noMore) &&
-              <div className="do-fetching-loading">加载中...</div>
-            }
+            {!!songs.length && (
+              <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={300}>
+                <div className="music-info-list-wrapper">
+                  <ul className="music-info-list">
+                    <AnimateQueue
+                      animate={true}
+                      interval={50}
+                      speed={600}
+                      from={{ transform: 'translateY(80px)' }}
+                      to={{ transform: 'translateX(0px)' }}
+                    >
+                      {songs.slice(0, showNum).map((music, key) => (
+                        <MusicItem key={music.id} NO={key + 1} {...music} />
+                      ))}
+                    </AnimateQueue>
+                  </ul>
+                </div>
+              </ScrollDetect>
+            )}
+            {(!songs.length || !noMore) && <div className="do-fetching-loading">加载中...</div>}
           </div>
         </div>
       </>

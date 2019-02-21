@@ -6,11 +6,10 @@ import NProgress from 'nprogress'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
 import Player from 'components/Player'
-import ToTop from 'components/ToTop'
+import ToTop from 'ui/ToTop'
 import stores from '../stores'
 import 'dodoui/lib/dodo.css'
 import '../styles/index.scss'
-
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
@@ -34,7 +33,10 @@ export default class MyApp extends App {
       const title = document.getElementById('just_for_fun_title')
       if (title) {
         title.innerHTML = '(๑>ω<๑) 又好了耶。。。'
-        recoverTitleTimer = setTimeout(() => title && document.head.contains(title) && document.head.removeChild(title), 2000)
+        recoverTitleTimer = setTimeout(
+          () => title && document.head.contains(title) && document.head.removeChild(title),
+          2000
+        )
       }
     })
 

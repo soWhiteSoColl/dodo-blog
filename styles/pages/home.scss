@@ -1,0 +1,43 @@
+.home-page {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .home-canvas-bg {
+    position: absolute;
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    transition: background ease 2s;
+  }
+  .home-container {
+    z-index: 2;
+    display: flex;
+    position: relative;
+    top: -30px;
+    .home-logo {
+      width: 160px;
+    }
+    .home-links {
+      > a {
+        padding: 0 15px;
+      }
+      position: relative;
+      top: 7px;
+      display: flex;
+      justify-content: space-around;
+      padding: 0 20px;
+      align-items: center;
+    }
+  }
+}
+
+.login-dialog {
+  .do-dialog-content {
+    width: 350px;
+    .ze-input-container {
+      width: 100%;
+      margin: 10px 0;
+    }
+  }
+}

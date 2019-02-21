@@ -87,7 +87,7 @@
 .editor-wrapper {
   border: 1px solid #ccc;
 
-  div[data-contents=true] {
+  div[data-contents='true'] {
     @include blog-reset;
   }
 
@@ -120,8 +120,7 @@
     }
     .text-color-dropdown .dropdown-handler,
     .link-editor-dropdown .dropdown-handler,
-    .bf-emoji-dropdown .dropdown-handler,
-      {
+    .bf-emoji-dropdown .dropdown-handler {
       padding-left: 0;
     }
     .text-color-dropdown {

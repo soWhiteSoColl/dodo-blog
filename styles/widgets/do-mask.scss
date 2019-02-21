@@ -1,0 +1,14 @@
+.do-mask {
+  @include full-screen;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all ease 0.3s;
+  opacity: 0;
+}
+
+.animate-fade-in {
+  animation: animate-fade-in ease 0.3s 1 forwards;
+}
+
+.animate-fade-out {
+  animation: animate-fade-out ease 0.3s 1 forwards;
+}

@@ -1,0 +1,14 @@
+.text-center {
+  text-align: center;
+}
+
+.text-overflow-ellipsis {
+  @include text-overflow-ellipsis;
+}
+
+.text-link {
+  color: $primary-color;
+  &:hover {
+    text-decoration: underline;
+  }
+}

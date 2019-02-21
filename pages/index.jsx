@@ -1,19 +1,18 @@
 import React, { Component } from 'react'
-import { dateFormater } from 'tools/main'
+import { observer, inject } from 'mobx-react'
 import Link from 'next/link'
 import Head from 'next/head'
-import { Drawer } from 'dodoui'
-import AnimateQueue from 'widgets/AnimateQueue'
 import classnames from 'classnames'
+import { Drawer } from 'dodoui'
+import AnimateQueue from 'ui/AnimateQueue'
+import ScrollDetect from 'ui/ScrollDetect'
 import stores from '../stores'
-import ScrollDetect from 'widgets/ScrollDetect'
-import { observer, inject } from 'mobx-react'
-
+import { dateFormater } from 'tools/main'
 
 const Tag = props => {
   const { children, active, ...rest } = props
   return (
-    <span className={classnames("w-tag", active && 'active')} {...rest}>
+    <span className={classnames('w-tag', active && 'active')} {...rest}>
       {children}
     </span>
   )
@@ -28,7 +27,9 @@ const BlogItem = props => {
 
   return (
     <section className="blog-title">
-      <Link href={paused ? `/blogs/${blog._id}` : `/blog?id=${blog._id}`}><a>{blog.title}</a></Link>
+      <Link href={paused ? `/blogs/${blog._id}` : `/blog?id=${blog._id}`}>
+        <a>{blog.title}</a>
+      </Link>
     </section>
   )
 }
@@ -48,13 +49,11 @@ class Tags extends React.Component {
       <Drawer>
         <h2 className="blogs-drawer-title">标签</h2>
         <div className="blogs-drawer-tags">
-          {tags.map(tag => <Tag
-            key={tag._id}
-            active={selected.includes(tag._id)}
-            onClick={() => onChange(tag._id)}
-          >
-            {tag.value}
-          </Tag>)}
+          {tags.map(tag => (
+            <Tag key={tag._id} active={selected.includes(tag._id)} onClick={() => onChange(tag._id)}>
+              {tag.value}
+            </Tag>
+          ))}
         </div>
       </Drawer>
     )
@@ -67,7 +66,7 @@ export default class Blogs extends Component {
 
   state = {
     showNum: 15,
-    refreshInNumberChange: false,
+    refreshInNumberChange: false
   }
 
   static async getInitialProps(cxt, stores) {
@@ -93,7 +92,8 @@ export default class Blogs extends Component {
       selectedTags = [id]
     }
     this.setState({ refreshInNumberChange: true })
-    this.props.blogStore.list({ page: 1, tags: selectedTags })
+    this.props.blogStore
+      .list({ page: 1, tags: selectedTags })
       .then(() => this.setState({ refreshInNumberChange: false }))
   }
 
@@ -118,6 +118,7 @@ export default class Blogs extends Component {
     const { blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
+    const { refreshInNumberChange } = this.state
 
     return (
       <React.Fragment>
@@ -126,28 +127,24 @@ export default class Blogs extends Component {
         </Head>
         <div className="do-content-container">
           <div className="blogs-list" ref={this.$blogs}>
-            <ScrollDetect
-              onScrollOut={this.handleShowMore}
-              detect={!noMore}
-              protectTime={500}
-            >
-              {/* <AnimateQueue
+            <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={500}>
+              <AnimateQueue
                 animate={true}
                 interval={100}
                 speed={600}
                 from={{ transform: 'translateX(100px)' }}
                 to={{ transform: 'translateX(0px)' }}
                 refreshInNumberChange={refreshInNumberChange}
-              > */}
-              {
-                Object.entries(this.blogSort).map(([date, blogs]) => (
+              >
+                {Object.entries(this.blogSort).map(([date, blogs]) => (
                   <div className="blogs-group" key={date}>
                     <Date date={date} />
-                    {blogs.map(blog => <BlogItem key={blog._id} blog={blog} />)}
+                    {blogs.map(blog => (
+                      <BlogItem key={blog._id} blog={blog} />
+                    ))}
                   </div>
-                ))
-              }
-              {/* </AnimateQueue> */}
+                ))}
+              </AnimateQueue>
             </ScrollDetect>
             {!noMore && <div className="do-fetching-loading">加载中...</div>}
           </div>

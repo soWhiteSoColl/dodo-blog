@@ -2,11 +2,10 @@ import React from 'react'
 import Head from 'next/head'
 import { autorun } from 'mobx'
 import classnames from 'classnames'
-import MusicCanvas from 'widgets/MusicCavas'
+import MusicCanvas from 'ui/MusicCanvas'
+import Icon from 'ui/Icons'
 import MusicBg from 'widgets/MusicBg'
 import MusicLyric from 'widgets/MusicLyric'
-import Icon from 'widgets/Icons'
-
 
 export default class Music extends React.Component {
   static getInitialProps() {
@@ -67,17 +66,11 @@ export default class Music extends React.Component {
           <div className={classnames('music-analyzer-toggle', showAnalyzer && 'active')}>
             <Icon type="bars" onClick={this.handleToggle} />
           </div>
-          {
-            showAnalyzer
-              ? <MusicCanvas
-                url={music.url}
-                audio={this.props.musicStore.audio}
-              />
-              : <MusicLyric
-                lyricStr={music.lyric}
-                audio={this.props.musicStore.audio}
-              />
-          }
+          {showAnalyzer ? (
+            <MusicCanvas url={music.url} audio={this.props.musicStore.audio} />
+          ) : (
+            <MusicLyric lyricStr={music.lyric} audio={this.props.musicStore.audio} />
+          )}
         </div>
       </React.Fragment>
     )

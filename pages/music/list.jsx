@@ -2,9 +2,9 @@ import React from 'react'
 import Head from 'next/head'
 import { observer, inject } from 'mobx-react'
 import classnames from 'classnames'
-import AnimateQueue from 'widgets/AnimateQueue'
-import Icon from 'widgets/Icons'
-import ScrollDetect from 'widgets/ScrollDetect'
+import AnimateQueue from 'ui/AnimateQueue'
+import Icon from 'ui/Icons'
+import ScrollDetect from 'ui/ScrollDetect'
 import { Tabs } from 'dodoui'
 
 const Tab = Tabs.Item
@@ -18,8 +18,7 @@ class MusicList extends React.Component {
       this.props.musicStore.setValues({ paused: !paused })
     } else {
       localStorage.setItem('current-list-id', id)
-      getListById(id)
-        .then(() => this.props.musicStore.setValues({ paused: false }))
+      getListById(id).then(() => this.props.musicStore.setValues({ paused: false }))
     }
   }
 
@@ -30,10 +29,10 @@ class MusicList extends React.Component {
     const active = !paused && id.toString() === currentList.songListId.toString()
 
     return (
-      <div className={classnames("music-album", active && 'active', 'play')} style={style}>
+      <div className={classnames('music-album', active && 'active', 'play')} style={style}>
         <div className="music-album-cover">
           <img src={pic} alt="" />
-          <div className={classnames("music-player-play-btn")} onClick={this.handlePlay}>
+          <div className={classnames('music-player-play-btn')} onClick={this.handlePlay}>
             <Icon type={active ? 'play' : 'pause'} />
           </div>
         </div>
@@ -66,22 +65,18 @@ class MusicFilter extends React.Component {
     this.props.musicStore.getHotMusicInfo(subCategory)
   }
 
-  getSubCategories = (mainCategory) => {
+  getSubCategories = mainCategory => {
     const { categoryInfo } = this.props.musicStore
-    return categoryInfo.sub
-      .filter(item => {
-        return mainCategory === 'all'
-          ? item.hot
-          : item.category.toString() === mainCategory.toString()
-      })
+    return categoryInfo.sub.filter(item => {
+      return mainCategory === 'all' ? item.hot : item.category.toString() === mainCategory.toString()
+    })
   }
 
   render() {
     const { categoryInfo } = this.props.musicStore
     const { subCategory, mainCategory } = this.state
 
-    const categories = Object.entries(categoryInfo.categories)
-      .map(([value, name]) => ({ value, name }))
+    const categories = Object.entries(categoryInfo.categories).map(([value, name]) => ({ value, name }))
 
     const subCategories = this.getSubCategories(mainCategory)
 
@@ -90,26 +85,34 @@ class MusicFilter extends React.Component {
     return (
       <div className="do-common-container">
         <div className={classnames('music-list-tabs-wrapper', noSub && 'music-list-tabs-no-sub', 'hidden-xs')}>
-          {!!categories.length &&
+          {!!categories.length && (
             <div className="music-main-tabs">
               <Tabs type="easy" value={mainCategory.toString()} onChange={this.handleToggleMainCategory}>
                 <Tab value={'all'}>全部</Tab>
                 {categories.map(({ value, name }) => {
-                  return <Tab key={value} value={value}>{name}</Tab>
+                  return (
+                    <Tab key={value} value={value}>
+                      {name}
+                    </Tab>
+                  )
                 })}
               </Tabs>
             </div>
-          }
+          )}
 
-          {!noSub &&
+          {!noSub && (
             <div className="music-tag-tabs">
               <Tabs type="easy" value={subCategory} onChange={this.handleToggleSubCategory}>
                 {subCategories.slice(0, 12).map(({ name }) => {
-                  return <Tab key={name} value={name}>{name}</Tab>
+                  return (
+                    <Tab key={name} value={name}>
+                      {name}
+                    </Tab>
+                  )
                 })}
               </Tabs>
             </div>
-          }
+          )}
         </div>
       </div>
     )
@@ -122,7 +125,7 @@ export default class Musics extends React.Component {
   }
 
   state = {
-    showNum: 20,
+    showNum: 20
   }
 
   componentDidMount() {
@@ -148,37 +151,27 @@ export default class Musics extends React.Component {
         </Head>
         <div className="music-list-page">
           <MusicFilter />
-          {list.length
-            ? (
-              <ScrollDetect
-                onScrollOut={this.handleShowMore}
-                detect={!noMore}
-                protectTime={300}
-              >
-                <div className="music-album-list">
-                  <AnimateQueue
-                    animate={true}
-                    interval={50}
-                    speed={600}
-                    from={{ transform: 'translateY(80px)' }}
-                    to={{ transform: 'translateX(0px)' }}
-                  >
-                    {list.slice(0, showNum).map((item, index) =>
-                      <MusicList key={item.id + index} {...item} />
-                    )}
-                  </AnimateQueue>
-                </div>
-              </ScrollDetect>
-            )
-            : null
-          }
+          {list.length ? (
+            <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={300}>
+              <div className="music-album-list">
+                <AnimateQueue
+                  animate={true}
+                  interval={50}
+                  speed={600}
+                  from={{ transform: 'translateY(80px)' }}
+                  to={{ transform: 'translateX(0px)' }}
+                >
+                  {list.slice(0, showNum).map((item, index) => (
+                    <MusicList key={item.id + index} {...item} />
+                  ))}
+                </AnimateQueue>
+              </div>
+            </ScrollDetect>
+          ) : null}
 
-          {loading || !noMore
-            ? <div className="do-fetching-loading">加载中...</div>
-            : null
-          }
+          {loading || !noMore ? <div className="do-fetching-loading">加载中...</div> : null}
         </div>
-      </React.Fragment >
+      </React.Fragment>
     )
   }
 }

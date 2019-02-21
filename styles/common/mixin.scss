@@ -5,6 +5,8 @@ shadow 阴影
 ball 球形
 abs-center 绝对居中
 flex-center 内部居中
+full-screen 全屏
+do-container 容器
 **/
 
 @mixin ball($r) {
@@ -13,15 +15,14 @@ flex-center 内部居中
   border-radius: $r;
 }
 
-
 @mixin clearfix {
   &:before {
     display: table;
-    content: ''
+    content: '';
   }
   &:after {
     display: table;
-    content: ''
+    content: '';
   }
 }
 
@@ -31,8 +32,6 @@ flex-center 内部居中
   top: 50%;
   transform: translateY(-50%) translateX(-50%);
 }
-
-
 
 @mixin inner-center {
   display: flex;
@@ -49,4 +48,17 @@ flex-center 内部居中
   overflow: hidden;
   width: 100%;
   white-space: nowrap;
+}
+
+@mixin full-screen {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@mixin do-container {
+  padding: 0 15px;
+  max-width: 100%;
 }

@@ -1,22 +1,19 @@
 {
-    "presets": [
-        ["next/babel"]
-    ],
-    "plugins": [
-        ["@babel/plugin-proposal-decorators", { "legacy": true }],
-        "transform-class-properties",
-        [
-			"module-resolver",
-			{
-				"root": [
-					"."
-				],
-				"alias": {
-					"tools": "./tools",
-					"components": "./components",
-					"widgets": "./components/widgets"
-				}
-			}
-		]
+  "presets": [["next/babel"]],
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "transform-class-properties",
+    [
+      "module-resolver",
+      {
+        "root": ["."],
+        "alias": {
+          "tools": "./tools",
+          "components": "./components",
+          "ui": "./components/ui",
+          "widgets": "./components/widgets"
+        }
+      }
     ]
+  ]
 }

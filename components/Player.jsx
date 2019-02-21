@@ -1,5 +1,5 @@
 import { observer, inject } from 'mobx-react'
-import MusicPlayer from 'widgets/MusicPlayer'
+import MusicPlayer from 'ui/MusicPlayer'
 import configConst from '../config'
 
 /**
@@ -15,8 +15,8 @@ export default class Player extends React.Component {
     const listId = localStorage.getItem('current-list-id') || configConst.defaultMusicListId
     const musicId = localStorage.getItem('current-music-id')
 
-    listId && this.props.musicStore.getListById(listId)
-      .then(list => {
+    listId &&
+      this.props.musicStore.getListById(listId).then(list => {
         if (musicId && list.songs) {
           const currentMusic = list.songs.find(item => item.id === musicId)
           currentMusic && this.props.musicStore.setValues({ currentMusic })

@@ -1,6 +1,5 @@
 import React from 'react'
-import Icon from '../components/widgets/Icons'
-
+import Icon from 'ui/Icons'
 
 export default class Icons extends React.Component {
   render() {
@@ -14,9 +13,9 @@ export default class Icons extends React.Component {
 
         <Icon type="right-arrow" />
 
-        <Icon type="top-arrow"/>
+        <Icon type="top-arrow" />
 
-        <Icon type="menu"/>
+        <Icon type="menu" />
 
         <Icon type="loop" antd={true} />
 

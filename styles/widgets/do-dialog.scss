@@ -1,0 +1,63 @@
+@keyframes dialog-animate-in {
+  0% {
+    top: 25%;
+    opacity: 0;
+  }
+  100% {
+    top: 45%;
+    opacity: 1;
+  }
+}
+
+@keyframes dialog-animate-out {
+  0% {
+    top: 45%;
+    opacity: 1;
+  }
+  100% {
+    top: 32%;
+    opacity: 0;
+  }
+}
+
+.do-dialog {
+  @include shadow;
+  position: absolute;
+  background-color: #fff;
+  max-width: 500px;
+  min-width: 300px;
+  border-radius: 6px;
+  top: 45%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  &-head {
+    padding: 20px;
+    .do-dialog-title {
+      font-size: 16px;
+      color: #222;
+    }
+    .do-dialog-cancel-btn {
+      position: absolute;
+      right: 20px;
+      top: 6px;
+      font-size: 30px;
+      transform: rotateZ(45deg);
+      cursor: pointer;
+    }
+  }
+  &-content {
+    padding: 0 20px;
+    max-width: 450px;
+    margin-bottom: 10px;
+  }
+  &-footer {
+    text-align: right;
+    padding: 10px 20px;
+  }
+  &.do-dialog-animate-in {
+    animation: dialog-animate-in ease 0.3s 1 forwards;
+  }
+  &.do-dialog-animate-out {
+    animation: dialog-animate-out ease 0.3s 1 forwards;
+  }
+}
