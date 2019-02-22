@@ -8,9 +8,9 @@
 .blogs-group {
   padding: 25px 0px;
   .blogs-group-date {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
-  @media screen and (max-width:768px) {
+  @media screen and (max-width: 768px) {
     padding: 12px 0;
     p {
       margin-bottom: 10px;
@@ -19,10 +19,10 @@
   }
   a {
     &:acitve {
-      text-decoration: none
+      text-decoration: none;
     }
     &:focus {
-      text-decoration: none
+      text-decoration: none;
     }
   }
 }
@@ -71,7 +71,7 @@
   .blog-content {
     font-size: 14px;
     color: #444;
-    
+
     @include blog-reset;
   }
   .blog-comment-input {
@@ -86,7 +86,8 @@
       margin-top: 15px;
     }
   }
-  .blog-content-anchor {}
+  .blog-content-anchor {
+  }
 }
 
 .blog-wrapper {
@@ -100,7 +101,6 @@
 .blogs-drawer-title {
   margin-bottom: 15px;
 }
-
 
 .blog-table {
   padding-left: 20px;
@@ -151,7 +151,7 @@
   }
 }
 
-.do-fetching-loading.editor-loading{
+.do-fetching-loading.editor-loading {
   text-align: left;
   margin-bottom: 20px;
 }

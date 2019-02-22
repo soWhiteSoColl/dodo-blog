@@ -12,3 +12,43 @@
     text-decoration: underline;
   }
 }
+
+.do-common-container {
+  padding: 0 15px;
+  max-width: $common-container-width;
+  margin: 0 auto;
+}
+
+.do-content-container {
+  @include do-container;
+  max-width: $small-container-width;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+// header里的那个logo
+.do-pull-right {
+  float: right;
+}
+
+.do-group {
+  @include clearfix;
+  margin: 10px 0;
+}
+
+.text-overflow-ellipsis {
+  @include text-overflow-ellipsis;
+}
+.hidden-xs {
+  @media screen and (max-width: 720px) {
+    display: none !important;
+  }
+}
+
+.do-fetching-loading {
+  margin-top: 20px;
+  text-align: center;
+  color: #aaa;
+  font-size: 12px;
+  margin-bottom: 20px;
+}
