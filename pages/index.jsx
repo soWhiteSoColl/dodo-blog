@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Head from 'next/head'
 import classnames from 'classnames'
 import { Drawer } from 'dodoui'
-import AnimateQueue from 'ui/AnimateQueue'
 import ScrollDetect from 'ui/ScrollDetect'
 import stores from '../stores'
 import { dateFormater } from 'tools/main'
@@ -118,7 +117,6 @@ export default class Blogs extends Component {
     const { blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const noMore = this.state.showNum >= blogs.list.length
-    const { refreshInNumberChange } = this.state
 
     return (
       <React.Fragment>
@@ -128,23 +126,14 @@ export default class Blogs extends Component {
         <div className="do-content-container">
           <div className="blogs-list" ref={this.$blogs}>
             <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={500}>
-              <AnimateQueue
-                animate={true}
-                interval={100}
-                speed={600}
-                from={{ transform: 'translateX(100px)' }}
-                to={{ transform: 'translateX(0px)' }}
-                refreshInNumberChange={refreshInNumberChange}
-              >
-                {Object.entries(this.blogSort).map(([date, blogs]) => (
-                  <div className="blogs-group" key={date}>
-                    <Date date={date} />
-                    {blogs.map(blog => (
-                      <BlogItem key={blog._id} blog={blog} />
-                    ))}
-                  </div>
-                ))}
-              </AnimateQueue>
+              {Object.entries(this.blogSort).map(([date, blogs]) => (
+                <div className="blogs-group" key={date}>
+                  <Date date={date} />
+                  {blogs.map(blog => (
+                    <BlogItem key={blog._id} blog={blog} />
+                  ))}
+                </div>
+              ))}
             </ScrollDetect>
             {!noMore && <div className="do-fetching-loading">加载中...</div>}
           </div>
