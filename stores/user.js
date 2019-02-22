@@ -16,8 +16,8 @@ export default class Store extends Base {
   }
 
   @action
-  sendCodeToEmail = email => {
-    return axios.post('/mail/code', { to: email })
+  checkEmailAndSendCode = email => {
+    return axios.post('/users/sign-up/check', { to: email })
   }
 
   @action

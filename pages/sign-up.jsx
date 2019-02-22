@@ -33,7 +33,7 @@ class Step1 extends React.Component {
         </div>
         <div className="do-group">
           <Button type="primary" onClick={this.handleSendCode} fullWidth={true} disabled={buttonDisabled}>
-            发送验证码
+            确定
           </Button>
         </div>
       </>
@@ -79,10 +79,16 @@ class Step3 extends React.Component {
   render() {
     return (
       <>
-        <h2>恭喜吖，注册成功！！</h2>
-        <Button type="primary" fullWidth={true}>
-          去登录
-        </Button>
+        <h2 className="text-center">恭喜吖，注册成功</h2>
+        <br />
+        <br />
+        <Link href="/login">
+          <a>
+            <Button type="primary" fullWidth={true}>
+              去登录
+            </Button>
+          </a>
+        </Link>
         <Link href="/">
           <a>
             <Button fullWidth={true}>返回首页</Button>

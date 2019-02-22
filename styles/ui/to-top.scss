@@ -1,13 +1,26 @@
-.widget-to-top {
+.do-to-top {
   position: fixed;
-  width: 44px;
+  width: 50px;
   background-color: $primary-color;
   color: #fff;
-  left: calc(50% + 300px);
-  bottom: 100px;
+  right: 50px;
+  bottom: 50px;
   padding: 8px 10px;
   line-height: 1.2em;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 12px;
+  @include shadow;
+  bottom: -60px;
+  transition: bottom ease 0.3s;
+
+  &.show {
+    bottom: 50px;
+  }
+
+  .svg-icon {
+    path {
+      stroke: #fff;
+    }
+  }
 }
