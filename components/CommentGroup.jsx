@@ -3,22 +3,15 @@ import dynamic from 'next/dynamic'
 import { Button } from 'dodoui'
 import Comment, { CommentList } from 'widgets/Comment'
 import { checkNickname } from 'tools/checker'
-import AnimateQueue, { Animate } from 'widgets/AnimateQueue'
+import AnimateQueue, { Animate } from 'ui/AnimateQueue'
 import { inject, observer } from 'mobx-react'
 
+const Editor = dynamic(() => import('widgets/Editor'), {
+  ssr: false,
+  loading: () => <div className="do-fetching-loading editor-loading">加载中...</div>
+})
 
-const Editor = dynamic(
-  () => import('widgets/Editor'),
-  {
-    ssr: false,
-    loading: () => <div className="do-fetching-loading editor-loading">加载中...</div>
-  }
-)
-
-const BraftEditor = dynamic(
-  () => import('widgets/Editor'),
-  { ssr: false }
-)
+const BraftEditor = dynamic(() => import('widgets/Editor'), { ssr: false })
 
 @inject('contactStore')
 @observer
@@ -66,7 +59,7 @@ export default class CommentGroup extends React.Component {
       const messageHTML = message.toHTML()
       const hasMessage = messageHTML.replace(/<.*?>/g, '').trim()
       hasMessage && this.props.onSubmit(messageHTML)
-      this.setState({ message: ''})
+      this.setState({ message: '' })
     }
   }
 
@@ -78,22 +71,20 @@ export default class CommentGroup extends React.Component {
         <div className="comment-form">
           {title && <h2 className="comment-form-title">{title}</h2>}
           <div className="comment-form-wrapper">
-            <Editor
-              placeholder={placeholder || '啦啦啦。。。'}
-              value={message}
-              onChange={this.handleEditorChange}
-            />
+            <Editor placeholder={placeholder || '啦啦啦。。。'} value={message} onChange={this.handleEditorChange} />
             <div className="comment-form-submit">
               <span className="comment-form-submit-info">{'(๑>ω<๑) 大家起名字和填写内容都可以稍微有意义一点吖'}</span>
-              <Button type="primary" onClick={this.handleSubmit}>留言</Button>
+              <Button type="primary" onClick={this.handleSubmit}>
+                留言
+              </Button>
             </div>
           </div>
         </div>
 
         <CommentList>
-          {
-            newMessages.map(message => {
-              return <Animate
+          {newMessages.map(message => {
+            return (
+              <Animate
                 animate={true}
                 from={{ transform: 'translateX(80px)' }}
                 to={{ transform: 'translateX(0px)' }}
@@ -107,20 +98,22 @@ export default class CommentGroup extends React.Component {
                   created={message.created}
                 />
               </Animate>
-            })
-          }
+            )
+          })}
           <AnimateQueue
             animate={true}
             from={{ transform: 'translateX(80px)' }}
             to={{ transform: 'translateX(0px)' }}
             interval={100}
           >
-            {list.map(message => <Comment
-              key={message._id}
-              nickname={message.nickname}
-              content={message.message}
-              created={message.created}
-            />)}
+            {list.map(message => (
+              <Comment
+                key={message._id}
+                nickname={message.nickname}
+                content={message.message}
+                created={message.created}
+              />
+            ))}
           </AnimateQueue>
         </CommentList>
       </div>
