@@ -7,17 +7,33 @@ export default class Store extends Base {
   audio = null
 
   @observable isLogin = false
-  @observable info = {}
+  @observable info = null
   @observable token = null
+  @observable currentUserEmail = '1256790127@qq.com'
+
+  @action
+  signUp = user => {
+    return axios.post('/users', user)
+  }
 
   @action
   login = userInfo => {
-    return axios.post('/users/login', userInfo)
+    return axios.post('/users/login', userInfo).then(data => {
+      localStorage.setItem('user-jwt', data.token)
+      return data
+    })
   }
 
   @action
   checkEmailAndSendCode = email => {
-    return axios.post('/users/sign-up/check', { to: email })
+    return axios.post('/users/sign-up/check', { email })
+  }
+
+  @action
+  getInfo = () => {
+    return githubAxios.get('/users/info').then(data => {
+      return (this.info = data)
+    })
   }
 
   @action
@@ -31,12 +47,5 @@ export default class Store extends Base {
   saveToken = token => {
     this.token = token
     return localStorage.setItem('github-oauth-token', token)
-  }
-
-  @action
-  getInfo = () => {
-    return githubAxios.get('/users/tokentoinfo', { headers: { vf: this.toekn } }).then(data => {
-      this.info = data
-    })
   }
 }

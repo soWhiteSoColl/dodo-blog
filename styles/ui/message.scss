@@ -1,0 +1,44 @@
+#do-message-root {
+  position: relative;
+  height: 0;
+  width: 100%;
+}
+
+@keyframes message-animate-in {
+  0% {
+    top: -30px;
+    opacity: 0;
+  }
+  100% {
+    top: 20px;
+    opacity: 1;
+  }
+}
+
+@keyframes message-animate-out {
+  0% {
+    top: 20px;
+    opacity: 1;
+  }
+  100% {
+    top: -30px;
+    opacity: 0;
+  }
+}
+
+.do-message {
+  padding: 8px 20px;
+  position: fixed;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  @include shadow;
+
+  &.do-message-animate-in {
+    animation: message-animate-in ease 0.3s 1 forwards;
+  }
+  &.do-message-animate-out {
+    animation: message-animate-out ease 0.3s 1 forwards;
+  }
+}

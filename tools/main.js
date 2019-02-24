@@ -5,7 +5,7 @@ export function formatTimeNumber(number) {
 export function getDay(date, split) {
   split = split || '/'
   date = new Date(date)
-  return date.getFullYear() + split + formatTimeNumber((date.getMonth() + 1)) + split + formatTimeNumber(date.getDate())
+  return date.getFullYear() + split + formatTimeNumber(date.getMonth() + 1) + split + formatTimeNumber(date.getDate())
 }
 
 export function getHour(date) {
@@ -57,10 +57,13 @@ export function getLocationQuery(location) {
   if (!location.search) {
     return {}
   }
-  return location.search.split('?')[1].split('&').reduce((pre, queryItem) => {
-    pre[queryItem.split('=')[0]] = queryItem.split('=')[1]
-    return pre
-  }, {})
+  return location.search
+    .split('?')[1]
+    .split('&')
+    .reduce((pre, queryItem) => {
+      pre[queryItem.split('=')[0]] = queryItem.split('=')[1]
+      return pre
+    }, {})
 }
 
 export function pageScrollTo(height, offset) {
@@ -101,29 +104,28 @@ export function pageScrollTo(height, offset) {
 
 export function loadSound(url) {
   return new Promise(resolve => {
-    var request = new XMLHttpRequest();
-    request.open('GET', url, true);
-    request.responseType = 'arraybuffer';
+    var request = new XMLHttpRequest()
+    request.open('GET', url, true)
+    request.responseType = 'arraybuffer'
     // 一旦获取完成，对音频进行进一步操作，比如解码
-    request.onload = function () {
-      var arraybuffer = request.response;
+    request.onload = function() {
+      var arraybuffer = request.response
       resolve(arraybuffer)
     }
-    request.send();
+    request.send()
   })
 }
 
 export function rn(s, e) {
-  var start = s ? s : 0;
-  var end = e ? e : 255;
-  var i = end - start;
-  var color = parseInt(start + Math.random() * i);
-  return color;
+  var start = s ? s : 0
+  var end = e ? e : 255
+  var i = end - start
+  var color = parseInt(start + Math.random() * i)
+  return color
 }
 
-
 export function rc(opacity) {
-  var op = opacity ? opacity : 1;
+  var op = opacity ? opacity : 1
   return 'rgba(' + rn() + ',' + rn() + ',' + rn() + ',' + op + ')'
 }
 

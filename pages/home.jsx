@@ -2,8 +2,6 @@ import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import mouseMoveAnimation from 'tools/mouse-animation'
-import { Input } from 'dodoui'
-import Dialog from 'ui/Dialog'
 
 const links = [{ to: '/', text: '博客' }, { to: '/music/list', text: '音乐' }]
 
@@ -17,9 +15,16 @@ export default class App extends React.Component {
   componentDidMount() {
     const canvasBg = this.canvasBg.current
     mouseMoveAnimation(canvasBg)
+
+    this.props.userStore.getInfo()
+  }
+
+  handleLogOut() {
+    localStorage.removeItem('user-jwt')
   }
 
   render() {
+    const { info } = this.props.userStore
     return (
       <React.Fragment>
         <Head>
@@ -36,13 +41,27 @@ export default class App extends React.Component {
             <div className="home-links">
               {links.map((link, index) => (
                 <Link key={index} href={link.to}>
-                  <a>{link.text}</a>
+                  <a className="home-link">{link.text}</a>
                 </Link>
               ))}
-
-              <a>
-                <Link href="/login">登录</Link>/<Link href="/sign-up">注册</Link>
-              </a>
+              {info ? (
+                <span className="home-link">
+                  <a>{info.username}</a>/
+                  <Link href="/login">
+                    <a onClick={this.handleLogOut}>注销</a>
+                  </Link>
+                </span>
+              ) : (
+                <span className="home-link">
+                  <Link href="/login">
+                    <a>登录</a>
+                  </Link>
+                  /
+                  <Link href="/sign-up">
+                    <a>注册</a>
+                  </Link>
+                </span>
+              )}
             </div>
           </div>
           <div className="home-canvas-bg" ref={this.canvasBg} />

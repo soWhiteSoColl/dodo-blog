@@ -19,8 +19,12 @@
       width: 160px;
     }
     .home-links {
-      > a {
+      .home-link {
         padding: 0 15px;
+        color: $primary-color;
+        > a {
+          padding: 0 5px;
+        }
       }
       position: relative;
       top: 7px;
