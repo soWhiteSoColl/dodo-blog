@@ -25,10 +25,8 @@ export default class MyApp extends App {
     Router.onRouteChangeComplete = () => NProgress.done()
     Router.onRouteChangeError = () => NProgress.done()
 
-    await stores.userStore.getInfo()
-    stores.userStore.saveViewRecord()
-
     let recoverTitleTimer = null
+
     window.addEventListener('focus', () => {
       const title = document.getElementById('just_for_fun_title')
       if (title) {
@@ -50,6 +48,11 @@ export default class MyApp extends App {
       }
       title.innerHTML = '(ÒωÓױ) 页面崩溃了！！！'
     })
+
+    stores.userStore
+      .getInfo()
+      .then(() => stores.userStore.saveViewRecord())
+      .catch(() => stores.userStore.saveViewRecord())
   }
 
   render() {
