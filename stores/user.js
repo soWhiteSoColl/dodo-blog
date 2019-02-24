@@ -7,7 +7,7 @@ export default class Store extends Base {
   @observable isLogin = false
   @observable info = null
   @observable token = null
-  @observable currentUserEmail = '1256790127@qq.com'
+  @observable currentUserEmail = ''
 
   get isLogin() {
     return !!this.info

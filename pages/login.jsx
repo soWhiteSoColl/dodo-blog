@@ -1,6 +1,7 @@
 import React from 'react'
 import { Input, Button } from 'dodoui'
 import Router from 'next/router'
+import Link from 'next/link'
 
 export default class Login extends React.Component {
   static getInitialProps() {
@@ -47,9 +48,9 @@ export default class Login extends React.Component {
             </Button>
           </div>
           <div className="do-group text-center">
-            <a className="text-link" href="/sign-up">
-              还没账号，注册一个
-            </a>
+            <Link href="/sign-up">
+              <a className="text-link">还没账号，注册一个</a>
+            </Link>
           </div>
         </div>
       </div>

@@ -18,14 +18,18 @@ class Step1 extends React.Component {
     this.setState({ email: e.target.value })
   }
 
-  handleSendCode = async () => {
+  handleSendCode = () => {
     const { email } = this.state
     this.setState({ spinning: true })
-    await this.props.userStore.checkEmailAndSendCode(email)
-    this.props.userStore.setValue({ currentUserEmail: email })
-    Message.success('一个验证码已经发送到您的邮箱啦，请用该验证码完成注册')
-    this.setState({ spinning: false })
-    this.props.onNext()
+    this.props.userStore
+      .checkEmailAndSendCode(email)
+      .then(() => {
+        this.props.userStore.setValues({ currentUserEmail: email })
+        Message.success('一个验证码已经发送到您的邮箱啦，请用该验证码完成注册')
+        this.setState({ spinning: false })
+        this.props.onNext()
+      })
+      .catch(() => this.setState({ spinning: false }))
   }
 
   render() {
@@ -52,7 +56,8 @@ class Step1 extends React.Component {
 @observer
 class Step2 extends React.Component {
   state = {
-    user: { email: this.props.userStore.currentUserEmail }
+    user: { email: this.props.userStore.currentUserEmail },
+    spinning: false
   }
 
   handleInputChange = (attr, value) => {
@@ -62,15 +67,25 @@ class Step2 extends React.Component {
   }
 
   handleSignUp = async () => {
-    await this.props.userStore.signUp(this.state.user)
-    this.props.onNext()
+    this.setState({ spinning: true })
+    this.props.userStore
+      .signUp(this.state.user)
+      .then(() => {
+        this.setState({ spinning: false })
+        this.props.onNext()
+      })
+      .catch(() => {
+        this.setState({ spinning: false })
+      })
   }
 
   render() {
+    const { spinning, user } = this.state
     return (
-      <>
+      <Spin spinning={spinning}>
         <div className="do-group">
           <Input
+            value={user.code}
             placeholder="请输入验证码"
             type="number"
             onChange={e => this.handleInputChange('code', e.target.value)}
@@ -78,6 +93,7 @@ class Step2 extends React.Component {
         </div>
         <div className="do-group">
           <Input
+            value={user.username}
             name="dodo-sign-username"
             placeholder="输入一个三个字的名字"
             maxLength={3}
@@ -86,6 +102,7 @@ class Step2 extends React.Component {
         </div>
         <div className="do-group">
           <Input
+            value={user.password}
             name="dodo-sign-password"
             placeholder="输入8-16位的数字和字母组成的密码"
             type="password"
@@ -94,6 +111,7 @@ class Step2 extends React.Component {
         </div>
         <div className="do-group">
           <Input
+            value={user.confirmPassword}
             name="dodo-sign-confirm-password"
             placeholder="确认密码"
             type="password"
@@ -105,7 +123,7 @@ class Step2 extends React.Component {
             注册
           </Button>
         </div>
-      </>
+      </Spin>
     )
   }
 }
