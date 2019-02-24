@@ -25,7 +25,7 @@
   position: absolute;
   background-color: #fff;
   max-width: 500px;
-  min-width: 300px;
+  min-width: 400px;
   border-radius: 6px;
   top: 45%;
   left: 50%;
@@ -46,13 +46,19 @@
     }
   }
   &-content {
-    padding: 0 20px;
+    padding: 10px 20px;
     max-width: 450px;
     margin-bottom: 10px;
   }
   &-footer {
     text-align: right;
     padding: 10px 20px;
+    .ze-button {
+      margin-bottom: 0;
+    }
+    button:last-child {
+      margin-right: 0;
+    }
   }
   &.do-dialog-animate-in {
     animation: dialog-animate-in ease 0.3s 1 forwards;

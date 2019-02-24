@@ -21,7 +21,7 @@ class Step1 extends React.Component {
   handleSendCode = async () => {
     const { email } = this.state
     this.setState({ spinning: true })
-    await this.props.userStore.checkEmailAndSendCode()
+    await this.props.userStore.checkEmailAndSendCode(email)
     this.props.userStore.setValue({ currentUserEmail: email })
     Message.success('一个验证码已经发送到您的邮箱啦，请用该验证码完成注册')
     this.setState({ spinning: false })
@@ -144,7 +144,7 @@ export default class Sign extends React.Component {
   }
 
   state = {
-    step: 2
+    step: 1
   }
 
   handleNextStep = () => {

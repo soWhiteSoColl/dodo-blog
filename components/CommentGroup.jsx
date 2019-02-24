@@ -1,19 +1,18 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
+import Router from 'next/router'
 import { Button } from 'dodoui'
 import Comment, { CommentList } from 'widgets/Comment'
-import { checkNickname } from 'tools/checker'
 import AnimateQueue, { Animate } from 'ui/AnimateQueue'
 import { inject, observer } from 'mobx-react'
+import { Dialog } from 'ui'
 
 const Editor = dynamic(() => import('widgets/Editor'), {
   ssr: false,
   loading: () => <div className="do-fetching-loading editor-loading">加载中...</div>
 })
 
-const BraftEditor = dynamic(() => import('widgets/Editor'), { ssr: false })
-
-@inject('contactStore')
+@inject('userStore')
 @observer
 export default class CommentGroup extends React.Component {
   state = {
@@ -48,10 +47,18 @@ export default class CommentGroup extends React.Component {
   }
 
   handleSubmit = () => {
-    const { nickname } = this.props.contactStore
+    const { info } = this.props.userStore
     const { message } = this.state
-    if (!nickname) {
-      checkNickname()
+    if (!info) {
+      Dialog.open({
+        title: '提示',
+        content: '登录后才能发起评论～',
+        okBtnText: '登录',
+        onOk: close => {
+          close()
+          Router.push('/login')
+        }
+      })
     } else {
       if (!message) {
         return null
@@ -66,6 +73,7 @@ export default class CommentGroup extends React.Component {
   render() {
     const { message, newMessages, list } = this.state
     const { title, placeholder } = this.props
+
     return (
       <div className="comment-group">
         <div className="comment-form">
@@ -93,7 +101,7 @@ export default class CommentGroup extends React.Component {
               >
                 <Comment
                   key={message._id}
-                  nickname={message.nickname}
+                  username={message.user.username}
                   content={message.message}
                   created={message.created}
                 />
@@ -109,7 +117,7 @@ export default class CommentGroup extends React.Component {
             {list.map(message => (
               <Comment
                 key={message._id}
-                nickname={message.nickname}
+                username={message.user.username}
                 content={message.message}
                 created={message.created}
               />

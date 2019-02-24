@@ -2,10 +2,11 @@ import React from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
 import mouseMoveAnimation from 'tools/mouse-animation'
+import Router from 'next/router'
 
 const links = [{ to: '/', text: '博客' }, { to: '/music/list', text: '音乐' }]
 
-export default class App extends React.Component {
+export default class Home extends React.Component {
   canvasBg = React.createRef()
 
   static getInitialProps() {
@@ -15,12 +16,11 @@ export default class App extends React.Component {
   componentDidMount() {
     const canvasBg = this.canvasBg.current
     mouseMoveAnimation(canvasBg)
-
-    this.props.userStore.getInfo()
   }
 
-  handleLogOut() {
-    localStorage.removeItem('user-jwt')
+  handleLogOut = () => {
+    this.props.userStore.logOut()
+    Router.push('/login')
   }
 
   render() {
@@ -46,10 +46,7 @@ export default class App extends React.Component {
               ))}
               {info ? (
                 <span className="home-link">
-                  <a>{info.username}</a>/
-                  <Link href="/login">
-                    <a onClick={this.handleLogOut}>注销</a>
-                  </Link>
+                  <a>{info.username}</a>/<a onClick={this.handleLogOut}>注销</a>
                 </span>
               ) : (
                 <span className="home-link">

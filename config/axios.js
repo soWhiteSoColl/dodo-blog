@@ -23,8 +23,8 @@ let removePending = (request = {}) => {
   })
 }
 
-// axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
-axios.defaults.baseURL = 'https://zeus-ui.com/api'
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
+// axios.defaults.baseURL = 'https://zeus-ui.com/api'
 axios.defaults.withCredentials = true
 axios.interceptors.response.use(response => {
   removePending(response.config)
@@ -70,9 +70,9 @@ axios.interceptors.request.use(
     config.cancelToken = new cancelToken(cancel =>
       requestQueue.push({ token: config.customCancelToken || generateCancelToken(config), cancel })
     )
-
-    if (localStorage && localStorage.getItem('user-jwt')) {
-      config.headers['Authorization'] = localStorage.getItem('user-jwt')
+    if (process.browser) {
+      const jwt = localStorage.getItem('user-jwt')
+      if (jwt) config.headers['Authorization'] = jwt
     }
 
     return config

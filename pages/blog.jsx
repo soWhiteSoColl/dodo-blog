@@ -8,7 +8,7 @@ export default class BlogDetail extends Component {
   static async getInitialProps(ctx, store) {
     const id = ctx.query && ctx.query.id
     const blog = await store.blogStore.read(id)
-    return { id, blog }
+    return { blog }
   }
 
   constructor(props) {
@@ -16,13 +16,17 @@ export default class BlogDetail extends Component {
     this.props.blogStore.setValues({ currentBlog: props.blog })
   }
 
+  componentDidMount = () => {
+    this.props.blogStore.getComments()
+  }
+
   handleComment = message => {
-    const { nickname } = this.props.contactStore
-    this.props.blogStore.comment({ message, nickname })
+    this.props.blogStore.comment({ message })
   }
 
   render() {
     const blog = this.props.blogStore.currentBlog || {}
+    const comments = this.props.blogStore.currentBlogComments || []
     const blogDescription = blog.content && blog.content.replace(/<.*?>/g, '').slice(0, 160)
     const blogKeywords = blog.tags ? blog.tags.map(tag => tag.value) : []
 
@@ -34,16 +38,14 @@ export default class BlogDetail extends Component {
           <meta name="description" content={blogDescription} />
         </Head>
         <div className="do-content-container blog-detail">
-          <h1 className="blog-title"><span>{blog.title}</span></h1>
+          <h1 className="blog-title">
+            <span>{blog.title}</span>
+          </h1>
           <div className="blog-meta">
             <div className="blog-date">{dateFormater(blog.created)}</div>
           </div>
-          <BlogWithTable content={blog.content}/>
-          <CommentGroup
-            placeholder={'请在这里发表评论'}
-            list={blog.comments || []}
-            onSubmit={this.handleComment}
-          />
+          <BlogWithTable content={blog.content} />
+          <CommentGroup placeholder={'请在这里发表评论'} list={comments} onSubmit={this.handleComment} />
         </div>
       </React.Fragment>
     )

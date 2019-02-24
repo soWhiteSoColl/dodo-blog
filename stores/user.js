@@ -4,12 +4,14 @@ import axios from 'axios'
 import Base from './base'
 
 export default class Store extends Base {
-  audio = null
-
   @observable isLogin = false
   @observable info = null
   @observable token = null
   @observable currentUserEmail = '1256790127@qq.com'
+
+  get isLogin() {
+    return !!this.info
+  }
 
   @action
   signUp = user => {
@@ -19,9 +21,16 @@ export default class Store extends Base {
   @action
   login = userInfo => {
     return axios.post('/users/login', userInfo).then(data => {
+      this.info = data.user
       localStorage.setItem('user-jwt', data.token)
       return data
     })
+  }
+
+  @action
+  logOut = () => {
+    this.info = null
+    localStorage.removeItem('user-jwt')
   }
 
   @action

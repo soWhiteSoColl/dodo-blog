@@ -29,14 +29,14 @@ export default class Login extends React.Component {
           <div className="do-group">
             <Input
               name="dodo-login-email"
-              label="请输入邮箱"
+              placeholder="请输入邮箱"
               onChange={e => this.handleInputChange('email', e.target.value)}
             />
           </div>
           <div className="do-group">
             <Input
               name="dodo-login-password"
-              label="请输入密码"
+              placeholder="请输入密码"
               type="password"
               onChange={e => this.handleInputChange('password', e.target.value)}
             />

@@ -27,6 +27,7 @@ export default class MyApp extends App {
 
     stores.contactStore.getNickname()
     stores.contactStore.saveViewRecord()
+    stores.userStore.getInfo()
 
     let recoverTitleTimer = null
     window.addEventListener('focus', () => {

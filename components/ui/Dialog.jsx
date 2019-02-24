@@ -18,7 +18,9 @@ class Dialog extends React.Component {
       onOk,
       noCancelBtn,
       animationDuration = defaulAnimationDuration,
-      className
+      className,
+      cancelBtnText,
+      okBtnText
     } = this.props
 
     return (
@@ -34,9 +36,9 @@ class Dialog extends React.Component {
         </div>
         <div className="do-dialog-content">{children}</div>
         <div className="do-dialog-footer">
-          {!noCancelBtn && <Button onClick={onCancel}>取消</Button>}
+          {!noCancelBtn && <Button onClick={onCancel}>{cancelBtnText || '取消'}</Button>}
           <Button type="primary" onClick={onOk}>
-            确定
+            {okBtnText || '确定'}
           </Button>
         </div>
       </div>
