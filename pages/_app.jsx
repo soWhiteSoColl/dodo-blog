@@ -20,14 +20,13 @@ export default class MyApp extends App {
     return { initialProps }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     Router.onRouteChangeStart = () => NProgress.start()
     Router.onRouteChangeComplete = () => NProgress.done()
     Router.onRouteChangeError = () => NProgress.done()
 
-    stores.contactStore.getNickname()
-    stores.contactStore.saveViewRecord()
-    stores.userStore.getInfo()
+    await stores.userStore.getInfo()
+    stores.userStore.saveViewRecord()
 
     let recoverTitleTimer = null
     window.addEventListener('focus', () => {

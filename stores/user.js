@@ -39,6 +39,13 @@ export default class Store extends Base {
   }
 
   @action
+  saveViewRecord = () => {
+    const username = this.info.username
+    if (username === '小明' || username === '小寒' || username === '小白') return false
+    axios.post('/view-records', { siteName: 'blog', info: { nickname: username } })
+  }
+
+  @action
   getInfo = () => {
     return githubAxios.get('/users/info').then(data => {
       return (this.info = data)
