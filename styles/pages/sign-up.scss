@@ -1,11 +1,14 @@
 .login-page,
 .sign-up-page {
   .input-form {
-    width: 500px;
+    max-width: 500px;
     background-color: #fff;
     margin: 80px auto;
     padding: 100px;
-
+    @media screen and (max-width: 720px) {
+      margin: 40px 20px;
+      padding: 40px 20px;
+    }
     .ze-input-container {
       width: 100%;
       margin-bottom: 15px;

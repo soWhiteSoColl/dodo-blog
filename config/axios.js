@@ -23,8 +23,8 @@ let removePending = (request = {}) => {
   })
 }
 
-// axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
-axios.defaults.baseURL = 'https://zeus-ui.com/api'
+axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
+// axios.defaults.baseURL = 'https://zeus-ui.com/api'
 axios.defaults.withCredentials = true
 axios.interceptors.response.use(response => {
   removePending(response.config)

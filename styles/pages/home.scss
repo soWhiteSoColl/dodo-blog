@@ -5,13 +5,16 @@
       margin-top: 40px;
       margin-bottom: 80px;
       font-size: 1em;
+      @media screen and (max-width: 720px) {
+        margin: 15px auto;
+      }
       a {
         &:hover {
           text-decoration: underline;
         }
       }
       .home-link {
-        padding-left: 30px;
+        padding-left: 20px;
         span {
           color: #4a4a4a;
         }
@@ -29,6 +32,7 @@
     }
     .home-desc {
       h2 {
+        color: #222;
         font-size: 4em;
         font-weight: 300;
         img {
@@ -39,11 +43,15 @@
         }
         @media screen and (max-width: 720px) {
           margin-bottom: 10px;
+          font-size: 3.2em;
         }
       }
-      h3 {
-        font-size: 3em;
-        font-weight: 300;
+      h4 {
+        color: #222;
+        font-size: 2em;
+        @media screen and (max-width: 720px) {
+          font-size: 1.7em;
+        }
       }
       p {
         font-size: 1.3em;
@@ -51,16 +59,16 @@
         line-height: 1.8em;
         font-weight: 400;
         @media screen and (max-width: 720px) {
-          font-size: 1.2em;
+          font-size: 1.1em;
         }
       }
 
       h2,
-      h3,
+      h4,
       p {
         a,
         em {
-          color: #222;
+          color: #4a4a4a;
           position: relative;
           margin: 0 3px;
           font-style: normal;

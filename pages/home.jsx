@@ -54,9 +54,9 @@ export default class Home extends React.Component {
             </div>
             <div className="home-desc">
               <h2>嗨哟。</h2>
-              <h3>
+              <h4>
                 我是<em>小寒</em>，
-              </h3>
+              </h4>
               <p>一名前端开发工程师，也是这个网站的创建者和开发者。</p>
               <p>
                 在这个网站里你可以愉快的
