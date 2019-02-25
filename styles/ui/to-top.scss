@@ -13,7 +13,7 @@
   @include shadow;
   bottom: -60px;
   transition: bottom ease 0.3s;
-
+  z-index: 200;
   &.show {
     bottom: 50px;
   }
