@@ -1,7 +1,16 @@
 .home-page {
   .home-container {
+    max-width: 750px;
+    padding: 100px 15px;
+    margin: 0 auto;
+    @media screen and (max-width: 720px) {
+      margin: 30px auto;
+    }
+
+    @media screen and (max-width: 720px) {
+      padding-top: 20px;
+    }
     .home-links {
-      text-align: right;
       margin-top: 40px;
       margin-bottom: 80px;
       font-size: 1em;
@@ -14,7 +23,7 @@
         }
       }
       .home-link {
-        padding-left: 20px;
+        padding-right: 20px;
         span {
           color: #4a4a4a;
         }
@@ -24,12 +33,7 @@
         }
       }
     }
-    max-width: 750px;
-    padding: 0 15px;
-    margin: 0 auto;
-    @media screen and (max-width: 720px) {
-      margin: 30px auto;
-    }
+
     .home-desc {
       h2 {
         color: #222;
@@ -54,7 +58,7 @@
         }
       }
       p {
-        font-size: 1.3em;
+        font-size: 1.2em;
         margin-bottom: 1em;
         line-height: 1.8em;
         font-weight: 400;

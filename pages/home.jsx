@@ -27,6 +27,30 @@ export default class Home extends React.Component {
         </Head>
         <div className="home-page">
           <div className="home-container">
+            <div className="home-desc">
+              <h2>嗨哟。</h2>
+              <h4>
+                我是<em>小寒</em>，
+              </h4>
+              <p>一名前端开发工程师，也是这个网站的创建者和开发者。</p>
+              <p>
+                在这个网站里你可以愉快的
+                <Link href="/">
+                  <a>阅读我写的文章</a>
+                </Link>
+                ，也能
+                <Link href="/music/list">
+                  <a>听听各种音乐</a>
+                </Link>
+                。{' '}
+              </p>
+              <p>
+                我相信来到这个网站的大多数人都是开发或者和互联网技术有关的人，如果想要获取源码或者和我有更加亲密的认识，可以通过邮箱
+                <em>1256790127@qq.com</em>联系我，也可以加我的微信<em>q1256790127</em>。
+              </p>
+              <p>非常欢迎各种不速之客来对我的网站进行评价和指点。</p>
+            </div>
+
             <div className="home-links">
               <Link href="/">
                 <a className="home-link">博客</a>
@@ -51,29 +75,6 @@ export default class Home extends React.Component {
                   </Link>
                 </span>
               )}
-            </div>
-            <div className="home-desc">
-              <h2>嗨哟。</h2>
-              <h4>
-                我是<em>小寒</em>，
-              </h4>
-              <p>一名前端开发工程师，也是这个网站的创建者和开发者。</p>
-              <p>
-                在这个网站里你可以愉快的
-                <Link href="/">
-                  <a>阅读我写的文章</a>
-                </Link>
-                ，也能
-                <Link href="/music/list">
-                  <a>听听各种音乐</a>
-                </Link>
-                。{' '}
-              </p>
-              <p>
-                我相信来到这个网站的大多数人都是开发或者和互联网技术有关的人，如果想要获取源码或者和我有更加亲密的认识，可以通过邮箱
-                <em>1256790127@qq.com</em>联系我，也可以加我的微信<em>q1256790127</em>。
-              </p>
-              <p>非常欢迎各种不速之客来对我的网站进行评价和指点。</p>
             </div>
           </div>
         </div>
