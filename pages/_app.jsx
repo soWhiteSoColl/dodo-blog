@@ -49,10 +49,14 @@ export default class MyApp extends App {
       title.innerHTML = '(ÒωÓױ) 页面崩溃了！！！'
     })
 
-    stores.userStore
-      .getInfo()
-      .then(() => stores.userStore.saveViewRecord())
-      .catch(() => stores.userStore.saveViewRecord())
+    if (localStorage.getItem('user-jwt')) {
+      stores.userStore
+        .getInfo()
+        .then(stores.userStore.saveViewRecord)
+        .catch(stores.userStore.saveViewRecord)
+    } else {
+      stores.userStore.saveViewRecord()
+    }
   }
 
   render() {

@@ -1,5 +1,4 @@
 import { observable, action, toJS } from 'mobx'
-import githubAxios from '../config/axios'
 import axios from 'axios'
 import Base from './base'
 
@@ -47,21 +46,8 @@ export default class Store extends Base {
 
   @action
   getInfo = () => {
-    return githubAxios.get('/users/info').then(data => {
+    return axios.get('/users/info').then(data => {
       return (this.info = data)
     })
-  }
-
-  @action
-  loginWithGithub = () => {
-    return githubAxios.post('/users/login', {
-      params: { origin: 'http://localhost:8082/login-result' }
-    })
-  }
-
-  @action
-  saveToken = token => {
-    this.token = token
-    return localStorage.setItem('github-oauth-token', token)
   }
 }
