@@ -20,7 +20,7 @@
 │  yarn.lock            #yarn的版本控制
 │  package.json         #项目相关的包
 │  README.md            #项目介绍
-│	 deploy.sh            #服务器部署
+|  deploy.sh            #服务器部署
 |  ecosystem.config.js  #服务器部署
 ├─components            #复用组件
 │    ui                 #ui组件，已被抽离到组件库
