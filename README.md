@@ -13,26 +13,25 @@
 ### 目录结构
 
 ```bash
-│  .babelrc      		 		#babel的规则以及插件
-│  .prettierrc		  		#代码美化工具
-│  .gitignore		 	  		#Git忽视的目录
-│  package-lock.json  	#npm的版本控制
-│  yarn.lock          	#yarn的版本控制
-│  package.json					#项目相关的包
+│  .babelrc             #babel的规则以及插件
+│  .prettierrc          #代码美化工具
+│  .gitignore	          #Git忽视的目录
+│  package-lock.json    #npm的版本控制
+│  yarn.lock            #yarn的版本控制
+│  package.json         #项目相关的包
 │  README.md
-│	 deploy.sh        		#服务器部署
+│	 deploy.sh            #服务器部署
 |  ecosystem.config.js  #服务器部署
-├─components						#复用组件
-│    ui			  					#ui组件，已被抽离到组件库
-│    widgets						#业务相关的一些组件
-│
-|─config								#相关的信息配置
-|-pages									#页面
-|-server								#自定义next后端渲染
-|-static								#静态资源
-|-stores								#mobx数据
-|-styles								#样式
-|-tools									#工具函数
+├─components            #复用组件
+│    ui                 #ui组件，已被抽离到组件库
+│    widgets            #业务相关的一些组件
+|─config                #相关的信息配置
+|-pages                 #页面
+|-server                #自定义next后端渲染
+|-static                #静态资源
+|-stores                #mobx数据
+|-styles                #样式
+|-tools                 #工具函数
 ```
 
 ### 安装依赖
