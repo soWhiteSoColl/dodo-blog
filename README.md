@@ -15,7 +15,7 @@
 ```bash
 │  .babelrc             #babel的规则以及插件
 │  .prettierrc          #代码美化工具
-│  .gitignore	          #Git忽视的目录
+│  .gitignore           #Git忽视的目录
 │  package-lock.json    #npm的版本控制
 │  yarn.lock            #yarn的版本控制
 │  package.json         #项目相关的包
