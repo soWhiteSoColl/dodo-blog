@@ -15,7 +15,7 @@ export default class More extends React.Component {
     {
       name: 'dodoui 组件库',
       link: 'https://ui.dodoblog.cn',
-      codeLink: 'https://github.com/soWhiteSoColl/dodoui',
+      codeLink: 'https://github.com/soWhiteSoColl/dodo-ui',
       cover: '/static/works/dodo-ui.png',
       desc: '交互体验很好也蛮有意思的一些组件'
     },
@@ -35,15 +35,15 @@ export default class More extends React.Component {
     },
     {
       name: '图片动画展示',
-      link: 'https://sowhitesocoll.github.io/imgShow/imageCss.html',
-      codeLink: 'https://github.com/soWhiteSoColl/imgShow',
+      link: 'https://sowhitesocoll.github.io/image-show/imageCss.html',
+      codeLink: 'https://github.com/soWhiteSoColl/image-show',
       cover: '/static/works/img-show.png',
       desc: '强大的css3 transform的一个运用'
     },
     {
       name: '鼠标追踪动画',
-      link: 'https://sowhitesocoll.github.io/mousemoveAnimation/',
-      codeLink: 'https://github.com/soWhiteSoColl/mousemoveAnimation',
+      link: 'https://sowhitesocoll.github.io/mouse-animation',
+      codeLink: 'hhttps://github.com/soWhiteSoColl/mouse-animation',
       cover: '/static/works/mouse.png',
       desc: 'canvas 3d交互效果，自己很喜欢的一个小项目'
     },

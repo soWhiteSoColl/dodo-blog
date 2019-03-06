@@ -1,41 +1,34 @@
 import React from 'react'
 
-const LangContext = React.createContext({
-  title: '默认标题'
-})
-
-const HeadTitle = () => {
-  return <LangContext.Consumer>{lang => <div>{lang.title}</div>}</LangContext.Consumer>
-}
-
-const HeadContent = () => {
-  return <LangContext.Consumer>{lang => <div>{lang.title}</div>}</LangContext.Consumer>
-}
-const Head = () => {
-  return (
-    <div>
-      <HeadTitle />
-      <HeadContent />
-    </div>
-  )
-}
-
-export default class Test extends React.Component {
-  state = {
-    lang: { title: 'test' }
+class Text extends React.Component {
+  shouldComponentUpdate(nextProps) {
+    return true
   }
 
-  componentDidMount() {
+  render() {
+    return <div>{this.props.name}</div>
+  }
+}
+export default class Test extends React.Component {
+  state = {
+    name: 'hello'
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    console.log(prevProps, prevState)
+  }
+
+  componentDidMount(prevProps, prevState) {
+    console.log(prevProps, prevState)
+
     setTimeout(() => {
-      this.setState({ lang: { title: 'hello' } })
+      this.setState({ name: 'world' })
     }, 2000)
   }
 
   render() {
-    return (
-      <LangContext.Provider value={this.state.lang}>
-        <Head />
-      </LangContext.Provider>
-    )
+    const { name } = this.state
+
+    return <Text name={name} />
   }
 }

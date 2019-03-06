@@ -1,10 +1,9 @@
 $comment-bg-color: #eee;
 .comment-group {
-  
   h2 {
     font-weight: 400;
     font-size: 18px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     color: #555;
   }
 
@@ -102,7 +101,7 @@ $comment-bg-color: #eee;
   p {
     margin-top: 0;
     margin-bottom: 0;
-    &+p {
+    & + p {
       margin-top: 0.5em;
     }
   }

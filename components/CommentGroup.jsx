@@ -1,6 +1,7 @@
 import React from 'react'
 import dynamic from 'next/dynamic'
 import Router from 'next/router'
+import Link from 'next/link'
 import { Button } from 'dodoui'
 import Comment, { CommentList } from 'widgets/Comment'
 import AnimateQueue, { Animate } from 'ui/AnimateQueue'
@@ -73,9 +74,22 @@ export default class CommentGroup extends React.Component {
   render() {
     const { message, newMessages, list } = this.state
     const { title, placeholder } = this.props
+    const { info } = this.props.userStore
 
     return (
       <div className="comment-group">
+        <div className="comment-head">
+          {info ? (
+            <h2>嗨, {info.username}</h2>
+          ) : (
+            <h2>
+              嗨，请先
+              <Link href="/login">
+                <a>登录</a>
+              </Link>
+            </h2>
+          )}
+        </div>
         <div className="comment-form">
           {title && <h2 className="comment-form-title">{title}</h2>}
           <div className="comment-form-wrapper">
