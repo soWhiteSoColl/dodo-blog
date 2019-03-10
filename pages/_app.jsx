@@ -8,15 +8,15 @@ import Footer from 'components/Footer'
 import Player from 'components/Player'
 import ToTop from 'ui/ToTop'
 import stores from '../stores'
-import 'dodoui/lib/dodo.css'
-import '../styles/index.scss'
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, router, ctx }) {
     let initialProps = {}
+
     if (Component.getInitialProps) {
       initialProps = await Component.getInitialProps(ctx, stores)
     }
+
     return { initialProps }
   }
 

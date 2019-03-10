@@ -2,21 +2,32 @@ const withScss = require('@zeit/next-sass')
 const withCss = require('@zeit/next-css')
 const withPlugins = require('next-compose-plugins')
 
-const sassConfig = [withScss, {
-  cssModules: false,
-  lessLoaderOptions: {
-    javascriptEnabled: true
-  },
-}]
+const cssConfig = [withCss, { cssModules: false }]
 
-const cssConfig = [withCss, {
-  cssModules: false
-}]
+const sassConfig = [withScss, { cssModules: false }]
 
-const nextConfig = () => {
-  return {
-    pageExtensions: ['jsx', 'js', 'tsx'],
+const nextConfig = {
+  pageExtensions: ['jsx', 'js', 'tsx'],
+  webpack: (config, options) => {
+    options.defaultLoaders.sass = [
+      { loader: 'babel-loader' },
+      { loader: 'raw-loader' },
+      { loader: 'postcss-loader' },
+      { loader: 'sass-loader' }
+    ]
+
+    config.module.rules.push({
+      test: /\.css$/,
+      use: ['babel-loader', 'raw-loader', 'postcss-loader']
+    })
+
+    config.module.rules.push({
+      test: /.scss$/,
+      use: options.defaultLoaders.sass
+    })
+
+    return config
   }
 }
 
-module.exports = withPlugins([sassConfig, cssConfig, nextConfig])
+module.exports = withPlugins([cssConfig, sassConfig, nextConfig])

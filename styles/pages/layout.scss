@@ -42,8 +42,7 @@
       &:hover {
         color: $primary-color;
       }
-      &:before {
-        content: '';
+      .header-inner-bg {
         display: block;
         position: absolute;
         width: 100%;
@@ -56,11 +55,11 @@
       &.active {
         &:hover {
           color: #fff;
-          &:before {
+          .header-inner-bg {
             background-color: $light-primary-color;
           }
         }
-        &:before {
+        .header-inner-bg {
           height: 100%;
         }
         color: #fff;
