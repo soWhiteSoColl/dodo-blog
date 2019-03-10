@@ -53,6 +53,9 @@
   .blog-title {
     margin-top: 40px;
     margin-bottom: 20px;
+    @media screen and (max-width: 768px) {
+      margin: 0 0 20px 0;
+    }
   }
   .blog-author {
     color: #666;
@@ -85,8 +88,6 @@
     button {
       margin-top: 15px;
     }
-  }
-  .blog-content-anchor {
   }
 }
 

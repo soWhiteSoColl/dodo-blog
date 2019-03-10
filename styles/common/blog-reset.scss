@@ -71,6 +71,14 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 16px;
+    @media screen and (max-width: 720px) {
+      box-sizing: content-box;
+      width: 100%;
+      position: relative;
+      left: -15px;
+      border-radius: 0;
+    }
+
     code {
       div {
         white-space: nowrap;

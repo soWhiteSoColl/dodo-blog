@@ -69,7 +69,7 @@
       a {
         padding: 0 5px;
         &.active {
-          &:before {
+          .header-inner-bg {
             height: 5px;
           }
           color: $primary-color;
