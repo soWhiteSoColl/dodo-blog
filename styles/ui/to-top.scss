@@ -1,6 +1,5 @@
 .do-to-top {
   position: fixed;
-  width: 50px;
   background-color: $primary-color;
   color: #fff;
   right: 50px;
@@ -21,6 +20,14 @@
   .svg-icon {
     path {
       stroke: #fff;
+    }
+  }
+
+  @media screen and (max-width: 720px) {
+    right: 15px;
+    padding: 4px 6px;
+    &.show {
+      bottom: 15px;
     }
   }
 }
