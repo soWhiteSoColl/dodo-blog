@@ -15,15 +15,16 @@ export default class Test extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState) {
-    console.log(prevProps, prevState)
+    console.log('did update')
   }
 
   componentDidMount(prevProps, prevState) {
-    console.log(prevProps, prevState)
+    console.log('did mount')
 
-    setTimeout(() => {
-      this.setState({ name: 'world' })
-    }, 2000)
+    if (!this.updated) {
+      this.updated = true
+      this.forceUpdate()
+    }
   }
 
   render() {

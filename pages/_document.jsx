@@ -1,5 +1,6 @@
 import Document, { Head, Main, NextScript } from 'next/document'
-
+import 'dodoui/lib/dodo.css'
+import '../styles/index.scss'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -17,7 +18,6 @@ export default class MyDocument extends Document {
           <meta name="description" content="小寒的博客，用来分享自己的知识，欢迎大家关注" />
           <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
-          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/agate.min.css"></link>
         </Head>
         <body className="custom_class">
           <Main />
