@@ -25,7 +25,7 @@ export default class Login extends React.Component {
 
   render() {
     return (
-      <div className="login-page">
+      <div className="login-page clearfix">
         <div className="input-form">
           <div className="do-group">
             <Input

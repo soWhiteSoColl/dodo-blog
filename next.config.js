@@ -16,9 +16,11 @@ const nextConfig = {
       { loader: 'sass-loader' }
     ]
 
+    options.defaultLoaders.css = [{ loader: 'babel-loader' }, { loader: 'raw-loader' }, { loader: 'postcss-loader' }]
+
     config.module.rules.push({
       test: /\.css$/,
-      use: ['babel-loader', 'raw-loader', 'postcss-loader']
+      use: options.defaultLoaders.css
     })
 
     config.module.rules.push({

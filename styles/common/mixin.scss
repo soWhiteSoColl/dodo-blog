@@ -16,13 +16,12 @@ do-container 容器
 }
 
 @mixin clearfix {
+  overflow: hidden;
   &:before {
     display: table;
-    content: '';
   }
   &:after {
     display: table;
-    content: '';
   }
 }
 
