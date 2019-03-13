@@ -72,8 +72,8 @@ export default class More extends React.Component {
         <div className="contact-project">
           <AnimateQueue
             animate={true}
-            from={{ transform: 'translateY(80px)' }}
-            to={{ transform: 'translateY(0px)' }}
+            from={{ transform: 'translateY(100px)', opacity: 0 }}
+            to={{ transform: 'translateY(0px)', opacity: 1 }}
             speed={600}
             interval={100}
           >
