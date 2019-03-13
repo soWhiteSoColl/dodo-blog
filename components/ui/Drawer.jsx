@@ -22,7 +22,6 @@ class DrawerInner extends React.Component {
       this.props.beforeOpen && this.props.beforeOpen()
       clearTimeout(this.timer)
       this.timer = setTimeout(() => {
-        console.log(this.props)
         this.props.afterOpen && this.props.afterOpen()
       }, 300)
     } else {

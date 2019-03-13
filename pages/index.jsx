@@ -52,7 +52,7 @@ class Tags extends React.Component {
     const { animate } = this.state
 
     return (
-      <Drawer afterOpen={() => this.handleToggleTag(true)} beforeClose={() => this.handleToggleTag(false)}>
+      <Drawer beforeOpen={() => this.handleToggleTag(true)} beforeClose={() => this.handleToggleTag(false)}>
         <h2 className="blogs-drawer-title">标签</h2>
         <div className="blogs-drawer-tags">
           <AnimateQueue animate={animate} interval={50} speed={600}>

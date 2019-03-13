@@ -24,8 +24,8 @@ export class Animate extends React.Component {
     const { animate } = this.state
     const additionAnimate = (animate ? to : from) || {}
 
-    return React.Children.map(children,
-      (item) => React.cloneElement(item, {
+    return React.Children.map(children, item =>
+      React.cloneElement(item, {
         style: {
           ...{
             transform: `translateY(${animate ? 0 : 40}px)`,
@@ -62,7 +62,7 @@ export default class AnimateQueue extends React.Component {
     }
   }
 
-  handleAnimate = (animate) => {
+  handleAnimate = animate => {
     const { interval = defaultInterval, children, refreshInNumberChange } = this.props
     if (!children || !children.length) return false
 
@@ -89,7 +89,7 @@ export default class AnimateQueue extends React.Component {
       this.setState({ current })
       this.timer = setTimeout(loop, interval)
     }
-
+    clearTimeout(this.timer)
     this.timer = setTimeout(loop, interval)
   }
 
@@ -100,10 +100,15 @@ export default class AnimateQueue extends React.Component {
   render() {
     const { children, speed = 400, animate, ...rest } = this.props
     const { current } = this.state
+
     if (!children) return null
 
     return React.Children.map(children, (item, index) => {
-      return <Animate animate={index < current} speed={speed} {...rest}>{item}</Animate>
+      return (
+        <Animate animate={index < current} speed={speed} {...rest}>
+          {item}
+        </Animate>
+      )
     })
   }
 }
