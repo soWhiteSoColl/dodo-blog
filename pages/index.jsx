@@ -3,10 +3,11 @@ import { observer, inject } from 'mobx-react'
 import Link from 'next/link'
 import Head from 'next/head'
 import classnames from 'classnames'
-import { Drawer } from 'dodoui'
+import Drawer from 'ui/Drawer'
 import ScrollDetect from 'ui/ScrollDetect'
 import stores from '../stores'
 import { dateFormater } from 'tools/main'
+import AnimateQueue from 'ui/AnimateQueue'
 
 const Tag = props => {
   const { children, active, ...rest } = props
@@ -36,23 +37,31 @@ const BlogItem = props => {
 @inject('blogStore')
 @observer
 class Tags extends React.Component {
+  state = { animate: false }
+
   componentDidMount() {
     this.props.blogStore.getTags()
   }
 
+  handleToggleTag = animate => {
+    this.setState({ animate })
+  }
   render() {
     const { tags } = this.props.blogStore
     const { selected, onChange } = this.props
+    const { animate } = this.state
 
     return (
-      <Drawer>
+      <Drawer afterOpen={() => this.handleToggleTag(true)} beforeClose={() => this.handleToggleTag(false)}>
         <h2 className="blogs-drawer-title">标签</h2>
         <div className="blogs-drawer-tags">
-          {tags.map(tag => (
-            <Tag key={tag._id} active={selected.includes(tag._id)} onClick={() => onChange(tag._id)}>
-              {tag.value}
-            </Tag>
-          ))}
+          <AnimateQueue animate={animate} interval={50} speed={600}>
+            {tags.map(tag => (
+              <Tag key={tag._id} active={selected.includes(tag._id)} onClick={() => onChange(tag._id)}>
+                {tag.value}
+              </Tag>
+            ))}
+          </AnimateQueue>
         </div>
       </Drawer>
     )

@@ -17,11 +17,27 @@ class DrawerInner extends React.Component {
     if (window.innerWidth > 720) {
       app.style.width = open ? 'calc(100% - 340px)' : '100%'
     }
+
+    if (open) {
+      this.props.beforeOpen && this.props.beforeOpen()
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        console.log(this.props)
+        this.props.afterOpen && this.props.afterOpen()
+      }, 300)
+    } else {
+      this.props.beforeClose && this.props.beforeClose()
+      clearTimeout(this.timer)
+      this.timer = setTimeout(() => {
+        this.props.afterClose && this.props.afterClose()
+      }, 600)
+    }
   }
 
   componentWillUnmount() {
     const app = document.getElementById('__next')
     app.style.width = '100%'
+    clearTimeout(this.timer)
   }
 
   render() {
@@ -31,21 +47,12 @@ class DrawerInner extends React.Component {
     return (
       <div className={classnames('do-drawer', open ? 'open' : 'close')}>
         <div className="do-drawer-container">
-          <div
-            className={classnames('do-drawer-toggle', open ? 'close' : 'open')}
-            onClick={this.handleToggle}
-          >
+          <div className={classnames('do-drawer-toggle', open ? 'close' : 'open')} onClick={this.handleToggle}>
             <span className="do-drawer-toggle-bar" />
             <span className="do-drawer-toggle-bar" />
             <span className="do-drawer-toggle-bar" />
           </div>
-          <div
-            className={classnames(
-              'do-drawer-inner-toggle',
-              open ? 'close' : 'open'
-            )}
-            onClick={this.handleToggle}
-          >
+          <div className={classnames('do-drawer-inner-toggle', open ? 'close' : 'open')} onClick={this.handleToggle}>
             <span className="do-drawer-toggle-bar" />
             <span className="do-drawer-toggle-bar" />
             <span className="do-drawer-toggle-bar" />
