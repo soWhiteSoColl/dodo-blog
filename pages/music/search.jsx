@@ -2,6 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
+import { Button } from 'dodoui'
 import AnimateQueue from 'ui/AnimateQueue'
 import Icon from 'ui/Icons'
 import ScrollDetect from 'ui/ScrollDetect'
@@ -113,9 +114,9 @@ export default class Search extends React.Component {
                   onChange={this.handleChange}
                   onKeyDown={e => e.keyCode === 13 && this.handleSearch()}
                 />
-                <button className="music-search-btn" onClick={this.handleSearch}>
+                <Button className="music-search-btn" onClick={this.handleSearch}>
                   搜索
-                </button>
+                </Button>
               </div>
             </div>
             {loading && <div className="do-fetching-loading">搜索中...</div>}
