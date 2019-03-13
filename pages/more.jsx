@@ -56,7 +56,7 @@ export default class More extends React.Component {
     },
     {
       name: 'Canvas图表',
-      link: 'hhttps://sowhitesocoll.github.io/report/',
+      link: 'https://sowhitesocoll.github.io/report/',
       codeLink: 'https://github.com/soWhiteSoColl/report',
       cover: '/static/works/report.png'
     }
