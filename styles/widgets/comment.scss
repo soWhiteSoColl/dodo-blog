@@ -11,9 +11,9 @@ $comment-bg-color: #eee;
     display: flex;
     justify-content: space-between;
     margin-top: 10px;
+    align-items: center;
     &-info {
       color: #999;
-      line-height: 34px;
     }
     .ze-btn {
       width: 120px;
