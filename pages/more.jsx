@@ -53,6 +53,12 @@ export default class More extends React.Component {
       codeLink: 'https://github.com/soWhiteSoColl/dodo-ripple',
       cover: '/static/works/ripple.png',
       desc: '一个精致的交互组件'
+    },
+    {
+      name: 'Canvas图表',
+      link: 'hhttps://sowhitesocoll.github.io/report/',
+      codeLink: 'https://github.com/soWhiteSoColl/report',
+      cover: '/static/works/report.png'
     }
   ]
 
