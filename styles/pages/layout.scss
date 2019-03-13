@@ -98,31 +98,9 @@
   text-align: center;
   @include clearfix;
   position: relative;
-  font-size: 12px;
+  display: flex;
+  align-items: center;
 
-  .do-content-container {
-    height: 100%;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    display: flex;
-  }
-
-  &-item {
-    margin-right: 10px;
-    display: inline-block;
-
-    > img {
-      height: 16px;
-      vertical-align: center;
-      position: relative;
-      top: -2px;
-      margin-right: 3px;
-    }
-  }
-  &-wx-qrcode {
-    width: 300px;
-  }
   &-links {
     margin-bottom: 25px;
     font-size: 14px;
@@ -130,15 +108,13 @@
     justify-content: center;
     flex-wrap: wrap;
 
-    &:before,
-    &:after {
-      content: '+';
-      transform: rotate(45deg);
-    }
-    > span,
-    > a {
+    span,
+    a {
       padding: 0 5px;
     }
+  }
+  &-item {
+    padding: 0 5px;
   }
 }
 
