@@ -4,13 +4,12 @@
     max-width: 750px;
     padding: 100px 15px;
     margin: 0 auto;
-    @media screen and (max-width: 720px) {
-      margin: 30px auto;
-    }
 
     @media screen and (max-width: 720px) {
+      margin: 30px auto;
       padding-top: 20px;
     }
+
     .home-links {
       margin-top: 40px;
       margin-bottom: 80px;
@@ -36,6 +35,11 @@
     }
 
     .home-desc {
+      height: 380px;
+      @media screen and (max-width: 720px) {
+        height: 480px;
+      }
+
       h2 {
         color: #222;
         font-size: 4em;
@@ -93,4 +97,14 @@
       }
     }
   }
+}
+
+.write-vertical-bar {
+  width: 0.8em;
+  height: 1em;
+  display: inline-block;
+  background-color: #4a4a4a;
+  position: relative;
+  top: 3px;
+  margin-left: 5px;
 }
