@@ -94,8 +94,8 @@ export default class Search extends React.Component {
                       animate={true}
                       interval={50}
                       speed={600}
-                      from={{ transform: 'translateY(80px)' }}
-                      to={{ transform: 'translateX(0px)' }}
+                      from={{ transform: 'translateY(80px)', opacity: 0 }}
+                      to={{ transform: 'translateX(0px)', opacity: 1 }}
                     >
                       {songs.slice(0, showNum).map((music, key) => (
                         <MusicItem key={music.id} NO={key + 1} {...music} />
