@@ -4,6 +4,11 @@
     max-width: 750px;
     padding: 100px 15px;
     margin: 0 auto;
+    h2,
+    h4,
+    p {
+      color: #4a4a4a;
+    }
 
     @media screen and (max-width: 720px) {
       margin: 30px auto;
@@ -35,28 +40,21 @@
     }
 
     .home-desc {
-      height: 380px;
+      height: 400px;
       @media screen and (max-width: 720px) {
         height: 480px;
       }
 
       h2 {
-        color: #222;
         font-size: 4em;
         font-weight: 300;
-        img {
-          height: 45px;
-          margin-left: 10px;
-          position: relative;
-          top: -2px;
-        }
+        margin-bottom: 15px;
         @media screen and (max-width: 720px) {
           margin-bottom: 10px;
           font-size: 3.2em;
         }
       }
       h4 {
-        color: #222;
         font-size: 2em;
         margin-bottom: 0.9em;
         @media screen and (max-width: 720px) {
@@ -70,29 +68,6 @@
         font-weight: 400;
         @media screen and (max-width: 720px) {
           font-size: 1.1em;
-        }
-      }
-
-      h2,
-      h4,
-      p {
-        a,
-        em {
-          color: #4a4a4a;
-          position: relative;
-          margin: 0 3px;
-          font-style: normal;
-          &:after {
-            content: '';
-            display: block;
-            position: absolute;
-            height: 0.5em;
-            width: 100%;
-            background-color: $primary-color;
-            opacity: 0.3;
-            left: 0;
-            top: 0.7em;
-          }
         }
       }
     }
