@@ -7,7 +7,6 @@ import Drawer from 'ui/Drawer'
 import ScrollDetect from 'ui/ScrollDetect'
 import stores from '../stores'
 import { dateFormater } from 'tools/main'
-import AnimateQueue from 'ui/AnimateQueue'
 
 const Tag = props => {
   const { children, active, ...rest } = props
@@ -43,25 +42,19 @@ class Tags extends React.Component {
     this.props.blogStore.getTags()
   }
 
-  handleToggleTag = animate => {
-    this.setState({ animate })
-  }
   render() {
     const { tags } = this.props.blogStore
     const { selected, onChange } = this.props
-    const { animate } = this.state
 
     return (
-      <Drawer beforeOpen={() => this.handleToggleTag(true)} beforeClose={() => this.handleToggleTag(false)}>
+      <Drawer>
         <h2 className="blogs-drawer-title">标签</h2>
         <div className="blogs-drawer-tags">
-          <AnimateQueue animate={animate} interval={50} speed={600}>
-            {tags.map(tag => (
-              <Tag key={tag._id} active={selected.includes(tag._id)} onClick={() => onChange(tag._id)}>
-                {tag.value}
-              </Tag>
-            ))}
-          </AnimateQueue>
+          {tags.map(tag => (
+            <Tag key={tag._id} active={selected.includes(tag._id)} onClick={() => onChange(tag._id)}>
+              {tag.value}
+            </Tag>
+          ))}
         </div>
       </Drawer>
     )
