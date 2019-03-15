@@ -165,7 +165,10 @@ export default class MusicPlayer extends React.Component {
   }
 
   handleToggle = currentIndex => {
-    this.setState({ currentIndex }, () => this.handleChangeIndex(currentIndex))
+    this.setState({ currentIndex }, () => {
+      this.handleChangeIndex(currentIndex)
+      this.handlePlay()
+    })
   }
 
   handleChangeIndex = nextIndex => {
