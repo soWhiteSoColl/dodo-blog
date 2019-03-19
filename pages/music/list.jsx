@@ -47,22 +47,21 @@ class MusicList extends React.Component {
 @inject('musicStore')
 @observer
 class MusicFilter extends React.Component {
-  state = {
-    mainCategory: 'all',
-    subCategory: ''
-  }
-
   componentDidMount() {
     this.props.musicStore.getCategoryInfo()
   }
 
-  handleToggleMainCategory = mainCategory => {
-    this.setState({ mainCategory })
+  handleToggleMainCategory = main => {
+    const { currentCategory } = this.props.musicStore
+    currentCategory.main = main
+    this.props.musicStore.setValues({ currentCategory })
   }
 
-  handleToggleSubCategory = subCategory => {
-    this.setState({ subCategory })
-    this.props.musicStore.getHotMusicInfo(subCategory)
+  handleToggleSubCategory = sub => {
+    const { currentCategory } = this.props.musicStore
+    currentCategory.sub = sub
+    this.props.musicStore.setValues({ currentCategory })
+    this.props.musicStore.getHotMusicInfo()
   }
 
   getSubCategories = mainCategory => {
@@ -73,8 +72,8 @@ class MusicFilter extends React.Component {
   }
 
   render() {
-    const { categoryInfo } = this.props.musicStore
-    const { subCategory, mainCategory } = this.state
+    const { categoryInfo, currentCategory } = this.props.musicStore
+    const { sub: subCategory, main: mainCategory } = currentCategory
 
     const categories = Object.entries(categoryInfo.categories).map(([value, name]) => ({ value, name }))
 
