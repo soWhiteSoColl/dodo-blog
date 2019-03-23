@@ -17,8 +17,8 @@ export default class Player extends React.Component {
 
     listId &&
       this.props.musicStore.getListById(listId).then(list => {
-        if (musicId && list.songs) {
-          const currentMusic = list.songs.find(item => item.id === musicId)
+        if (list.songs) {
+          const currentMusic = musicId ? list.songs.find(item => item.id === musicId) : list.songs[0]
           currentMusic && this.props.musicStore.setValues({ currentMusic })
         }
       })

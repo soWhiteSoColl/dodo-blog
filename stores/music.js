@@ -28,7 +28,6 @@ export default class MusicStore extends Base {
   @observable currentMusic = {}
   @observable audioInfo = {}
   @observable bufferArray = null
-  @observable currentMusicLyric = ''
   @observable audio = null
   @observable leaderboard = {}
   @observable paused = true
