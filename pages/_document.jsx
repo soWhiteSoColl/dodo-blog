@@ -10,7 +10,7 @@ export default class MyDocument extends Document {
 
   render() {
     const { css } = this.props
-    console.log(typeof css)
+
     return (
       <html>
         <Head>
@@ -21,6 +21,7 @@ export default class MyDocument extends Document {
           <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <style>{css}</style>
+          <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css" />
         </Head>
         <body className="custom_class">
           <Main />
