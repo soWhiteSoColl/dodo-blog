@@ -1,4 +1,4 @@
-import { observable, action, toJS } from 'mobx'
+import { observable, action } from 'mobx'
 import axios from '../config/axios'
 import Base from './base'
 import qs from 'qs'

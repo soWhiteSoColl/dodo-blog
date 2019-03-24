@@ -5,7 +5,6 @@ import Head from 'next/head'
 import classnames from 'classnames'
 import Drawer from 'ui/Drawer'
 import ScrollDetect from 'ui/ScrollDetect'
-import stores from '../stores'
 import { dateFormater } from 'tools/main'
 
 const Tag = props => {
@@ -21,12 +20,10 @@ const Date = props => <div className="blogs-group-date">{props.date}</div>
 
 const BlogItem = props => {
   const blog = props.blog
-  const audio = stores.musicStore.audio
-  const paused = !audio || audio.paused
 
   return (
     <section className="blog-title">
-      <Link href={paused ? `/blogs/${blog._id}` : `/blog?id=${blog._id}`}>
+      <Link href={`/blog?id=${blog._id}`}>
         <a>{blog.title}</a>
       </Link>
     </section>

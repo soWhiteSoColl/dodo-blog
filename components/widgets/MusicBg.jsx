@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export default class MusicBg extends React.Component {
   $bg2 = React.createRef()
   $bg1 = React.createRef()

@@ -1,3 +1,4 @@
+import React from 'react'
 import { observer, inject } from 'mobx-react'
 import MusicPlayer from 'ui/MusicPlayer'
 import configConst from '../config'

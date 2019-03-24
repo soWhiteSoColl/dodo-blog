@@ -12,7 +12,7 @@ import { downloadFile, secondToMunite } from 'tools/main'
 @observer
 class SearchedItem extends React.Component {
   handlePlay = () => {
-    const { musicStore, style, ...music } = this.props
+    const { musicStore, ...music } = this.props
     const { currentMusic, paused } = musicStore
 
     if (music.id === currentMusic.id) {

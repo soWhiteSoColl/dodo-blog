@@ -10,7 +10,7 @@ import ToTop from 'ui/ToTop'
 import stores from '../stores'
 
 export default class MyApp extends App {
-  static async getInitialProps({ Component, router, ctx }) {
+  static async getInitialProps({ Component, ctx }) {
     let initialProps = {}
 
     if (Component.getInitialProps) {

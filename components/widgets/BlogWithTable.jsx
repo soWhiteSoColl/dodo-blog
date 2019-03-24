@@ -4,7 +4,7 @@ import { Drawer } from 'dodoui'
 export default class BlogWithTable extends React.Component {
   state = {
     tables: [],
-    content: '',
+    content: ''
   }
 
   table = React.createRef()
@@ -46,23 +46,21 @@ export default class BlogWithTable extends React.Component {
 
     return (
       <div className="blog-wrapper">
-        <div className="blog-content" dangerouslySetInnerHTML={{ __html: content || this.props.content }}></div>
-        {tables.length > 0 &&
+        <div className="blog-content" dangerouslySetInnerHTML={{ __html: content || this.props.content }} />
+        {tables.length > 0 && (
           <Drawer>
             <div className="blog-table" ref={this.table}>
               <h4>目录</h4>
               {tables.map(({ hash, tag }, index) => (
                 <div key={index} className="blog-table-item">
-                  <a
-                    className={"blog-table-item-" + tag}
-                    href={'#' + hash}
-                    onClick={e => this.handleScroll(e, hash)}
-                  >{hash}</a>
+                  <a className={'blog-table-item-' + tag} href={'#' + hash} onClick={e => this.handleScroll(e, hash)}>
+                    {hash}
+                  </a>
                 </div>
               ))}
             </div>
           </Drawer>
-        }
+        )}
       </div>
     )
   }

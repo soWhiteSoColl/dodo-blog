@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 export default class ScrollDetect extends React.Component {
   el = React.createRef()
 
@@ -40,7 +39,9 @@ export default class ScrollDetect extends React.Component {
 
   render() {
     return (
-      <div className="ze-scroll-detect" ref={this.el}>{this.props.children}</div>
+      <div className="ze-scroll-detect" ref={this.el}>
+        {this.props.children}
+      </div>
     )
   }
 }

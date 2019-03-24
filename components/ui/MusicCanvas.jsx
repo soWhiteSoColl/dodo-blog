@@ -15,11 +15,7 @@ export default class MusicCanvas extends React.Component {
 
   componentDidMount() {
     // 创建音频上下文
-    window.AudioContext = window.AudioContext
-      || window.webkitAudioContext
-      || window.mozAudioContext
-      || window.msAudioContext
-
+    window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext
     this.handleInit()
   }
 
@@ -53,7 +49,6 @@ export default class MusicCanvas extends React.Component {
     this.audioCtx = audioCtx
     this.currentRequest && this.currentRequest.abort()
 
-
     this.setState({ paused: false })
     // 加载声音
     audio.volume = 1
@@ -84,7 +79,7 @@ export default class MusicCanvas extends React.Component {
         })
         .catch(error => console.log(error))
     }
-    request.send();
+    request.send()
   }
 
   handleResume = () => {
@@ -122,7 +117,7 @@ export default class MusicCanvas extends React.Component {
         if (!this.audioNode) return false
 
         this.audioNode.connect(this.audioCtx.destination)
-        const analyser = this.audioCtx.createAnalyser();
+        const analyser = this.audioCtx.createAnalyser()
         this.audioNode.connect(analyser)
         analyser.connect(this.audioCtx.destination)
 
@@ -137,7 +132,6 @@ export default class MusicCanvas extends React.Component {
     const cwidth = canvas.width,
       cheight = canvas.height - 2,
       meterWidth = 10,
-      gap = 2,
       capHeight = 2,
       capStyle = '#abc',
       meterNum = 800 / (10 + 2),
@@ -150,34 +144,34 @@ export default class MusicCanvas extends React.Component {
     gradient.addColorStop(0.76, '#def')
     gradient.addColorStop(0.3, '#cde')
 
-    var drawMeter = function () {
+    var drawMeter = function() {
       var array = new Uint8Array(analyser.frequencyBinCount)
       analyser.getByteFrequencyData(array)
 
       var step = Math.round(array.length / meterNum)
 
-      ctx.clearRect(0, 0, cwidth, cheight);
+      ctx.clearRect(0, 0, cwidth, cheight)
       for (var i = 0; i < meterNum; i++) {
-        var value = array[i * step];
+        var value = array[i * step]
         if (capYPositionArray.length < Math.round(meterNum)) {
           capYPositionArray.push(value)
         }
 
         ctx.fillStyle = capStyle
         if (value < capYPositionArray[i]) {
-          ctx.fillRect(i * 12, cheight - (--capYPositionArray[i]), meterWidth, capHeight);
+          ctx.fillRect(i * 12, cheight - --capYPositionArray[i], meterWidth, capHeight)
         } else {
           ctx.fillRect(i * 12, cheight - value, meterWidth, capHeight)
-          capYPositionArray[i] = value;
+          capYPositionArray[i] = value
         }
 
         ctx.fillStyle = gradient
         ctx.fillRect(i * 12, cheight - value + capHeight, meterWidth, cheight)
       }
-      requestAnimationFrame(drawMeter);
+      requestAnimationFrame(drawMeter)
     }
 
-    requestAnimationFrame(drawMeter);
+    requestAnimationFrame(drawMeter)
   }
 
   componentWillUnmount() {

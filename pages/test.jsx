@@ -1,7 +1,7 @@
 import React from 'react'
 
 class Text extends React.Component {
-  shouldComponentUpdate(nextProps) {
+  shouldComponentUpdate() {
     return true
   }
 
@@ -12,19 +12,6 @@ class Text extends React.Component {
 export default class Test extends React.Component {
   state = {
     name: 'hello'
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    console.log('did update')
-  }
-
-  componentDidMount(prevProps, prevState) {
-    console.log('did mount')
-
-    if (!this.updated) {
-      this.updated = true
-      this.forceUpdate()
-    }
   }
 
   render() {

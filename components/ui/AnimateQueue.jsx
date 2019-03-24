@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars*/
 import * as React from 'react'
 
 const defaultSpeed = 600
