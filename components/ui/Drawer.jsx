@@ -2,6 +2,7 @@ import React from 'react'
 import classnames from 'classnames'
 import ReactDOM from 'react-dom'
 import { getDOMById } from 'tools/main'
+import Icon from './Icons'
 
 class DrawerInner extends React.Component {
   state = {
@@ -46,16 +47,7 @@ class DrawerInner extends React.Component {
     return (
       <div className={classnames('do-drawer', open ? 'open' : 'close')}>
         <div className="do-drawer-container">
-          <div className={classnames('do-drawer-toggle', open ? 'close' : 'open')} onClick={this.handleToggle}>
-            <span className="do-drawer-toggle-bar" />
-            <span className="do-drawer-toggle-bar" />
-            <span className="do-drawer-toggle-bar" />
-          </div>
-          <div className={classnames('do-drawer-inner-toggle', open ? 'close' : 'open')} onClick={this.handleToggle}>
-            <span className="do-drawer-toggle-bar" />
-            <span className="do-drawer-toggle-bar" />
-            <span className="do-drawer-toggle-bar" />
-          </div>
+          <Icon type={open ? 'close' : 'menu'} onClick={this.handleToggle} />
           {children}
         </div>
         <div className="do-drawer-mask" />

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Drawer } from 'dodoui'
+import Drawer from 'ui/Drawer'
 
 export default class BlogWithTable extends React.Component {
   state = {

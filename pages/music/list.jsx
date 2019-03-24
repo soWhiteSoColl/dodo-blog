@@ -5,7 +5,7 @@ import classnames from 'classnames'
 import AnimateQueue from 'ui/AnimateQueue'
 import Icon from 'ui/Icons'
 import ScrollDetect from 'ui/ScrollDetect'
-import { Tabs } from 'dodoui'
+import Tabs from 'ui/Tabs'
 
 const Tab = Tabs.Item
 @inject('musicStore')

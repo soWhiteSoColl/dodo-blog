@@ -1,0 +1,45 @@
+.ze-tabs {
+  @include clearfix;
+  overflow: hidden;
+  position: relative;
+}
+.ze-tab {
+  float: left;
+  padding: 8px 32px 10px 32px;
+  text-align: center;
+  cursor: pointer;
+  color: #666;
+  &.ze-active {
+    color: $primary-color;
+  }
+
+  svg circle {
+    fill: rgba(0, 0, 0, 0.1);
+  }
+}
+.ze-tab-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 0px;
+  border-radius: 2px;
+  background: $primary-color;
+  transition: all ease 0.4s;
+}
+
+.ze-tabs-easy {
+  .ze-tab {
+    padding: 8px 0 10px;
+    margin: 0 20px;
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  .ze-ripples-group {
+    display: none;
+  }
+}

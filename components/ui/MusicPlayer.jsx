@@ -254,7 +254,7 @@ export default class MusicPlayer extends React.Component {
               </Link>
               <Icon type={'random'} antd={true} active={random} onClick={this.handleRandom} />
               <Icon type={'loop'} antd={true} active={loop} onClick={this.handleToggleLoop} />
-              <Icon type={'menu'} active={showList} onClick={this.handleToggleList} />
+              <Icon type={showList ? 'close' : 'menu'} active={showList} onClick={this.handleToggleList} />
               <Icon type={'left-arrow'} onClick={this.handlePrev} />
               <Icon type={'right-arrow'} onClick={this.handleNext} />
             </div>

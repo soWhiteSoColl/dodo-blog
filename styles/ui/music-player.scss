@@ -87,6 +87,7 @@ $toggle-width: 20px;
     width: $toggle-width;
     @include inner-center;
     display: none;
+    border-radius: 0 4px 4px 0;
     svg {
       transform: scale(0.6);
       path {

@@ -17,6 +17,8 @@ export default class Icons extends React.Component {
 
         <Icon type="menu" />
 
+        <Icon type="close" />
+
         <Icon type="loop" antd={true} />
 
         <Icon type="music" antd={true} />

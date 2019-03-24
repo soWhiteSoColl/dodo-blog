@@ -51,6 +51,7 @@
         top: 0;
         left: 0;
         background-color: $primary-color;
+        border-radius: 0 0 6px 6px;
       }
       &.active {
         &:hover {
