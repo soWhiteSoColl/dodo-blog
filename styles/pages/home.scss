@@ -7,7 +7,7 @@
     h2,
     h4,
     p {
-      color: #4a4a4a;
+      color: #666;
     }
 
     @media screen and (max-width: 720px) {
@@ -30,7 +30,7 @@
       .home-link {
         padding-right: 20px;
         span {
-          color: #4a4a4a;
+          color: #666;
         }
         .home-link-split {
           color: $blue;
@@ -76,11 +76,11 @@
 
 .write-vertical-bar {
   width: 0.8em;
-  height: 1.1em;
+  height: 1em;
   display: inline-block;
-  background-color: #4a4a4a;
+  background-color: #222;
   position: relative;
-  top: 0.2em;
+  top: 0.15em;
   margin-left: 5px;
   border-radius: 0.2em;
 }
