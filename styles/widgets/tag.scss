@@ -1,27 +1,16 @@
 .w-tag {
-  padding: 2px 18px;
-  border: 1px solid #ccc;
-  display: inline-block;
-  margin: 0 10px 10px 0;
-  border-radius: 30px;
-  cursor: pointer;
-  transition: all ease 0.3s;
-  box-sizing: border-box;
-  color: #7a7a7a;
-  font-size: 14px;
+  padding: 5px 18px 6px;
+  border: 1px solid #ddd;
+  transition: all ease 0.2s;
+}
 
+.w-tag.ze-btn-default {
+  background-color: transparent;
   &:hover {
-    border-color: #666;
-    color: #333;
+    background-color: #ddd;
   }
+}
 
-  &.active {
-    color: #fff;
-    background-color: $primary-color;
-    border: 1px solid $primary-color;
-    &:hover {
-      background-color: $light-primary-color;
-      border-color: $light-primary-color;
-    }
-  }
+.w-tag.ze-btn-primary {
+  border-color: $primary-color;
 }

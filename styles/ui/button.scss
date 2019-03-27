@@ -1,0 +1,77 @@
+@mixin add-type($type, $bg-color, $light-color) {
+  &-#{$type} {
+    background: $bg-color;
+    color: #fff;
+    border: none;
+    .ze-ripples-group .ze-ripple {
+      background: rgba(255, 255, 255, 0.3);
+    }
+    &:hover {
+      background: $light-color;
+    }
+    &.ze-btn-disabled {
+      &:hover {
+        background: $bg-color;
+      }
+    }
+  }
+}
+
+.ze-btn {
+  display: inline-block;
+  width: auto;
+  padding: 7px 36px;
+  margin-right: 8px;
+  margin-bottom: 8px;
+  background: #eee;
+  color: #444;
+  cursor: pointer;
+  border-radius: 40px;
+  border: none;
+
+  &:hover {
+    background: #ccc;
+  }
+  &:focus {
+    outline: none;
+  }
+
+  &-shadow {
+    box-shadow: 0 1px 3px #666;
+    &:hover {
+      box-shadow: 0 2px 5px #666;
+    }
+  }
+  &-full {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: 0;
+  }
+  &-disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    &:hover {
+      background: none;
+    }
+  }
+  @include add-type(primary, $primary-color, $light-primary-color);
+  // @include add-type(warning, $warning-color, $light-warning-color);
+  // @include add-type(danger, $danger-color, $light-danger-color);
+  // @include add-type(success, $success-color, $light-success-color);
+}
+
+.ze-clickable {
+  position: relative;
+  overflow: hidden;
+}
+
+.ze-ripples-group {
+  svg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+}

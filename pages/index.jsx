@@ -5,14 +5,15 @@ import Head from 'next/head'
 import classnames from 'classnames'
 import Drawer from 'ui/Drawer'
 import ScrollDetect from 'ui/ScrollDetect'
+import { Button } from 'dodoui'
 import { dateFormater } from 'tools/main'
 
 const Tag = props => {
   const { children, active, ...rest } = props
   return (
-    <span className={classnames('w-tag', active && 'active')} {...rest}>
+    <Button type={active ? 'primary' : 'default'} className={classnames('w-tag')} {...rest}>
       {children}
-    </span>
+    </Button>
   )
 }
 
