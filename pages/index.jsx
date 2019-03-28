@@ -128,7 +128,7 @@ export default class Blogs extends Component {
               <AnimateQueue
                 animate={true}
                 exit={animateExit}
-                interval={200}
+                interval={100}
                 speed={600}
                 from={{ transform: 'translateX(50px)', opacity: 0 }}
                 to={{ transform: 'translateX(0px)', opacity: 1 }}
