@@ -3,6 +3,7 @@ import { observer, inject } from 'mobx-react'
 import Link from 'next/link'
 import Head from 'next/head'
 import classnames from 'classnames'
+// import { ScrollDetect, Drawer, Button } from 'ui'
 import { ScrollDetect, Drawer, Button, AnimateQueue } from 'ui'
 import { dateFormater } from 'tools/main'
 
@@ -92,6 +93,7 @@ export default class Blogs extends Component {
     setTimeout(() => {
       this.props.blogStore.list({ page: 1, tags: selectedTags }).then(() => this.setState({ animateExit: false }))
     }, 300)
+    // this.props.blogStore.list({ page: 1, tags: selectedTags })
   }
 
   get blogSort() {
@@ -115,6 +117,7 @@ export default class Blogs extends Component {
     const { blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
     const { showNum, animateExit } = this.state
+    // const { showNum } = this.state
     const noMore = showNum >= blogs.list.length
 
     return (
