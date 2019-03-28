@@ -128,9 +128,9 @@ export default class Blogs extends Component {
               <AnimateQueue
                 animate={true}
                 exit={animateExit}
-                interval={100}
+                interval={150}
                 speed={600}
-                from={{ transform: 'translateX(50px)', opacity: 0 }}
+                from={{ transform: 'translateX(100px)', opacity: 0 }}
                 to={{ transform: 'translateX(0px)', opacity: 1 }}
                 keys={blogs.list.slice(0, showNum).map(item => item._id)}
               >
