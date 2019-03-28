@@ -55,20 +55,24 @@ export default class AnimateQueue extends React.Component {
     if (!this.props.children || !prevProps.children) {
       return null
     }
+    if (prevProps.exit !== this.props.exit) {
+      return this.handleAnimate(this.props.animate)
+    }
     if (prevProps.animate !== this.props.animate) {
-      this.handleAnimate(this.props.animate)
+      return this.handleAnimate(this.props.animate)
     }
     if (prevProps.children.length !== this.props.children.length) {
-      this.handleAnimate(this.props.animate)
+      return this.handleAnimate(this.props.animate)
     }
   }
 
   handleAnimate = animate => {
-    const { interval = defaultInterval, children, refreshInNumberChange } = this.props
+    const { interval = defaultInterval, children, exit } = this.props
     if (!children || !children.length) return false
 
-    if (refreshInNumberChange) {
-      this.setState({ current: 0 })
+    clearTimeout(this.timer)
+    if (exit) {
+      return this.setState({ current: 0 })
     }
 
     const loop = () => {
@@ -87,10 +91,11 @@ export default class AnimateQueue extends React.Component {
       }
 
       current = current + (animate ? 1 : -1)
+
       this.setState({ current })
       this.timer = setTimeout(loop, interval)
     }
-    clearTimeout(this.timer)
+
     this.timer = setTimeout(loop, interval)
   }
 

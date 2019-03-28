@@ -89,7 +89,7 @@
 }
 
 .main-content {
-  min-height: calc(100vh - #{$main-header-height} - #{$main-footer-height});
+  min-height: calc(100vh - #{$main-header-height});
   @include clearfix;
 }
 
