@@ -261,6 +261,8 @@
     }
   }
   .music-info-toggle {
+    display: flex;
+    align-items: center;
     width: 80px;
     opacity: 0;
     transition: opacity ease 0.3s;

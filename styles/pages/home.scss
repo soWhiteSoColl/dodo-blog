@@ -7,7 +7,7 @@
     h2,
     h4,
     p {
-      color: #666;
+      color: #4a4a4a;
     }
 
     @media screen and (max-width: 720px) {
@@ -30,7 +30,7 @@
       .home-link {
         padding-right: 20px;
         span {
-          color: #666;
+          color: #4a4a4a;
         }
         .home-link-split {
           color: $blue;
@@ -78,7 +78,7 @@
   width: 0.8em;
   height: 1em;
   display: inline-block;
-  background-color: #222;
+  background-color: #999;
   position: relative;
   top: 0.15em;
   margin-left: 5px;
