@@ -3,8 +3,8 @@ import { observer, inject } from 'mobx-react'
 import Link from 'next/link'
 import Head from 'next/head'
 import classnames from 'classnames'
-// import { ScrollDetect, Drawer, Button } from 'ui'
-import { ScrollDetect, Drawer, Button, AnimateQueue } from 'ui'
+import { ScrollDetect, Drawer, Button } from 'ui'
+// import { ScrollDetect, Drawer, Button, AnimateQueue } from 'ui'
 import { dateFormater } from 'tools/main'
 
 const Tag = props => {
@@ -90,10 +90,10 @@ export default class Blogs extends Component {
       selectedTags = [id]
     }
     this.setState({ animateExit: true })
-    setTimeout(() => {
-      this.props.blogStore.list({ page: 1, tags: selectedTags }).then(() => this.setState({ animateExit: false }))
-    }, 300)
-    // this.props.blogStore.list({ page: 1, tags: selectedTags })
+    // setTimeout(() => {
+    //   this.props.blogStore.list({ page: 1, tags: selectedTags }).then(() => this.setState({ animateExit: false }))
+    // }, 300)
+    this.props.blogStore.list({ page: 1, tags: selectedTags })
   }
 
   get blogSort() {
@@ -116,8 +116,8 @@ export default class Blogs extends Component {
   render() {
     const { blogs } = this.props.blogStore
     const { tags: selectedTags } = this.props.blogStore.blogs
-    const { showNum, animateExit } = this.state
-    // const { showNum } = this.state
+    // const { showNum, animateExit } = this.state
+    const { showNum } = this.state
     const noMore = showNum >= blogs.list.length
 
     return (
@@ -128,7 +128,7 @@ export default class Blogs extends Component {
         <div className="do-content-container">
           <div className="blogs-list" ref={this.$blogs}>
             <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={500}>
-              <AnimateQueue
+              {/* <AnimateQueue
                 animate={true}
                 exit={animateExit}
                 interval={150}
@@ -136,16 +136,16 @@ export default class Blogs extends Component {
                 from={{ transform: 'translateX(100px)', opacity: 0 }}
                 to={{ transform: 'translateX(0px)', opacity: 1 }}
                 keys={blogs.list.slice(0, showNum).map(item => item._id)}
-              >
-                {Object.entries(this.blogSort).map(([date, blogs]) => (
-                  <div className="blogs-group" key={date}>
-                    <Date date={date} />
-                    {blogs.map((blog, index) => (
-                      <BlogItem key={blog._id + index} blog={blog} />
-                    ))}
-                  </div>
-                ))}
-              </AnimateQueue>
+              > */}
+              {Object.entries(this.blogSort).map(([date, blogs]) => (
+                <div className="blogs-group" key={date}>
+                  <Date date={date} />
+                  {blogs.map((blog, index) => (
+                    <BlogItem key={blog._id + index} blog={blog} />
+                  ))}
+                </div>
+              ))}
+              {/* </AnimateQueue> */}
             </ScrollDetect>
             {!noMore && <div className="do-fetching-loading">加载中...</div>}
           </div>
