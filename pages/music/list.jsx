@@ -47,6 +47,9 @@ class MusicList extends React.Component {
 @inject('musicStore')
 @observer
 class MusicFilter extends React.Component {
+  $filter = React.createRef()
+  $placeholder = React.createRef()
+
   componentDidMount() {
     this.props.musicStore.getCategoryInfo()
   }
@@ -82,38 +85,41 @@ class MusicFilter extends React.Component {
     const noSub = !subCategories.length
 
     return (
-      <div className="do-common-container">
-        <div className={classnames('music-list-tabs-wrapper', noSub && 'music-list-tabs-no-sub', 'hidden-xs')}>
-          {!!categories.length && (
-            <div className="music-main-tabs">
-              <Tabs type="easy" value={mainCategory.toString()} onChange={this.handleToggleMainCategory}>
-                <Tab value={'all'}>全部</Tab>
-                {categories.map(({ value, name }) => {
-                  return (
-                    <Tab key={value} value={value}>
-                      {name}
-                    </Tab>
-                  )
-                })}
-              </Tabs>
-            </div>
-          )}
+      <>
+        <div className="do-common-container music-list-filter" ref={this.$filter}>
+          <div className={classnames('music-list-tabs-wrapper', noSub && 'music-list-tabs-no-sub', 'hidden-xs')}>
+            {!!categories.length && (
+              <div className="music-main-tabs">
+                <Tabs type="easy" value={mainCategory.toString()} onChange={this.handleToggleMainCategory}>
+                  <Tab value={'all'}>全部</Tab>
+                  {categories.map(({ value, name }) => {
+                    return (
+                      <Tab key={value} value={value}>
+                        {name}
+                      </Tab>
+                    )
+                  })}
+                </Tabs>
+              </div>
+            )}
 
-          {!noSub && (
-            <div className="music-tag-tabs">
-              <Tabs type="easy" value={subCategory} onChange={this.handleToggleSubCategory}>
-                {subCategories.slice(0, 12).map(({ name }) => {
-                  return (
-                    <Tab key={name} value={name}>
-                      {name}
-                    </Tab>
-                  )
-                })}
-              </Tabs>
-            </div>
-          )}
+            {!noSub && (
+              <div className="music-tag-tabs">
+                <Tabs type="easy" value={subCategory} onChange={this.handleToggleSubCategory}>
+                  {subCategories.slice(0, 12).map(({ name }) => {
+                    return (
+                      <Tab key={name} value={name}>
+                        {name}
+                      </Tab>
+                    )
+                  })}
+                </Tabs>
+              </div>
+            )}
+          </div>
         </div>
-      </div>
+        <div className="music-list-filter-placeholder" ref={this.$placeholder} />
+      </>
     )
   }
 }
@@ -139,7 +145,7 @@ export default class Musics extends React.Component {
     const { hotMusicInfo } = this.props.musicStore
     const { list, loading } = hotMusicInfo
     const { showNum } = this.state
-    const noMore = showNum >= list.length
+    const noMore = list.length && showNum >= list.length
 
     return (
       <React.Fragment>
@@ -150,8 +156,9 @@ export default class Musics extends React.Component {
         </Head>
         <div className="music-list-page">
           <MusicFilter />
+
           {list.length ? (
-            <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={300}>
+            <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={1000}>
               <div className="music-album-list">
                 <AnimateQueue
                   animate={true}
@@ -169,6 +176,8 @@ export default class Musics extends React.Component {
           ) : null}
 
           {loading || !noMore ? <div className="do-fetching-loading">加载中...</div> : null}
+
+          {noMore && <div className="do-fetching-loading">没有更多啦</div>}
         </div>
       </React.Fragment>
     )

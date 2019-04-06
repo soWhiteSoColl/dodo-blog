@@ -15,9 +15,20 @@
   }
 }
 
+.music-list-filter {
+  position: relative;
+  z-index: 100;
+  background-color: transparent;
+  width: 100%;
+  max-width: 100%;
+}
+
+.music-list-filter-placeholder {
+  height: 100px;
+  display: none;
+}
+
 .music-list-tabs-wrapper {
-  margin-top: 10px;
-  margin-bottom: 25px;
   height: 100px;
   display: flex;
   flex-direction: column;
@@ -29,9 +40,10 @@
   flex-wrap: wrap;
   max-width: 1240px;
   width: 100%;
-  margin: 15px auto;
-  padding: 0 15px;
+  padding: 25px 15px;
+  margin: 0 auto;
   position: relative;
+  min-height: 100vh;
 }
 
 .music-album {
