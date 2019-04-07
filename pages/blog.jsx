@@ -33,7 +33,7 @@ export default class BlogDetail extends Component {
     return (
       <React.Fragment>
         <Head>
-          <title>{blog.title} - 小寒的博客</title>
+          <title>{blog.title}-小寒的博客</title>
           <meta name="keywords" content={blogKeywords.join(',')} />
           <meta name="description" content={blogDescription} />
         </Head>
