@@ -39,7 +39,7 @@ export default class BlogDetail extends Component {
           <meta name="description" content={blogDescription} />
         </Head>
         <div className="do-content-container blog-detail">
-          <AnimateQueue animate={true}>
+          <AnimateQueue animate={true} speed={600}>
             <h1 className="blog-title">
               <span>{blog.title}</span>
             </h1>
