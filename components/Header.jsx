@@ -11,7 +11,7 @@ const musicMenus = [
 ]
 
 const blogMenus = [
-  { href: '/', label: '博客', active: route => route === '/' || /^\/blog.*/.test(route) },
+  { href: '/', label: '博客' },
   { href: '/more', label: '项目' },
   { href: '/music/list', label: '去听音乐' }
 ]

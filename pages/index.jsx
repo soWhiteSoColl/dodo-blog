@@ -131,7 +131,7 @@ export default class Blogs extends Component {
                 from={{ transform: 'translateX(100px)', opacity: 0 }}
                 to={{ transform: 'translateX(0px)', opacity: 1 }}
                 interval={80}
-                speed={500}
+                speed={600}
               >
                 {Object.entries(this.blogSort).map(([date, blogs]) => (
                   <div className="blogs-group" key={date}>

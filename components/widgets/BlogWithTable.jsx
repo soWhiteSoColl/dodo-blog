@@ -43,9 +43,10 @@ export default class BlogWithTable extends React.Component {
 
   render() {
     const { tables, content } = this.state
+    const { style } = this.props
 
     return (
-      <div className="blog-wrapper">
+      <div className="blog-wrapper" style={style}>
         <div className="blog-content" dangerouslySetInnerHTML={{ __html: content || this.props.content }} />
         {tables.length > 0 && (
           <Drawer>
