@@ -91,7 +91,7 @@ export default class Blogs extends Component {
     this.setState({ animateExit: true })
     setTimeout(() => {
       this.props.blogStore.list({ page: 1, tags: selectedTags }).then(() => this.setState({ animateExit: false }))
-    }, 300)
+    }, 450)
   }
 
   get blogSort() {
