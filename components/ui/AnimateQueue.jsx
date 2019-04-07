@@ -30,7 +30,7 @@ export class Animate extends React.Component {
         style: {
           ...{
             transform: `translateY(${animate ? 0 : 40}px)`,
-            transition: `all ease ${speed / 1000}s`,
+            transition: `all ease-in-out ${speed / 1000}s`,
             opacity: animate ? 1 : 0
           },
           ...additionAnimate

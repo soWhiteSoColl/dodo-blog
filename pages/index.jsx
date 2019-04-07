@@ -126,13 +126,12 @@ export default class Blogs extends Component {
           <div className="blogs-list" ref={this.$blogs}>
             <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={500}>
               <AnimateQueue
-                animate={true}
                 exit={animateExit}
-                interval={150}
-                speed={600}
+                animate={true}
                 from={{ transform: 'translateX(100px)', opacity: 0 }}
                 to={{ transform: 'translateX(0px)', opacity: 1 }}
-                keys={blogs.list.slice(0, showNum).map(item => item._id)}
+                interval={80}
+                speed={500}
               >
                 {Object.entries(this.blogSort).map(([date, blogs]) => (
                   <div className="blogs-group" key={date}>
