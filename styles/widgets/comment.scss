@@ -98,6 +98,8 @@ $comment-bg-color: #eee;
 .w-comment-item-content-value {
   @include blog-reset;
   color: #4a4a4a;
+  font-size: 14px;
+
   p {
     margin-top: 0;
     margin-bottom: 0;
@@ -105,4 +107,9 @@ $comment-bg-color: #eee;
       margin-top: 0.5em;
     }
   }
+}
+
+.comment-form-wrapper .editor-wrapper .bf-content .public-DraftEditor-content {
+  padding: 14px 15px;
+  font-size: 14px;
 }
