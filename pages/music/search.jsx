@@ -2,10 +2,8 @@ import React from 'react'
 import Head from 'next/head'
 import classnames from 'classnames'
 import { observer, inject } from 'mobx-react'
-import { Button } from 'dodoui'
-import AnimateQueue from 'ui/AnimateQueue'
+import { AnimateQueue, ScrollDetect, Button } from 'ui'
 import Icon from 'ui/Icons'
-import ScrollDetect from 'ui/ScrollDetect'
 import { downloadFile, secondToMunite } from 'tools/main'
 
 @inject('musicStore')
@@ -104,7 +102,7 @@ export default class Search extends React.Component {
         </Head>
         <div className="music-search-page">
           <div className="do-content-container">
-            <div className="music-search-wrapper" style={{ marginTop: hasResult || loading ? '20px' : '200px' }}>
+            <div className="music-search-wrapper" style={{ marginTop: hasResult || loading ? '40px' : '200px' }}>
               <div className="music-search">
                 <input
                   value={searched}
@@ -115,7 +113,7 @@ export default class Search extends React.Component {
                   onKeyDown={e => e.keyCode === 13 && this.handleSearch()}
                 />
                 <Button className="music-search-btn" onClick={this.handleSearch}>
-                  搜索
+                  <Icon type="search" antd={true} />
                 </Button>
               </div>
             </div>

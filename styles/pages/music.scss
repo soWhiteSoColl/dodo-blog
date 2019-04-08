@@ -253,7 +253,7 @@
   .music-info-name {
     @include text-overflow-ellipsis;
     width: 200px;
-    padding-left: 10px;
+    padding-left: 15px;
     margin-right: 15px;
     display: inline-block;
     @media screen and (max-width: 720px) {
@@ -280,8 +280,9 @@
     transition: opacity ease 0.3s;
   }
   .music-info-time {
-    width: 80px;
+    width: 70px;
     color: #999;
+    text-align: center;
   }
   @media screen and (max-width: 720px) {
     .music-info-toggle {
@@ -331,15 +332,18 @@
 .music-search {
   display: flex;
   background-color: transparent;
-
+  width: 100%;
   input {
-    border: 1px solid #ddd;
+    width: 100%;
+    border: none;
     border-right: none;
-    border-radius: 8px 0 0 8px;
-    width: calc(100% - 120px);
     padding: 15px;
+    padding-left: 30px;
     font-size: 16px;
     background-color: transparent;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 40px 0 0 40px;
     &:focus {
       outline: none;
     }
@@ -351,13 +355,14 @@
   }
 
   @media screen and (max-width: 720px) {
-    button {
-      width: 80px;
+    .music-search-btn.ze-btn {
+      width: 50px;
       font-size: 14px;
     }
     input {
-      width: calc(100% - 80px);
+      width: calc(100% - 50px);
       padding: 10px;
+      padding-left: 20px;
       font-size: 14px;
     }
   }
@@ -371,11 +376,18 @@
 
 .music-search-btn.ze-btn {
   margin: 0px;
-  width: 120px;
-  border-radius: 0 8px 8px 0;
+  width: 80px;
+  border-radius: 0 40px 40px 0;
+  padding: 0;
   background-color: $primary-color;
-  color: #fff;
-  font-size: 16px;
+  padding-right: 4px;
+  .svg-icon {
+    transform: scale(0.7);
+    path {
+      fill: #fff;
+    }
+  }
+
   &:hover {
     background-color: $high-primary-color;
   }
