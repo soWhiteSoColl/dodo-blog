@@ -71,6 +71,19 @@ export default class CommentGroup extends React.Component {
     }
   }
 
+  formatComments(list) {
+    return list.map(item => {
+      const comment = { ...item } // 前拷贝
+      if (comment.type === 2) {
+        let repliedMessage = list.find(item => item._id === comment.reply)
+        if (repliedMessage && repliedMessage.user) {
+          comment.user = { username: `小寒@${repliedMessage.user.username}` }
+        }
+      }
+      return comment
+    })
+  }
+
   render() {
     const { message, newMessages, list } = this.state
     const { title, placeholder } = this.props
@@ -104,7 +117,7 @@ export default class CommentGroup extends React.Component {
         </div>
 
         <CommentList>
-          {newMessages.map(message => {
+          {this.formatComments(newMessages).map(message => {
             return (
               <Animate
                 animate={true}
@@ -115,9 +128,10 @@ export default class CommentGroup extends React.Component {
               >
                 <Comment
                   key={message._id}
-                  username={message.user.username}
+                  username={message.user && message.user.username}
                   content={message.message}
                   created={message.created}
+                  type={message.type}
                 />
               </Animate>
             )
@@ -128,12 +142,13 @@ export default class CommentGroup extends React.Component {
             to={{ transform: 'translateX(0px)' }}
             interval={100}
           >
-            {list.map(message => (
+            {this.formatComments(list).map(message => (
               <Comment
                 key={message._id}
-                username={message.user.username}
+                username={message.user && message.user.username}
                 content={message.message}
                 created={message.created}
+                type={message.type}
               />
             ))}
           </AnimateQueue>

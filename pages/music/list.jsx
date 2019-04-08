@@ -157,7 +157,7 @@ export default class Musics extends React.Component {
         <div className="music-list-page">
           <MusicFilter />
 
-          {list.length ? (
+          {list.length > 0 ? (
             <ScrollDetect onScrollOut={this.handleShowMore} detect={!noMore} protectTime={1000}>
               <div className="music-album-list">
                 <AnimateQueue
@@ -175,9 +175,9 @@ export default class Musics extends React.Component {
             </ScrollDetect>
           ) : null}
 
-          {loading || !noMore ? <div className="do-fetching-loading">加载中...</div> : null}
+          {!!loading || !noMore ? <div className="do-fetching-loading">加载中...</div> : null}
 
-          {noMore && <div className="do-fetching-loading">没有更多啦</div>}
+          {!!noMore && <div className="do-fetching-loading">没有更多啦</div>}
         </div>
       </React.Fragment>
     )

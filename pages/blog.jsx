@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Head from 'next/head'
 import BlogWithTable from 'widgets/BlogWithTable'
 import { dateFormater } from 'tools/main'
+import { AnimateQueue } from 'ui'
 import CommentGroup from 'components/CommentGroup'
 
 export default class BlogDetail extends Component {
@@ -33,18 +34,20 @@ export default class BlogDetail extends Component {
     return (
       <React.Fragment>
         <Head>
-          <title>{blog.title} - 小寒的博客</title>
+          <title>{blog.title}-小寒的博客</title>
           <meta name="keywords" content={blogKeywords.join(',')} />
           <meta name="description" content={blogDescription} />
         </Head>
         <div className="do-content-container blog-detail">
-          <h1 className="blog-title">
-            <span>{blog.title}</span>
-          </h1>
-          <div className="blog-meta">
-            <div className="blog-date">{dateFormater(blog.created)}</div>
-          </div>
-          <BlogWithTable content={blog.content} />
+          <AnimateQueue animate={true} speed={600}>
+            <h1 className="blog-title">
+              <span>{blog.title}</span>
+            </h1>
+            <div className="blog-meta">
+              <div className="blog-date">{dateFormater(blog.created)}</div>
+            </div>
+            <BlogWithTable content={blog.content} />
+          </AnimateQueue>
           <CommentGroup placeholder={'请在这里发表评论'} list={comments} onSubmit={this.handleComment} />
         </div>
       </React.Fragment>
