@@ -1,5 +1,8 @@
 .blogs-list {
   margin: 25px auto;
+  @media screen and (max-width: 768px) {
+    margin: 0 auto;
+  }
   .do-fetching-loading {
     text-align: left;
   }

@@ -55,9 +55,8 @@ $comment-bg-color: #eee;
     margin-right: 5px;
     display: inline-block;
     @media screen and (max-width: 720px) {
-      font-size: 20px;
       margin-right: 5px;
-      max-width: 80px;
+      max-width: 100px;
     }
   }
   &-info {
