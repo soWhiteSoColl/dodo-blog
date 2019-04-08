@@ -3,13 +3,10 @@ import classnames from 'classnames'
 import { dateFormater } from 'tools/main'
 
 export default function Comment(props) {
-  const { content, username, style, created } = props
+  const { content, username, style, created, type } = props
 
   return (
-    <div
-      className={classnames('w-comment-item', (username === '小寒' || username === '小明') && 'self-comment')}
-      style={style}
-    >
+    <div className={classnames('w-comment-item', type === 1 && 'self-comment')} style={style}>
       <div className="w-comment-item-info">
         <span className="w-comment-item-nickname">{username}</span>
         {created && <span className="w-comment-item-time">{dateFormater(created)}</span>}
