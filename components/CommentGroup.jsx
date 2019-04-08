@@ -74,7 +74,7 @@ export default class CommentGroup extends React.Component {
   formatComments(list) {
     return list.map(item => {
       const comment = { ...item } // 前拷贝
-      if (comment.type === 1) {
+      if (comment.type === 2) {
         let repliedMessage = list.find(item => item.id === item.reply)
         comment.user = { username: `小寒@${repliedMessage.user.username}` }
       }
