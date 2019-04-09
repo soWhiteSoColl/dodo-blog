@@ -334,6 +334,7 @@
   display: flex;
   background-color: transparent;
   width: 100%;
+
   input {
     width: 100%;
     border: none;
@@ -342,7 +343,8 @@
     padding-left: 30px;
     font-size: 16px;
     background-color: transparent;
-    border: 1px solid #ddd;
+    border-right: none;
+    border: 1px solid #999;
     border-right: none;
     border-radius: 40px 0 0 40px;
     &:focus {
@@ -357,7 +359,7 @@
 
   @media screen and (max-width: 720px) {
     .music-search-btn.ze-btn {
-      width: 50px;
+      width: 60px;
       font-size: 14px;
     }
     input {

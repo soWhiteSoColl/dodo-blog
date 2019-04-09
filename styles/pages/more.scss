@@ -43,15 +43,17 @@ div.do-dialog {
   }
 
   &-item-wrapper {
-    width: 32%;
-    margin-right: 2%;
-    margin-bottom: 2%;
+    width: 31%;
+    margin-right: 3.5%;
+    margin-bottom: 3%;
     &:nth-child(3n) {
       margin-right: 0;
     }
 
     @media screen and (max-width: 750px) {
       width: 100%;
+      margin-right: 0%;
+      margin-bottom: 30px;
     }
   }
 
