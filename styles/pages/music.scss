@@ -21,7 +21,7 @@
   background-color: transparent;
   width: 100%;
   max-width: 100%;
-  margin: 15px 0;
+  margin: 20px 0;
 }
 
 .music-list-filter-placeholder {
@@ -50,9 +50,9 @@
 .music-album {
   box-sizing: border-box;
   overflow: hidden;
-  margin-right: 15px;
-  margin-bottom: 15px;
-  width: 230px;
+  margin-right: 25px;
+  margin-bottom: 20px;
+  width: 210px;
 
   &:nth-child(5n) {
     margin-right: 0;
@@ -62,7 +62,7 @@
     position: relative;
     cursor: pointer;
     overflow: hidden;
-    height: 230px;
+    height: 210px;
     border-radius: 6px;
     background-color: #ccc;
     .music-player-play-btn {
@@ -197,7 +197,7 @@
 }
 
 .music-info-list {
-  margin-top: 30px;
+  margin-top: 25px;
   @media screen and (max-width: 750px) {
     margin-top: 20px;
   }
@@ -212,7 +212,7 @@
 }
 
 .music-info-item {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;

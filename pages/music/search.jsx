@@ -102,7 +102,10 @@ export default class Search extends React.Component {
         </Head>
         <div className="music-search-page">
           <div className="do-content-container">
-            <div className="music-search-wrapper" style={{ marginTop: hasResult || loading ? '40px' : '200px' }}>
+            <div
+              className="music-search-wrapper"
+              style={{ marginTop: hasResult || loading ? '40px' : 'calc(50vh - 140px)' }}
+            >
               <div className="music-search">
                 <input
                   value={searched}

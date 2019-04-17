@@ -21,7 +21,7 @@ export default class MusicStore extends Base {
 
   @observable currentCategory = {
     main: 'all',
-    sub: ''
+    sub: '全部'
   }
 
   @observable currentList = {}
@@ -38,6 +38,9 @@ export default class MusicStore extends Base {
 
   @action
   getHotMusicInfo = () => {
+    if (this.hotMusicInfo.cat === this.currentCategory.sub) {
+      return Promise.resolve(this.hotMusicInfo)
+    }
     this.hotMusicInfo.cat = this.currentCategory.sub || '全部'
     this.hotMusicInfo.loading = true
     this.hotMusicInfo.list = []
@@ -79,6 +82,8 @@ export default class MusicStore extends Base {
 
   @action
   getLeaderboard = () => {
+    if (this.leaderboard.songs) return Promise.resolve(this.leaderboard)
+
     return axios
       .get('/musics/songList', { params: { id: 3778678, offset: 0, timestamp: this.timestamp } })
       .then(list => (this.leaderboard = list))
@@ -86,6 +91,8 @@ export default class MusicStore extends Base {
 
   @action
   getCategoryInfo = () => {
+    if (this.categoryInfo.sub.length) return Promise.resolve(this.categoryInfo)
+
     return axios.get('/musics/songListCategory').then(categoryInfo => (this.categoryInfo = categoryInfo))
   }
 

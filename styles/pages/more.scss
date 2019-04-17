@@ -15,13 +15,13 @@ div.do-dialog {
 .contact-project {
   display: flex;
   flex-wrap: wrap;
-  width: 1200px;
+  width: 1230px;
   max-width: 100%;
-  margin: 25px auto 0px;
+  margin: 45px auto 0px;
   @media screen and (max-width: 768px) {
     margin-top: 0;
   }
-  padding: 15px;
+  padding: 0 15px;
 
   &-item {
     background-color: #fff;
@@ -43,9 +43,9 @@ div.do-dialog {
   }
 
   &-item-wrapper {
-    width: 31%;
-    margin-right: 3.5%;
-    margin-bottom: 3%;
+    width: 370px;
+    margin-right: 45px;
+    margin-bottom: 45px;
     &:nth-child(3n) {
       margin-right: 0;
     }
