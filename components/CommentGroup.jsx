@@ -23,6 +23,9 @@ export default class CommentGroup extends React.Component {
   }
 
   componentDidUpdate(prevProps) {
+    if (this.props.list !== prevProps.list) {
+      return this.setState({ list: this.props.list })
+    }
     if (this.props.list.length && !prevProps.list.length) {
       this.handlePushList()
     } else if (this.props.list.length !== prevProps.list.length) {
@@ -142,15 +145,17 @@ export default class CommentGroup extends React.Component {
             to={{ transform: 'translateX(0px)' }}
             interval={100}
           >
-            {this.formatComments(list).map(message => (
-              <Comment
-                key={message._id}
-                username={message.user && message.user.username}
-                content={message.message}
-                created={message.created}
-                type={message.type}
-              />
-            ))}
+            {this.formatComments(list).map(message => {
+              return (
+                <Comment
+                  key={message._id}
+                  username={message.user && message.user.username}
+                  content={message.message}
+                  created={message.created}
+                  type={message.type}
+                />
+              )
+            })}
           </AnimateQueue>
         </CommentList>
       </div>

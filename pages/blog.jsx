@@ -19,6 +19,7 @@ export default class BlogDetail extends Component {
 
   componentDidMount = () => {
     this.props.blogStore.getComments()
+    console.log(123)
   }
 
   handleComment = message => {
