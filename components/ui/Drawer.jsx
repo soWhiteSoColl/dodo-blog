@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import ReactDOM from 'react-dom'
 import { getDOMById } from 'tools/main'
 import Icon from './Icons'
+import _ from 'lodash'
 
 class DrawerInner extends React.Component {
   state = {
@@ -38,6 +39,21 @@ class DrawerInner extends React.Component {
     const app = document.getElementById('__next')
     app.style.width = '100%'
     clearTimeout(this.timer)
+  }
+
+  componentDidMount() {
+    const app = document.getElementById('__next')
+
+    window.addEventListener(
+      'resize',
+      _.throttle(() => {
+        if (window.innerWidth < 720) {
+          app.style.width = '100%'
+        } else {
+          app.style.width = this.state.open ? 'calc(100% - 340px)' : '100%'
+        }
+      }, 60)
+    )
   }
 
   render() {
