@@ -39,7 +39,7 @@
 .music-album-list {
   display: flex;
   flex-wrap: wrap;
-  max-width: 1240px;
+  max-width: 1230px;
   width: 100%;
   padding: 0 15px;
   margin: 0 auto;
@@ -52,7 +52,7 @@
   overflow: hidden;
   margin-right: 25px;
   margin-bottom: 20px;
-  width: 210px;
+  width: 220px;
 
   &:nth-child(5n) {
     margin-right: 0;
