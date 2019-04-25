@@ -6,8 +6,6 @@ import _ from 'lodash'
 import Link from 'next/link'
 import Router from 'next/router'
 
-const noop = () => {}
-
 const MusicList = props => {
   const { musics, onToggle, current } = props
   return (
@@ -95,6 +93,8 @@ export default class MusicPlayer extends React.Component {
   handlePlay = async () => {
     const audio = this.$audio.current
     if (this.palyPromise) await this.palyPromise
+
+    this.props.onPlay()
     this.palyPromise = await audio
       .play(audio.currentTime)
       .catch(err => {
@@ -113,6 +113,7 @@ export default class MusicPlayer extends React.Component {
 
   handlePause = () => {
     this.$audio.current && this.$audio.current.pause()
+    this.props.onPause()
     this.handleClear()
   }
 
@@ -167,14 +168,13 @@ export default class MusicPlayer extends React.Component {
   handleToggle = currentIndex => {
     this.setState({ currentIndex }, () => {
       this.handleChangeIndex(currentIndex)
-      this.handlePlay()
     })
   }
 
-  handleChangeIndex = nextIndex => {
-    const { paused, musics } = this.props
-    if (!paused) this.handlePlay()
-    this.props.onChange(musics[nextIndex], nextIndex)
+  handleChangeIndex = index => {
+    const { musics } = this.props
+    this.handlePlay()
+    this.props.onChange(musics[index], index)
   }
 
   handleToggleOpen = () => {
@@ -206,7 +206,7 @@ export default class MusicPlayer extends React.Component {
 
   render() {
     const { open, duration, currentTime, loop, showList, currentIndex, random } = this.state
-    const { audioConfig, musics = [], paused, onPlay = noop, onPause = noop } = this.props
+    const { audioConfig, musics = [], paused } = this.props
     const { pic, name, singer, url } = musics[currentIndex] || {}
     const currentRoute = Router.router.route
 
@@ -222,7 +222,7 @@ export default class MusicPlayer extends React.Component {
       >
         <audio src={url} ref={this.$audio} loop={loop} name={name} />
         <div className="main-music-player-wrapper">
-          <div className="main-music-player-pic" onClick={paused ? onPlay : onPause}>
+          <div className="main-music-player-pic" onClick={paused ? this.handlePlay : this.handlePause}>
             <img src={pic} alt={name} />
             <div className={classnames('music-player-play-btn')}>
               <Icon type={paused ? 'pause' : 'play'} />
