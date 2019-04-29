@@ -92,7 +92,6 @@ export default class MusicStore extends Base {
   @action
   getCategoryInfo = () => {
     if (this.categoryInfo.sub.length) return Promise.resolve(this.categoryInfo)
-
     return axios.get('/musics/songListCategory').then(categoryInfo => (this.categoryInfo = categoryInfo))
   }
 

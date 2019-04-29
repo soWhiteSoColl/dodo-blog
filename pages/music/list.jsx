@@ -64,6 +64,10 @@ class MusicFilter extends React.Component {
   $placeholder = React.createRef()
 
   componentDidMount() {
+    const main = localStorage.getItem('current-main-category') || 'all'
+    const sub = localStorage.getItem('current-sub-category') || '全部'
+    this.handleToggleMainCategory(main)
+    this.handleToggleSubCategory(sub)
     this.props.musicStore.getCategoryInfo()
   }
 
@@ -71,6 +75,7 @@ class MusicFilter extends React.Component {
     const { currentCategory } = this.props.musicStore
     currentCategory.main = main
     this.props.musicStore.setValues({ currentCategory })
+    localStorage.setItem('current-main-category', main)
   }
 
   handleToggleSubCategory = sub => {
@@ -78,6 +83,7 @@ class MusicFilter extends React.Component {
     currentCategory.sub = sub
     this.props.musicStore.setValues({ currentCategory })
     this.props.musicStore.getHotMusicInfo()
+    localStorage.setItem('current-sub-category', sub)
   }
 
   getSubCategories = mainCategory => {
@@ -90,11 +96,8 @@ class MusicFilter extends React.Component {
   render() {
     const { categoryInfo, currentCategory } = this.props.musicStore
     const { sub: subCategory, main: mainCategory } = currentCategory
-
     const categories = Object.entries(categoryInfo.categories).map(([value, name]) => ({ value, name }))
-
     const subCategories = this.getSubCategories(mainCategory)
-
     const noSub = !subCategories.length
 
     return (

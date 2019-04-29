@@ -174,6 +174,7 @@ export default class MusicPlayer extends React.Component {
   handleChangeIndex = index => {
     const { musics } = this.props
     this.handlePlay()
+    this.setState({ duration: 0, currentTime: 0 })
     this.props.onChange(musics[index], index)
   }
 
