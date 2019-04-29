@@ -60,7 +60,7 @@ export default class MusicPlayer extends React.Component {
       this.setState({ currentTime, duration })
     })
 
-    audio.addEventListener('error', () => setTimeout(this.handleNext, 500))
+    // audio.addEventListener('error', () => setTimeout(this.handleNext, 500))
 
     this.props.getAudio && this.props.getAudio(audio)
   }

@@ -11,29 +11,42 @@ const Tab = Tabs.Item
 @inject('musicStore')
 @observer
 class MusicList extends React.Component {
-  handlePlay = () => {
+  handleClick = () => {
     const { id } = this.props
-    const { getListById, currentList, paused } = this.props.musicStore
-    if (id.toString() === currentList.songListId.toString()) {
-      this.props.musicStore.setValues({ paused: !paused })
+    const { getListById, paused } = this.props.musicStore
+
+    if (this.isCurrentList) {
+      paused ? this.handlePlay() : this.handlePause()
     } else {
       localStorage.setItem('current-list-id', id)
-      getListById(id).then(() => this.props.musicStore.setValues({ paused: false }))
+      getListById(id).then(this.handlePlay)
     }
+  }
+
+  handlePause = () => {
+    this.props.musicStore.setValues({ paused: true })
+  }
+
+  handlePlay = () => {
+    this.props.musicStore.setValues({ paused: false })
+  }
+
+  get isCurrentList() {
+    const { id } = this.props
+    const { currentList } = this.props.musicStore
+    return id.toString() === currentList.songListId.toString()
   }
 
   render() {
     const { coverImgUrl: pic, title: name, style } = this.props
-    const { id } = this.props
-    const { currentList, paused } = this.props.musicStore
-    const active = !paused && id.toString() === currentList.songListId.toString()
+    const { paused } = this.props.musicStore
 
     return (
-      <div className={classnames('music-album', active && 'active', 'play')} style={style}>
+      <div className={classnames('music-album', this.isCurrentList && 'active')} style={style}>
         <div className="music-album-cover">
           <img src={pic} alt="" />
-          <div className={classnames('music-player-play-btn')} onClick={this.handlePlay}>
-            <Icon type={active ? 'play' : 'pause'} />
+          <div className={classnames('music-player-play-btn')} onClick={this.handleClick}>
+            <Icon type={this.isCurrentList && !paused ? 'play' : 'pause'} />
           </div>
         </div>
         <div className="music-album-info">
