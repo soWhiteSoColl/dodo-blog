@@ -50,7 +50,7 @@ export default class MusicStore extends Base {
       this.hostMusicrRequestCancel = null
     }
     return (this.request = axios
-      .get('/musics/hotSongList', {
+      .get('/musics/songList/hot', {
         params: { limit, offset, cat },
         customCancelToken: 'get-hot-song-list'
       })
@@ -82,17 +82,21 @@ export default class MusicStore extends Base {
 
   @action
   getLeaderboard = () => {
+    console.log(this.leaderboard.songs)
     if (this.leaderboard.songs) return Promise.resolve(this.leaderboard)
 
     return axios
       .get('/musics/songList', { params: { id: 3778678, offset: 0, timestamp: this.timestamp } })
-      .then(list => (this.leaderboard = list))
+      .then(list => {
+        console.log(list)
+        this.leaderboard = list
+      })
   }
 
   @action
   getCategoryInfo = () => {
     if (this.categoryInfo.sub.length) return Promise.resolve(this.categoryInfo)
-    return axios.get('/musics/songListCategory').then(categoryInfo => (this.categoryInfo = categoryInfo))
+    return axios.get('/musics/songList/category').then(categoryInfo => (this.categoryInfo = categoryInfo))
   }
 
   @action

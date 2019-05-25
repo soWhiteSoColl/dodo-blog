@@ -34,11 +34,12 @@ class MusicList extends React.Component {
   get isCurrentList() {
     const { id } = this.props
     const { currentList } = this.props.musicStore
+    if (!currentList.songListId) return false
     return id.toString() === currentList.songListId.toString()
   }
 
   render() {
-    const { coverImgUrl: pic, title: name, style } = this.props
+    const { coverImgUrl: pic, name, style } = this.props
     const { paused } = this.props.musicStore
 
     return (

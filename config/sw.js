@@ -1,5 +1,4 @@
 export function initServiceWorker() {
-  console.log(123)
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker
       .register('_next/static/development/pages/index.js', { scope: '/_next/static/development/pages/' })
