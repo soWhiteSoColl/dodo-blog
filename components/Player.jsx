@@ -43,14 +43,14 @@ export default class Player extends React.Component {
   render() {
     const { currentList, paused, currentMusic } = this.props.musicStore
     const { audioConfig } = this.props
-    const { songs, songListId } = currentList
+    const { songs, id } = currentList
     if (!currentList || !currentList.songs) return null
     if (!this.alreadyUse && paused && audioConfig.position !== 'bottom') return null
 
     return (
       <MusicPlayer
         audioConfig={audioConfig}
-        listId={songListId}
+        listId={id}
         musicId={currentMusic && currentMusic.id}
         musics={songs}
         paused={paused}

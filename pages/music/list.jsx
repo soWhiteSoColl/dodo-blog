@@ -19,7 +19,9 @@ class MusicList extends React.Component {
       paused ? this.handlePlay() : this.handlePause()
     } else {
       localStorage.setItem('current-list-id', id)
-      getListById(id).then(this.handlePlay)
+      getListById(id).then(() => {
+        this.handlePlay()
+      })
     }
   }
 
@@ -34,8 +36,8 @@ class MusicList extends React.Component {
   get isCurrentList() {
     const { id } = this.props
     const { currentList } = this.props.musicStore
-    if (!currentList.songListId) return false
-    return id.toString() === currentList.songListId.toString()
+    if (!currentList.id) return false
+    return id.toString() === currentList.id.toString()
   }
 
   render() {
