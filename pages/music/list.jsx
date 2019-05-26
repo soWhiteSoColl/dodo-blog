@@ -184,9 +184,9 @@ export default class Musics extends React.Component {
                   from={{ transform: 'translateY(80px)', opacity: 0 }}
                   to={{ transform: 'translateX(0px)', opacity: 1 }}
                 >
-                  {list.slice(0, showNum).map((item, index) => (
-                    <MusicList key={item.id + index} {...item} />
-                  ))}
+                  {list.slice(0, showNum).map((item, index) => {
+                    return <MusicList key={`${index}`} {...item} />
+                  })}
                 </AnimateQueue>
               </div>
             </ScrollDetect>

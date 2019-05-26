@@ -7,9 +7,9 @@ export default class MusicStore extends Base {
   timestamp = 1
 
   @observable hotMusicInfo = {
-    limit: 200,
-    offset: 0,
-    cat: '',
+    page: 1,
+    pageSize: 200,
+    categoryType: '',
     list: [],
     loading: true
   }
@@ -41,22 +41,21 @@ export default class MusicStore extends Base {
     if (this.hotMusicInfo.cat === this.currentCategory.sub) {
       return Promise.resolve(this.hotMusicInfo)
     }
-    this.hotMusicInfo.cat = this.currentCategory.sub || '全部'
+    this.hotMusicInfo.categoryType = this.currentCategory.sub || '全部'
     this.hotMusicInfo.loading = true
     this.hotMusicInfo.list = []
-    const { offset, limit, cat } = this.hotMusicInfo
+    const { categoryType, page, pageSize } = this.hotMusicInfo
     if (this.hostMusicrRequestCancel) {
       this.hostMusicrRequestCancel()
       this.hostMusicrRequestCancel = null
     }
     return (this.request = axios
       .get('/musics/songList/hot', {
-        params: { limit, offset, cat },
+        params: { page, pageSize, categoryType },
         customCancelToken: 'get-hot-song-list'
       })
       .then(list => {
         this.hotMusicInfo.list = list
-        this.hotMusicInfo.offset = list.length
         this.hotMusicInfo.loading = false
         return this.hotMusicInfo
       }))
@@ -64,12 +63,16 @@ export default class MusicStore extends Base {
 
   @action
   getListById = id => {
-    return axios.get('/musics/songList', { params: { limit: 20, id } }).then(list => {
-      if (!list || !list.songs) return false
-      list.songs.forEach(song => {
-        song.url += '&br=999000'
+    return axios.get('/musics/songList', { params: { pageSize: 20, id } }).then(list => {
+      if (!list || !list.tracks) return false
+      list.songs = list.tracks.map(item => {
+        const song = {}
+        song.name = item.name
+        song.pic = item.album.picUrl
+        song.singer = item.artists[0].name
+        song.url = `http://23333333.itooi.cn/netease/url?id=${item.id}&quality=flac`
+        return song
       })
-
       return (this.currentList = list)
     })
   }
@@ -82,13 +85,19 @@ export default class MusicStore extends Base {
 
   @action
   getLeaderboard = () => {
-    console.log(this.leaderboard.songs)
     if (this.leaderboard.songs) return Promise.resolve(this.leaderboard)
 
     return axios
       .get('/musics/songList', { params: { id: 3778678, offset: 0, timestamp: this.timestamp } })
       .then(list => {
-        console.log(list)
+        list.songs = list.tracks.map(item => {
+          const song = {}
+          song.name = item.name
+          song.pic = item.album.picUrl
+          song.singer = item.artists[0].name
+          song.url = `http://23333333.itooi.cn/netease/url?id=${item.id}&quality=flac`
+          return song
+        })
         this.leaderboard = list
       })
   }

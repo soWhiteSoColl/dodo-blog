@@ -138,8 +138,8 @@ export default class Search extends React.Component {
                       from={{ transform: 'translateY(80px)' }}
                       to={{ transform: 'translateX(0px)' }}
                     >
-                      {searchedList.slice(0, showNum).map(music => (
-                        <SearchedItem key={music.id} {...music} />
+                      {searchedList.slice(0, showNum).map((music, index) => (
+                        <SearchedItem key={music.id + index} {...music} />
                       ))}
                     </AnimateQueue>
                   </ul>

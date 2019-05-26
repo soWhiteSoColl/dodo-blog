@@ -97,8 +97,8 @@ export default class Search extends React.Component {
                       from={{ transform: 'translateY(80px)', opacity: 0 }}
                       to={{ transform: 'translateX(0px)', opacity: 1 }}
                     >
-                      {songs.slice(0, showNum).map((music, key) => (
-                        <MusicItem key={music.id} NO={key + 1} {...music} />
+                      {songs.slice(0, showNum).map((music, index) => (
+                        <MusicItem key={music.id + index} NO={index + 1} {...music} />
                       ))}
                     </AnimateQueue>
                   </ul>
