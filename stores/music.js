@@ -5,6 +5,7 @@ import Base from './base'
 export default class MusicStore extends Base {
   audio = null
   timestamp = 1
+  leaderboardId = 3778678
 
   @observable hotMusicInfo = {
     page: 1,
@@ -38,7 +39,7 @@ export default class MusicStore extends Base {
 
   @action
   getHotMusicInfo = () => {
-    if (this.hotMusicInfo.cat === this.currentCategory.sub) {
+    if (this.hotMusicInfo.categoryType === this.currentCategory.sub) {
       return Promise.resolve(this.hotMusicInfo)
     }
     this.hotMusicInfo.categoryType = this.currentCategory.sub || '全部'
@@ -67,6 +68,7 @@ export default class MusicStore extends Base {
       if (!list || !list.tracks) return false
       list.songs = list.tracks.map(item => {
         const song = {}
+        song.id = item.id
         song.name = item.name
         song.pic = item.album.picUrl
         song.singer = item.artists[0].name
@@ -88,10 +90,11 @@ export default class MusicStore extends Base {
     if (this.leaderboard.songs) return Promise.resolve(this.leaderboard)
 
     return axios
-      .get('/musics/songList', { params: { id: 3778678, offset: 0, timestamp: this.timestamp } })
+      .get('/musics/songList', { params: { id: this.leaderboardId, offset: 0, timestamp: this.timestamp } })
       .then(list => {
         list.songs = list.tracks.map(item => {
           const song = {}
+          song.id = item.id
           song.name = item.name
           song.pic = item.album.picUrl
           song.singer = item.artists[0].name
@@ -109,20 +112,29 @@ export default class MusicStore extends Base {
   }
 
   @action
-  search = s => {
-    if (!s) {
+  search = keyword => {
+    if (!keyword) {
       this.searchValue = ''
       this.searchedList = []
     }
 
-    if (s === this.searchValue) {
+    if (keyword === this.searchValue) {
       return
     }
 
-    this.searchValue = s
-    return axios
-      .get('/musics/search', { params: { s, limit: 100, offset: 0 } })
-      .then(list => (this.searchedList = list))
+    this.searchValue = keyword
+    return axios.get('/musics/search', { params: { keyword, type: 'song', pageSize: 100, page: 0 } }).then(data => {
+      this.searchedList = data.songs.map(item => {
+        const song = {}
+        song.name = item.name
+        song.singer = item.ar[0].name
+        song.time = item.dt / 1000
+        song.url = `http://23333333.itooi.cn/netease/url?id=${item.id}&quality=flac`
+        song.pic = item.al.picUrl
+        song.id = item.id
+        return song
+      })
+    })
   }
 
   @action

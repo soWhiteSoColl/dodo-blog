@@ -13,7 +13,9 @@ export default class Player extends React.Component {
   alreadyUse = false
 
   componentDidMount() {
-    const listId = localStorage.getItem('current-list-id') || configConst.defaultMusicListId
+    const localId = localStorage.getItem('current-list-id')
+    console.log(localId)
+    const listId = (localId !== 'undefined' && localId) || configConst.defaultMusicListId
     const musicId = localStorage.getItem('current-music-id')
 
     listId &&

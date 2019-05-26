@@ -187,7 +187,7 @@ export default class Musics extends React.Component {
                   to={{ transform: 'translateX(0px)', opacity: 1 }}
                 >
                   {list.slice(0, showNum).map((item, index) => {
-                    return <MusicList key={`${index}`} {...item} />
+                    return <MusicList key={`${item.id}${index}`} {...item} />
                   })}
                 </AnimateQueue>
               </div>

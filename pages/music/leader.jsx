@@ -13,6 +13,8 @@ class MusicItem extends React.Component {
   handlePlay = () => {
     const music = this.props
     const { currentMusic, leaderboard: musics, paused } = this.props.musicStore
+    localStorage.setItem('current-list-id', this.props.musicStore.leaderboardId)
+
     if (music.id === currentMusic.id && !paused) {
       return this.props.musicStore.setValues({ paused: true })
     }
@@ -23,7 +25,6 @@ class MusicItem extends React.Component {
       currentMusic: music
     })
 
-    localStorage.setItem('current-list-id', musics.songListId)
     localStorage.setItem('current-music-id', music.id)
   }
 
@@ -98,7 +99,7 @@ export default class Search extends React.Component {
                       to={{ transform: 'translateX(0px)', opacity: 1 }}
                     >
                       {songs.slice(0, showNum).map((music, index) => (
-                        <MusicItem key={music.id + index} NO={index + 1} {...music} />
+                        <MusicItem key={music.url} NO={index + 1} {...music} />
                       ))}
                     </AnimateQueue>
                   </ul>
