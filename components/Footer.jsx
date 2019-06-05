@@ -6,6 +6,7 @@ const friendLinks = [
   { name: '小伟博客', url: 'http://www.mlwei.com' },
   { name: 'justdodo的博客', url: 'https://www.justdodo.cn' },
   { name: 'Ronaldo', url: 'http://www.cronaldo7.cn/' },
+  { name: '路过一只大侠', url: 'https://liaowei.info/' },
   { name: '组件库', url: 'https://ui.dodoblog.cn' }
 ]
 class Footer extends Component {
