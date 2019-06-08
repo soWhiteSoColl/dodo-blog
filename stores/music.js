@@ -30,7 +30,7 @@ export default class MusicStore extends Base {
   @observable audioInfo = {}
   @observable bufferArray = null
   @observable audio = null
-  @observable leaderboard = {}
+  @observable leaderboard = []
   @observable paused = true
   @observable searchedList = []
   @observable searchValue = ''
@@ -52,7 +52,7 @@ export default class MusicStore extends Base {
     }
     return (this.request = axios
       .get('/musics/songList/hot', {
-        params: { page, pageSize, categoryType },
+        params: { page, pageSize, categoryType, format: 1 },
         customCancelToken: 'get-hot-song-list'
       })
       .then(list => {
@@ -64,25 +64,17 @@ export default class MusicStore extends Base {
 
   @action
   getListById = id => {
-    return axios.get('/musics/songList', { params: { pageSize: 20, id } }).then(list => {
-      if (!list || !list.tracks) return false
-      list.songs = list.tracks.map(item => {
-        const song = {}
-        song.id = item.id
-        song.name = item.name
-        song.pic = item.album.picUrl
-        song.singer = item.artists[0].name
-        song.url = `http://23333333.itooi.cn/netease/url?id=${item.id}&quality=flac`
-        return song
-      })
-      return (this.currentList = list)
+    return axios.get('/musics/songList', { params: { pageSize: 20, id, format: 1 } }).then(songs => {
+      if (!songs || !songs.length) return false
+      return (this.currentList = { songs, id })
     })
   }
 
   @action
   getLyric = id => {
     id = id || this.currentMusic.id
-    return axios.get('/musics/lrc', { params: { id } }).then(data => (this.currentMusic.lyric = data))
+    const params = { id, format: 1 }
+    return axios.get('/musics/lrc', { params }).then(data => (this.currentMusic.lyric = data))
   }
 
   @action
@@ -90,18 +82,9 @@ export default class MusicStore extends Base {
     if (this.leaderboard.songs) return Promise.resolve(this.leaderboard)
 
     return axios
-      .get('/musics/songList', { params: { id: this.leaderboardId, offset: 0, timestamp: this.timestamp } })
-      .then(list => {
-        list.songs = list.tracks.map(item => {
-          const song = {}
-          song.id = item.id
-          song.name = item.name
-          song.pic = item.album.picUrl
-          song.singer = item.artists[0].name
-          song.url = `http://23333333.itooi.cn/netease/url?id=${item.id}&quality=flac`
-          return song
-        })
-        this.leaderboard = list
+      .get('/musics/songList', { params: { id: this.leaderboardId, offset: 0, timestamp: this.timestamp, format: 1 } })
+      .then(songs => {
+        this.leaderboard = { songs, id: this.leaderboardId }
       })
   }
 
@@ -123,18 +106,11 @@ export default class MusicStore extends Base {
     }
 
     this.searchValue = keyword
-    return axios.get('/musics/search', { params: { keyword, type: 'song', pageSize: 100, page: 0 } }).then(data => {
-      this.searchedList = data.songs.map(item => {
-        const song = {}
-        song.name = item.name
-        song.singer = item.ar[0].name
-        song.time = item.dt / 1000
-        song.url = `http://23333333.itooi.cn/netease/url?id=${item.id}&quality=flac`
-        song.pic = item.al.picUrl
-        song.id = item.id
-        return song
+    return axios
+      .get('/musics/search', { params: { keyword, type: 'song', pageSize: 100, page: 0, format: 1 } })
+      .then(data => {
+        this.searchedList = data
       })
-    })
   }
 
   @action
