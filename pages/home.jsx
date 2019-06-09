@@ -49,7 +49,7 @@ export default class Home extends React.Component {
     const container = this.$container.current
 
     if (!this.props.configStore.isWriteEnd) {
-      writeOneByOne('嗨哟。', 'h2', container, { interval: 150, sleep: 300 })
+      writeOneByOne('嗨', 'h2', container, { interval: 150, sleep: 300 })
         .then(() => writeOneByOne('我是小寒，', 'h4', container, { interval: 150, sleep: 300 }))
         .then(() => writeOneByOne('一名前端开发工程师，也是这个网站的创建者和开发者。', 'p', container, { sleep: 400 }))
         .then(() =>
@@ -93,7 +93,7 @@ export default class Home extends React.Component {
             <div className="home-desc" ref={this.$container}>
               {isWriteEnd && (
                 <>
-                  <h2>嗨哟。</h2>
+                  <h2>嗨</h2>
                   <h4>我是小寒，</h4>
                   <p>一名前端开发工程师，也是这个网站的创建者和开发者。</p>
                   <p>在这个网站里你可以愉快的阅读我写的文章，也能听听各种音乐。</p>
