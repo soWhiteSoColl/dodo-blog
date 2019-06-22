@@ -1,40 +1,24 @@
-div.do-dialog {
-  position: fixed;
-  .contact-input-nickname {
-    margin-top: 10px;
-    .ze-input-container {
-      width: 400px;
-      margin-bottom: 10px;
-      @media screen and (max-width: 768px) {
-        width: 300px;
-      }
-    }
-  }
-}
-
 .contact-project {
-  display: flex;
-  flex-wrap: wrap;
-  width: 1230px;
+  width: 1290px;
   max-width: 100%;
-  margin: 45px auto 0px;
-  @media screen and (max-width: 768px) {
-    margin-top: 0;
-  }
+  margin: 24px auto 0px;
   padding: 0 15px;
 
   &-item {
     background-color: #fff;
-    padding-bottom: 15px;
-    border-radius: 6px;
-    padding: 10px;
+    border-radius: 12px;
+    padding: 12px;
     position: relative;
     top: 0;
     transition: all ease 0.2s;
     overflow: hidden;
-    width: 100%;
-    height: 100%;
     box-shadow: 0px 5px 8px -2px rgba(0, 0, 0, 0.05);
+    width: 380px;
+    margin: 20px;
+   
+    &-wrapper {
+      display: inline-block;
+    }
 
     &:hover {
       top: -5px;
@@ -42,37 +26,21 @@ div.do-dialog {
     }
   }
 
-  &-item-wrapper {
-    width: 370px;
-    margin-right: 45px;
-    margin-bottom: 45px;
-    &:nth-child(3n) {
-      margin-right: 0;
-    }
-
-    @media screen and (max-width: 750px) {
-      width: 100%;
-      margin-right: 0%;
-      margin-bottom: 30px;
-    }
-  }
-
   &-cover {
-    display: flex;
     position: relative;
-    width: 100%;
-    height: calc(100% - 36px);
-
-    img {
-      width: 100%;
-      height: 100%;
-      background-color: #ccc;
-    }
+    background-color: #ccc;
+    border-radius: 8px;
+    overflow: hidden;
 
     &:hover {
       .contact-project-mask {
         opacity: 1;
       }
+    }
+
+    img {
+      width: 100%;
+      min-height: 198px;
     }
   }
 
@@ -89,6 +57,7 @@ div.do-dialog {
     background-color: rgba(255, 255, 255, 0.8);
     opacity: 0;
     transition: all ease 0.5s;
+
     .ze-btn {
       width: 120px;
       padding: 9px 0;
@@ -102,12 +71,46 @@ div.do-dialog {
   }
 
   &-info {
-    padding: 15px;
-    padding-bottom: 0;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 15px;
+    margin-bottom: 5px;
   }
 
   &-name {
     text-align: center;
     color: #666;
+  }
+
+  @media screen and (max-width: 1290px) {
+    margin-top: 0;
+    display: block;
+
+    .contact-project-item {
+      width: calc(50% - 40px);
+      margin: 20px;
+    }
+
+    .contact-project-cover {
+      img {
+        min-height: 222px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    margin-top: 0;
+    display: block;
+
+    .contact-project-item {
+      width: 100%;
+      margin: 20px 0;
+    }
+
+    .contact-project-cover {
+      img {
+        min-height: 192px;
+      }
+    }
   }
 }
