@@ -57,7 +57,7 @@ export default class MusicCanvas extends React.Component {
     var request = new XMLHttpRequest()
     this.currentRequest = request
 
-    request.open('GET', audio.src, true)
+    request.open('GET', audio.src.replace('http', 'htpps'), true)
     request.responseType = 'arraybuffer'
     // 一旦获取完成，对音频进行进一步操作，比如解码
     request.onload = () => {
@@ -144,7 +144,7 @@ export default class MusicCanvas extends React.Component {
     gradient.addColorStop(0.76, '#def')
     gradient.addColorStop(0.3, '#cde')
 
-    var drawMeter = function() {
+    var drawMeter = () => {
       var array = new Uint8Array(analyser.frequencyBinCount)
       analyser.getByteFrequencyData(array)
 
