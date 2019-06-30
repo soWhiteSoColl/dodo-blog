@@ -218,6 +218,8 @@ $toggle-width: 20px;
     height: 0;
     overflow: hidden;
     background-color: #fff;
+    box-shadow: none;
+    
     h3 {
       padding: 10px 20px;
       background-color: #ccc;
@@ -233,6 +235,7 @@ $toggle-width: 20px;
       height: 300px;
       overflow: auto;
     }
+
     &-item {
       padding: 5px 20px;
       cursor: pointer;
