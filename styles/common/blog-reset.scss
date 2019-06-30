@@ -127,6 +127,7 @@
 }
 
 .editor-wrapper {
+  border-radius: 10px;
   border: 1px solid #ccc;
 
   div[data-contents='true'] {
@@ -136,18 +137,21 @@
   .public-DraftEditorPlaceholder-inner {
     position: relative;
     font-size: 14px;
+    top: -8px;
   }
 
   .bf-content {
-    height: 150px;
+    height: 120px;
     padding-bottom: 0;
     .public-DraftEditor-content {
-      padding: 6px 15px;
+      padding: 6px 15px !important;
     }
   }
 
   .bf-controlbar {
     padding: 5px;
+    box-shadow: none;
+
     .control-item,
     .dropdown-handler,
     .dropdown-handler span,
@@ -159,6 +163,7 @@
       min-width: 30px;
       margin: 0;
       padding: 0;
+      border-radius: 8px;
     }
     .text-color-dropdown .dropdown-handler,
     .link-editor-dropdown .dropdown-handler,

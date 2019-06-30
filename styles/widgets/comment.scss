@@ -13,7 +13,10 @@ $comment-bg-color: #eee;
     margin-top: 10px;
     align-items: center;
     &-info {
-      color: #999;
+      color: #4a4a4a;
+      background-color: #eee;
+      padding: 8px 20px 4px;
+      border-radius: 20px;
     }
     .ze-btn {
       width: 120px;
