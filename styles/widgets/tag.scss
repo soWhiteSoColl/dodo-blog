@@ -1,9 +1,14 @@
 .w-tag {
-  padding: 5px 18px 6px;
-  border: 1px solid #ddd;
+  padding: 0 18px;
+  height: 30px;
+  border: 1px solid #ccc;
   transition: all ease 0.2s;
   margin-right: 10px;
   margin-bottom: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  vertical-align: middle;
 }
 
 .w-tag.ze-btn-default {
