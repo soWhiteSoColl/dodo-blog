@@ -57,7 +57,9 @@ export default class MusicCanvas extends React.Component {
     var request = new XMLHttpRequest()
     this.currentRequest = request
 
-    request.open('GET', audio.src.replace('http', 'htpps'), true)
+    let url = audio.src
+    if (!url.match(/https:/)) url = url.replace('http', 'https')
+    request.open('GET', url, true)
     request.responseType = 'arraybuffer'
     // 一旦获取完成，对音频进行进一步操作，比如解码
     request.onload = () => {
