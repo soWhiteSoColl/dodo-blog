@@ -56,7 +56,10 @@ export default class MusicStore extends Base {
         customCancelToken: 'get-hot-song-list'
       })
       .then(list => {
-        this.hotMusicInfo.list = list
+        this.hotMusicInfo.list = list.map(item => {
+          item.coverImgUrl = item.coverImgUrl + '?param=250y250'
+          return item
+        })
         this.hotMusicInfo.loading = false
         return this.hotMusicInfo
       }))
@@ -66,6 +69,10 @@ export default class MusicStore extends Base {
   getListById = id => {
     return axios.get('/musics/songList', { params: { pageSize: 20, id, format: 1 } }).then(songs => {
       if (!songs || !songs.length) return false
+      songs = songs.map(item => {
+        item.pic = item.pic + '?param=200y200'
+        return item
+      })
       return (this.currentList = { songs, id })
     })
   }
@@ -84,6 +91,10 @@ export default class MusicStore extends Base {
     return axios
       .get('/musics/songList', { params: { id: this.leaderboardId, offset: 0, timestamp: this.timestamp, format: 1 } })
       .then(songs => {
+        songs = songs.map(item => {
+          item.pic = item.pic + '?param=200y200'
+          return item
+        })
         this.leaderboard = { songs, id: this.leaderboardId }
       })
   }

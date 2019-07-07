@@ -22,7 +22,7 @@
 
 .do-dialog {
   @include shadow;
-  position: absolute;
+  position: fixed;
   background-color: #fff;
   max-width: 500px;
   min-width: 400px;

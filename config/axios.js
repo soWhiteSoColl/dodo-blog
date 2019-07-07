@@ -4,8 +4,7 @@ import { Message } from 'ui'
 
 const requestQueue = []
 const cancelToken = axios.CancelToken
-// axios.defaults.baseURL = 'http://127.0.0.1:8000/api'
-axios.defaults.baseURL = 'https://zeus-ui.com/api'
+axios.defaults.baseURL = 'https://www.dodoblog.cn/api'
 axios.defaults.withCredentials = true
 
 const generateCancelToken = (request = {}) => {

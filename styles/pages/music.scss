@@ -344,13 +344,14 @@
     font-size: 16px;
     background-color: transparent;
     border-right: none;
-    border: 1px solid #999;
+    border: 1px solid #afafaf;
     border-right: none;
     border-radius: 40px 0 0 40px;
     &:focus {
       outline: none;
     }
   }
+
   &-wrapper {
     margin-top: 30px;
     position: relative;
@@ -384,8 +385,11 @@
   padding: 0;
   background-color: $primary-color;
   padding-right: 4px;
+
   .svg-icon {
     transform: scale(0.7);
+    position: relative;
+    top: 2px;
     path {
       fill: #fff;
     }

@@ -39,7 +39,7 @@ do-container 容器
 }
 
 @mixin shadow {
-  box-shadow: 1px -4px 30px -12px rgba(0, 0, 0, 0.7);
+  box-shadow: 1px -4px 30px -12px rgba(0, 0, 0, 0.3);
 }
 
 @mixin text-overflow-ellipsis {
