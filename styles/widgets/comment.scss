@@ -15,7 +15,11 @@ $comment-bg-color: #eee;
     &-info {
       color: #4a4a4a;
       background-color: #eee;
-      padding: 8px 20px 4px;
+      height: 36px;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      line-height: 36px;
       border-radius: 20px;
     }
     .ze-btn {

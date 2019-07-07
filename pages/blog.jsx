@@ -44,7 +44,7 @@ export default class BlogDetail extends Component {
               <span>{blog.title}</span>
             </h1>
             <div className="blog-meta">
-              <div className="blog-date">{dateFormater(blog.created)}</div>
+              <div className="blog-date">{dateFormater(blog.created, false, { daySplit: ' / ' })}</div>
             </div>
             <BlogWithTable content={blog.content} />
           </AnimateQueue>

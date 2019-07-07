@@ -1,5 +1,5 @@
 .blogs-list {
-  margin: 25px auto;
+  margin: 24px auto;
   @media screen and (max-width: 768px) {
     margin: 0 auto;
   }
@@ -9,9 +9,10 @@
 }
 
 .blogs-group {
-  padding: 20px 0px;
+  padding: 16px 0px;
   .blogs-group-date {
-    margin-bottom: 10px;
+    margin-bottom: 8px;
+    font-weight: 700;
   }
   @media screen and (max-width: 768px) {
     padding: 12px 0;
@@ -48,6 +49,7 @@
 .blog-create-date {
   color: #666;
   display: inline-block;
+  font-weight: 700;
 }
 
 .blog-detail {
@@ -69,6 +71,7 @@
   }
   .blog-date {
     margin-right: 10px;
+    font-weight: 700;
   }
   .blog-tags {
     display: flex;
