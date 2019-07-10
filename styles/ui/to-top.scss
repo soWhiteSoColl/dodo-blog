@@ -4,9 +4,8 @@
   color: #fff;
   right: 50px;
   bottom: 50px;
-  padding: 8px 10px;
-  border-radius: 6px;
-  line-height: 1.2em;
+  width: 50px;
+  height: 50px;
   box-sizing: border-box;
   cursor: pointer;
   font-size: 12px;
@@ -14,11 +13,16 @@
   bottom: -60px;
   transition: bottom ease 0.3s;
   z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   &.show {
     bottom: 50px;
   }
 
   .svg-icon {
+    position: relative;
+    top: -2px;
     path {
       stroke: #fff;
     }
