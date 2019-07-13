@@ -16,6 +16,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  border-radius: 0;
+  
   &.show {
     bottom: 50px;
   }
