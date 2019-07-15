@@ -31,12 +31,12 @@
     "style-loader": "^0.23.1"
   },
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": ">=0.18.1",
     "braft-editor": "^2.2.5",
     "classnames": "^2.2.6",
     "dodoui": "1.1.6-beta",
     "express": "^4.16.4",
-    "lodash": "^4.17.11",
+    "lodash": "4.17.13",
     "mobx": "^5.5.0",
     "mobx-react": "^5.2.8",
     "next": "^7.0.2",
