@@ -95,16 +95,10 @@ export default class CommentGroup extends React.Component {
     return (
       <div className="comment-group">
         <div className="comment-head">
-          {info ? (
-            <h2>嗨, {info.username}</h2>
-          ) : (
-            <h2>
-              嗨，请先
-              <Link href="/login">
-                <a>登录</a>
-              </Link>
-            </h2>
-          )}
+          {info
+            ? <h2>嗨, {info.username}</h2>
+            : <h2> 嗨，请先 <Link href="/login"><a>登录</a></Link></h2>
+          }
         </div>
         <div className="comment-form">
           {title && <h2 className="comment-form-title">{title}</h2>}
@@ -120,42 +114,37 @@ export default class CommentGroup extends React.Component {
         </div>
 
         <CommentList>
-          {this.formatComments(newMessages).map(message => {
-            return (
-              <Animate
-                animate={true}
-                from={{ transform: 'translateX(80px)' }}
-                to={{ transform: 'translateX(0px)' }}
+          {this.formatComments(newMessages).map(message => (
+            <Animate
+              animate={true}
+              from={{ transform: 'translateX(80px)' }}
+              to={{ transform: 'translateX(0px)' }}
+              key={message._id}
+            >
+              <Comment
                 key={message._id}
-                speed={400}
-              >
-                <Comment
-                  key={message._id}
-                  username={message.user && message.user.username}
-                  content={message.message}
-                  created={message.created}
-                  type={message.type}
-                />
-              </Animate>
-            )
-          })}
+                username={message.user && message.user.username}
+                content={message.message}
+                created={message.created}
+                type={message.type}
+              />
+            </Animate>
+          ))}
           <AnimateQueue
             animate={true}
             from={{ transform: 'translateX(80px)' }}
             to={{ transform: 'translateX(0px)' }}
             interval={100}
           >
-            {this.formatComments(list).map(message => {
-              return (
-                <Comment
-                  key={message._id}
-                  username={message.user && message.user.username}
-                  content={message.message}
-                  created={message.created}
-                  type={message.type}
-                />
-              )
-            })}
+            {this.formatComments(list).map(message => (
+              <Comment
+                key={message._id}
+                username={message.user && message.user.username}
+                content={message.message}
+                created={message.created}
+                type={message.type}
+              />
+            ))}
           </AnimateQueue>
         </CommentList>
       </div>
