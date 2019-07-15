@@ -1,4 +1,4 @@
-$comment-bg-color: #eee;
+$comment-bg-color: #dfefff;
 .comment-group {
   h2 {
     font-weight: 400;
@@ -13,7 +13,7 @@ $comment-bg-color: #eee;
     margin-top: 10px;
     align-items: center;
     &-info {
-      color: #4a4a4a;
+      color: #9a9a9a;
       background-color: #eee;
       height: 36px;
       padding: 0 20px;
@@ -25,6 +25,15 @@ $comment-bg-color: #eee;
     .ze-btn {
       width: 120px;
       margin: 0;
+    }
+
+    @media screen and (max-width: 768px) {
+      .comment-form-submit-info {
+        display: none;
+      }
+      .ze-btn {
+        width: 100%;
+      }
     }
   }
 }
@@ -61,6 +70,8 @@ $comment-bg-color: #eee;
     font-size: 16px;
     margin-right: 5px;
     display: inline-block;
+    font-weight: 500;
+
     @media screen and (max-width: 720px) {
       margin-right: 5px;
       max-width: 100px;
