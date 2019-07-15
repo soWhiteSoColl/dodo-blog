@@ -81,7 +81,7 @@ export default class CommentGroup extends React.Component {
         let repliedMessage = list.find(item => item._id === comment.reply)
         if (repliedMessage && repliedMessage.user) {
           comment.user = { username: '小寒' }
-          comment.message = `@${repliedMessage.user.username} comment.message`
+          comment.message = `@${repliedMessage.user.username} ${comment.message}`
         }
       }
       return comment
@@ -96,10 +96,17 @@ export default class CommentGroup extends React.Component {
     return (
       <div className="comment-group">
         <div className="comment-head">
-          {info
-            ? <h2>嗨, {info.username}</h2>
-            : <h2> 嗨，请先 <Link href="/login"><a>登录</a></Link></h2>
-          }
+          {info ? (
+            <h2>嗨, {info.username}</h2>
+          ) : (
+            <h2>
+              {' '}
+              嗨，请先{' '}
+              <Link href="/login">
+                <a>登录</a>
+              </Link>
+            </h2>
+          )}
         </div>
         <div className="comment-form">
           {title && <h2 className="comment-form-title">{title}</h2>}
