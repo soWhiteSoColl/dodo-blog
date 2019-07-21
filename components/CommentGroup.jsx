@@ -96,10 +96,12 @@ export default class CommentGroup extends React.Component {
     return (
       <div className="comment-group">
         <div className="comment-head">
-          {info
-            ? <h2>嗨, {info.username}</h2>
-            : <h2> 嗨，请先 <Link href="/login"><a>登录</a></Link></h2>
-          }
+          <h2>
+            {info
+              ? `嗨, ${info.username}`
+              : <> 嗨，请先 <Link href="/login"><a>登录</a></Link></>
+            }
+          </h2>
         </div>
         <div className="comment-form">
           {title && <h2 className="comment-form-title">{title}</h2>}

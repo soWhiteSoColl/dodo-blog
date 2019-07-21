@@ -51,19 +51,11 @@ export default class Home extends React.Component {
     if (!this.props.configStore.isWriteEnd) {
       writeOneByOne('嗨', 'h2', container, { interval: 150, sleep: 300 })
         .then(() => writeOneByOne('我是小寒，', 'h4', container, { interval: 150, sleep: 300 }))
-        .then(() => writeOneByOne('一名前端开发工程师，也是这个网站的创建者和开发者。', 'p', container, { sleep: 400 }))
-        .then(() =>
-          writeOneByOne('在这个网站里你可以愉快的阅读我写的文章，也能听听各种音乐。', 'p', container, { sleep: 400 })
-        )
-        .then(() =>
-          writeOneByOne(
-            '相信大多数的来到这个网站的人都是和互联网技术有关的人，想要获取源码或者和我有更加亲密的认识，可以通过邮箱1256790127@qq.com联系我，也可以加我的微信q1256790127。',
-            'p',
-            container,
-            { sleep: 400 }
-          )
-        )
-        .then(() => writeOneByOne('非常欢迎各种不速之客来对我的网站进行评价和指点。', 'p', container))
+        .then(() => writeOneByOne('一名前端开发工程师，也是这个网站的设计者和开发者。', 'p', container, { sleep: 400 }))
+        .then(() => writeOneByOne('很开心你能来到了我的小站，或者看看文章，或者听听音乐。', 'p', container, { sleep: 400 }))
+        .then(() => writeOneByOne('虽然网站的资源不多，但希望能给你带来一些帮助。', 'p', container, { sleep: 400 }))
+        .then(() => writeOneByOne('本站的代码是开源的，可以在github搜索dodo-blog，记得给个star哦。', 'p', container, { sleep: 400 }))
+        .then(() => writeOneByOne('另外如果需要联系本人的话，可以通过邮箱1256790127@qq.com或者微信q1256790127。', 'p', container))
 
       const onRouterChange = () => {
         this.props.configStore.isWriteEnd = true
@@ -95,12 +87,11 @@ export default class Home extends React.Component {
                 <>
                   <h2>嗨</h2>
                   <h4>我是小寒，</h4>
-                  <p>一名前端开发工程师，也是这个网站的创建者和开发者。</p>
-                  <p>在这个网站里你可以愉快的阅读我写的文章，也能听听各种音乐。</p>
-                  <p>
-                    我相信来到这个网站的大多数人都是开发或者和互联网技术有关的人，如果想要获取源码或者和我有更加亲密的认识，可以通过邮箱1256790127@qq.com联系我，也可以加我的微信q1256790127。
-                  </p>
-                  <p>非常欢迎各种不速之客来对我的网站进行评价和指点。</p>
+                  <p>我是一名前端开发工程师，也是这个网站的设计者和开发者；</p>
+                  <p>很开心你能来到了我的小站，或者看看文章，或者听听音乐；</p>
+                  <p>虽然网站的资源不多，但希望能给你带来一些帮助。</p>
+                  <p>本站的代码是开源的，可以在github搜索dodo-blog，记得给个star哦。</p>
+                  <p>另外如果需要联系本人的话，可以通过邮箱1256790127@qq.com或者微信q1256790127。</p>
                 </>
               )}
             </div>
@@ -111,14 +102,13 @@ export default class Home extends React.Component {
               <Link href="/music/list">
                 <a className="home-link">音乐</a>
               </Link>
-              {info ? (
-                <span className="home-link">
+              {info
+                ? <span className="home-link">
                   <span>{info.username}</span>
                   <span className="home-link-split">/</span>
                   <a onClick={this.handleLogOut}>注销</a>
                 </span>
-              ) : (
-                <span className="home-link">
+                : <span className="home-link">
                   <Link href="/login">
                     <a>登录</a>
                   </Link>
@@ -127,7 +117,7 @@ export default class Home extends React.Component {
                     <a>注册</a>
                   </Link>
                 </span>
-              )}
+              }
             </div>
           </div>
         </div>

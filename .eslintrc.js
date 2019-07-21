@@ -28,8 +28,5 @@ module.exports = {
     'react/jsx-uses-react': 'error',
     'react/jsx-uses-vars': 'error',
     'import/newline-after-import': ['error', { count: 1 }],
-
-    // prettier rules
-    'prettier/prettier': 'error'
   }
 }
