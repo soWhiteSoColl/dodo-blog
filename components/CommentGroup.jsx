@@ -81,7 +81,7 @@ export default class CommentGroup extends React.Component {
         let repliedMessage = list.find(item => item._id === comment.reply)
         if (repliedMessage && repliedMessage.user) {
           comment.user = { username: '小寒' }
-          comment.message = `@${repliedMessage.user.username} comment.message`
+          comment.message = `@${repliedMessage.user.username} ${comment.message}`
         }
       }
       return comment
