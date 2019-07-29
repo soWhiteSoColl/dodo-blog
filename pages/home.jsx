@@ -61,6 +61,7 @@ export default class Home extends React.Component {
         this.props.configStore.isWriteEnd = true
         Router.events.off('routeChangeStart', onRouterChange)
       }
+
       Router.events.on('routeChangeStart', onRouterChange)
     }
   }
