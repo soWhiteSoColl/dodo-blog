@@ -28,7 +28,19 @@ var _protocol =(("https:" == document.location.protocol) ? " https://" : " http:
 })();
 `
 
+const gioScript = `
+!function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.giocdn.com/2.1/gio.js","gio");
+  gio('init','aad0d8d52b4cb741', {});
+
+//custom page code begin here
+
+//custom page code end here
+
+gio('send');
+`
+
 export default function initBI() {
   appendScript(gaScript)
   appendScript(ptScript)
+  appendScript(gioScript)
 }
