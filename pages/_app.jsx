@@ -8,6 +8,7 @@ import Footer from 'components/Footer'
 import Player from 'components/Player'
 import ToTop from 'ui/ToTop'
 import stores from '../stores'
+import initBI from '../config/bi'
 
 export default class MyApp extends App {
   static async getInitialProps({ Component, ctx }) {
@@ -58,22 +59,7 @@ export default class MyApp extends App {
       stores.userStore.saveViewRecord()
     }
 
-    const scriptTag = document.createElement('script')
-    scriptTag.innerHTML = `
-      window._pt_lt = new Date().getTime();
-      window._pt_sp_2 = [];
-      _pt_sp_2.push("setAccount,26c1d230");
-      var _protocol =(("https:" == document.location.protocol) ? " https://" : " http://");
-      (function() {
-        var atag = document.createElement("script");
-        atag.type = "text/javascript";
-        atag.async = true;
-        atag.src = _protocol + "js.ptengine.cn/26c1d230.js";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(atag, s);
-      })();
-    `
-    document.body.appendChild(scriptTag)
+    initBI()
   }
 
   render() {

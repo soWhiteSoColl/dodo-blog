@@ -22,6 +22,7 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <style>{css}</style>
           <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css" />
+          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145391362-1"></script>
         </Head>
         <body className="custom_class">
           <Main />
