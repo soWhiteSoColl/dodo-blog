@@ -12,7 +12,9 @@ function appendScript(str) {
   document.body.appendChild(scriptTag)
 }
 
-
+/**
+ * ptengine
+ */
 const ptScript = `
 window._pt_lt = new Date().getTime();
 window._pt_sp_2 = [];
@@ -28,6 +30,9 @@ var _protocol =(("https:" == document.location.protocol) ? " https://" : " http:
 })();
 `
 
+/**
+ * growingio
+ */
 const gioScript = `
 !function(e,t,n,g,i){e[i]=e[i]||function(){(e[i].q=e[i].q||[]).push(arguments)},n=t.createElement("script"),tag=t.getElementsByTagName("script")[0],n.async=1,n.src=('https:'==document.location.protocol?'https://':'http://')+g,tag.parentNode.insertBefore(n,tag)}(window,document,"script","assets.giocdn.com/2.1/gio.js","gio");
   gio('init','aad0d8d52b4cb741', {});
@@ -39,6 +44,9 @@ const gioScript = `
 gio('send');
 `
 
+/**
+ * zhugeio
+ */
 const zgScript = `
 (function() {
   if (window.zhuge) return;
@@ -92,9 +100,25 @@ const zgScript = `
 })();
 `
 
+
+/**
+ * hotjar
+ */
+const hotjarScript = `
+(function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:1437851,hjsv:6};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+})(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+`
+
 export default function initBI() {
   appendScript(gaScript)
   appendScript(ptScript)
   appendScript(gioScript)
   appendScript(zgScript)
+  appendScript(hotjarScript)
 }
