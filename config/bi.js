@@ -6,10 +6,11 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'UA-145391362-1');`
 
-function appendScript(str) {
+function appendScript(str, cb) {
   const scriptTag = document.createElement('script')
   scriptTag.innerHTML = str
   document.body.appendChild(scriptTag)
+  cb && cb()
 }
 
 /**
@@ -119,6 +120,11 @@ export default function initBI() {
   appendScript(gaScript)
   appendScript(ptScript)
   appendScript(gioScript)
-  appendScript(zgScript)
+  appendScript(zgScript, () => {
+    window.zhuge && window.zhuge.load('6558a2e1138345d19e6c6f5f9ae8434c', {
+      autoTrack: true, //全埋点开关
+      singlePage: false //是否为单页面应用 默认为false
+    })
+  })
   appendScript(hotjarScript)
 }
