@@ -98,10 +98,7 @@ export default class Home extends React.Component {
             </div>
             <div className="home-links">
               <Link href="/">
-                <a className="home-link">博客</a>
-              </Link>
-              <Link href="/music/list">
-                <a className="home-link">音乐</a>
+                <a className="home-link">去看博客</a>
               </Link>
               {info
                 ? <span className="home-link">

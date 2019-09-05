@@ -5,7 +5,6 @@ import Router from 'next/router'
 import NProgress from 'nprogress'
 import Header from 'components/Header'
 import Footer from 'components/Footer'
-import Player from 'components/Player'
 import ToTop from 'ui/ToTop'
 import stores from '../stores'
 import initBI from '../config/bi'
@@ -69,9 +68,7 @@ export default class MyApp extends App {
     const {
       header: hasHeader = true,
       footer: hasFooter = true,
-      audio: hasAudio = true,
       toTop: hasToTop = true,
-      audioConfig = {}
     } = initialProps
 
     return (
@@ -82,7 +79,6 @@ export default class MyApp extends App {
             <div className="main-content">
               <ObserverComponent {...initialProps} />
             </div>
-            {hasAudio && <Player audioConfig={audioConfig} />}
             {hasFooter && <Footer />}
             {hasToTop && <ToTop />}
           </div>

@@ -3,17 +3,9 @@ import Link from 'next/link'
 import { withRouter } from 'next/router'
 import classnames from 'classnames'
 
-const musicMenus = [
-  { href: '/', label: '去看博客' },
-  { href: '/music/search', label: '搜索' },
-  { href: '/music/leader', label: '排行榜' },
-  { href: '/music/list', label: '歌单' }
-]
-
-const blogMenus = [
+const menus = [
   { href: '/', label: '博客' },
   { href: '/more', label: '项目' },
-  { href: '/music/list', label: '去听音乐' }
 ]
 
 @withRouter
@@ -24,7 +16,6 @@ class Header extends Component {
 
   render() {
     const current = this.props.router.asPath
-    const menus = current.match(/^\/music\//) ? musicMenus : blogMenus
 
     return (
       <header className="main-header">
