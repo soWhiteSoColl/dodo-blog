@@ -117,43 +117,42 @@
   @media screen and (max-width: 720px) {
     display: none;
   }
+
   h4 {
-    margin-bottom: 10px;
+    margin-bottom: 1em;
     font-size: 1.4em;
     margin-top: 0;
     line-height: 1;
     color: #666;
+    position: relative;
+    left: -1px;
+    font-weight: bold;
   }
 
   .blog-table-item {
     a {
+      display: block;
+      color: #4a4a4a;
+
       &:hover {
         text-decoration: underline;
       }
+
       &.blog-table-item-h2 {
-        font-size: 1.1em;
-        margin-top: 10px;
-        display: inline-block;
+        font-size: 1.2em;
+        margin-top: 0.6em;
       }
+
       &.blog-table-item-h3 {
-        margin-top: 10px;
-        display: inline-block;
-        &:before {
-          content: '';
-          display: inline-block;
-          width: 5px;
-          height: 5px;
-          border-radius: 5px;
-          background-color: $primary-color;
-          position: relative;
-          margin-right: 5px;
-          top: -2px;
-        }
+        font-size: 1.1em;
+        margin-top: 0.6em;
       }
+
       &.blog-table-item-h4 {
-        color: #777;
-        font-size: 12px;
-        margin-left: 10px;
+        font-size: 1.0em;
+        margin-top: 0.4em;
+        margin-left: 1em;
+        color: #666;
       }
     }
   }
