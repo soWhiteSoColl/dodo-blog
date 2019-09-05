@@ -2,8 +2,8 @@
   position: fixed;
   background-color: $primary-color;
   color: #fff;
-  right: 50px;
-  bottom: 50px;
+  right: 40px;
+  bottom: 40px;
   width: 50px;
   height: 50px;
   box-sizing: border-box;
@@ -19,7 +19,7 @@
   border-radius: 0;
   
   &.show {
-    bottom: 50px;
+    bottom: 40px;
   }
 
   .svg-icon {
@@ -33,6 +33,8 @@
   @media screen and (max-width: 720px) {
     right: 15px;
     padding: 4px 6px;
+    display: none;
+    
     &.show {
       bottom: 15px;
     }

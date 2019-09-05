@@ -34,11 +34,12 @@
 .blog-title {
   text-transform: capitalize;
   font-size: 34px;
-  font-weight: 100;
+  font-weight: 300;
   margin-bottom: 10px;
   margin-top: 0;
   line-height: 1.2em;
   color: $primary-color;
+  
   @media screen and (max-width: 768px) {
     font-size: 20px;
     margin: 10px 0px;
@@ -49,7 +50,7 @@
 .blog-create-date {
   color: #666;
   display: inline-block;
-  font-weight: 700;
+  font-weight: bold;
 }
 
 .blog-detail {

@@ -78,9 +78,9 @@ export default class MyApp extends App {
             {hasHeader && <Header />}
             <div className="main-content">
               <ObserverComponent {...initialProps} />
+              {hasToTop && <ToTop />}
             </div>
             {hasFooter && <Footer />}
-            {hasToTop && <ToTop />}
           </div>
         </Provider>
       </Container>
