@@ -5,6 +5,8 @@ import Head from 'next/head'
 import classnames from 'classnames'
 import { ScrollDetect, Drawer, Button, AnimateQueue } from 'ui'
 import { dateFormater } from 'tools/main'
+import dayjs from 'dayjs'
+
 
 const Tag = props => {
   const { children, active, ...rest } = props
@@ -15,13 +17,19 @@ const Tag = props => {
   )
 }
 
-const Date = props => <div className="blogs-group-date">{props.date}</div>
+const BlogDate = props => {
+  return (
+    <div style={props.style} className="blogs-group-date">
+      {props.date}
+    </div>
+  )
+}
 
 const BlogItem = props => {
   const blog = props.blog
 
   return (
-    <section className="blog-title">
+    <section className="blog-title" style={props.style}>
       <Link href={`/blog?id=${blog._id}`}>
         <a>{blog.title}</a>
       </Link>
@@ -100,7 +108,7 @@ export default class Blogs extends Component {
       .filter(blog => blog.type === 1)
       .slice(0, this.state.showNum)
       .reduce((result, blog) => {
-        const date = dateFormater(blog.created, false, { daySplit: ' / ' })
+        const date = dayjs(blog.created).format('YYYY 年 MM 月')
         if (result[date]) {
           result[date].push(blog)
         } else {
@@ -108,7 +116,12 @@ export default class Blogs extends Component {
         }
         return result
       }, {})
-    return blogSort
+
+    return Object.entries(blogSort).reduce((res, [date, blogs]) => {
+      res = res.concat({ type: 'date', value: date })
+      res = res.concat(blogs.map(blog => ({ type: 'blog', value: blog })))
+      return res
+    }, [])
   }
 
   render() {
@@ -133,14 +146,11 @@ export default class Blogs extends Component {
                 interval={80}
                 speed={600}
               >
-                {Object.entries(this.blogSort).map(([date, blogs]) => (
-                  <div className="blogs-group" key={date}>
-                    <Date date={date} />
-                    {blogs.map((blog, index) => (
-                      <BlogItem key={blog._id + index} blog={blog} />
-                    ))}
-                  </div>
-                ))}
+                {this.blogSort.map((item) => {
+                  if (item.type === 'date') return <BlogDate key={item.value} date={item.value} />
+                  if (item.type === 'blog') return <BlogItem key={item.value._id} blog={item.value} />
+                  return null
+                })}
               </AnimateQueue>
             </ScrollDetect>
             {!noMore && <div className="do-fetching-loading">加载中...</div>}
