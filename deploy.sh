@@ -3,7 +3,7 @@ cd /project/blog-web
 
 git pull
 
-yarn install
+cnpm install
 
 npm run build
 
