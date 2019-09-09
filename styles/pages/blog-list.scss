@@ -1,5 +1,5 @@
 .blogs-list {
-  margin: 24px auto;
+  margin-bottom: 24px;
   @media screen and (max-width: 768px) {
     margin: 0 auto;
   }
@@ -13,7 +13,7 @@
   font-weight: 700;
 
   &:first-child {
-    margin-top: 36px;
+    margin-top: 0px;
   }
 
   @media screen and (max-width: 768px) {
@@ -49,7 +49,7 @@
   max-width: $small-container-width;
   margin: 0px auto;
   .blog-title {
-    margin-top: 40px;
+    margin-top: 0;
     margin-bottom: 20px;
     @media screen and (max-width: 768px) {
       margin: 0 0 20px 0;

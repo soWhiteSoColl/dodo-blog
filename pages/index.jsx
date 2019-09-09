@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Head from 'next/head'
 import classnames from 'classnames'
 import { ScrollDetect, Drawer, Button, AnimateQueue } from 'ui'
-import { dateFormater } from 'tools/main'
 import dayjs from 'dayjs'
 
 

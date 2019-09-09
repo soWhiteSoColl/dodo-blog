@@ -2,8 +2,8 @@
   position: fixed;
   background-color: $primary-color;
   color: #fff;
-  right: 40px;
-  bottom: 40px;
+  right: 70px;
+  bottom: 70px;
   width: 50px;
   height: 50px;
   box-sizing: border-box;
@@ -18,7 +18,7 @@
   justify-content: center;
   
   &.show {
-    bottom: 40px;
+    bottom: 70px;
   }
 
   .svg-icon {

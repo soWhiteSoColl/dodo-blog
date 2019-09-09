@@ -4,7 +4,6 @@ import { Provider, observer, inject } from 'mobx-react'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import Header from 'components/Header'
-import Footer from 'components/Footer'
 import ToTop from 'ui/ToTop'
 import stores from '../stores'
 import initBI from '../config/bi'
@@ -67,7 +66,6 @@ export default class MyApp extends App {
 
     const {
       header: hasHeader = true,
-      footer: hasFooter = true,
       toTop: hasToTop = true,
     } = initialProps
 
@@ -80,7 +78,6 @@ export default class MyApp extends App {
               <ObserverComponent {...initialProps} />
               {hasToTop && <ToTop />}
             </div>
-            {hasFooter && <Footer />}
           </div>
         </Provider>
       </Container>

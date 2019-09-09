@@ -95,26 +95,14 @@
 .main-footer {
   height: $main-footer-height;
   box-sizing: border-box;
-  text-align: center;
   @include clearfix;
   position: relative;
-  display: flex;
-  align-items: center;
 
   &-links {
-    margin-bottom: 25px;
+    margin-bottom: 10px;
     font-size: 14px;
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-
-    span,
-    a {
-      padding: 0 5px;
-    }
-  }
-  &-item {
-    padding: 0 5px;
   }
 }
 
