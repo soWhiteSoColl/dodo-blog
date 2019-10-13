@@ -8,6 +8,10 @@
     line-height: 1.6;
   }
 
+  *:not(a){
+    color: #4a4a4a;
+  }
+
   h1,
   h2,
   h3,
@@ -41,7 +45,7 @@
   }
 
   p {
-    min-height: 1.5em;
+    min-height: 1.6em;
   }
 
   ul,
@@ -67,23 +71,28 @@
     font-size: 2.2em;
     margin: 30px 0;
   }
+
   h2 {
-    font-size: 1.6em;
+    font-size: 1.8em;
     margin: 25px 0;
   }
+
   h3 {
     font-size: 1.4em;
-    padding-left: 0.4em;
     line-height: 1.1;
     margin: 1em 0;
-    border-left: 4px solid $primary-color;
+    position: relative;
+    padding-left: 10px;
+    border-left: 6px solid $primary-color;
+    left: -16px;    
   }
 
   h4 {
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 1em;
     margin: 15px 0;
   }
+
   pre {
     max-width: 100%;
     max-height: 100%;
@@ -108,19 +117,23 @@
     code {
       line-height: 1.7;
       font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+      color: #fff !important;
+      
       div {
         white-space: nowrap;
       }
     }
   }
+
   blockquote {
-    margin: 0 0 10px;
+    margin: 16px 0;
     padding: 15px 20px;
     background-color: #f1f2f3;
     border-left: 5px solid #ccc;
     color: #666;
     font-style: italic;
   }
+
   img {
     max-width: 100%;
   }
@@ -130,7 +143,7 @@
   border-radius: 10px;
   border: 1px solid #ccc;
 
-  div[data-contents='true'] {
+  div[data-contents="true"] {
     @include blog-reset;
   }
 

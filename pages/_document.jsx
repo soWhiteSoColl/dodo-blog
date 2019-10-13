@@ -24,7 +24,7 @@ export default class MyDocument extends Document {
           <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css" />
           <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145391362-1"></script>
         </Head>
-        <body className="custom_class">
+        <body className="">
           <Main />
           <NextScript />
         </body>

@@ -27,11 +27,11 @@
   text-transform: capitalize;
   font-size: 34px;
   font-weight: 200;
-  margin-bottom: 12px;
-  margin-top: 12px;
+  margin-bottom: 16px;
+  margin-top: 16px;
   line-height: 1.2em;
   color: $primary-color;
-  
+
   @media screen and (max-width: 768px) {
     font-size: 20px;
     margin: 10px 0px;
@@ -48,6 +48,7 @@
 .blog-detail {
   max-width: $small-container-width;
   margin: 0px auto;
+
   .blog-title {
     margin-top: 0;
     margin-bottom: 20px;
@@ -60,7 +61,7 @@
   }
   .blog-meta {
     margin-top: 5px;
-    margin-bottom: 40px;
+    margin-bottom: 60px;
   }
   .blog-date {
     margin-right: 10px;
@@ -142,7 +143,7 @@
       }
 
       &.blog-table-item-h4 {
-        font-size: 1.0em;
+        font-size: 1em;
         margin-top: 0.4em;
         margin-left: 1em;
         color: #666;
