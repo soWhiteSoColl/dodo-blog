@@ -2,6 +2,7 @@ import Document, { Head, Main, NextScript } from 'next/document'
 import dodocss from 'dodoui/lib/dodo.css'
 import maincss from '../styles/index.scss'
 
+
 export default class MyDocument extends Document {
   static async getInitialProps(ctx) {
     const initialProps = await Document.getInitialProps(ctx)
@@ -21,8 +22,7 @@ export default class MyDocument extends Document {
           <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <style>{css}</style>
-          <link href="https://fonts.googleapis.com/css?family=Dosis" rel="stylesheet" type="text/css" />
-          <script async src="https://www.googletagmanager.com/gtag/js?id=UA-145391362-1"></script>
+          <script src="/static/lib/register-sw.js"></script>
         </Head>
         <body className="">
           <Main />
