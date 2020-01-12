@@ -1,0 +1,36 @@
+.home-page {
+  height: 100vh;
+
+  .c-typer {
+    position: relative;
+    top: 50%;
+    transform: translateY(-60%);
+    height: 400px;
+
+    h2 {
+      font-size: 50px;
+      margin-top: 0;
+    }
+
+    h4 {
+      font-size: 24px;
+      margin-bottom: 1em;
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 0.6em 0;
+      font-size: 16px;
+    }
+
+    a {
+      color: #39f;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}

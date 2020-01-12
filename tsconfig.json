@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": ["dom", "dom.iterable", "esnext", "ES2019"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -17,5 +17,6 @@
     "experimentalDecorators": true,
     "baseUrl": "src",
     "noImplicitAny": false
-  }
+  },
+  "include": ["src", "typings"]
 }

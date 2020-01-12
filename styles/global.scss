@@ -1,0 +1,69 @@
+$primary-color: #368df3;
+
+body {
+  color: #121314;
+}
+
+.page-common-container {
+  max-width: 680px;
+  padding: 0 20px;
+  margin: 0 auto;
+}
+
+.page-common-logo {
+  height: 100px;
+  display: flex;
+  align-items: center;
+
+  img {
+    height: 28px;
+    position: relative;
+    top: -1px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.page-common-blog-title {
+  font-size: 34px;
+  color: $primary-color;
+  transition: color ease 0.15s;
+  text-decoration: none;
+  font-weight: 200;
+  margin: 20px 0;
+  display: block;
+
+  @media screen and (max-width: 750px) {
+    font-size: 24px;
+    font-weight: 500;
+    margin: 15px 0;
+  }
+}
+
+// nprogress 样式
+#nprogress {
+  pointer-events: none;
+}
+
+#nprogress .bar {
+  background: $primary-color;
+  position: fixed;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+}
+
+#nprogress .peg {
+  display: block;
+  position: absolute;
+  right: 0px;
+  width: 100px;
+  height: 100%;
+  box-shadow: 0 0 10px $primary-color, 0 0 5px $primary-color;
+  opacity: 1;
+  transform: rotate(3deg) translate(0px, -4px);
+}
