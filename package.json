@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 8085",
     "build": "next build",
-    "start": "next start"
+    "start": "next start -p 8085",
+    "deploy": "sh ./deploy.sh"
   },
   "dependencies": {
     "@rematch/core": "^1.3.0",

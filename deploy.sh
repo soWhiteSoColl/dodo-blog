@@ -1,5 +1,5 @@
 #！ /bin/bash
-cd /project/blog-web
+cd /project/dodo-blog
 
 git pull
 
