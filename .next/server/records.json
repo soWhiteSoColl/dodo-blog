@@ -21,23 +21,29 @@
     "byName": {
       "init-server.js": 0,
       "on-error-server.js": 1,
-      "static/wdeRw21DWTS-xkqjrcZL9/pages/_app.js": 2,
-      "static/wdeRw21DWTS-xkqjrcZL9/pages/_document.js": 3,
-      "static/wdeRw21DWTS-xkqjrcZL9/pages/_error.js": 4,
-      "static/wdeRw21DWTS-xkqjrcZL9/pages/detail.js": 5,
-      "static/wdeRw21DWTS-xkqjrcZL9/pages/home.js": 6,
-      "static/wdeRw21DWTS-xkqjrcZL9/pages/index.js": 7
+      "static/T1qeFdCk_NHJoT2kzfDrc/pages/_app.js": 2,
+      "static/T1qeFdCk_NHJoT2kzfDrc/pages/_document.js": 3,
+      "static/T1qeFdCk_NHJoT2kzfDrc/pages/_error.js": 4,
+      "static/T1qeFdCk_NHJoT2kzfDrc/pages/detail.js": 5,
+      "static/T1qeFdCk_NHJoT2kzfDrc/pages/home.js": 6,
+      "static/T1qeFdCk_NHJoT2kzfDrc/pages/index.js": 7,
+      "static/zLDJazZbiafOqYEiKx-if/pages/_app.js": 8,
+      "static/zLDJazZbiafOqYEiKx-if/pages/_document.js": 9,
+      "static/zLDJazZbiafOqYEiKx-if/pages/_error.js": 10,
+      "static/zLDJazZbiafOqYEiKx-if/pages/detail.js": 11,
+      "static/zLDJazZbiafOqYEiKx-if/pages/home.js": 12,
+      "static/zLDJazZbiafOqYEiKx-if/pages/index.js": 13
     },
     "bySource": {},
     "usedIds": [
       0,
       1,
-      2,
-      3,
-      4,
-      5,
-      6,
-      7
+      10,
+      11,
+      12,
+      13,
+      8,
+      9
     ]
   }
 }

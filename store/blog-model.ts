@@ -31,7 +31,7 @@ export default {
 
   effects: dispatch => ({
     async getBlogList(options?: GetBlogListProps) {
-      const params = options || { perPage: 30, page: 1, tags: [] }
+      const params = options || { perPage: 200, page: 1, tags: [] }
 
       Object.assign(params, { type: 1 })
 

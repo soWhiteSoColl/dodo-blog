@@ -26,7 +26,7 @@ export default class MyDocument extends Document {
           />
           <link rel="shortcut icon" href="/static/favicon.ico" />
           <link rel="manifest" href="/static/lib/manifest.json"></link>
-          <script src="/static/lib/register-sw.js" async></script>
+          {/* <script src="/static/lib/register-sw.js" async></script> */}
         </Head>
         <body>
           <Main />

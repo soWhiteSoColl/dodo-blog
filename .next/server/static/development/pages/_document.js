@@ -7121,14 +7121,6 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
         lineNumber: 28
       },
       __self: this
-    }), __jsx("script", {
-      src: "/static/lib/register-sw.js",
-      async: true,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 29
-      },
-      __self: this
     })), __jsx("body", {
       __source: {
         fileName: _jsxFileName,

@@ -8672,7 +8672,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
   effects: dispatch => ({
     async getBlogList(options) {
       const params = options || {
-        perPage: 30,
+        perPage: 200,
         page: 1,
         tags: []
       };
