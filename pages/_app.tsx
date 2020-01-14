@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import { Provider } from 'react-redux'
@@ -14,8 +15,13 @@ export default function MyApp({ Component, pageProps }) {
   }, [])
 
   return (
-    <Provider store={store}>
-      <Component {...pageProps} />
-    </Provider>
+    <>
+      <Head>
+        <title>小寒的博客-用心创作</title>
+      </Head>
+      <Provider store={store}>
+        <Component {...pageProps} />
+      </Provider>
+    </>
   )
 }

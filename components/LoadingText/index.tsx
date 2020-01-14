@@ -18,5 +18,5 @@ export default function LoadingText() {
     return () => clearInterval(timer)
   }, [])
 
-  return `加载中${dots}`
+  return <>`加载中${dots}`</>
 }

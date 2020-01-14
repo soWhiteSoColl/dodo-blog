@@ -44,7 +44,7 @@ const BlogItem = (props: {
     </div>
   ) : (
     <div className="blog-item" style={style}>
-      <Link href={`/detail?id=${blog.id}`}>
+      <Link href={`/blog?id=${blog.id}`}>
         <a className="page-common-blog-title">{blog.title}</a>
       </Link>
     </div>

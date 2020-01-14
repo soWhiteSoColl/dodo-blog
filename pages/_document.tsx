@@ -10,7 +10,6 @@ export default class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <title>小寒的博客-用心创作</title>
           <meta name="baidu-site-verification" content="hd4JTXEMxD" />
           <meta
             name="keywords"
@@ -25,7 +24,8 @@ export default class MyDocument extends Document {
             name="viewport"
           />
           <link rel="shortcut icon" href="/static/favicon.ico" />
-          <link rel="manifest" href="/static/lib/manifest.json"></link>
+          <link rel="manifest" href="/static/manifest.json"></link>
+          <script src="/static/lib/register-sw.js"></script>
         </Head>
         <body>
           <Main />
