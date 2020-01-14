@@ -376,4 +376,29 @@ body {
   color: #999; }
 
 
+.home-page {
+  height: 100vh; }
+  .home-page .c-typer {
+    position: relative;
+    top: 50%;
+    transform: translateY(-60%);
+    height: 400px; }
+    .home-page .c-typer h2 {
+      font-size: 50px;
+      margin-top: 0; }
+    .home-page .c-typer h4 {
+      font-size: 24px;
+      margin-bottom: 1em; }
+    .home-page .c-typer p {
+      line-height: 1.6;
+      margin: 0.6em 0;
+      font-size: 16px; }
+    .home-page .c-typer a {
+      color: #39f;
+      cursor: pointer;
+      text-decoration: none; }
+      .home-page .c-typer a:hover {
+        text-decoration: underline; }
+
+
 /*# sourceMappingURL=styles.chunk.css.map*/
