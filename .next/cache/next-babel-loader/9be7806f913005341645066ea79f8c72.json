@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { init } from '@rematch/core';\nimport blogModel from \"./blog-model\";\nimport globalModel from \"./global-model\";\nvar store = init({\n  models: {\n    blogModel: blogModel,\n    globalModel: globalModel\n  }\n});\nexport default store;","map":null,"metadata":{},"sourceType":"module"}
