@@ -6,43 +6,43 @@
       "static/chunks/commons.1372bc7daf90450bf89d.js",
       "static/css/styles.39b3bd40.chunk.css",
       "static/chunks/styles.e9dc08ac49adffaf33e2.js",
-      "static/runtime/main-50353b3d7e1a24cceb91.js"
+      "static/runtime/main-82fa97db689292fded1a.js"
     ],
     "/_app": [
       "static/runtime/webpack-4b444dab214c6491079c.js",
       "static/chunks/commons.1372bc7daf90450bf89d.js",
       "static/css/styles.39b3bd40.chunk.css",
       "static/chunks/styles.e9dc08ac49adffaf33e2.js",
-      "static/runtime/main-50353b3d7e1a24cceb91.js"
+      "static/runtime/main-82fa97db689292fded1a.js"
     ],
     "/_error": [
       "static/runtime/webpack-4b444dab214c6491079c.js",
       "static/chunks/commons.1372bc7daf90450bf89d.js",
-      "static/runtime/main-50353b3d7e1a24cceb91.js"
+      "static/runtime/main-82fa97db689292fded1a.js"
     ],
     "/_polyfills": [
-      "static/runtime/polyfills-09ae3f3210869a338d0e.js"
+      "static/runtime/polyfills-211ed32116ffe59e4063.js"
     ],
     "/blog": [
       "static/runtime/webpack-4b444dab214c6491079c.js",
       "static/chunks/commons.1372bc7daf90450bf89d.js",
       "static/css/styles.39b3bd40.chunk.css",
       "static/chunks/styles.e9dc08ac49adffaf33e2.js",
-      "static/runtime/main-50353b3d7e1a24cceb91.js"
+      "static/runtime/main-82fa97db689292fded1a.js"
     ],
     "/home": [
       "static/runtime/webpack-4b444dab214c6491079c.js",
       "static/chunks/commons.1372bc7daf90450bf89d.js",
       "static/css/styles.39b3bd40.chunk.css",
       "static/chunks/styles.e9dc08ac49adffaf33e2.js",
-      "static/runtime/main-50353b3d7e1a24cceb91.js"
+      "static/runtime/main-82fa97db689292fded1a.js"
     ],
     "/index": [
       "static/runtime/webpack-4b444dab214c6491079c.js",
       "static/chunks/commons.1372bc7daf90450bf89d.js",
       "static/css/styles.39b3bd40.chunk.css",
       "static/chunks/styles.e9dc08ac49adffaf33e2.js",
-      "static/runtime/main-50353b3d7e1a24cceb91.js"
+      "static/runtime/main-82fa97db689292fded1a.js"
     ]
   }
 }

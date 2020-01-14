@@ -9,6 +9,10 @@ import '../styles/index.scss'
 
 export default function MyApp({ Component, pageProps }) {
   useEffect(() => {
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual'
+    }
+
     Router.events.on('routeChangeStart', () => NProgress.start())
     Router.events.on('routeChangeComplete', () => NProgress.done())
     Router.events.on('routeChangeError', () => NProgress.done())

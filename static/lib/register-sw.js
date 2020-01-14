@@ -1,7 +1,7 @@
-// const isProd = location.origin === 'https://www.dodoblog.cn'
+const isProd = location.origin === 'https://www.dodoblog.cn'
 
 window.addEventListener('load', () => {
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js', { scope: '/' })
+  if (isProd && 'serviceWorker' in navigator) {
+    navigator.serviceWorker.register('/sw.js')
   }
 })

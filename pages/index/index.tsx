@@ -58,16 +58,27 @@ function BlogListPage(props) {
     getBlogList,
     renderedBlogListNumber,
     setRenderedBlogListNumber,
+    lastViewPageY,
+    setLastViewPageY,
   } = props
 
   const [showNum, setShowNum] = useState(renderedBlogListNumber || PAGE_SIZE)
   const [loading, setLoading] = useState(false)
-  const showNumRef = useRef(0)
+  const showNumRef = useRef(showNum)
+  const willMount = useRef(false)
+
+  if (!willMount.current && typeof window !== 'undefined') {
+    window.scrollTo(0, lastViewPageY)
+    willMount.current = true
+  }
 
   useEffect(() => {
-    !initBlogList && getBlogList()
+    !initBlogList && !blogList && getBlogList()
 
-    return () => setRenderedBlogListNumber(showNumRef.current)
+    return () => {
+      setRenderedBlogListNumber(showNumRef.current)
+      setLastViewPageY(window.pageYOffset)
+    }
   }, [])
 
   const list = sortBlog((initBlogList || blogList).list)

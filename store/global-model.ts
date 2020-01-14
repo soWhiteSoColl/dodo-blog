@@ -2,6 +2,7 @@ export default {
   state: {
     isTyperFirstRendered: false,
     renderedBlogListNumber: 0,
+    lastViewPageY: 0,
   },
 
   reducers: {
@@ -11,6 +12,10 @@ export default {
 
     setRenderedBlogListNumber(state, renderedBlogListNumber) {
       return { ...state, renderedBlogListNumber }
+    },
+
+    setLastViewPageY(state, lastViewPageY) {
+      return { ...state, lastViewPageY }
     },
   },
 }
