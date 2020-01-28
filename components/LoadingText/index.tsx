@@ -11,12 +11,12 @@ export default function LoadingText() {
     let dotNumber = 0
 
     const timer = setInterval(() => {
-      dotNumber = dotNumber + 1 <= 6 ? dotNumber + 1 : 1
+      dotNumber = dotNumber + 1 <= 3 ? dotNumber + 1 : 1
       setDotNumber(dotNumber)
     }, 200)
 
     return () => clearInterval(timer)
   }, [])
 
-  return <>`加载中${dots}`</>
+  return <>{`加载中${dots}`}</>
 }

@@ -1,6 +1,7 @@
 import axios from 'axios'
 
 axios.defaults.baseURL = 'https://www.dodoblog.cn/api'
+// axios.defaults.baseURL = 'http://localhost:8000/api'
 axios.defaults.withCredentials = true
 
 axios.interceptors.response.use(response => {
@@ -9,7 +10,7 @@ axios.interceptors.response.use(response => {
     typeof response === 'string' ||
     typeof response === 'number' ||
     typeof response === 'boolean' ||
-    response['hasAxiosPassport'] === true
+    (response instanceof Object && response['_hasAxiosPassport'] === true)
   ) {
     return Promise.resolve(response)
   }
@@ -32,7 +33,7 @@ axios.interceptors.response.use(response => {
   }
 
   if (result.data && result.data instanceof Object) {
-    result.data['hasAxiosPassport'] = true
+    result.data['_hasAxiosPassport'] = true
   }
 
   return Promise.resolve(result.data)
@@ -40,11 +41,6 @@ axios.interceptors.response.use(response => {
 
 axios.interceptors.request.use(
   config => {
-    if (process.browser) {
-      const jwt = localStorage.getItem('user-jwt')
-      if (jwt) config.headers['Authorization'] = jwt
-    }
-
     return config
   },
   error => {

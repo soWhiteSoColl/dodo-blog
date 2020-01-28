@@ -1,3 +1,5 @@
+import axios from '../configs/axios'
+
 export function sleep(ms: number) {
   return new Promise(resolve => setTimeout(resolve, ms))
 }
@@ -15,4 +17,28 @@ export function formatUrl(url?: string) {
     }, {})
 
   return { path, query, search }
+}
+
+export function getDOMById(id) {
+  let el = document.getElementById(id)
+  if (!el) {
+    el = document.createElement('div')
+    el.id = id
+    document.body.appendChild(el)
+  }
+  return el
+}
+
+export function track(
+  eventId: string,
+  eventType?: string,
+  eventParam?: object
+) {
+  const info = {
+    url: location.href,
+    title: document.title,
+    ...eventParam,
+  }
+
+  return axios.post('/tracks', { key: eventId, type: eventType, info })
 }

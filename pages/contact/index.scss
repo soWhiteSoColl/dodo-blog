@@ -1,0 +1,20 @@
+.contact-page {
+  .contact-form {
+    margin-top: 30px;
+    overflow: hidden;
+
+    &-username,
+    &-textarea {
+      margin-bottom: 15px;
+    }
+
+    button {
+      padding: 10px 32px;
+      float: right;
+
+      @media screen and (max-width: 750px) {
+        width: 100%;
+      }
+    }
+  }
+}

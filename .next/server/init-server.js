@@ -88,12 +88,16 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "djva");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./node_modules/_next@9.1.7@next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=on-init-server!./");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "djva":
+/***/ "./node_modules/_next@9.1.7@next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=on-init-server!./":
+/*!******************************************************************************************************************!*\
+  !*** ./node_modules/_next@9.1.7@next/dist/build/webpack/loaders/next-plugin-loader.js?middleware=on-init-server ***!
+  \******************************************************************************************************************/
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -109,3 +113,4 @@ __webpack_require__.r(__webpack_exports__);
 /***/ })
 
 /******/ });
+//# sourceMappingURL=init-server.js.map

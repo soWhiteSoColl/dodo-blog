@@ -1,0 +1,163 @@
+.navigator {
+  position: fixed;
+  width: 100%;
+  z-index: 1;
+
+  &-collapsed-menu {
+    position: absolute;
+    right: 30px;
+    top: 26px;
+    z-index: 53;
+
+    &:hover {
+      path {
+        stroke: #39f;
+      }
+    }
+
+    @media screen and (max-width: 750px) {
+      right: 17px;
+    }
+  }
+
+  &:hover {
+    .navigator-panel {
+      background-color: #eee;
+    }
+  }
+
+  &-panel {
+    position: absolute;
+    background-color: transparent;
+    z-index: 51;
+    transition: all ease 0.45s;
+    border-radius: 50%;
+    right: 20px;
+    top: 16px;
+    width: 50px;
+    height: 50px;
+
+    &.show {
+      background-color: #eee;
+    }
+
+    @media screen and (max-width: 750px) {
+      right: 8px;
+    }
+  }
+
+  &-links {
+    position: absolute;
+    z-index: 52;
+    width: 300px;
+    text-align: center;
+    transform: translateY(-50%);
+    left: calc(50vw - 150px);
+    transition: all ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    top: 45vh;
+
+    a {
+      opacity: 0;
+      display: inline-block;
+      margin: 15px 0;
+      text-decoration: none;
+      color: #222;
+      transition: all ease 0.15s;
+      position: relative;
+      width: 100px;
+
+      &:hover {
+        color: #39f;
+        transform: scale(1.06);
+      }
+
+      // &:before,
+      // &:after {
+      //   font-size: 13px;
+      //   transition: all ease 0.15s;
+      //   position: absolute;
+      //   color: #222;
+      //   opacity: 0;
+      //   top: 2px;
+      // }
+
+      // &:before {
+      //   content: '[';
+      //   left: 40%;
+      // }
+
+      // &:after {
+      //   content: ']';
+      //   right: 40%;
+      // }
+
+      // &:hover {
+      //   color: #39f;
+      //   transform: scale(1.06);
+
+      //   &:before,
+      //   &:after {
+      //     color: #39f;
+      //     opacity: 1;
+      //   }
+
+      //   &:after {
+      //     right: 30%;
+      //     color: #39f;
+      //   }
+
+      //   &:before {
+      //     left: 30%;
+      //     color: #39f;
+      //   }
+      // }
+    }
+
+    &.show a {
+      animation: show-animation 0.5s ease 0.3s forwards;
+
+      &:nth-child(3n + 1) {
+        animation-delay: 0.25s;
+      }
+
+      &:nth-child(3n + 2) {
+        animation-delay: 0.35s;
+      }
+
+      &:nth-child(3n) {
+        animation-delay: 0.45s;
+      }
+    }
+
+    &.hidden a {
+      animation: hidden-animation 0.1s ease forwards;
+    }
+  }
+}
+
+@keyframes show-animation {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes hidden-animation {
+  0% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-40px);
+  }
+}

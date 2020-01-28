@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react'
 import Link from 'next/link'
+import Head from 'next/head'
 import dayjs from 'dayjs'
 import { connect } from 'react-redux'
 import Logo from '../../components/Logo'
@@ -7,6 +8,7 @@ import AnimateQueue from '../../components/AnimateQueue'
 import ScrollDetect from '../../components/ScrollDetect'
 import LoadingText from '../../components/LoadingText'
 import store from '../../store'
+import { track } from '../../utils/common'
 import './index.scss'
 
 const PAGE_SIZE = 15
@@ -55,7 +57,6 @@ function BlogListPage(props) {
   const {
     initBlogList,
     blogList,
-    getBlogList,
     renderedBlogListNumber,
     setRenderedBlogListNumber,
     lastViewPageY,
@@ -73,7 +74,7 @@ function BlogListPage(props) {
   }
 
   useEffect(() => {
-    !initBlogList && !blogList && getBlogList()
+    track('enter-index', 'route-change')
 
     return () => {
       setRenderedBlogListNumber(showNumRef.current)
@@ -100,8 +101,10 @@ function BlogListPage(props) {
 
   return (
     <div className="blog-list-page page-common-container">
+      <Head>
+        <title>小寒的博客-博客列表</title>
+      </Head>
       <Logo />
-
       <ScrollDetect onScrollOut={handleLoadMore} protectTime={500}>
         {list.slice(0, renderedBlogListNumber).map(item => {
           return <BlogItem key={item.id} info={item} />

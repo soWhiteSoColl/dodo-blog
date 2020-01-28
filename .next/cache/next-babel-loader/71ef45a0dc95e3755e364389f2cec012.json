@@ -1,1 +1,0 @@
-{"ast":null,"code":"var __jsx = React.createElement;\nimport React from 'react';\nimport Link from 'next/link';\nexport default function Logo() {\n  return __jsx(\"div\", {\n    className: \"page-common-logo\"\n  }, __jsx(Link, {\n    href: \"/home\"\n  }, __jsx(\"img\", {\n    src: \"/static/logo.png\",\n    alt: \"\"\n  })));\n}","map":null,"metadata":{},"sourceType":"module"}

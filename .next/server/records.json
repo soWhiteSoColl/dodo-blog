@@ -4,9 +4,10 @@
       "multi private-next-pages/_app.tsx": 0,
       "multi private-next-pages/_document.tsx": 1,
       "multi private-next-pages/blog/index.tsx": 2,
-      "multi private-next-pages/home/index.tsx": 3,
-      "multi private-next-pages/index/index.tsx": 4,
-      "multi next/dist/pages/_error": 5
+      "multi private-next-pages/contact/index.tsx": 3,
+      "multi private-next-pages/home/index.tsx": 4,
+      "multi private-next-pages/index/index.tsx": 5,
+      "multi next/dist/pages/_error": 6
     },
     "usedIds": {
       "0": 0,
@@ -14,19 +15,21 @@
       "2": 2,
       "3": 3,
       "4": 4,
-      "5": 5
+      "5": 5,
+      "6": 6
     }
   },
   "chunks": {
     "byName": {
       "init-server.js": 0,
       "on-error-server.js": 1,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/_app.js": 2,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/_document.js": 3,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/_error.js": 4,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/blog.js": 5,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/home.js": 6,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/index.js": 7
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/_app.js": 2,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/_document.js": 3,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/_error.js": 4,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/blog.js": 5,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/contact.js": 6,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/home.js": 7,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/index.js": 8
     },
     "bySource": {},
     "usedIds": [
@@ -37,7 +40,8 @@
       4,
       5,
       6,
-      7
+      7,
+      8
     ]
   }
 }

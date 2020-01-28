@@ -17,6 +17,8 @@ export default {
     },
 
     currentBlog: {},
+
+    comments: { list: [], total: 0 },
   },
 
   reducers: {
@@ -26,6 +28,10 @@ export default {
 
     setBlog(state, currentBlog) {
       return { ...state, currentBlog }
+    },
+
+    setComments(state, comments) {
+      return { ...state, comments }
     },
   },
 
@@ -48,8 +54,24 @@ export default {
     },
 
     async getBlog(id) {
-      const currentBlog = await axios.get(`/articles/${id}`)
-      dispatch.blogModel.setBlog(currentBlog)
+      const blog = await axios.get(`/articles/${id}`)
+      dispatch.blogModel.setBlog(blog)
+      return blog
+    },
+
+    async commentBlog(info) {
+      await axios.post('/comments', info)
+      dispatch.blogModel.getComments({ blogId: info.blogId })
+    },
+
+    async leaveMessage(info) {
+      await axios.post('/comments', info)
+      dispatch.blogModel.getComments({ type: 2 })
+    },
+
+    async getComments(query) {
+      const comments = await axios.get('/comments', { params: query })
+      dispatch.blogModel.setComments(comments)
     },
   }),
 }

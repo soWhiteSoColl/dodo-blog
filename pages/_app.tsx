@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Router from 'next/router'
 import NProgress from 'nprogress'
 import { Provider } from 'react-redux'
+import Navigator from '../components/Navigator'
 import store from '../store'
 import '../configs/axios'
 import '../styles/index.scss'
@@ -21,9 +22,10 @@ export default function MyApp({ Component, pageProps }) {
   return (
     <>
       <Head>
-        <title>小寒的博客-用心创作</title>
+        <title>小寒的博客</title>
       </Head>
       <Provider store={store}>
+        <Navigator />
         <Component {...pageProps} />
       </Provider>
     </>

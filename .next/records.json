@@ -1,5 +1,5 @@
 {
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!pages/blog/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/contact/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -16,7 +16,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!pages/home/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/home/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -33,7 +33,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!pages/index/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/index/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -50,7 +50,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!styles/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/blog/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -67,7 +67,92 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!components/Typer/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!styles/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Footer/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/CommentList/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Typer/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Navigator/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Icon/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -86,18 +171,28 @@
   ],
   "modules": {
     "byIdentifier": {
-      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!styles/index.scss 0": 0,
-      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!pages/blog/index.scss 0": 1,
-      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!components/Typer/index.scss 0": 2,
-      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!pages/home/index.scss 0": 3,
-      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--5-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--5-2!pages/index/index.scss 0": 4
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Icon/index.scss 0": 0,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Navigator/index.scss 0": 1,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!styles/index.scss 0": 2,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/CommentList/index.scss 0": 3,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Footer/index.scss 0": 4,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/blog/index.scss 0": 5,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/contact/index.scss 0": 6,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Typer/index.scss 0": 7,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/home/index.scss 0": 8,
+      "css node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/index/index.scss 0": 9
     },
     "usedIds": {
       "0": 0,
       "1": 1,
       "2": 2,
       "3": 3,
-      "4": 4
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9
     }
   },
   "chunks": {
@@ -105,18 +200,20 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "styles": 2,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/_app.js": 3,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/_error.js": 4,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/blog.js": 5,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/home.js": 6,
-      "static/EWv1whfErjVXyuPSWTFQo/pages/index.js": 7,
-      "static/runtime/main.js": 8,
-      "static/runtime/polyfills.js": 9
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/_app.js": 3,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/_error.js": 4,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/blog.js": 5,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/contact.js": 6,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/home.js": 7,
+      "static/3yD5Lm5vtYeBlLzxcYqAm/pages/index.js": 8,
+      "static/runtime/main.js": 9,
+      "static/runtime/polyfills.js": 10
     },
     "bySource": {},
     "usedIds": [
       0,
       1,
+      10,
       2,
       3,
       4,

@@ -1,3 +1,5 @@
+@import './mixin.scss';
+
 $primary-color: #368df3;
 
 body {
@@ -8,6 +10,8 @@ body {
   max-width: 680px;
   padding: 0 20px;
   margin: 0 auto;
+
+  @include clearfix;
 }
 
 .page-common-logo {
@@ -40,6 +44,78 @@ body {
     font-weight: 500;
     margin: 15px 0;
   }
+}
+
+.page-common-section-title {
+  margin-top: 60px;
+  margin-bottom: 20px;
+  padding-left: 14px;
+  position: relative;
+  color: #666;
+
+  &:before {
+    content: '';
+    background-color: #39f;
+    height: 100%;
+    width: 6px;
+    left: 0;
+    position: absolute;
+    border-radius: 4px;
+  }
+}
+
+a {
+  color: $primary-color;
+}
+
+button {
+  flex-shrink: 0;
+  border: none;
+  background-color: #39f;
+  border-radius: 8px;
+  padding: 11px 32px;
+  display: block;
+  color: #fff;
+  display: inline-block;
+
+  &:not(:disabled):hover {
+    background-color: #4af;
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+input,
+textarea {
+  width: 100%;
+  border-radius: 10px;
+  height: 200px;
+  border: 1px solid #999;
+  padding: 15px;
+  box-sizing: border-box;
+  display: block;
+  // font-size: 14px;
+
+  &:active,
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+  }
+}
+
+input {
+  height: 40px;
+}
+
+textarea {
+  height: 200px;
 }
 
 // nprogress 样式

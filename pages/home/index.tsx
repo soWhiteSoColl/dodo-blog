@@ -1,6 +1,8 @@
-import React, { useRef, useEffect } from 'react'
-import Typer from '../../components/Typer'
+import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
+import Head from 'next/head'
+import Typer from '../../components/Typer'
+import { track } from '../../utils/common'
 import './index.scss'
 
 const content = `
@@ -17,6 +19,8 @@ function Home(props) {
   const isTyperFirstRendered = props.isTyperFirstRendered
 
   useEffect(() => {
+    track('enter-home', 'route-change')
+
     if (!props.isTyperFirstRenderedRef) {
       props.setIsTyperFirstRendered(true)
     }
@@ -24,6 +28,9 @@ function Home(props) {
 
   return (
     <div className="page-common-container home-page">
+      <Head>
+        <title>小寒的博客-首页</title>
+      </Head>
       <Typer content={content} rendered={isTyperFirstRendered} />
     </div>
   )

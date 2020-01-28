@@ -1,0 +1,55 @@
+.radio-group {
+  display: flex;
+  flex-shrink: 0;
+  margin-bottom: 20px;
+
+  .radio {
+    display: flex;
+    justify-content: center;
+    margin-right: 20px;
+    cursor: pointer;
+
+    .radio-checked {
+      display: block;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid #ddd;
+      position: relative;
+      margin-right: 6px;
+      transition: all ease 0.3s;
+
+      &:after {
+        content: '';
+        position: absolute;
+        display: block;
+        width: 0px;
+        height: 0px;
+        background-color: #39f;
+        border-radius: 50%;
+        top: 8px;
+        left: 8px;
+        transition: all ease 0.3s;
+      }
+    }
+
+    &:hover {
+      .radio-checked {
+        border-color: #39f;
+      }
+    }
+
+    &.active {
+      .radio-checked {
+        border-color: #39f;
+
+        &:after {
+          width: 8px;
+          height: 8px;
+          top: 4px;
+          left: 4px;
+        }
+      }
+    }
+  }
+}
