@@ -27,9 +27,10 @@ function BlogDetailPage(props: Props) {
   const { getComments, commentBlog, blog, comments } = props
 
   useEffect(() => {
-    blog && getComments({ blogId: blog._id })
-
-    track('enter-blog-detail', 'route-change', { id: blog._id })
+    if (blog && blog._id) {
+      getComments({ blogId: blog._id })
+      track('enter-blog-detail', 'route-change', { id: blog._id })
+    }
   }, [])
 
   const handleCommentSubmit = async e => {

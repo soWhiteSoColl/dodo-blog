@@ -1,7 +1,7 @@
 /* eslint-disable */
 
 importScripts(
-  'https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js'
+  'https://storage.googleapis.com/workbox-cdn/releases/3.3.0/workbox-sw.js'
 )
 
 function configWorkbox() {
@@ -14,21 +14,21 @@ function configWorkbox() {
     runtime: 'dodo-runtime',
   })
 
-  const { StaleWhileRevalidate, CacheFirst } = workbox.strategies
+  const { StaleWhileRevalidate, CacheFirst, NetworkFirst } = workbox.strategies
 
   workbox.routing.registerRoute(
     '/',
-    new StaleWhileRevalidate({ cacheName: 'html-cache' })
+    new NetworkFirst({ cacheName: 'html-cache' })
   )
 
   workbox.routing.registerRoute(
     '/home',
-    new StaleWhileRevalidate({ cacheName: 'html-cache' })
+    new NetworkFirst({ cacheName: 'html-cache' })
   )
 
   workbox.routing.registerRoute(
     /\/blog\?id=.*/,
-    new StaleWhileRevalidate({ cacheName: 'html-cache' })
+    new NetworkFirst({ cacheName: 'html-cache' })
   )
 
   workbox.routing.registerRoute(
@@ -43,12 +43,12 @@ function configWorkbox() {
 
   workbox.routing.registerRoute(
     ({ url }) => url.pathname && /\/api\/.*/.test(url.pathname),
-    new StaleWhileRevalidate({ cacheName: 'api-cache' })
+    new NetworkFirst({ cacheName: 'api-cache' })
   )
 
   workbox.routing.registerRoute(
     /\/api/,
-    new StaleWhileRevalidate({ cacheName: 'api-cache' })
+    new NetworkFirst({ cacheName: 'api-cache' })
   )
 
   workbox.routing.registerRoute(

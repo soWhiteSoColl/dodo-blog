@@ -8,7 +8,7 @@ export default function Footer() {
       <div>
         <div className="main-footer-links">
           <span>github </span>
-          <a target="_new" href="https://github.com/soWhiteSoColl">
+          <a target="_new" href="https://github.com/hanruto">
             soWhiteSoColl
           </a>
         </div>

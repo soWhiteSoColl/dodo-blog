@@ -54,9 +54,14 @@ export default {
     },
 
     async getBlog(id) {
-      const blog = await axios.get(`/articles/${id}`)
-      dispatch.blogModel.setBlog(blog)
-      return blog
+      try {
+        const blog = await axios.get(`/articles/${id}`)
+        dispatch.blogModel.setBlog(blog)
+        return blog
+      } catch {
+        console.log('博客不存在')
+        return null
+      }
     },
 
     async commentBlog(info) {
