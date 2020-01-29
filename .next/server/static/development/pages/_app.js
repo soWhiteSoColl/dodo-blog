@@ -8369,6 +8369,7 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
     async getBlog(id) {
       try {
+        axios__WEBPACK_IMPORTED_MODULE_8___default.a.post('/articles/' + id + '/view-count');
         const blog = await axios__WEBPACK_IMPORTED_MODULE_8___default.a.get(`/articles/${id}`);
         dispatch.blogModel.setBlog(blog);
         return blog;

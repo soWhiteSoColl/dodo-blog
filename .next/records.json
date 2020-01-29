@@ -207,20 +207,26 @@
       "static/6m-XUMhNexkUqG5qgNQdu/pages/home.js": 7,
       "static/6m-XUMhNexkUqG5qgNQdu/pages/index.js": 8,
       "static/runtime/main.js": 9,
-      "static/runtime/polyfills.js": 10
+      "static/runtime/polyfills.js": 10,
+      "static/waQF2juNJTC8NnU1ZzkPX/pages/_app.js": 11,
+      "static/waQF2juNJTC8NnU1ZzkPX/pages/_error.js": 12,
+      "static/waQF2juNJTC8NnU1ZzkPX/pages/blog.js": 13,
+      "static/waQF2juNJTC8NnU1ZzkPX/pages/contact.js": 14,
+      "static/waQF2juNJTC8NnU1ZzkPX/pages/home.js": 15,
+      "static/waQF2juNJTC8NnU1ZzkPX/pages/index.js": 16
     },
     "bySource": {},
     "usedIds": [
       0,
       1,
       10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
       2,
-      3,
-      4,
-      5,
-      6,
-      7,
-      8,
       9
     ]
   }

@@ -55,6 +55,7 @@ export default {
 
     async getBlog(id) {
       try {
+        axios.post('/articles/' + id + '/view-count')
         const blog = await axios.get(`/articles/${id}`)
         dispatch.blogModel.setBlog(blog)
         return blog

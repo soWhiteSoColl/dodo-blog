@@ -214,7 +214,7 @@
           .querySelectorAll("link[href][rel=stylesheet]")
           .forEach(function(link) {
             if (!link.href.match(prefix) || link.stale) return;
-            injectCss(link, link.href.split("?")[0] + "?unix=1580280862634");
+            injectCss(link, link.href.split("?")[0] + "?unix=1580311263342");
           });
       }
     }
