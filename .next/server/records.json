@@ -1,0 +1,47 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "multi private-next-pages/_app.tsx": 0,
+      "multi private-next-pages/_document.tsx": 1,
+      "multi private-next-pages/blog/index.tsx": 2,
+      "multi private-next-pages/contact/index.tsx": 3,
+      "multi private-next-pages/home/index.tsx": 4,
+      "multi private-next-pages/index/index.tsx": 5,
+      "multi next/dist/pages/_error": 6
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6
+    }
+  },
+  "chunks": {
+    "byName": {
+      "init-server.js": 0,
+      "on-error-server.js": 1,
+      "static/6m-XUMhNexkUqG5qgNQdu/pages/_app.js": 2,
+      "static/6m-XUMhNexkUqG5qgNQdu/pages/_document.js": 3,
+      "static/6m-XUMhNexkUqG5qgNQdu/pages/_error.js": 4,
+      "static/6m-XUMhNexkUqG5qgNQdu/pages/blog.js": 5,
+      "static/6m-XUMhNexkUqG5qgNQdu/pages/contact.js": 6,
+      "static/6m-XUMhNexkUqG5qgNQdu/pages/home.js": 7,
+      "static/6m-XUMhNexkUqG5qgNQdu/pages/index.js": 8
+    },
+    "bySource": {},
+    "usedIds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ]
+  }
+}
