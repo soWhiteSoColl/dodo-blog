@@ -44,14 +44,15 @@
   z-index: 1; }
   .navigator-collapsed-menu {
     position: absolute;
-    right: 30px;
-    top: 26px;
+    right: 45px;
+    top: 45px;
     z-index: 53; }
     .navigator-collapsed-menu:hover path {
       stroke: #39f; }
     @media screen and (max-width: 750px) {
       .navigator-collapsed-menu {
-        right: 17px; } }
+        right: 16px;
+        top: 30px; } }
   .navigator:hover .navigator-panel {
     background-color: #eee; }
   .navigator-panel {
@@ -60,15 +61,16 @@
     z-index: 51;
     transition: all ease 0.45s;
     border-radius: 50%;
-    right: 20px;
-    top: 16px;
+    right: 35px;
+    top: 35px;
     width: 50px;
     height: 50px; }
     .navigator-panel.show {
       background-color: #eee; }
     @media screen and (max-width: 750px) {
       .navigator-panel {
-        right: 8px; } }
+        right: 6px;
+        top: 20px; } }
   .navigator-links {
     position: absolute;
     z-index: 52;
@@ -425,7 +427,8 @@ template {
 [hidden] {
   display: none; }
 
-body {
+body, #__next {
+  width: 100%;
   color: #121314;
   overflow-x: hidden; }
 
@@ -438,9 +441,12 @@ body {
     display: table; }
 
 .page-common-logo {
-  height: 100px;
+  height: 120px;
   display: flex;
   align-items: center; }
+  @media screen and (max-width: 750px) {
+    .page-common-logo {
+      height: 90px; } }
   .page-common-logo img {
     height: 28px;
     position: relative;
@@ -505,7 +511,8 @@ textarea {
   border: 1px solid #999;
   padding: 15px;
   box-sizing: border-box;
-  display: block; }
+  display: block;
+  -webkit-appearance: none; }
   input:active, input:focus,
   textarea:active,
   textarea:focus {
@@ -755,8 +762,11 @@ textarea {
       padding-right: 20px; } }
 
 .contact-page .contact-form {
-  margin-top: 30px;
+  margin-top: 20px;
   overflow: hidden; }
+  @media screen and (max-width: 750px) {
+    .contact-page .contact-form {
+      margin-top: 0; } }
   .contact-page .contact-form-username, .contact-page .contact-form-textarea {
     margin-bottom: 15px; }
   .contact-page .contact-form button {
@@ -796,7 +806,7 @@ textarea {
   font-weight: 700;
   margin-top: 45px; }
   .blog-list-page .blog-date:first-child {
-    margin-top: 10px; }
+    margin-top: 0px; }
   @media screen and (max-width: 750px) {
     .blog-list-page .blog-date {
       margin-top: 30px; }

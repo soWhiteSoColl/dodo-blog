@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react'
 
-export default function LoadingText() {
+interface Props{
+  text?: string
+}
+
+export default function LoadingText(props: Props) {
   const [dotNumber, setDotNumber] = useState(0)
+  const { text = '加载中' } = props
 
   const dots = Array.from({ length: dotNumber })
     .map(() => '.')
@@ -18,5 +23,5 @@ export default function LoadingText() {
     return () => clearInterval(timer)
   }, [])
 
-  return <>{`加载中${dots}`}</>
+  return <>{`${text}${dots}`}</>
 }

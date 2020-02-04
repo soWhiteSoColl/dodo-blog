@@ -2,7 +2,8 @@
 
 $primary-color: #368df3;
 
-body {
+body, #__next {
+  width: 100%;
   color: #121314;
   overflow-x: hidden;
 }
@@ -16,9 +17,13 @@ body {
 }
 
 .page-common-logo {
-  height: 100px;
+  height: 120px;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 750px){
+    height: 90px;
+  }
 
   img {
     height: 28px;
@@ -102,7 +107,7 @@ textarea {
   padding: 15px;
   box-sizing: border-box;
   display: block;
-  // font-size: 14px;
+  -webkit-appearance: none;
 
   &:active,
   &:focus {

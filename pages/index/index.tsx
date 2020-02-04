@@ -105,11 +105,10 @@ function BlogListPage(props) {
         <title>小寒的博客-博客列表</title>
       </Head>
       <Logo />
-      <ScrollDetect onScrollOut={handleLoadMore} protectTime={500}>
+      <ScrollDetect onScrollOut={handleLoadMore} protectTime={2000}>
         {list.slice(0, renderedBlogListNumber).map(item => {
           return <BlogItem key={item.id} info={item} />
         })}
-
         <AnimateQueue
           animate={true}
           interval={100}
@@ -123,7 +122,7 @@ function BlogListPage(props) {
         </AnimateQueue>
 
         <div className="blog-list-info">
-          {isLoadAll ? '已全部加载' : loading && <LoadingText />}
+          {isLoadAll ? '已全部加载' : loading && <LoadingText text={'滑慢点，还没加载完呢'}/>}
         </div>
       </ScrollDetect>
     </div>

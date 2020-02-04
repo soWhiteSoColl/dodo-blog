@@ -1,5 +1,5 @@
 {
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/blog/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/contact/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -16,7 +16,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/contact/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/blog/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -118,7 +118,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Typer/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Footer/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -135,7 +135,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Footer/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Typer/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -200,14 +200,14 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "styles": 2,
-      "static/runtime/main.js": 3,
-      "static/runtime/polyfills.js": 4,
-      "static/spOOMfOFt5S14pQ7dE6Eu/pages/_app.js": 5,
-      "static/spOOMfOFt5S14pQ7dE6Eu/pages/_error.js": 6,
-      "static/spOOMfOFt5S14pQ7dE6Eu/pages/blog.js": 7,
-      "static/spOOMfOFt5S14pQ7dE6Eu/pages/contact.js": 8,
-      "static/spOOMfOFt5S14pQ7dE6Eu/pages/home.js": 9,
-      "static/spOOMfOFt5S14pQ7dE6Eu/pages/index.js": 10
+      "static/YwmceB3bGCdd-dweyLfeu/pages/_app.js": 3,
+      "static/YwmceB3bGCdd-dweyLfeu/pages/_error.js": 4,
+      "static/YwmceB3bGCdd-dweyLfeu/pages/blog.js": 5,
+      "static/YwmceB3bGCdd-dweyLfeu/pages/contact.js": 6,
+      "static/YwmceB3bGCdd-dweyLfeu/pages/home.js": 7,
+      "static/YwmceB3bGCdd-dweyLfeu/pages/index.js": 8,
+      "static/runtime/main.js": 9,
+      "static/runtime/polyfills.js": 10
     },
     "bySource": {},
     "usedIds": [

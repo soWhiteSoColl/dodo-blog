@@ -3,6 +3,7 @@ import React from 'react'
 interface Props {
   detect?: boolean
   protectTime?: number
+  loadingTime?: number
   onScrollOut?: Function
 }
 
@@ -10,7 +11,10 @@ export default class ScrollDetect extends React.Component<Props> {
   el = React.createRef<HTMLDivElement>()
 
   taskTimer = 0
-  sleeping = false
+  protectTimer = 0
+
+  loading = false
+  protecting = false
 
   componentDidMount() {
     this.handleDetect()
@@ -31,16 +35,24 @@ export default class ScrollDetect extends React.Component<Props> {
   }
 
   handleDetect = () => {
-    if (this.sleeping) return false
-    const { protectTime = 1000, onScrollOut } = this.props
+    if (this.loading || this.protecting) return false
+
+    const { protectTime = 0, loadingTime = 0, onScrollOut } = this.props
     const { bottom } =
       this.el.current && this.el.current.getBoundingClientRect()
 
     if (bottom < window.innerHeight + 100) {
-      this.sleeping = true
+      this.loading = true
+      this.protecting = true
+
       this.taskTimer = window.setTimeout(() => {
-        this.sleeping = false
+        this.loading = false
         onScrollOut()
+        this.handleDetect()
+      }, loadingTime)
+
+      this.protectTimer = window.setTimeout(() => {
+        this.protecting = false
         this.handleDetect()
       }, protectTime)
     }

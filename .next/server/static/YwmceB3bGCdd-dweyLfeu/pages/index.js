@@ -1663,12 +1663,17 @@ class ScrollDetect_ScrollDetect extends external_react_default.a.Component {
 
     Object(defineProperty["a" /* default */])(this, "taskTimer", 0);
 
-    Object(defineProperty["a" /* default */])(this, "sleeping", false);
+    Object(defineProperty["a" /* default */])(this, "protectTimer", 0);
+
+    Object(defineProperty["a" /* default */])(this, "loading", false);
+
+    Object(defineProperty["a" /* default */])(this, "protecting", false);
 
     Object(defineProperty["a" /* default */])(this, "handleDetect", () => {
-      if (this.sleeping) return false;
+      if (this.loading || this.protecting) return false;
       const {
-        protectTime = 1000,
+        protectTime = 0,
+        loadingTime = 0,
         onScrollOut
       } = this.props;
       const {
@@ -1676,10 +1681,15 @@ class ScrollDetect_ScrollDetect extends external_react_default.a.Component {
       } = this.el.current && this.el.current.getBoundingClientRect();
 
       if (bottom < window.innerHeight + 100) {
-        this.sleeping = true;
+        this.loading = true;
+        this.protecting = true;
         this.taskTimer = window.setTimeout(() => {
-          this.sleeping = false;
+          this.loading = false;
           onScrollOut();
+          this.handleDetect();
+        }, loadingTime);
+        this.protectTimer = window.setTimeout(() => {
+          this.protecting = false;
           this.handleDetect();
         }, protectTime);
       }
@@ -1719,11 +1729,14 @@ var from_default = /*#__PURE__*/__webpack_require__.n(from);
 
 var LoadingText_jsx = external_react_default.a.createElement;
 
-function LoadingText() {
+function LoadingText(props) {
   const {
     0: dotNumber,
     1: setDotNumber
   } = Object(external_react_["useState"])(0);
+  const {
+    text = '加载中'
+  } = props;
 
   const dots = from_default()({
     length: dotNumber
@@ -1737,7 +1750,7 @@ function LoadingText() {
     }, 200);
     return () => clearInterval(timer);
   }, []);
-  return LoadingText_jsx(external_react_default.a.Fragment, null, `加载中${dots}`);
+  return LoadingText_jsx(external_react_default.a.Fragment, null, `${text}${dots}`);
 }
 // EXTERNAL MODULE: ./store/index.ts + 2 modules
 var store = __webpack_require__("WYo3");
@@ -1869,7 +1882,7 @@ function BlogListPage(props) {
     className: "blog-list-page page-common-container"
   }, index_jsx(head_default.a, null, index_jsx("title", null, "\u5C0F\u5BD2\u7684\u535A\u5BA2-\u535A\u5BA2\u5217\u8868")), index_jsx(Logo["a" /* default */], null), index_jsx(ScrollDetect_ScrollDetect, {
     onScrollOut: handleLoadMore,
-    protectTime: 500
+    protectTime: 2000
   }, list.slice(0, renderedBlogListNumber).map(item => {
     return index_jsx(BlogItem, {
       key: item.id,
@@ -1894,7 +1907,9 @@ function BlogListPage(props) {
     });
   })), index_jsx("div", {
     className: "blog-list-info"
-  }, isLoadAll ? '已全部加载' : loading && index_jsx(LoadingText, null))));
+  }, isLoadAll ? '已全部加载' : loading && index_jsx(LoadingText, {
+    text: '滑慢点，还没加载完呢'
+  }))));
 }
 
 BlogListPage.getInitialProps = async () => {
