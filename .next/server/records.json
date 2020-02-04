@@ -23,32 +23,25 @@
     "byName": {
       "init-server.js": 0,
       "on-error-server.js": 1,
-      "static/6m-XUMhNexkUqG5qgNQdu/pages/_app.js": 2,
-      "static/6m-XUMhNexkUqG5qgNQdu/pages/_document.js": 3,
-      "static/6m-XUMhNexkUqG5qgNQdu/pages/_error.js": 4,
-      "static/6m-XUMhNexkUqG5qgNQdu/pages/blog.js": 5,
-      "static/6m-XUMhNexkUqG5qgNQdu/pages/contact.js": 6,
-      "static/6m-XUMhNexkUqG5qgNQdu/pages/home.js": 7,
-      "static/6m-XUMhNexkUqG5qgNQdu/pages/index.js": 8,
-      "static/waQF2juNJTC8NnU1ZzkPX/pages/_app.js": 9,
-      "static/waQF2juNJTC8NnU1ZzkPX/pages/_document.js": 10,
-      "static/waQF2juNJTC8NnU1ZzkPX/pages/_error.js": 11,
-      "static/waQF2juNJTC8NnU1ZzkPX/pages/blog.js": 12,
-      "static/waQF2juNJTC8NnU1ZzkPX/pages/contact.js": 13,
-      "static/waQF2juNJTC8NnU1ZzkPX/pages/home.js": 14,
-      "static/waQF2juNJTC8NnU1ZzkPX/pages/index.js": 15
+      "static/spOOMfOFt5S14pQ7dE6Eu/pages/_app.js": 2,
+      "static/spOOMfOFt5S14pQ7dE6Eu/pages/_document.js": 3,
+      "static/spOOMfOFt5S14pQ7dE6Eu/pages/_error.js": 4,
+      "static/spOOMfOFt5S14pQ7dE6Eu/pages/blog.js": 5,
+      "static/spOOMfOFt5S14pQ7dE6Eu/pages/contact.js": 6,
+      "static/spOOMfOFt5S14pQ7dE6Eu/pages/home.js": 7,
+      "static/spOOMfOFt5S14pQ7dE6Eu/pages/index.js": 8
     },
     "bySource": {},
     "usedIds": [
       0,
       1,
-      10,
-      11,
-      12,
-      13,
-      14,
-      15,
-      9
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
     ]
   }
 }

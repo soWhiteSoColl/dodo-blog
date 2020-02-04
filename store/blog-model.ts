@@ -55,10 +55,18 @@ export default {
 
     async getBlog(id) {
       try {
-        axios.post('/articles/' + id + '/view-count')
         const blog = await axios.get(`/articles/${id}`)
         dispatch.blogModel.setBlog(blog)
         return blog
+      } catch {
+        console.log('博客不存在')
+        return null
+      }
+    },
+
+    async addViewCount(blogId){
+      try {
+        axios.post('/articles/' + blogId + '/view-count')
       } catch {
         console.log('博客不存在')
         return null

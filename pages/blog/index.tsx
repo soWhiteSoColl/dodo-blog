@@ -20,15 +20,17 @@ interface Props {
   comments?: { total: number; list: [] }
   getComments?: Function
   commentBlog?: Function
+  addViewCount?: Function
 }
 function BlogDetailPage(props: Props) {
   const [comment, setComment] = useState('')
   const [nickname, setNickname] = useState('')
-  const { getComments, commentBlog, blog, comments } = props
+  const { getComments, commentBlog, blog, comments, addViewCount } = props
 
   useEffect(() => {
     if (blog && blog._id) {
       getComments({ blogId: blog._id })
+      addViewCount(blog._id)
       track('enter-blog-detail', 'route-change', { id: blog._id })
     }
   }, [])
