@@ -430,7 +430,8 @@ template {
 body, #__next {
   width: 100%;
   color: #121314;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; }
 
 .page-common-container {
   max-width: 680px;
@@ -439,6 +440,9 @@ body, #__next {
   .page-common-container:before, .page-common-container:after {
     content: '';
     display: table; }
+  @media screen and (max-width: 750px) {
+    .page-common-container {
+      padding: 0 15px; } }
 
 .page-common-logo {
   height: 120px;
@@ -547,6 +551,49 @@ textarea {
   opacity: 1;
   transform: rotate(3deg) translate(0px, -4px); }
 
+.blog-list-page .blog-date {
+  font-size: 14px;
+  font-weight: 700;
+  margin-top: 45px; }
+  .blog-list-page .blog-date:first-child {
+    margin-top: 0px; }
+  @media screen and (max-width: 750px) {
+    .blog-list-page .blog-date {
+      margin-top: 30px; }
+      .blog-list-page .blog-date .blog-date:first-child {
+        margin-top: 0px; } }
+
+.blog-list-page .blog-list-info {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 12px;
+  color: #999; }
+
+
+.home-page {
+  height: 100vh; }
+  .home-page .c-typer {
+    position: relative;
+    top: 50%;
+    transform: translateY(-60%);
+    height: 400px; }
+    .home-page .c-typer h2 {
+      font-size: 50px;
+      margin-top: 0; }
+    .home-page .c-typer h4 {
+      font-size: 24px;
+      margin-bottom: 1em; }
+    .home-page .c-typer p {
+      line-height: 1.6;
+      margin: 0.6em 0;
+      font-size: 16px; }
+    .home-page .c-typer a {
+      color: #39f;
+      cursor: pointer;
+      text-decoration: none; }
+      .home-page .c-typer a:hover {
+        text-decoration: underline; }
+
 .no-comment {
   color: #666; }
 
@@ -587,6 +634,175 @@ textarea {
   .main-footer-links {
     margin-bottom: 10px; }
 
+.blog-detail-page .page-common-blog-title {
+  margin-bottom: 0.4em; }
+
+.blog-detail-page .blog-created {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 3em; }
+  @media screen and (max-width: 750px) {
+    .blog-detail-page .blog-created {
+      margin-bottom: 2em; } }
+
+.blog-detail-page .blog-comment-form {
+  width: 100%;
+  overflow: hidden; }
+  .blog-detail-page .blog-comment-form input,
+  .blog-detail-page .blog-comment-form textarea {
+    margin-bottom: 15px; }
+  .blog-detail-page .blog-comment-form button {
+    float: right; }
+
+.blog-detail-page .blog-nickname-input {
+  flex-shrink: 0;
+  margin-right: 10px;
+  transition: all ease 0.3s;
+  opacity: 1; }
+  .blog-detail-page .blog-nickname-input.hidden {
+    width: 0;
+    opacity: 0;
+    margin-right: 0;
+    padding: 0; }
+
+@media screen and (max-width: 750px) {
+  .blog-detail-page .blog-comment-form {
+    display: block; }
+    .blog-detail-page .blog-comment-form input,
+    .blog-detail-page .blog-comment-form button {
+      margin-bottom: 15px;
+      width: 100%; }
+    .blog-detail-page .blog-comment-form .blog-nickname-input.hidden {
+      display: none; } }
+
+.blog-detail-page .blog-comment-input {
+  margin-right: 10px; }
+
+.blog-detail-page .blog-content {
+  font-size: 16px;
+  color: #4a4a4a;
+  padding-bottom: 0; }
+  .blog-detail-page .blog-content h1,
+  .blog-detail-page .blog-content h2,
+  .blog-detail-page .blog-content h3,
+  .blog-detail-page .blog-content h4,
+  .blog-detail-page .blog-content h5,
+  .blog-detail-page .blog-content h6,
+  .blog-detail-page .blog-content span,
+  .blog-detail-page .blog-content div,
+  .blog-detail-page .blog-content pre,
+  .blog-detail-page .blog-content ul,
+  .blog-detail-page .blog-content ol,
+  .blog-detail-page .blog-content p,
+  .blog-detail-page .blog-content code,
+  .blog-detail-page .blog-content blockquote {
+    line-height: 1.8;
+    margin: 0.5em 0; }
+    .blog-detail-page .blog-content h1 div,
+    .blog-detail-page .blog-content h1 span,
+    .blog-detail-page .blog-content h2 div,
+    .blog-detail-page .blog-content h2 span,
+    .blog-detail-page .blog-content h3 div,
+    .blog-detail-page .blog-content h3 span,
+    .blog-detail-page .blog-content h4 div,
+    .blog-detail-page .blog-content h4 span,
+    .blog-detail-page .blog-content h5 div,
+    .blog-detail-page .blog-content h5 span,
+    .blog-detail-page .blog-content h6 div,
+    .blog-detail-page .blog-content h6 span,
+    .blog-detail-page .blog-content span div,
+    .blog-detail-page .blog-content span span,
+    .blog-detail-page .blog-content div div,
+    .blog-detail-page .blog-content div span,
+    .blog-detail-page .blog-content pre div,
+    .blog-detail-page .blog-content pre span,
+    .blog-detail-page .blog-content ul div,
+    .blog-detail-page .blog-content ul span,
+    .blog-detail-page .blog-content ol div,
+    .blog-detail-page .blog-content ol span,
+    .blog-detail-page .blog-content p div,
+    .blog-detail-page .blog-content p span,
+    .blog-detail-page .blog-content code div,
+    .blog-detail-page .blog-content code span,
+    .blog-detail-page .blog-content blockquote div,
+    .blog-detail-page .blog-content blockquote span {
+      line-height: inherit;
+      margin: 0; }
+  .blog-detail-page .blog-content h1,
+  .blog-detail-page .blog-content h2,
+  .blog-detail-page .blog-content h3,
+  .blog-detail-page .blog-content h4 {
+    font-weight: 600;
+    color: #4a4a4a; }
+  .blog-detail-page .blog-content p {
+    min-height: 1.6em; }
+  .blog-detail-page .blog-content ul,
+  .blog-detail-page .blog-content ol {
+    margin: 0.65em 0;
+    padding-left: 16px;
+    padding: 0; }
+    .blog-detail-page .blog-content ul li,
+    .blog-detail-page .blog-content ol li {
+      margin-left: 1.5em;
+      margin-bottom: 0.5em; }
+  .blog-detail-page .blog-content ul {
+    list-style-type: disc; }
+  .blog-detail-page .blog-content ol {
+    list-style-type: decimal; }
+  .blog-detail-page .blog-content h2,
+  .blog-detail-page .blog-content h3,
+  .blog-detail-page .blog-content h4 {
+    line-height: 1.1;
+    margin: 1.6em 0 1em; }
+  .blog-detail-page .blog-content h1 {
+    font-size: 2em; }
+  .blog-detail-page .blog-content h2 {
+    font-size: 1.7em; }
+  .blog-detail-page .blog-content h3 {
+    font-size: 1.4em; }
+  .blog-detail-page .blog-content h4 {
+    font-size: 1.1em;
+    margin: 1.45em 0 0.6em; }
+  .blog-detail-page .blog-content pre {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 10px 0;
+    padding: 15px;
+    overflow: auto;
+    background-color: #36312f;
+    border-radius: 4px;
+    color: #fff;
+    font-family: monospace;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.5; }
+    @media screen and (max-width: 720px) {
+      .blog-detail-page .blog-content pre {
+        box-sizing: content-box;
+        width: 100%;
+        position: relative;
+        left: -15px;
+        border-radius: 0; } }
+    .blog-detail-page .blog-content pre code {
+      line-height: 1.7;
+      font-family: Menlo, Monaco, Consolas, Courier New, monospace;
+      color: #fff !important; }
+      .blog-detail-page .blog-content pre code div {
+        white-space: nowrap; }
+    .blog-detail-page .blog-content pre a * {
+      color: #39f !important; }
+    .blog-detail-page .blog-content pre span[style='font-weight: bold;'] * {
+      font-weight: bold !important; }
+  .blog-detail-page .blog-content blockquote {
+    margin: 16px 0;
+    padding: 15px 20px;
+    background-color: #f1f2f3;
+    border-left: 5px solid #ccc;
+    color: #666;
+    font-style: italic; }
+  .blog-detail-page .blog-content img {
+    max-width: 100%; }
+
 .contact-page .contact-form {
   margin-top: 20px;
   overflow: hidden; }
@@ -601,31 +817,6 @@ textarea {
     @media screen and (max-width: 750px) {
       .contact-page .contact-form button {
         width: 100%; } }
-
-
-.home-page {
-  height: 100vh; }
-  .home-page .c-typer {
-    position: relative;
-    top: 50%;
-    transform: translateY(-60%);
-    height: 400px; }
-    .home-page .c-typer h2 {
-      font-size: 50px;
-      margin-top: 0; }
-    .home-page .c-typer h4 {
-      font-size: 24px;
-      margin-bottom: 1em; }
-    .home-page .c-typer p {
-      line-height: 1.6;
-      margin: 0.6em 0;
-      font-size: 16px; }
-    .home-page .c-typer a {
-      color: #39f;
-      cursor: pointer;
-      text-decoration: none; }
-      .home-page .c-typer a:hover {
-        text-decoration: underline; }
 
 
 /*# sourceMappingURL=styles.chunk.css.map*/

@@ -430,7 +430,8 @@ template {
 body, #__next {
   width: 100%;
   color: #121314;
-  overflow-x: hidden; }
+  overflow-x: hidden;
+  font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; }
 
 .page-common-container {
   max-width: 680px;
@@ -439,6 +440,9 @@ body, #__next {
   .page-common-container:before, .page-common-container:after {
     content: '';
     display: table; }
+  @media screen and (max-width: 750px) {
+    .page-common-container {
+      padding: 0 15px; } }
 
 .page-common-logo {
   height: 120px;
@@ -649,7 +653,7 @@ textarea {
   .blog-detail-page .blog-content p,
   .blog-detail-page .blog-content code,
   .blog-detail-page .blog-content blockquote {
-    line-height: 1.65;
+    line-height: 1.8;
     margin: 0.5em 0; }
     .blog-detail-page .blog-content h1 div,
     .blog-detail-page .blog-content h1 span,
@@ -755,11 +759,6 @@ textarea {
     font-style: italic; }
   .blog-detail-page .blog-content img {
     max-width: 100%; }
-  @media screen and (max-width: 750px) {
-    .blog-detail-page .blog-content pre {
-      left: -20px;
-      padding-left: 20px;
-      padding-right: 20px; } }
 
 .contact-page .contact-form {
   margin-top: 20px;

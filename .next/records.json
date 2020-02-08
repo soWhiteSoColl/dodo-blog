@@ -84,23 +84,6 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Navigator/index.scss": [
-    {
-      "modules": {
-        "byIdentifier": {},
-        "usedIds": {}
-      },
-      "chunks": {
-        "byName": {
-          "mini-css-extract-plugin": 0
-        },
-        "bySource": {},
-        "usedIds": [
-          0
-        ]
-      }
-    }
-  ],
   "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/CommentList/index.scss": [
     {
       "modules": {
@@ -136,6 +119,23 @@
     }
   ],
   "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Typer/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Navigator/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -200,12 +200,12 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "styles": 2,
-      "static/YwmceB3bGCdd-dweyLfeu/pages/_app.js": 3,
-      "static/YwmceB3bGCdd-dweyLfeu/pages/_error.js": 4,
-      "static/YwmceB3bGCdd-dweyLfeu/pages/blog.js": 5,
-      "static/YwmceB3bGCdd-dweyLfeu/pages/contact.js": 6,
-      "static/YwmceB3bGCdd-dweyLfeu/pages/home.js": 7,
-      "static/YwmceB3bGCdd-dweyLfeu/pages/index.js": 8,
+      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/_app.js": 3,
+      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/_error.js": 4,
+      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/blog.js": 5,
+      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/contact.js": 6,
+      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/home.js": 7,
+      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/index.js": 8,
       "static/runtime/main.js": 9,
       "static/runtime/polyfills.js": 10
     },

@@ -3,8 +3,8 @@ webpackHotUpdate("styles",{
 /***/ "./pages/index/index.scss":
 false,
 
-/***/ 8:
+/***/ 4:
 false
 
 })
-//# sourceMappingURL=styles.86f56526586f513c1174.hot-update.js.map
+//# sourceMappingURL=styles.7f3961972b5254b645a6.hot-update.js.map
