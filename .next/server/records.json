@@ -23,13 +23,13 @@
     "byName": {
       "init-server.js": 0,
       "on-error-server.js": 1,
-      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/_app.js": 2,
-      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/_document.js": 3,
-      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/_error.js": 4,
-      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/blog.js": 5,
-      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/contact.js": 6,
-      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/home.js": 7,
-      "static/Z8VhkLdU7R_4OKODvZHuQ/pages/index.js": 8
+      "static\\dKYWtS6PHy39CCyQMtCP4\\pages\\_app.js": 2,
+      "static\\dKYWtS6PHy39CCyQMtCP4\\pages\\_document.js": 3,
+      "static\\dKYWtS6PHy39CCyQMtCP4\\pages\\_error.js": 4,
+      "static\\dKYWtS6PHy39CCyQMtCP4\\pages\\blog.js": 5,
+      "static\\dKYWtS6PHy39CCyQMtCP4\\pages\\contact.js": 6,
+      "static\\dKYWtS6PHy39CCyQMtCP4\\pages\\home.js": 7,
+      "static\\dKYWtS6PHy39CCyQMtCP4\\pages\\index.js": 8
     },
     "bySource": {},
     "usedIds": [

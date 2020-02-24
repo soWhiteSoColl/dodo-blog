@@ -15,10 +15,11 @@ const links = [
 export default function Navigator() {
   const [collapsed, setCollapsed] = useState(true)
   const [exist, setExist] = useState(false)
+  const $toggle = useRef<HTMLDivElement>(null)
   const $panel = useRef<HTMLDivElement>(null)
   const $panelInfo = useRef({
     originTop: 0,
-    originRight: 0,
+    originLeft: 0,
     originWidth: 0,
     originHeight: 0,
     maxRadius: 0,
@@ -30,17 +31,16 @@ export default function Navigator() {
   }
 
   const caculatePostion = () => {
-    if ($panel.current) {
-      const panel = $panel.current
-      const { offsetTop, offsetLeft, offsetHeight, offsetWidth } = panel
-      const { innerWidth } = window
+    if ($toggle.current) {
+      const toggle = $toggle.current
+      const { offsetTop, offsetLeft, offsetHeight, offsetWidth } = toggle
       const { availWidth: w, availHeight: h } = window.screen
-
+      
       $panelInfo.current = {
-        originTop: offsetTop,
-        originRight: innerWidth - offsetLeft - offsetWidth,
-        originWidth: offsetWidth,
-        originHeight: offsetHeight,
+        originTop: offsetTop - 8,
+        originLeft: offsetLeft - 8,
+        originWidth: offsetWidth + 16,
+        originHeight: offsetHeight + 16,
         maxRadius: parseInt(Math.sqrt(w * w + h * h).toString(), 10) + 10,
       }
     }
@@ -49,9 +49,13 @@ export default function Navigator() {
   useEffect(() => {
     caculatePostion()
 
-    Router.events.on('routeChangeComplete', () => {
-      setCollapsed(true)
-    })
+    window.addEventListener('resize', caculatePostion)
+
+    Router.events.on('routeChangeComplete', () => setCollapsed(true))
+
+    return () => {
+      window.removeEventListener('resize', caculatePostion)
+    } 
   }, [])
 
   useEffect(() => {
@@ -60,7 +64,7 @@ export default function Navigator() {
       const {
         originTop,
         originHeight,
-        originRight,
+        originLeft,
         originWidth,
         maxRadius,
       } = $panelInfo.current
@@ -69,12 +73,12 @@ export default function Navigator() {
       if (collapsed) {
         panel.style.width = originWidth + 'px'
         panel.style.height = originHeight + 'px'
-        panel.style.right = originRight + 'px'
+        panel.style.left = originLeft + 'px'
         panel.style.top = originTop + 'px'
       } else {
         panel.style.width = maxRadius + 'px'
         panel.style.height = maxRadius + 'px'
-        panel.style.right = (-1 * (maxRadius - availWidth)) / 2 + 'px'
+        panel.style.left = (-1 * (maxRadius - availWidth)) / 2 + 'px'
         panel.style.top = (-1 * (maxRadius - availHeight)) / 2 + 'px'
       }
     }
@@ -85,13 +89,17 @@ export default function Navigator() {
 
   return (
     <div className="navigator">
-      <div className="navigator-collapsed-menu" onClick={handleCollapse}>
+      <div
+        ref={$toggle}
+        className="navigator-collapsed-menu"
+        onClick={handleCollapse}
+      >
         <Icon type={collapsed ? 'menu' : 'close'} />
       </div>
       <div
         ref={$panel}
         className={classnames('navigator-panel', collapsed ? 'hidden' : 'show')}
-      ></div>
+      />
       {exist && (
         <div
           className={classnames(
