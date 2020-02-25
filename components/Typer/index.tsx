@@ -20,8 +20,8 @@ export default function Typer(props: Props) {
     if (!container) return
 
     const letters = getLetters(content)
-    const timeMap = { h1: 200, h2: 120, h3: 100, h4: 100, p: 60 }
-    // const timeMap = { h1: 10, h2: 10, h3: 10, h4: 10, p: 10 }
+    const wordDelayMap = { h1: 300, h2: 200, h3: 200, h4: 150, p: 80 }
+    const lineDelayMap = { h1: 200, h2: 100, h3: 100, h4: 100, p: 100 }
     let currentLine: HTMLElement | null = null
     let currentHref: HTMLAnchorElement | null = null
 
@@ -36,16 +36,23 @@ export default function Typer(props: Props) {
         href,
         isNewTarget,
       } = letters[i]
-      const ms = timeMap[type]
+
+      const wordDelay = wordDelayMap[type]
+      const lineDelay = lineDelayMap[type]
+
+      if (!rendered && isStart) {
+        currentLine = document.createElement(type)
+        currentLine.classList.add('edit')
+        container.appendChild(currentLine)
+
+        await new Promise(resolve => (timer = window.setTimeout(resolve, lineDelay)))
+      }
 
       if (!rendered) {
-        await new Promise(resolve => (timer = window.setTimeout(resolve, ms)))
+        await new Promise(resolve => (timer = window.setTimeout(resolve, wordDelay)))
       }
 
-      if (isStart) {
-        currentLine = document.createElement(type)
-        container.appendChild(currentLine)
-      }
+      if(!currentLine) return
 
       if (isHrefStart) {
         currentHref = document.createElement('a')
@@ -56,21 +63,21 @@ export default function Typer(props: Props) {
           currentHref.setAttribute('data-href', href)
         }
 
-        currentLine!.appendChild(currentHref)
+        currentLine.appendChild(currentHref)
       }
 
       if (currentHref) {
         currentHref.innerHTML += content
       } else {
-        currentLine!.innerHTML += content
+        currentLine.innerHTML += content
       }
 
       if (isHrefEnd) {
         currentHref = null
       }
 
-      if (!rendered && isEnd) {
-        await new Promise(resolve => (timer = window.setTimeout(resolve, ms)))
+      if(!rendered && isEnd) {
+        currentLine.classList.remove('edit')
       }
     }
   }

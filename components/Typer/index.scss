@@ -1,3 +1,45 @@
-.c-typer {
-  
-}
+
+  .c-typer {
+    position: relative;
+
+    h2 {
+      font-size: 50px;
+      margin-top: 0;
+    }
+
+    h4 {
+      font-size: 24px;
+      margin-bottom: 1em;
+    }
+
+    p {
+      line-height: 1.6;
+      margin: 0.6em 0;
+      font-size: 16px;
+    }
+
+    a {
+      color: #39f;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    h2, h4, p {
+      position: relative;
+      &.edit {
+        &:after {
+          content: ' |';
+          position: relative;
+          color: #999;
+          position: absolute;
+          font-size: 1.2em;
+          top: -0.2em;
+          transform: translateX(0.2em);
+        }
+      }
+    }
+  }
