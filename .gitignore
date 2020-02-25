@@ -2,3 +2,4 @@ node_modules
 yarn-error.log
 .next/cache
 .next/static/development
+.next
