@@ -31,7 +31,10 @@ function Home(props) {
       <Head>
         <title>小寒的博客-首页</title>
       </Head>
-      <Typer content={content} rendered={isTyperFirstRendered} />
+      
+      <div className="home-page-typer">
+        <Typer content={content} rendered={isTyperFirstRendered} />
+      </div>
     </div>
   )
 }

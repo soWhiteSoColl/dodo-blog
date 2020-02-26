@@ -20,10 +20,12 @@ export default function Typer(props: Props) {
     if (!container) return
 
     const letters = getLetters(content)
-    const wordDelayMap = { h1: 300, h2: 200, h3: 200, h4: 150, p: 80 }
-    const lineDelayMap = { h1: 200, h2: 100, h3: 100, h4: 100, p: 100 }
+    const wordDelayMap = { h1: 300, h2: 200, h3: 200, h4: 150, p: 60 }
+  
     let currentLine: HTMLElement | null = null
     let currentHref: HTMLAnchorElement | null = null
+    let currentCursor: HTMLElement | null = null
+    let currentSpan: HTMLElement | null = null
 
     for (let i = 0; i < letters.length; i++) {
       const {
@@ -38,14 +40,18 @@ export default function Typer(props: Props) {
       } = letters[i]
 
       const wordDelay = wordDelayMap[type]
-      const lineDelay = lineDelayMap[type]
-
-      if (!rendered && isStart) {
+      
+      if (isStart) {
         currentLine = document.createElement(type)
-        currentLine.classList.add('edit')
-        container.appendChild(currentLine)
 
-        await new Promise(resolve => (timer = window.setTimeout(resolve, lineDelay)))
+        currentCursor = document.createElement('i')
+        currentCursor.classList.add('cursor')
+
+        currentSpan = document.createElement('span')
+
+        currentLine.appendChild(currentSpan)
+        currentLine.appendChild(currentCursor)
+        container.appendChild(currentLine)
       }
 
       if (!rendered) {
@@ -63,21 +69,26 @@ export default function Typer(props: Props) {
           currentHref.setAttribute('data-href', href)
         }
 
-        currentLine.appendChild(currentHref)
+        currentSpan.appendChild(currentHref)
       }
 
       if (currentHref) {
         currentHref.innerHTML += content
       } else {
-        currentLine.innerHTML += content
+        currentSpan.innerHTML += content
       }
 
       if (isHrefEnd) {
         currentHref = null
       }
 
-      if(!rendered && isEnd) {
-        currentLine.classList.remove('edit')
+      if(isEnd) {
+        currentLine.classList.add('wait')
+        const lineDelay = parseInt((Math.random() * 600 + 400).toString())
+        !rendered && await new Promise(resolve => (timer = window.setTimeout(resolve, lineDelay)))
+
+        currentLine.classList.remove('wait')
+        currentLine.removeChild(currentCursor)
       }
     }
   }
