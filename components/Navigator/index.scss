@@ -82,16 +82,20 @@
     &.show a {
       animation: show-animation 0.5s ease 0.3s forwards;
 
-      &:nth-child(3n + 1) {
+      &:nth-child(4n + 1) {
         animation-delay: 0.25s;
       }
 
-      &:nth-child(3n + 2) {
+      &:nth-child(4n + 2) {
         animation-delay: 0.35s;
       }
 
-      &:nth-child(3n) {
+      &:nth-child(4n + 3) {
         animation-delay: 0.45s;
+      }
+
+      &:nth-child(4n + 4) {
+        animation-delay: 0.55s;
       }
     }
 

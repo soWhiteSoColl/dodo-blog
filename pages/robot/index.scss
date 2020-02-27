@@ -1,9 +1,8 @@
 .robot-page {
-  background-color: #ddd;
   height: 100vh;
   position: relative;
 
-  .robot-chat-panel {
+  .robot-panel {
     position: absolute;
     left: 50%;
     top: 50%;
@@ -12,6 +11,7 @@
     width: 375px;
     height: 663px;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    border-radius: 20px;
+    overflow: hidden;
   }
 }

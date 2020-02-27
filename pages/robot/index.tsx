@@ -1,42 +1,56 @@
-import React, { useState } from 'react'
+import React, { useEffect } from 'react'
+import { connect } from 'react-redux'
 import ChatPanel from './components/ChatPanel'
+import ChatInput from './components/ChatInput'
+import ChatHead from './components/ChatHead'
+import Router from 'next/router'
 import './index.scss'
 
-const chats = [
-  {
-    id: '1',
-    type: 'list',
-    q: 'Hello, 我是机器人小寒，需要我帮你什么呢？',
-    a: ['2', '3', '4'],
-  },
-  {
-    id: '2',
-    type: 'link',
-    q: '我想看博客',
-    a: '/', 
-  },
-  {
-    id: '3',
-    type: 'link',
-    q: '帮我给你的主人捎点话',
-    a: '/contact',
-  },
-  {
-    id: '4',
-    type: 'list',
-    q: '我想了解点小寒的小秘密',
-    a: ['5', '6']
-  }
-]
+function Robot(props){
+  const { chats, initChat, clearChats, robotReply, robotContinueReply, setSelectsWithIds } = props
 
-export default function Robot(){
-  const [ chats, setChats ] = useState([])
+  useEffect(() => {
+    initChat()
+
+    return () => clearChats()
+  }, [])
+
+  useEffect(() => {
+    const lastChat = chats[chats.length - 1]
+    
+    if(lastChat) {
+      if(lastChat.role === 'user'){
+        robotReply(lastChat.id)
+      }
+
+      if(lastChat.role === 'robot' && lastChat.type === 'selects') {
+        setSelectsWithIds(lastChat.selects)
+      }
+
+      if(lastChat.role === 'robot' && lastChat.type === 'next') {
+        robotContinueReply(lastChat.next)
+      }
+
+      if(lastChat.role === 'robot' && lastChat.type === 'link') {
+        Router.push(lastChat.link)
+      }
+    }
+    
+  }, [chats])
 
   return (
     <div className="robot-page">
-      <div className="robot-chat-panel">
+      <div className="robot-panel">
+        <ChatHead/>
         <ChatPanel/>
+        <ChatInput/>
       </div>
     </div>
   )
 }
+
+const mapState = state => ({ ...state.robotModel })
+
+const mapDispatch = state => ({ ...state.robotModel })
+
+export default connect(mapState, mapDispatch)(Robot)

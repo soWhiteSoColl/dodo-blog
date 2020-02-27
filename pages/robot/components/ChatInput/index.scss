@@ -1,0 +1,17 @@
+.robot-info-area,
+.robot-input-area {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  height: 60px;
+  box-sizing: border-box;
+  padding: 15px 20px;
+  cursor: pointer;
+  color: #ccc;
+}
+
+.robot-info-area {
+  color: #666;
+  cursor: not-allowed;
+}
