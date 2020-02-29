@@ -1,0 +1,71 @@
+{
+  "modules": {
+    "byIdentifier": {
+      "multi private-next-pages/_app.tsx": 0,
+      "multi private-next-pages/_document.tsx": 1,
+      "multi private-next-pages/blog/index.tsx": 2,
+      "multi private-next-pages/contact/index.tsx": 3,
+      "multi private-next-pages/home/index.tsx": 4,
+      "multi private-next-pages/index/index.tsx": 5,
+      "multi private-next-pages/robot/components/ChatHead/index.tsx": 6,
+      "multi private-next-pages/robot/components/ChatInput/index.tsx": 7,
+      "multi private-next-pages/robot/components/ChatPanel/index.tsx": 8,
+      "multi private-next-pages/robot/components/Loading/index.tsx": 9,
+      "multi private-next-pages/robot/components/SelectsPanel/index.tsx": 10,
+      "multi private-next-pages/robot/index.tsx": 11,
+      "multi next/dist/pages/_error": 12
+    },
+    "usedIds": {
+      "0": 0,
+      "1": 1,
+      "2": 2,
+      "3": 3,
+      "4": 4,
+      "5": 5,
+      "6": 6,
+      "7": 7,
+      "8": 8,
+      "9": 9,
+      "10": 10,
+      "11": 11,
+      "12": 12
+    }
+  },
+  "chunks": {
+    "byName": {
+      "init-server.js": 0,
+      "on-error-server.js": 1,
+      "static/dc0ahqI93svIC0EuwlglH/pages/_app.js": 2,
+      "static/dc0ahqI93svIC0EuwlglH/pages/_document.js": 3,
+      "static/dc0ahqI93svIC0EuwlglH/pages/_error.js": 4,
+      "static/dc0ahqI93svIC0EuwlglH/pages/blog.js": 5,
+      "static/dc0ahqI93svIC0EuwlglH/pages/contact.js": 6,
+      "static/dc0ahqI93svIC0EuwlglH/pages/home.js": 7,
+      "static/dc0ahqI93svIC0EuwlglH/pages/index.js": 8,
+      "static/dc0ahqI93svIC0EuwlglH/pages/robot.js": 9,
+      "static/dc0ahqI93svIC0EuwlglH/pages/robot/components/ChatHead.js": 10,
+      "static/dc0ahqI93svIC0EuwlglH/pages/robot/components/ChatInput.js": 11,
+      "static/dc0ahqI93svIC0EuwlglH/pages/robot/components/ChatPanel.js": 12,
+      "static/dc0ahqI93svIC0EuwlglH/pages/robot/components/Loading.js": 13,
+      "static/dc0ahqI93svIC0EuwlglH/pages/robot/components/SelectsPanel.js": 14
+    },
+    "bySource": {},
+    "usedIds": [
+      0,
+      1,
+      10,
+      11,
+      12,
+      13,
+      14,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ]
+  }
+}
