@@ -1,124 +1,139 @@
-// chat data type
+/**
+ * 格式
+ * 1. R: 机器人发起
+ * 2. 接下来由 U-1 U-2: 表示用户可以选择回复
+ * 3. 机器人每次回复一个用户的选择，比如R-1回复U-1，R-2回复U-2，
+ * 4. 如果机器人需要连续发送多条回复可以通过R-1.1 R-1.2回复U-1
+ * 5. 支持插入图片和超链接，图片用 img(https://dodoblog.cn) 表示，超链接用 小寒的博客(https://dodoblog.cn) 表示
+ * 6. 一个对话框里中只能同时出现文字和超链接，图片只能单独存在
+ * 7. 机器人状态可以通过 (offline), (online) 等方式表示
+ * 8. 支持机器人回复转到，比如机器人回复由R-1-1-1转到R-1-2，可以表示为R-1-1-1 -> R-1-2这个时候就会在U-1-1-1问题后得到R-1-2的回复
+ * 9: 回复机器人先回复后赚到，比如机器人想要先回复U-1-1-1的问题之后，然后转到 R-1-2
+ */
 
-interface BaseChatData {
-  id: number
-  type: string
-  content: string
-}
+export default  `
+R: 哈咯，你好呀
 
-interface SelectChatData extends BaseChatData {
-  type: 'selects'
-  selects: number[]
-}
+  U-1: 嗨，你也好
+  R-1: 我叫小寒，是一名前端开发工程师，这是我的个人网站
 
-interface NextChatData extends BaseChatData {
-  type: 'next'
-  next: number
-}
+    U-1-1: 嗯
+    R-1-1: 都不舍都夸一下我的网站么
 
-interface ReplyChatData extends BaseChatData {
-  type: 'reply'
-  reply: number
-}
+      U-1-1-1: 哈哈哈，挺好的网站呢
+      R-1-1-1: =R-1-2
 
-interface EndChatData extends BaseChatData {
-  type: 'end'
-}
+      U-1-1-2: 确实很一般啊
+      R-1-1-2.2: (offline)
+      R-1-1-2.3: (online)
+      R-1-1-2.4: 刚刚切出去了一下，不好意思哈
+      R-1-1-2.5: 你真的觉得我的网站不好么，我做的很辛苦呢？
 
-// select data type
+        U-1-1-2-1: 额，其实还是挺不错的呢
+        R-1-1-2-1: =R-1-2
 
-interface BaseSelectData {
-  id: number
-  type: string
-  content: string
-}
+        U-1-1-2-2: 渣渣网站
+        R-1-1-2-2: (offline)
 
-interface PlainSelectData extends BaseSelectData {
-  type: 'plain'
-  reply: number
-}
+    U-1-2: 网站做的真不错呢
+    R-1-2: 嘿嘿，谢谢夸奖，小寒还在继续努力中，你想聊点什么呢？
 
-interface LinkSelectData extends BaseSelectData {
-  type: 'link'
-  link: string
-}
+    R-10001: 那还想聊些什么呢？
+      U-10001-1: =U-1-2-1
+      U-10001-2: =U-1-2-2
+      U-10001-3: =U-1-2-3
+      U-10001-4: =U-1-2-4
+      U-10001-5: =U-1-2-5
+      U-10001-6: =U-1-2-6
+      U-10001-7: =U-1-2-7
+      
+      U-1-2-3: 我想聊些关于爱情的东西[爱情]
+      R-1-2-3: 哦？那你是单身还是已经有对象或者已婚的呢？
 
-export type SelectData = LinkSelectData | PlainSelectData
+        U-1-2-3-1: 我还是单身呢
+        R-1-2-3-1: 那你是男孩子还是女孩子呀
+          
+          U-1-2-3-1-1: 我是个可爱的女孩子呢
+          R-1-2-3-1-1: 呀，巧了不是，我是一个单身的男孩子呢
+            
+            U-1-2-3-1-1-2: 是嘛，真的好巧哇
+            R-1-2-3-1-1-2.1: 是的呀，打开微信，扫描下面的二维码，就可能获得一个精美的对象哦
+            R-1-2-3-1-1-2.2: img(https://static.justdodo.cn/xiaohan/1b952ee301838abb5f9d62a204f826e3fa142d55.png)
 
-export type ChatData = SelectChatData | NextChatData | ReplyChatData | EndChatData
+              U-1-2-3-1-1-2-1: 无聊，我们还是聊点别的吧
+              R-1-2-3-1-1-2-1: =R-1-2-3-2: 好吧，聊点什么呢
 
-export const mockSelects: SelectData[] = [
-  {
-    id: 2,
-    type: 'link',
-    content: '我想看博客',
-    link: '/', 
-  },
-  {
-    id: 3,
-    type: 'link',
-    content: '帮我给你的主人捎点话',
-    link: '/contact',
-  },
-  {
-    id: 4,
-    type: 'plain',
-    content: '我想了解点小寒的小秘密',
-    reply: 5,
-  },
-  {
-    id: 6,
-    type: 'plain',
-    content: '小寒是个什么样的人呀',
-    reply: 8
-  },
-  {
-    id: 7,
-    type: 'plain',
-    content: '小寒的微信号多少呀',
-    reply: 10,
-  },
-]
+              U-1-2-3-1-1-2-2: 哈哈哈，好的呀
+              R-1-2-3-1-1-2-2: =R-1-2-3-2: 哈哈哈，那我们再聊点别的吧
 
-export const mockChats: ChatData[] = [
-  {
-    id: 1,
-    type: 'selects',
-    content: 'Hello, 我是机器人小寒，需要我帮你什么呢？',
-    selects: [ 2, 3, 4]
-  },
-  {
-    id: 5,
-    type: 'selects',
-    content: '你想要了解什么秘密呀',
-    selects: [6, 7]
-  },
-  {
-    id: 6,
-    type: 'reply',
-    content: '小寒是个什么样子的人',
-    reply: 8,
-  },
-  {
-    id: 7,
-    type: 'reply',
-    content: '小寒的微信号多少呀',
-    reply: 10,
-  },
-  {
-    id: 8,
-    type: 'next',
-    content: '小寒呢，是一个还没有秃头的程序员',
-    next: 9,
-  },
-  {
-    id: 9,
-    type: 'end',
-    content: '他喜欢吃把米饭炒的一粒一粒都很分明的蛋炒饭，也喜欢看书，打游戏呢',
-  },
-  {
-    id: 10,
-    type: 'end',
-    content: '微信号是13679207787，欢迎来撩呀',
-  }
-]
+            U-1-2-3-1-1-1: 我对你可没什么兴趣
+            R-1-2-3-1-1-1.1: =R-1-2-3-2: 好吧，真是一个忧桑的话题，我们聊点别的吧
+
+          U-1-2-3-1-2: 我是个男生
+          R-1-2-3-1-2: =R-1-2-3-2: 唉，我也是个单身的男生给不了你什么经验，咱可以聊点别的哈
+
+        U-1-2-3-2: 我已经有对象了呢
+        R-1-2-3-2: 额，我还是一个单身狗，给不了你什么经验哈，可以聊点别的
+
+          U-1-2-3-2-1: =U-1-2-2
+          U-1-2-3-2-2: =U-1-2-4
+          U-1-2-3-2-3: =U-1-2-5
+          U-1-2-3-2-4: =U-1-2-7
+          U-1-2-3-2-6: =U-1-2-6
+
+        U-1-2-3-3: 我已经已婚了呢
+        R-1-2-3-3: =R-1-2-3-2
+
+      U-1-2-5: 小寒，你是如何进行学习的呢？[学习]
+      R-1-2-5.1: 首先呢，学习是一件终身大事，保持不断学习是一个现代人类可以清晰的理解社会所必须的态度，小寒平时会稍微花些时间看看书，最近在看《人类简史》，书中从各个角度对人类构建的文明进行了解析，强烈推荐大家去看看呢；另外小寒觉得保持好奇心才是一个人学习最强大的动力，生活中遇到的问题很多，如果能在匆忙的生活中给自己每天遇到新问题留些探索的时间，那么也一定可以学到很多东西。
+      R-1-2-5.2: 如果你是一名程序员呢，可以来看看我的&&&github(https://github.com/hanruto/dodo-blog)，里边有一些有趣的小项目。
+      R-1-2-5.3: 当然也可以去看看我的&&&博客(/)。
+      R-1-2-5.4: 还有什么需要了解的么。
+
+        U-1-2-5-1: =U-1-2-3
+        U-1-2-5-2: =U-1-2-7
+        U-1-2-5-4: =U-1-2-6
+
+      U-1-2-7: 非常喜欢这个网站，想给博主加个鸡腿呢[赞助]
+      R-1-2-7: 哇，真实受宠若惊呢，你要用哪种方式赞助呢
+        U-1-2-7-1: 微信
+        R-1-2-7-1.1: img(https://static.justdodo.cn/xiaohan/536c230529e138faf9409ee1bf9d65cf5a2e0084.jpeg)
+        R-1-2-7-1.2: 老板加的每个鸡腿都是小寒做的更好的动力，谢谢老板呢
+        R-1-2-7-1.3: =R-10001
+  
+        U-1-2-7-2: 支付宝
+        R-1-2-7-2.1: img(https://static.justdodo.cn/xiaohan/26c1909522d358ee453ba9a5a057f7503609ff46.jpeg)
+        R-1-2-7-2.3: =R-1-2-7-1.2
+        R-1-2-7-2.3: =R-10001
+
+        U-1-2-7-3: 还是算了
+        R-1-2-7-3: 好的吧，那聊聊其他的吧
+          U-1-2-7-3-1: =U-1-2-3
+          U-1-2-7-3-2: =U-1-2-5
+          U-1-2-7-3-3: =U-1-2-6
+
+      U-1-2-6: emm，我没有什么想要聊的了[没了]
+      R-1-2-6: 好吧，那我也要下线了，还是非常感谢你可以陪我聊天，欢迎以后经常来看望我。
+        
+        U-1-2-6-1: 好的，拜拜
+        R-1-2-6-1.1: 拜拜
+        R-1-2-6-1.2: (offline)
+
+        U-1-2-6-2: 为什么不是你来看望我啊
+        R-1-2-6-2: (offline)
+
+    U-1-3: 什么渣渣网站
+    R-1-3: (offline)   
+
+  U-2: 我一点都不好！
+  R-2: 怎么了呀，遇到什么麻烦了么？
+
+    U-2-1: 唉，工作不顺心。
+    R-2-1: 这里(https://www.zhipin.com/shanghai/?sid=sem_pz_bdpc_dasou_title)&&&或许有你想要的答案，
+
+    U-2-2: 唉，爱情让人好烦恼。
+    R-2-2: =R-1-2-3
+
+    U-2-4: 没什么烦心事。
+    R-2-4: =R-10001: 好吧，那我们随便聊点什么吧
+`

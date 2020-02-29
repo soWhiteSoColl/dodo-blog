@@ -9,9 +9,15 @@
     transform: translateX(-50%) translateY(-50%);
     background-color: #fff;
     width: 375px;
-    height: 663px;
+    height: 700px;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
     overflow: hidden;
+
+    @media screen and (max-width: 765px) {
+      height: 100vh;
+      width: 100vw;
+      border-radius: 0;
+    }
   }
 }

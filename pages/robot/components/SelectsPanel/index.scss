@@ -77,6 +77,10 @@
     z-index: 2;
     transform: translateY(120%);
 
+    @media screen and (max-width: 765px) {
+      border-radius: 10px 10px 0 0;
+    }
+
     .select-item {
       padding: 10px 20px;
       border-radius: 6px;

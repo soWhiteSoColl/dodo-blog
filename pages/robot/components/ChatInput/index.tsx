@@ -3,12 +3,19 @@ import { connect } from 'react-redux'
 import SelectsPanel from '../SelectsPanel'
 import './index.scss'
 
+function mapStatusToZh(status) {
+  return {
+    offline: '小寒已离线...',
+    action: '小寒操作中...',
+    inputing: '小寒正在输入中...'
+  }[status]
+}
 function ChatInput(props){
   const { status, selects, userReply } = props
   const [ selectsVisible, setSelectsVisible ] = useState(false)
 
-  const handleSelectsChange = select => {
-    userReply({ content: select.label, id: select.value })
+  const handleSelectsChange = id => {
+    userReply(id)
     setSelectsVisible(false)
   }
 
@@ -28,9 +35,9 @@ function ChatInput(props){
         </div>
       }
 
-      {status === 'inputing' &&
+      {status !== 'waiting' &&
         <div className="robot-info-area">
-          小寒正在输入中...
+          {mapStatusToZh(status)}
         </div>
       }
 

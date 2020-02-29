@@ -19,7 +19,7 @@ function SelectsPanel(props: Props){
     if(visible){
       setExist(true)
     } else {
-      timer =  setTimeout(() => setExist(false), 250)
+      timer = setTimeout(() => setExist(false), 250)
     }
     
     return () => clearTimeout(timer)
@@ -31,7 +31,7 @@ function SelectsPanel(props: Props){
         <div className="selects-list">
           {choose.map(item => {
             return (
-              <div key={item.label} className="select-item" onClick={() => onChange(item)}>
+              <div key={item.label} className="select-item" onClick={() => onChange(item.value)}>
                 {item.label}
               </div>
             )

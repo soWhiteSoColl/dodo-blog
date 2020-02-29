@@ -7,36 +7,25 @@ import Router from 'next/router'
 import './index.scss'
 
 function Robot(props){
-  const { chats, initChat, clearChats, robotReply, robotContinueReply, setSelectsWithIds } = props
+  const { currentChat, initChat, clearChats, robotReply, getSelects } = props
 
   useEffect(() => {
     initChat()
-
     return () => clearChats()
   }, [])
 
   useEffect(() => {
-    const lastChat = chats[chats.length - 1]
-    
-    if(lastChat) {
-      if(lastChat.role === 'user'){
-        robotReply(lastChat.id)
-      }
+    if(!currentChat) return
 
-      if(lastChat.role === 'robot' && lastChat.type === 'selects') {
-        setSelectsWithIds(lastChat.selects)
-      }
+    if(currentChat.role === 'user') {
+      robotReply(currentChat.chatId)
+    }
 
-      if(lastChat.role === 'robot' && lastChat.type === 'next') {
-        robotContinueReply(lastChat.next)
-      }
-
-      if(lastChat.role === 'robot' && lastChat.type === 'link') {
-        Router.push(lastChat.link)
-      }
+    if(currentChat.role === 'robot') {
+      getSelects(currentChat.chatId)
     }
     
-  }, [chats])
+  }, [currentChat])
 
   return (
     <div className="robot-page">
