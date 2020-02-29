@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import ChatPanel from './components/ChatPanel'
 import ChatInput from './components/ChatInput'
 import ChatHead from './components/ChatHead'
-import Router from 'next/router'
+import Head from 'next/head'
 import './index.scss'
 
 function Robot(props){
@@ -28,13 +28,18 @@ function Robot(props){
   }, [currentChat])
 
   return (
-    <div className="robot-page">
-      <div className="robot-panel">
-        <ChatHead/>
-        <ChatPanel/>
-        <ChatInput/>
+    <>
+      <Head>
+        <title>和小寒聊天</title>
+      </Head>
+      <div className="robot-page">
+        <div className="robot-panel">
+          <ChatHead/>
+          <ChatPanel/>
+          <ChatInput/>
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
