@@ -19,13 +19,14 @@ export default function MyApp({ Component, pageProps }) {
     Router.events.on('routeChangeError', () => NProgress.done())
   }, [])
 
+  const { navigator = true } = pageProps
   return (
     <>
       <Head>
         <title>小寒的博客</title>
       </Head>
       <Provider store={store}>
-        <Navigator />
+        {navigator && <Navigator />}
         <Component {...pageProps} />
       </Provider>
     </>

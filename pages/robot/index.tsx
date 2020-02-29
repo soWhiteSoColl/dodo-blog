@@ -38,6 +38,10 @@ function Robot(props){
   )
 }
 
+Robot.getInitialProps = () => {
+  return { navigator: false }
+}
+
 const mapState = state => ({ ...state.robotModel })
 
 const mapDispatch = state => ({ ...state.robotModel })
