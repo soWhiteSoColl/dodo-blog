@@ -10,7 +10,7 @@ const links = [
   { text: '主页', href: '/home' },
   { text: '博客', href: '/' },
   { text: '留言板', href: '/contact' },
-  { text: '机器小寒', href: '/robot' },
+  { text: '和小寒聊天', href: '/robot' },
 ]
 
 export default function Navigator() {
