@@ -9,6 +9,7 @@ interface Props {
 
 export default class ScrollDetect extends React.Component<Props> {
   el = React.createRef<HTMLDivElement>()
+  detectElement: HTMLElement
 
   taskTimer = 0
   protectTimer = 0
@@ -18,19 +19,20 @@ export default class ScrollDetect extends React.Component<Props> {
 
   componentDidMount() {
     this.handleDetect()
-    window.addEventListener('scroll', this.handleDetect)
+    this.detectElement = document.getElementById('__next')
+    this.detectElement.addEventListener('scroll', this.handleDetect)
   }
 
   componentWillUnmount() {
-    window.removeEventListener('scroll', this.handleDetect)
+    this.detectElement.removeEventListener('scroll', this.handleDetect)
     clearTimeout(this.taskTimer)
   }
 
   componentDidUpdate(prevProps) {
     if (prevProps.detect !== this.props.detect) {
       this.props.detect
-        ? window.addEventListener('scroll', this.handleDetect)
-        : window.removeEventListener('scroll', this.handleDetect)
+        ? this.detectElement.addEventListener('scroll', this.handleDetect)
+        : this.detectElement.removeEventListener('scroll', this.handleDetect)
     }
   }
 

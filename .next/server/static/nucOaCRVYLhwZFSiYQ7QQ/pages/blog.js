@@ -3722,6 +3722,19 @@ const model = {
           if (!factChat) return;
           if (content) factChat.content = content;
           await this.robotChat(factChat);
+        } else if (!(chat.content instanceof Array) && chat.content.type === 'img') {
+          console.log('id chat', chat);
+          const {
+            src
+          } = chat.content;
+          const image = new Image();
+          image.src = src;
+          this.setStatus('inputing');
+          image.addEventListener('load', async () => {
+            await Object(common["a" /* sleep */])(500);
+            this.pushChat(chat);
+            this.setStatus('waiting');
+          });
         } else {
           await this.robotChat(chat);
         }

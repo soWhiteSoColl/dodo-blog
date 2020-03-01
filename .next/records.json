@@ -101,7 +101,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/Loading/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatPanel/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -118,7 +118,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatPanel/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/Loading/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -186,24 +186,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Navigator/index.scss": [
-    {
-      "modules": {
-        "byIdentifier": {},
-        "usedIds": {}
-      },
-      "chunks": {
-        "byName": {
-          "mini-css-extract-plugin": 0
-        },
-        "bySource": {},
-        "usedIds": [
-          0
-        ]
-      }
-    }
-  ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Typer/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/CommentList/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -237,7 +220,24 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/CommentList/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Navigator/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Typer/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -314,18 +314,18 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "styles": 2,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/_app.js": 3,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/_error.js": 4,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/blog.js": 5,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/contact.js": 6,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/home.js": 7,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/index.js": 8,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/robot.js": 9,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/robot/components/ChatHead.js": 10,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/robot/components/ChatInput.js": 11,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/robot/components/ChatPanel.js": 12,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/robot/components/Loading.js": 13,
-      "static/KJEV_aPxVrKlQuWprtbAC/pages/robot/components/SelectsPanel.js": 14,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/_app.js": 3,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/_error.js": 4,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/blog.js": 5,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/contact.js": 6,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/home.js": 7,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/index.js": 8,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/robot.js": 9,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/robot/components/ChatHead.js": 10,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/robot/components/ChatInput.js": 11,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/robot/components/ChatPanel.js": 12,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/robot/components/Loading.js": 13,
+      "static/nucOaCRVYLhwZFSiYQ7QQ/pages/robot/components/SelectsPanel.js": 14,
       "static/runtime/main.js": 15,
       "static/runtime/polyfills.js": 16
     },

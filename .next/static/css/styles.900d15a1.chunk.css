@@ -431,28 +431,22 @@ template {
 [hidden] {
   display: none; }
 
+html {
+  height: 100%; }
+
 body, #__next {
   width: 100%;
+  height: 100%;
   color: #121314;
   overflow-x: hidden;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; }
-
-body {
-  overflow: hidden; }
-
-#__next {
-  height: 100vh; }
 
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px; }
 
 ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
   background-color: #ddd; }
-
-::-webkit-scrollbar-track {
-  border-radius: 10px; }
 
 .page-common-container {
   max-width: 680px;
@@ -899,14 +893,14 @@ textarea {
     transform: scale(1); } }
 
 .chat-panel {
-  background-color: #e0f1fc;
   width: 100%;
-  height: calc(100% - 120px);
   overflow-y: auto;
   overflow-x: hidden;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  padding: 60px 0;
+  height: 100%; }
   .chat-panel::-webkit-scrollbar {
-    width: 8px;
+    width: 6px;
     height: 8px; }
   .chat-panel::-webkit-scrollbar-thumb {
     background-color: #ddd;
@@ -928,7 +922,7 @@ textarea {
       background-color: #fff;
       max-width: 75%;
       line-height: 1.6em;
-      padding: 10px 15px;
+      padding: 10px 12px;
       display: inline-block;
       text-align: left; }
     .chat-panel .chat-list .chat-item .chat-content img {
@@ -979,11 +973,12 @@ textarea {
     transform: translateY(120%); } }
 
 .robot-selects-panel {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%; }
+  height: 100%;
+  z-index: 10; }
   .robot-selects-panel.show .selects-panel-mask {
     animation: fade-in .2s ease forwards; }
   .robot-selects-panel.show .selects-list {
@@ -994,24 +989,24 @@ textarea {
     animation: slide-down .25s ease forwards; }
   .robot-selects-panel .selects-list {
     background-color: #fff;
-    padding: 15px;
+    padding: 15px 6px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     position: absolute;
     bottom: 0;
     width: 100%;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 20px;
     z-index: 2;
     transform: translateY(120%); }
-    @media screen and (max-width: 765px) {
-      .robot-selects-panel .selects-list {
-        border-radius: 10px 10px 0 0; } }
     .robot-selects-panel .selects-list .select-item {
       padding: 10px 20px;
       border-radius: 6px;
       cursor: pointer; }
       .robot-selects-panel .selects-list .select-item + .select-item {
         margin-top: 5px; }
+    @media screen and (max-width: 765px) {
+      .robot-selects-panel .selects-list {
+        border-radius: 0; } }
   .robot-selects-panel .selects-panel-mask {
     position: relative;
     z-index: 1;
@@ -1021,17 +1016,18 @@ textarea {
 
 .robot-info-area,
 .robot-input-area {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  position: fixed;
+  z-index: 100;
+  width: calc(100% - 40px);
   background-color: #fff;
-  height: 60px;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  cursor: pointer;
-  color: #ccc; }
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 9; }
 
 .robot-info-area {
   color: #666;
@@ -1045,26 +1041,34 @@ textarea {
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  font-weight: bold; }
+  font-weight: bold;
+  position: fixed;
+  top: 0;
+  width: 100%; }
 
 .robot-page {
-  height: 100vh;
-  position: relative; }
+  position: relative;
+  height: 100%; }
   .robot-page .robot-panel {
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translateX(-50%) translateY(-50%);
-    background-color: #fff;
     width: 375px;
     height: 700px;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
-    overflow: hidden; }
-    @media screen and (max-width: 765px) {
+    background-color: #e0f1fc;
+    overflow: hidden;
+    max-height: calc(100% - 60px); }
+    @media screen and (max-width: 750px) {
       .robot-page .robot-panel {
-        height: 100vh;
-        width: 100vw;
+        position: relative;
+        height: 100%;
+        top: 0;
+        left: 0;
+        transform: translateX(0%) translateY(0%);
+        width: 100%;
         border-radius: 0;
-        padding-bottom: env(safe-area-inset-bottom); } }
+        max-height: 100%; } }
 

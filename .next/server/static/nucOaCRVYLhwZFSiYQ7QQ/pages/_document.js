@@ -3244,17 +3244,14 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_8___default.a {
 
   render() {
     return __jsx("html", null, __jsx(next_document__WEBPACK_IMPORTED_MODULE_8__["Head"], null, __jsx("meta", {
-      name: "baidu-site-verification",
-      content: "hd4JTXEMxD"
-    }), __jsx("meta", {
       name: "keywords",
       content: "\u524D\u7AEF,\u8BBE\u8BA1,\u6280\u672F,\u6587\u7AE0,\u4E2A\u4EBA\u535A\u5BA2,\u4EC0\u4E48\u90FD\u5199,\u8FB9\u542C\u6B4C\u8FB9\u770B\u535A\u5BA2"
     }), __jsx("meta", {
       name: "description",
       content: "\u5C0F\u5BD2\u7684\u535A\u5BA2\uFF0C\u7528\u6765\u5206\u4EAB\u81EA\u5DF1\u7684\u77E5\u8BC6\uFF0C\u6B22\u8FCE\u5927\u5BB6\u5173\u6CE8"
     }), __jsx("meta", {
-      content: "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;",
-      name: "viewport"
+      name: "viewport",
+      content: "width=device-width,initial-scale=1.0,viewport-fit=cover"
     }), __jsx("link", {
       rel: "shortcut icon",
       href: "/static/favicon.ico"

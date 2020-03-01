@@ -1,16 +1,17 @@
 .robot-info-area,
 .robot-input-area {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+  position: fixed;
+  z-index: 100;
+  width: calc(100% - 40px);
   background-color: #fff;
-  height: 60px;
-  box-sizing: border-box;
   display: flex;
   align-items: center;
-  padding: 0 20px;
-  cursor: pointer;
-  color: #ccc;
+  bottom: 0;
+  left: 0;
+  height: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  z-index: 9;
 }
 
 .robot-info-area {
