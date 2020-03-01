@@ -20,8 +20,20 @@
     }
 
     @media screen and (max-width: 750px) {
-      right: 16px;
-      top: 30px;
+      right: 24px;
+      top: 33px;
+      width: 24px;
+      height: 24px;
+
+      .svg-icon-wrapper {
+        width: 24px;
+        height: 24px;
+      }
+
+      .svg-icon {
+        transform: scale(0.8);
+        transform-origin: 0 0;;
+      }
     }
   }
 
@@ -64,6 +76,7 @@
     flex-direction: column;
     align-items: center;
     top: 45vh;
+    font-weight: bold;
 
     a {
       opacity: 0;

@@ -15,11 +15,12 @@ body, #__next {
 }
 
 ::-webkit-scrollbar{
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
+  border-radius: 3px;
   background-color: #ddd;
 }
 
@@ -32,7 +33,7 @@ body, #__next {
   @include clearfix;
 
   @media screen and (max-width: 750px) {
-    padding: 0 15px;
+    padding: 0 20px;
   }
 }
 
@@ -66,9 +67,9 @@ body, #__next {
   display: block;
 
   @media screen and (max-width: 750px) {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: 500;
-    margin: 15px 0;
+    margin: 14px 0;
   }
 }
 

@@ -16,13 +16,19 @@
   .navigator {
     .navigator-collapsed-menu {
       position: absolute;
-      top: 20px;
       right: 20px;
+      top: 20px;
       width: 20px;
       height: 20px;
 
-      .svg-icon {
-        transform: scale(0.7);
+      .svg-icon-wrapper {
+        width: 20px;
+        height: 20px;
+
+        .svg-icon {
+          transform: scale(0.7);
+          transform-origin: 0 0;
+        }
       }
     }
   }

@@ -20,7 +20,7 @@ export default function Typer(props: Props) {
     if (!container) return
 
     const letters = getLetters(content)
-    const wordDelayMap = { h1: 300, h2: 200, h3: 200, h4: 150, p: 60 }
+    const wordDelayMap = { h1: 300, h2: 140, h3: 200, h4: 100, p: 60 }
   
     let currentLine: HTMLElement | null = null
     let currentHref: HTMLAnchorElement | null = null

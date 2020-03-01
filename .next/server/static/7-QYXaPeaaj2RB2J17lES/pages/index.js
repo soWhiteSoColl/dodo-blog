@@ -3620,6 +3620,10 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
   })
 });
+// EXTERNAL MODULE: ./node_modules/_@babel_runtime-corejs2@7.7.2@@babel/runtime-corejs2/core-js/promise.js
+var promise = __webpack_require__("LIto");
+var promise_default = /*#__PURE__*/__webpack_require__.n(promise);
+
 // EXTERNAL MODULE: ./utils/common.tsx
 var common = __webpack_require__("rEMe");
 
@@ -3816,6 +3820,7 @@ class chats_parser_ChatModel {
 
 
 
+
 function robot_model_ownKeys(object, enumerableOnly) { var keys = keys_default()(object); if (get_own_property_symbols_default.a) { var symbols = get_own_property_symbols_default()(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return get_own_property_descriptor_default()(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function robot_model_objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { robot_model_ownKeys(Object(source), true).forEach(function (key) { Object(defineProperty["a" /* default */])(target, key, source[key]); }); } else if (get_own_property_descriptors_default.a) { define_properties_default()(target, get_own_property_descriptors_default()(source)); } else { robot_model_ownKeys(Object(source)).forEach(function (key) { define_property_default()(target, key, get_own_property_descriptor_default()(source, key)); }); } } return target; }
@@ -3897,7 +3902,6 @@ const model = {
           this.pushChat(chat);
           this.setStatus(chat.content.status);
         } else if (!(chat.content instanceof Array) && chat.content.type === 'id') {
-          console.log('id chat', chat);
           const {
             info,
             content
@@ -3914,11 +3918,10 @@ const model = {
           const image = new Image();
           image.src = src;
           this.setStatus('inputing');
-          image.addEventListener('load', async () => {
-            await Object(common["a" /* sleep */])(500);
-            this.pushChat(chat);
-            this.setStatus('waiting');
-          });
+          await new promise_default.a(resolve => image.addEventListener('load', resolve));
+          await Object(common["a" /* sleep */])(500);
+          this.pushChat(chat);
+          this.setStatus('waiting');
         } else {
           await this.robotChat(chat);
         }

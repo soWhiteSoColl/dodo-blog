@@ -1,10 +1,11 @@
 .robot-info-area {
-  color: #666;
   cursor: not-allowed;
 }
 
 .robot-info-area,
 .robot-input-area {
+  font-size: 14px;
+  color: #999;
   position: fixed;
   width: calc(100% - 40px);
   background-color: #fff;

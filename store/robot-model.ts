@@ -69,7 +69,6 @@ const model = {
         }
 
         else if(!(chat.content instanceof Array)  && chat.content.type === 'id') {
-          console.log('id chat', chat)
           const { info, content } = chat.content
           const originChat = chatModel.chats.find(item => item.id === info.id)
           const factChat = originChat ? { ...originChat } : null
@@ -85,11 +84,10 @@ const model = {
           const image = new Image()
           image.src = src
           this.setStatus('inputing')
-          image.addEventListener('load', async () => {
-            await sleep(500)
-            this.pushChat(chat)
-            this.setStatus('waiting')
-          })
+          await new Promise(resolve => image.addEventListener('load', resolve))
+          await sleep(500)
+          this.pushChat(chat)
+          this.setStatus('waiting')
         }
 
         else{
