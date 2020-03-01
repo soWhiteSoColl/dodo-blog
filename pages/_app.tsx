@@ -24,6 +24,7 @@ export default function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>小寒的博客</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, viewport-fit=cover"/>
       </Head>
       <Provider store={store}>
         {navigator && <Navigator />}

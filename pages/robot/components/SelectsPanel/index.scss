@@ -72,21 +72,22 @@
     box-sizing: border-box;
     transform: translateY(120%);
     width: 100%;
-    padding: 15px 6px;
+    padding: 20px 10px;
     z-index: 2;
-    padding-bottom: calc(15px + constant(safe-area-inset-bottom));
-    padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    padding-bottom: 18px;
+    padding-bottom: calc(18px + constant(safe-area-inset-bottom));
+    padding-bottom: calc(18px + env(safe-area-inset-bottom));
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     background-color: #fff;
     
     .select-item {
-      padding: 10px 20px;
+      padding: 10px 15px;
       border-radius: 6px;
       cursor: pointer;
 
       &+.select-item {
-        margin-top: 5px;
+        margin-top: 6px;
       }
     }
 
