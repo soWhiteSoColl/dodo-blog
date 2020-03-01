@@ -3908,7 +3908,6 @@ const model = {
           if (content) factChat.content = content;
           await this.robotChat(factChat);
         } else if (!(chat.content instanceof Array) && chat.content.type === 'img') {
-          console.log('id chat', chat);
           const {
             src
           } = chat.content;

@@ -3,27 +3,24 @@
   height: 100%;
 
   .robot-panel {
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%) translateY(-50%);
-    width: 375px;
-    height: 700px;
-    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 20px;
-    background-color: #e0f1fc;
-    overflow: hidden;
-    max-height: calc(100% - 60px);
-
+    @media screen and (min-width: 750px) {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      width: 375px;
+      height: 700px;
+      box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 20px;
+      background-color: #e0f1fc;
+      overflow: hidden;
+      max-height: calc(100% - 60px);
+    }
+    
     @media screen and (max-width: 750px) {
-      position: relative;
       height: 100%;
-      top: 0;
-      left: 0;
-      transform: translateX(0%) translateY(0%);
       width: 100%;
-      border-radius: 0;
-      max-height: 100%;
+      background-color: #e0f1fc;
     }
   }
 }

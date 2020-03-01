@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import ReactDOM from 'react-dom'
 import { connect } from 'react-redux'
 import SelectsPanel from '../SelectsPanel'
 import './index.scss'
@@ -10,6 +11,7 @@ function mapStatusToZh(status) {
     inputing: '小寒正在输入中...'
   }[status]
 }
+
 function ChatInput(props){
   const { status, selects, userReply } = props
   const [ selectsVisible, setSelectsVisible ] = useState(false)

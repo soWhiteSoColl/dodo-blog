@@ -81,7 +81,6 @@ const model = {
         }
         
         else if(!(chat.content instanceof Array)  && chat.content.type === 'img') {
-          console.log('id chat', chat)
           const { src } = chat.content
           const image = new Image()
           image.src = src

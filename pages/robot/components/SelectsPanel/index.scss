@@ -67,17 +67,19 @@
   }
 
   .selects-list {
-    background-color: #fff;
-    padding: 15px 6px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    position: absolute;
+    position: fixed;
     bottom: 0;
-    width: 100%;
     box-sizing: border-box;
-    border-radius: 20px;
     z-index: 2;
     transform: translateY(120%);
-
+    width: 100%;
+    padding: 15px 6px;
+    padding-bottom: calc(15px + constant(safe-area-inset-bottom));
+    padding-bottom: calc(15px + env(safe-area-inset-bottom));
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+    
     .select-item {
       padding: 10px 20px;
       border-radius: 6px;
