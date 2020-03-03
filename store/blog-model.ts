@@ -86,6 +86,7 @@ export default {
     async getComments(query) {
       const comments = await axios.get('/comments', { params: query })
       dispatch.blogModel.setComments(comments)
+      return comments
     },
   }),
 }

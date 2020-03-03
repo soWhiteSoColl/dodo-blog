@@ -84,7 +84,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/Loading/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/SelectsPanel/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -101,7 +101,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/SelectsPanel/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/Loading/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -135,7 +135,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatInput/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatHead/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -152,7 +152,7 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatHead/index.scss": [
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatInput/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -314,18 +314,18 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "styles": 2,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/_app.js": 3,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/_error.js": 4,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/blog.js": 5,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/contact.js": 6,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/home.js": 7,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/index.js": 8,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/robot.js": 9,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/robot/components/ChatHead.js": 10,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/robot/components/ChatInput.js": 11,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/robot/components/ChatPanel.js": 12,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/robot/components/Loading.js": 13,
-      "static/7-QYXaPeaaj2RB2J17lES/pages/robot/components/SelectsPanel.js": 14,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/_app.js": 3,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/_error.js": 4,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/blog.js": 5,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/contact.js": 6,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/home.js": 7,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/index.js": 8,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/robot.js": 9,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/ChatHead.js": 10,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/ChatInput.js": 11,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/ChatPanel.js": 12,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/Loading.js": 13,
+      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/SelectsPanel.js": 14,
       "static/runtime/main.js": 15,
       "static/runtime/polyfills.js": 16
     },

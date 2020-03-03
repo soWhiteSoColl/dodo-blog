@@ -1,16 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import Head from 'next/head'
+import useWillMount from '../../hooks/useWillMount'
 import Logo from '../../components/Logo'
 import CommentList from '../../components/CommentList'
 import Footer from '../../components/Footer'
 import { track } from '../../utils/common'
+import store from '../../store'
 import './index.scss'
 
 function ContactPage(props) {
-  const { getComments, comments, leaveMessage } = props
+  const { initComments, comments, leaveMessage, setComments } = props
   const [nickname, setNickname] = useState('')
   const [comment, setComment] = useState('')
+
+  useWillMount(() => {
+    console.log(initComments, setComments)
+    console.log(typeof window !== 'undefined' && window.innerHeight)
+    initComments && setComments(initComments)
+  })
 
   const handleNicknameChange = e => {
     setNickname(e.target.value)
@@ -35,8 +43,6 @@ function ContactPage(props) {
 
   useEffect(() => {
     track('enter-contact', 'route-change')
-
-    getComments({ type: 2 })
   }, [])
 
   return (
@@ -82,6 +88,13 @@ function ContactPage(props) {
       <Footer />
     </div>
   )
+}
+
+ContactPage.getInitialProps = async () => {
+  const { getComments } = store.dispatch.blogModel
+  const initComments = await getComments({ type: 2 })
+  
+  return { initComments }
 }
 
 const mapState = state => ({ ...state.blogModel, ...state.globalModel })

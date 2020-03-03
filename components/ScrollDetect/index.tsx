@@ -10,21 +10,18 @@ interface Props {
 export default class ScrollDetect extends React.Component<Props> {
   el = React.createRef<HTMLDivElement>()
   detectElement: HTMLElement
-
   taskTimer = 0
   protectTimer = 0
-
   loading = false
   protecting = false
 
   componentDidMount() {
     this.handleDetect()
-    this.detectElement = document.getElementById('__next')
-    this.detectElement.addEventListener('scroll', this.handleDetect)
+    window.addEventListener('scroll', this.handleDetect)
   }
 
   componentWillUnmount() {
-    this.detectElement.removeEventListener('scroll', this.handleDetect)
+    window.removeEventListener('scroll', this.handleDetect)
     clearTimeout(this.taskTimer)
   }
 

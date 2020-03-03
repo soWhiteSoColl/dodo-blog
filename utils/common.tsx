@@ -42,3 +42,14 @@ export function track(
 
   return axios.post('/tracks', { key: eventId, type: eventType, info })
 }
+
+export function debounce(fn, ms){
+  let timer = 0
+  
+  return function(...params){
+    window.clearTimeout(timer)
+    timer = window.setTimeout(() => {
+      fn(...params)
+    }, ms)
+  }
+}

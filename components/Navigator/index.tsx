@@ -3,7 +3,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import classnames from 'classnames'
 import Icon from '../Icon'
-import { track } from '../../utils/common'
+import { track, debounce } from '../../utils/common'
 import './index.scss'
 
 const links = [
@@ -32,6 +32,7 @@ export default function Navigator() {
   }
 
   const caculatePostion = () => {
+    console.log('calc')
     if ($toggle.current) {
       const toggle = $toggle.current
       const { offsetTop, offsetLeft, offsetHeight, offsetWidth } = toggle
@@ -44,48 +45,51 @@ export default function Navigator() {
         originHeight: offsetHeight + 16,
         maxRadius: parseInt(Math.sqrt(w * w + h * h).toString(), 10) + 10,
       }
+
+      const panel = $panel.current
+      if (collapsed) {
+        panel.style.width = $panelInfo.current.originWidth + 'px'
+        panel.style.height = $panelInfo.current.originHeight + 'px'
+        panel.style.left = $panelInfo.current.originLeft + 'px'
+        panel.style.top = $panelInfo.current.originTop + 'px'
+      }
     }
   }
 
   useEffect(() => {
-    caculatePostion()
+    let debouceCalc = debounce(caculatePostion, 300)
 
-    window.addEventListener('resize', caculatePostion)
+    window.addEventListener('resize', debouceCalc)
 
-    Router.events.on('routeChangeComplete', () => setCollapsed(true))
+    Router.events.on('routeChangeComplete', () => {
+      setCollapsed(true)
+    })
 
     return () => {
-      window.removeEventListener('resize', caculatePostion)
+      window.removeEventListener('resize', debouceCalc)
     } 
   }, [])
 
   useEffect(() => {
+    caculatePostion()
+
     if ($panel.current) {
       const panel = $panel.current
-      const {
-        originTop,
-        originHeight,
-        originLeft,
-        originWidth,
-        maxRadius,
-      } = $panelInfo.current
+      const { maxRadius } = $panelInfo.current
       const { availWidth, availHeight } = window.screen
 
-      if (collapsed) {
-        panel.style.width = originWidth + 'px'
-        panel.style.height = originHeight + 'px'
-        panel.style.left = originLeft + 'px'
-        panel.style.top = originTop + 'px'
-      } else {
+      if (!collapsed) {
         panel.style.width = maxRadius + 'px'
         panel.style.height = maxRadius + 'px'
         panel.style.left = (-1 * (maxRadius - availWidth)) / 2 + 'px'
         panel.style.top = (-1 * (maxRadius - availHeight)) / 2 + 'px'
+        setExist(true)
+      }
+
+      if(collapsed) {
+        setTimeout(() => setExist(false), 300)
       }
     }
-
-    !collapsed && setExist(true)
-    collapsed && setTimeout(() => setExist(false), 300)
   }, [collapsed])
 
   return (
