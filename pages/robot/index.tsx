@@ -5,12 +5,15 @@ import ChatInput from './components/ChatInput'
 import ChatHead from './components/ChatHead'
 import Head from 'next/head'
 import Router from 'next/router'
+import { track } from '../../utils/common'
 import './index.scss'
 
 function Robot(props){
   const { currentChat, initChat, clearChats, robotReply, getSelects } = props
 
   useEffect(() => {
+    track('enter-chat', 'route-change')
+
     const key = Router.query.key || 'default'
     initChat(key)
     return () => clearChats()
