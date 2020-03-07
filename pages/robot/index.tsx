@@ -4,13 +4,15 @@ import ChatPanel from './components/ChatPanel'
 import ChatInput from './components/ChatInput'
 import ChatHead from './components/ChatHead'
 import Head from 'next/head'
+import Router from 'next/router'
 import './index.scss'
 
 function Robot(props){
   const { currentChat, initChat, clearChats, robotReply, getSelects } = props
 
   useEffect(() => {
-    initChat()
+    const key = Router.query.key || 'default'
+    initChat(key)
     return () => clearChats()
   }, [])
 

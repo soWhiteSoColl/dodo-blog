@@ -3621,7 +3621,12 @@ class chats_parser_ChatModel {
 
     Object(defineProperty["a" /* default */])(this, "robotChats", void 0);
 
-    this.chats = parseToNodes(chats);
+    try {
+      this.chats = parseToNodes(chats);
+    } catch (err) {
+      throw new Error('无效的chat content');
+    }
+
     this.userChats = this.chats.filter(chat => chat.role === 'user');
     this.robotChats = this.chats.filter(chat => chat.role === 'robot');
   }
@@ -3685,14 +3690,15 @@ const model = {
 
   },
   effects: () => ({
-    async initChat() {
+    async initChat(key = 'default') {
       this.setStatus('inputing');
       this.setState({
         chats: []
       });
-      const chats = await external_axios_default.a.get('/robot-chat');
+      const chats = await external_axios_default.a.get(`/robot-chats/key/${key}`);
+      external_axios_default.a.post(`/robot-chats/${chats._id}/view`);
       await Object(common["b" /* sleep */])(1200);
-      chatModel = new chats_parser_ChatModel(chats);
+      chatModel = new chats_parser_ChatModel(chats.content);
       const chat = chatModel.robotChats[0];
       this.setState({
         chatModel

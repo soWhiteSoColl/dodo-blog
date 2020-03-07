@@ -188,7 +188,11 @@ export class ChatModel{
   robotChats: ChatItem[]
 
   constructor(chats){
-    this.chats = parseToNodes(chats)
+    try {
+      this.chats = parseToNodes(chats)
+    } catch( err) {
+      throw new Error('无效的chat content')
+    }
     this.userChats = this.chats.filter(chat => chat.role === 'user') as UserChatItem[]
     this.robotChats = this.chats.filter(chat => chat.role === 'robot')
   }

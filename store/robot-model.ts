@@ -36,14 +36,15 @@ const model = {
   },
 
   effects: () => ({
-    async initChat() {
+    async initChat(key = 'default') {
       this.setStatus('inputing')
       this.setState({ chats: [] })
 
-      const chats = await axios.get('/robot-chat')
+      const chats:any = await axios.get(`/robot-chats/key/${key}`)
+      axios.post(`/robot-chats/${chats._id}/view`)
       await sleep(1200)
 
-      chatModel = new ChatModel(chats)
+      chatModel = new ChatModel(chats.content)
       const chat = chatModel.robotChats[0]
       this.setState({ chatModel })
       this.pushChat(chat)
