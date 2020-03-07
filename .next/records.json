@@ -135,23 +135,6 @@
       }
     }
   ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatHead/index.scss": [
-    {
-      "modules": {
-        "byIdentifier": {},
-        "usedIds": {}
-      },
-      "chunks": {
-        "byName": {
-          "mini-css-extract-plugin": 0
-        },
-        "bySource": {},
-        "usedIds": [
-          0
-        ]
-      }
-    }
-  ],
   "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatInput/index.scss": [
     {
       "modules": {
@@ -186,7 +169,41 @@
       }
     }
   ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!pages/robot/components/ChatHead/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
   "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Navigator/index.scss": [
+    {
+      "modules": {
+        "byIdentifier": {},
+        "usedIds": {}
+      },
+      "chunks": {
+        "byName": {
+          "mini-css-extract-plugin": 0
+        },
+        "bySource": {},
+        "usedIds": [
+          0
+        ]
+      }
+    }
+  ],
+  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/CommentList/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -221,23 +238,6 @@
     }
   ],
   "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/Footer/index.scss": [
-    {
-      "modules": {
-        "byIdentifier": {},
-        "usedIds": {}
-      },
-      "chunks": {
-        "byName": {
-          "mini-css-extract-plugin": 0
-        },
-        "bySource": {},
-        "usedIds": [
-          0
-        ]
-      }
-    }
-  ],
-  "mini-css-extract-plugin node_modules/_css-loader@1.0.0@css-loader/index.js??ref--6-1!node_modules/_sass-loader@6.0.6@sass-loader/lib/loader.js??ref--6-2!components/CommentList/index.scss": [
     {
       "modules": {
         "byIdentifier": {},
@@ -314,18 +314,18 @@
       "commons": 0,
       "static/runtime/webpack.js": 1,
       "styles": 2,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/_app.js": 3,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/_error.js": 4,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/blog.js": 5,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/contact.js": 6,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/home.js": 7,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/index.js": 8,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/robot.js": 9,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/ChatHead.js": 10,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/ChatInput.js": 11,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/ChatPanel.js": 12,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/Loading.js": 13,
-      "static/iERpvQbXKLNSi3GEplBIx/pages/robot/components/SelectsPanel.js": 14,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/_app.js": 3,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/_error.js": 4,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/blog.js": 5,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/contact.js": 6,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/home.js": 7,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/index.js": 8,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/robot.js": 9,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/robot/components/ChatHead.js": 10,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/robot/components/ChatInput.js": 11,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/robot/components/ChatPanel.js": 12,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/robot/components/Loading.js": 13,
+      "static/OprBhFsXI3BrRtEiQsbHX/pages/robot/components/SelectsPanel.js": 14,
       "static/runtime/main.js": 15,
       "static/runtime/polyfills.js": 16
     },

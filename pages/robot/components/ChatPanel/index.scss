@@ -18,6 +18,8 @@
 
   @media screen and (max-width: 750px) {
     height: calc(100vh - 120px);
+    height: calc(100vh - 120px - constant(safe-area-inset-bottom));
+    height: calc(100vh - 120px - env(safe-area-inset-bottom));
   }
 
   &::-webkit-scrollbar{

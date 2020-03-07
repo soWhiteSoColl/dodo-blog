@@ -43,7 +43,9 @@
   margin-top: 60px; }
   @media screen and (max-width: 750px) {
     .chat-panel {
-      height: calc(100vh - 120px); } }
+      height: calc(100vh - 120px);
+      height: calc(100vh - 120px - constant(safe-area-inset-bottom));
+      height: calc(100vh - 120px - env(safe-area-inset-bottom)); } }
   .chat-panel::-webkit-scrollbar {
     width: 6px;
     height: 8px; }
@@ -633,6 +635,10 @@ body {
   color: #121314;
   overflow-x: hidden;
   font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji"; }
+
+#__next {
+  width: 100%;
+  overflow-x: hidden; }
 
 ::-webkit-scrollbar {
   width: 6px;
